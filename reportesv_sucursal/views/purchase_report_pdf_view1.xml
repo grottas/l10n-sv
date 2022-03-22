@@ -217,7 +217,7 @@
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <span t-esc="'{0:.2f}'.format(compra)"/>
                 </td>
-                <td class="standar" style="padding:8px;"><span>3<span></td>
+                <td class="standar" style="padding:8px;"><span>3</span></td>
             <!--    <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <span t-esc="'{0:.2f}'.format(c.get('excluido'))"/>
                 </td>
