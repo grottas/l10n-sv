@@ -144,7 +144,7 @@
                     <td class="center-middle" style="width:5%"><span t-esc="int(c_index) + 1"/></td>
                     <td class="center-middle" style="width:30%"><span t-esc="c[0]"/></td>
                     <td class="center-middle" style="width:40%;"><span t-esc="c[1]"/></td>
-                   <!-- <td class="center-middle" style="text-align:left;width:100%;font-size:6.5pt"><span t-esc="c[2]"/></td>  -->
+                    <td class="center-middle" style="text-align:left;width:100%;font-size:6.5pt"><span t-esc="c[2]"/></td>
                     <td class="center-middle" style="border-spacing: 0.5px"><span t-esc="c[3]"/></td>
                     <td class="center-middle" style="text-align:right;"><span t-esc="company.currency_id.symbol"/>
                         <t t-if="c[4] != true"  t-set="intEx" t-value="intEx+c[6]"/>
