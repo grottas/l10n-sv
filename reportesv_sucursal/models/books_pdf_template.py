@@ -21,6 +21,8 @@ class odoosv_purchase_report_pdf1(models.AbstractModel):
                 'data': data,
                 }
 
+
+
 class odoosv_taxpayer_report_pdf1(models.AbstractModel):
     _name = 'report.reportesv_sucursal.odoosv_taxpayer_report_pdf1'
     _auto = False
