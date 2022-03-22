@@ -132,11 +132,11 @@
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
                 <!--<t t-set="contador" t-value="o.sv_aprueba_partida"/> -->
                 <t t-set="company" t-value="o"/>
-
+<!---->
                 <div style="text-align: center">
                   <h2 class="center-middle-title" style="font-size:20pt;">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
                   <h2 class="center-middle-title">LIBRO DE anexos de  COMPRAS CON OPERACIONES DE RETENCIÓN</h2>
-                  <h2 class="center-middle-title">NIT: <span t-field="o.partner_id.nit"/> NRC: <span t-field="o.partner_id.nrc"/></h2>
+                  <!-- <h2 class="center-middle-title">NIT: <span t-field="o.partner_id.nit"/> NRC: <span t-field="o.partner_id.nrc"/></h2>-->
                   <h2 class="center-middle-title">MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></h2>
                   <h2 class="center-middle-title">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</h2>
                 </div>
@@ -150,35 +150,40 @@
                 <col class="partner-name"></col>
                 <col span="11" class="standar"></col>
               </colgroup>
-              <tr id="encabezado_l1" class="tr-color">
+          <!--  <tr id="encabezado_l1" class="tr-color">
                 <th class="center-middle-o" colspan="5"></th>
                 <th class="center-middle-o" colspan="2">COMPRAS EXENTAS</th>
                 <th class="center-middle-o" colspan="3">COMPRAS GRAVADAS</th>
                 <th class="center-middle-o" colspan="5"></th>
-              </tr>
+              </tr>-->
               <tr id="encabezado_l2" class="tr-color">
-                <th class="iden">#</th>
+               <!--   <th class="iden">#</th>-->
                 <th class="standar">Fecha de emisión</th>
+                <th class="num-fact">Clase de Documento</th>
+                <th class="num-fact">Tipo de documento</th>
                 <th class="num-fact">Número de documento</th>
-                <th class="partner-name" style="text-align:center">Nombre del proveedor</th>
                 <th class="standar">N.R.C.</th>
-                <th class="standar">Internas</th>
+                <th class="partner-name" style="text-align:center">Nombre del proveedor</th>
+                <th class="standar">Compras Internas Exentas</th>
                 <th class="standar" style="font-size:8pt;">Importaciones e Internacionales</th>
-                <th class="standar">Internas</th>
+                <th class="standar">Compras Internas Gravadas</th>
                 <th class="standar" style="font-size:8pt;">Importaciones e Internacionales</th>
                 <th class="standar">Crédito fiscal</th>
-                <th class="standar">Anticipo a Cuenta de IVA Retenido</th>
-                <th class="standar">Anticipo a Cuenta de IVA Percibido</th>
+               <!-- <th class="standar">Anticipo a Cuenta de IVA Retenido</th>
+                <th class="standar">Anticipo a Cuenta de IVA Percibido</th>-->
                 <th class="standar">Total compras</th>
-                <th class="standar">Compras a Sujetos Excluidos</th>
-                <th class="standar">Retención a Terceros</th>
+                <th class="standar">Número de Anexo</th>
+                <!-- <th class="standar">Compras a Sujetos Excluidos</th>
+                <th class="standar">Retención a Terceros</th>-->
               </tr>
               <tr id="datos" t-foreach="company.get_purchase_details1(company_id, year, month)" t-as="c">
-                <td class="iden"><span t-esc="int(c_index + 1)"/></td>
-                <td class="standar" style="padding:8px;"></td>   <!-- <span t-esc="c.get('fecha').strftime('%d-%m-%Y')"/> -->
+              <!--  <td class="iden"><span t-esc="int(c_index + 1)"/></td>-->
+                <td class="standar" style="padding:8px;"><span t-esc="c.get('fecha').strftime('%d-%m-%Y')"/></td>
+                 <td class="standar" style="padding:8px;"><span>Impreso por imprenta</span></td> 
+                 <td class="standar" style="padding:8px;"><span>Comprobante de Credito F</span></td>  
                 <td class="num-fact-p"><span t-esc="c.get('factura')"/></td>
-                <!--<td class="partner-name" style="font-size:10pt;padding:8px;"><span t-esc="c.get('proveedor')"/></td>-->
                 <td class="standar" style="padding:8px;"><span t-esc="c.get('nrc')"/></td>
+                <td class="partner-name" style="font-size:10pt;padding:8px;"><span t-esc="c.get('proveedor')"/></td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <t t-if="c.get('importacion') != true"  t-set="intEx" t-value="intEx+c.get('exento')"/>
                   <span  t-if="c.get('importacion') != true" t-esc="'{0:.2f}'.format(c.get('exento'))"/>
@@ -189,7 +194,7 @@
                   <span t-if="c.get('importacion') == true" t-esc="'{0:.2f}'.format(c.get('exento'))"/>
                   <span t-else="" t-esc="zero"/>
                 </td>
-                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+               <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <t t-if="c.get('importacion') != true" t-set="intGra" t-value="intGra+c.get('gravado')"/>
                   <span t-if="c.get('importacion') != true" t-esc="'{0:.2f}'.format(c.get('gravado'))"/>
                   <span t-else="" t-esc="zero"/>
@@ -199,7 +204,7 @@
                   <span t-if="c.get('importacion') == true" t-esc="'{0:.2f}'.format(c.get('gravado'))"/>
                   <span t-else="" t-esc="zero"/>
                 </td>
-                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                <!-- <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <span t-esc="'{0:.2f}'.format(c.get('iva'))"/>
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
@@ -207,17 +212,18 @@
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <span t-esc="'{0:.2f}'.format(c.get('percibido'))"/>
-                </td>
+                </td>-->
                 <t t-set="compra" t-value="c.get('exento') + c.get('gravado') + c.get('iva') + c.get('retenido') + c.get('percibido')"/>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <span t-esc="'{0:.2f}'.format(compra)"/>
                 </td>
-                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                <td class="standar" style="padding:8px;"><span>3<span></td>
+            <!--    <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <span t-esc="'{0:.2f}'.format(c.get('excluido'))"/>
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <span t-esc="'{0:.2f}'.format(c.get('otros'))"/>
-                </td>
+                </td>-->
                 <!--Calculo de totales-->
                 <t t-set="totalIva" t-value="totalIva + c.get('iva')"/>
                 <t t-set="totalRetenido" t-value="totalRetenido + c.get('retenido')"/>
@@ -228,10 +234,6 @@
                 <!--Fin ce calculos-->
               </tr>
               <tr id="totales" class="tr-color">
-                <td>
-                </td>
-                <td>
-                </td>
                 <td>
                 </td>
                 <td>
