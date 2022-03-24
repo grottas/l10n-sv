@@ -120,17 +120,17 @@
                           <page string="Percibido 1%">
                             <field name="percibido1">
                               <tree>
-                                <field name="Fecha de emision"/>
-                                <field name="Tipo de documento"/>
-                                <field name="Serie de documento"/>
-                                <field name="Numero de documento"/>
-                                <field name="Monto sujeto"/>
-                                <field name="Monot de percepcion 1%"/>
-                                <field name="Dui de agente"/>
-                                <field name="Numero de anexo"/>
-
+                                <field name="correlativo"/>
+                                <field name="fecha"/>
+                                <field name="proveedor"/>
+                                <field name="nit"/>
+                                <field name="nrc"/>
+                                <field name="exento_interno"/>
+                                <field name="exento_importacion"/>
+                                <field name="gravado_interno"/>
                                 <field name="gravado_importacion"/>
                                 <field name="credito_fiscal"/>
+                                
                                 <field name="retenido"/>
                                 <field name="percibido"/>
                                 <field name="total_compra"/>
