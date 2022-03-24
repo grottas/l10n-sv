@@ -226,6 +226,36 @@ where ai.company_id= {0}
 	and ai.state in ('posted') 
 	and ((ai.nofiscal is not null and ai.nofiscal = False)or (ai.nofiscal is null))
 
+union all
+
+select  ai.id as id,ai.invoice_date as fecha
+	,ai.doc_numero as factura
+	,rp.name as proveedor
+	,rp.nrc as NRC
+	,rp.nit as NIT
+	,True as Importacion
+               ,(ai.amount_total*100/13) as  Gravado
+               ,0.0  Exento
+               ,0.0 as  Iva
+               ,0.0 as  Retenido
+               ,ait.debit as  Percibido
+               ,0.0 as  nosujeto
+               ,0.0 as  excluido
+            	,0.0 as  otros
+from account_move ai
+	inner join res_partner rp on ai.partner_id=rp.id
+	inner join odoosv_fiscal_document doc on ai.tipo_documento_id =doc.id
+where ai.company_id= {0} 
+	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
+	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
+	and ai.move_type='entry'
+	and ait.account_id=920 
+	and doc.contribuyente = true 
+	and doc.requiere_poliza = true
+	and ai.state in ('posted') 
+	and ((ai.nofiscal is not null and ai.nofiscal = False)or (ai.nofiscal is null))
+
+
 ) S
 order by s.Fecha, s.Factura,S.nrc,s.nit
         )""".format(company_id,date_year,date_month)
