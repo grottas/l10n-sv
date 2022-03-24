@@ -23,6 +23,7 @@ class calculo_iva(models.Model):
 	consumidores=fields.One2many(comodel_name='reportesv_sucursal.iva_consumidor', string='Consumidores',inverse_name='calculo_id')
 	consumidores_full=fields.One2many(comodel_name='reportesv_sucursal.iva_consumidor_full', string='Consumidores Detalle',inverse_name='calculo_id')
 	percibido=fields.One2many(comodel_name='reportesv_sucursal.iva_percibido', string='Percibido',inverse_name='calculo_id')
+	percibido1=fields.One2many(comodel_name='reportesv_sucursal.iva_percibido1', string='Percibido1',inverse_name='calculo_id')
 
 	def calcular(self):
 		for r in self:
@@ -77,6 +78,7 @@ class calculo_iva(models.Model):
 			self.env['reportesv_sucursal.iva_consumidor'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
 			self.env['reportesv_sucursal.iva_consumidor_full'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
 			self.env['reportesv_sucursal.iva_percibido'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
+			self.env['reportesv_sucursal.iva_percibido1'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
 
 			lst=company.get_taxpayer_details(r.company_id.id,r.anio,r.mes,0)
 			i=1
@@ -175,7 +177,7 @@ class calculo_iva(models.Model):
 				
 				self.env['reportesv_sucursal.iva_consumidor'].create(dic)
 				i=i+1
-
+#percibido 2%
 			self.env['reportesv_sucursal.iva_percibido'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
 			lst=company.get_purchase_details(r.company_id.id,r.anio,r.mes)
 			i=1
@@ -225,6 +227,59 @@ class calculo_iva(models.Model):
 			self.env['reportesv_sucursal.iva_contribuyente'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
 			self.env['reportesv_sucursal.iva_consumidor'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
 			self.env['reportesv_sucursal.iva_consumidor_full'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
+			self.env['reportesv_sucursal.iva_percibido1'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
+
+#percibido 1%
+			self.env['reportesv_sucursal.iva_percibido1'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
+			lst=company.get_purchase_details(r.company_id.id,r.anio,r.mes)
+			i=1
+			for l in lst:
+				dic={}
+				dic['anio']=r.anio
+				dic['mes']=r.mes
+				dic['factura_id']=l.get('factura_id')
+				dic['calculo_id']=r.id
+				dic['correlativo']=i
+				dic['fecha']=l.get('fecha')
+				dic['numero']=l.get('factura')
+				dic['proveedor']=l.get('proveedor')
+				dic['nrc']=l.get('nrc')
+				customer=self.env['res.partner'].search([('vat','=',l.get('nrc'))],limit=1)
+				if customer:
+					dic['nit']=customer.nit
+				if l.get('importacion') == True:
+					dic['exento_interno']=0.0
+					dic['exento_importacion']=l.get('exento')
+					dic['gravado_interno']=0.0
+					dic['gravado_importacion']=l.get('gravado')
+				else:
+					dic['exento_interno']=l.get('exento')
+					dic['exento_importacion']=0.0
+					dic['gravado_interno']=l.get('gravado')
+					dic['gravado_importacion']=0.0
+				dic['credito_fiscal']=l.get('iva')
+				dic['retenido']=l.get('retenido')
+				dic['percibido']=l.get('percibido')
+				dic['excluido']=l.get('excluido')
+				dic['terceros']=l.get('retencion3')
+				dic['total_compra']=l.get('exento')+l.get('gravado')+l.get('iva')+l.get('retenido')+l.get('percibido')
+
+
+				dic['anexo']='3'
+				dic['clase_doc']='1'
+				factura=self.env['account.move'].browse(l.get('factura_id'))
+				if factura:
+					dic['tipo_documento_emitido']='05' if factura.move_type=='out_refund' else '03'
+				else:
+					dic['tipo_documento_emitido']='03' 
+
+				self.env['reportesv_sucursal.iva_percibido1'].create(dic)
+				i=i+1
+			self.env['reportesv_sucursal.iva_compras'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()	
+			self.env['reportesv_sucursal.iva_contribuyente'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
+			self.env['reportesv_sucursal.iva_consumidor'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
+			self.env['reportesv_sucursal.iva_consumidor_full'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
+			self.env['reportesv_sucursal.iva_percibido'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
 
 
 class calculo_compras(models.Model):
@@ -373,3 +428,37 @@ class calculo_compras(models.Model):
 	terceros=fields.Float("Compras por terceros")
 	tipo_documento_emitido=fields.Char("Tipo documento emitido")
 	total_compra=fields.Float("Total compras")
+
+
+#percibido 1%
+class calculo_compras(models.Model):
+	_name = "reportesv_sucursal.iva_percibido1"
+	anio=fields.Integer("Año")
+	mes=fields.Integer("Mes")
+	calculo_id=fields.Many2one(comodel_name='reportesv_sucursal.calculo_iva', string='Calculo id')
+	name=fields.Char("Name")
+	anexo=fields.Char("Anexo")
+	clase_doc=fields.Char("Clase de documento")
+	correlativo=fields.Integer("Correlativo")
+	credito_fiscal=fields.Float("Credito Fiscal")
+	excluido=fields.Float("Sujeto Excluido")
+	exento_importacion=fields.Float("Importaciones Exentas y/o no sujetas")
+	exento_internaciones=fields.Float("Internaciones Exentas y/o no sujetas")
+	exento_interno=fields.Float("Compras internas exentas y/o no sujetas")
+	factura_id=fields.Many2one(comodel_name='account.move', string='Factura id')
+	fecha=fields.Date("Fecha")
+	gravado_importacion=fields.Float("Gravado importación")
+	gravado_interno=fields.Float("Gravado interno")
+	importacion_servicios=fields.Float("Importaciones Gravadas de servicios")
+	internaciones=fields.Float("Internaciones Gravadas de Bienes")
+	nit=fields.Char("NIT")
+	nrc=fields.Char("NRC")
+	numero=fields.Char("Numero de documento")
+	percibido=fields.Float("Percibido")
+	proveedor=fields.Char("Porveedor")
+	retenido=fields.Float("Retenido")
+	terceros=fields.Float("Compras por terceros")
+	tipo_documento_emitido=fields.Char("Tipo documento emitido")
+	total_compra=fields.Float("Total compras")
+
+	
