@@ -462,7 +462,7 @@
 
 <!--percepcion 1%-->
         <record model="ir.ui.view" id="reportessv_sucursal_ivapercibido1_tree">
-            <field name="name">reportessv_sucursal_ivapercibido_tree</field>
+            <field name="name">reportessv_sucursal_ivapercibido1_tree</field>
             <field name="model">reportesv_sucursal.iva_percibido1</field>
             <field name="arch" type="xml">
                 <tree>
@@ -502,12 +502,12 @@
         <!--action del objetivo-->
         <record model="ir.actions.act_window" id="calculo_ivapercibido1_action">
             <field name="name">Detalle Iva Percibido</field>
-            <field name="res_model">reportesv_sucursal.iva_percibido</field>
+            <field name="res_model">reportesv_sucursal.iva_percibido1</field>
             <!--field name="view_type">form</field-->
             <field name="view_mode">tree,form</field>
             <field name="target">current</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">Iva Percibido</p>
+                <p class="oe_view_nocontent_create">Iva Percibido 1%</p>
             </field>
         </record>
 
