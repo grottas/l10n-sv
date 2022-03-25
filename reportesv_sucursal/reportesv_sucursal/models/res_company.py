@@ -257,19 +257,19 @@ from account_move ai
 	
 	inner join account_move_line aml on aml.move_id=aml.id
 	inner join res_partner rp on aml.partner_id=rp.id
-	inner join account_tax_repartition_line atxrl on aml.account_id = atxrl.account_id
+	inner join account_tax_repartition_line atxrl on aml.account_id = atxrl.id
 
 where ai.company_id= {0} 
 	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
 	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
 	and ai.move_type='entry' 
-	and atxrl.invoice_tax_id=  {3}
+	and atxrl.invoice_tax_id =  {3}
 	and ai.state in ('posted') 
 	
 
 ) S
 order by s.Fecha, s.Factura,S.nrc,s.nit
-        )""".format(company_id,date_year,date_month,company.percepcion2.id)
+        )""".format(company_id,date_year,date_month,company.percepcion2_id)
         tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_purchase_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_reportesv_purchase_report")
