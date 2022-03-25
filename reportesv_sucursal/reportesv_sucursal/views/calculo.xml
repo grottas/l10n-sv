@@ -123,10 +123,10 @@
                                 <field name="nit"/>
                                 <field name="fecha"/>
                                 <field name="tipo_documento_emitido"/>
-                                <field name="serie"/>
+                                <!--<field name="serie"/>-->
                                 <field name="factura"/>
                                 <field name="monto"/>
-                                <field name="percepcion1%"/>
+                                <field name="percibido"/>
                                 <field name="dui"/>
                                 <field name="anexo"/>
                                 
