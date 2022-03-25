@@ -267,7 +267,7 @@ select  ai.id as id,ai.invoice_date as fecha
                ,0.0  Exento
                ,ai.amount_total as  Iva
                ,0.0 as  Retenido
-               ,aml.debit as  Percibido
+               ,aml.debit as  percibido
                ,0.0 as  nosujeto
                ,0.0 as  excluido
                  ,0.0 as  otros
