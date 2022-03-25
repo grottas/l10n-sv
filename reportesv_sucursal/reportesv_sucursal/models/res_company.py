@@ -23,7 +23,7 @@ select ai.id as id,ai.invoice_date as fecha
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,rp.nit as serie
+	,ai.x_serie as serie
 	,0.0 as monto
 	,rp.nit as dui
 	,False as Importacion
@@ -116,7 +116,7 @@ where ai.company_id= {0}
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,rp.nit as serie
+	,ai.x_serie as serie
 	,0.0 as monto
 	,rp.nit as dui
 	,False as Importacion
@@ -211,7 +211,7 @@ select  ai.id as id,ai.invoice_date as fecha
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,rp.nit as serie
+	,ai.x_serie as serie
 	,0.0 as monto
 	,rp.nit as dui
 	,True as Importacion
