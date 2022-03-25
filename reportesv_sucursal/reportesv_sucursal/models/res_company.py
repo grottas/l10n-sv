@@ -269,7 +269,7 @@ where ai.company_id= {0}
 
 ) S
 order by s.Fecha, s.Factura,S.nrc,s.nit
-        )""".format(company_id,date_year,date_month,company_percepcion2.id)
+        )""".format(company_id,date_year,date_month,percepcion2_id)
         tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_purchase_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_reportesv_purchase_report")
