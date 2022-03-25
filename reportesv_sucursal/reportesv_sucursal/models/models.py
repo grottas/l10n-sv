@@ -223,12 +223,7 @@ class calculo_iva(models.Model):
 
 				self.env['reportesv_sucursal.iva_percibido'].create(dic)
 				i=i+1
-			self.env['reportesv_sucursal.iva_compras'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()	
-			self.env['reportesv_sucursal.iva_contribuyente'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
-			self.env['reportesv_sucursal.iva_consumidor'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
-			self.env['reportesv_sucursal.iva_consumidor_full'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
-			self.env['reportesv_sucursal.iva_percibido1'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
-
+			
 #percibido 1%
 			self.env['reportesv_sucursal.iva_percibido1'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
 			lst=company.get_purchase_details(r.company_id.id,r.anio,r.mes)
@@ -275,12 +270,7 @@ class calculo_iva(models.Model):
 
 				self.env['reportesv_sucursal.iva_percibido1'].create(dic)
 				i=i+1
-			self.env['reportesv_sucursal.iva_compras'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()	
-			self.env['reportesv_sucursal.iva_contribuyente'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
-			self.env['reportesv_sucursal.iva_consumidor'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
-			self.env['reportesv_sucursal.iva_consumidor_full'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
-			self.env['reportesv_sucursal.iva_percibido'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
-
+			
 
 class calculo_compras(models.Model):
 	_name = "reportesv_sucursal.iva_compras"
