@@ -238,7 +238,7 @@ select  ai.id as id,ai.invoice_date as fecha
                ,0.0  Exento
                ,0.0 as  Iva
                ,0.0 as  Retenido
-               ,ait.debit as  Percibido
+            /*  ,ait.debit as  Percibido*/
                ,0.0 as  nosujeto
                ,0.0 as  excluido
             	,0.0 as  otros
@@ -248,8 +248,8 @@ from account_move ai
 where ai.company_id= {0} 
 	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
 	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
-	and ai.move_type='entry'
-	and ait.account_id=920 
+	/*and ai.move_type='entry'*/
+	/*and ait.account_id=920*/ 
 	and doc.contribuyente = true 
 	and doc.requiere_poliza = true
 	and ai.state in ('posted') 
