@@ -235,6 +235,7 @@ class calculo_iva(models.Model):
 				dic['factura_id']=l.get('factura_id')
 				dic['calculo_id']=r.id
 				dic['correlativo']=i
+				dic['nit']=customer.nit
 				dic['fecha']=l.get('fecha')
 				dic['serie']=l.get('serie') #creado
 				dic['numero']=l.get('factura')
