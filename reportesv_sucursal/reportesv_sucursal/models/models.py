@@ -458,7 +458,7 @@ class calculo_compras(models.Model):
 	retenido=fields.Float("Retenido")
 	terceros=fields.Float("Compras por terceros")
 	tipo_documento_emitido=fields.Char("Tipo documento emitido")
-	total_compra=fields.Float("Total compras")
+	total_compra=fields.Float("Monto Sujeto") #cambio de nombre por Total compra
 	serie=fields.Char("Serie de documento")
 	dui=fields.Char("DUi del Agente")
 	monto=fields.Float("Monto Sujeto")
