@@ -405,7 +405,7 @@
         <menuitem id="sucursales_iva_consumidorfull" parent="account_reports.account_reports_audit_reports_menu" name="Detalle de IVA Consumidor sin agrupar" action="calculo_ivaconsumidorfull_action" sequence="13"/>
 
        
-       
+<!--percepcion 2%-->       
         <record model="ir.ui.view" id="reportessv_sucursal_ivapercibido_tree">
             <field name="name">reportessv_sucursal_ivapercibido_tree</field>
             <field name="model">reportesv_sucursal.iva_percibido</field>
@@ -429,14 +429,8 @@
             <field name="correlativo"/>
             <field name="total_compra"/>
             <field name="anexo"/>
-          
-            
-            
-            
-            
             <field name="retenido"/>
             <field name="percibido"/>
-            
             <field name="excluido"/>
             <field name="terceros"/>
                   </tree>
@@ -474,7 +468,7 @@
             <field name="numero"/>
             <field name="nit"/>
             <field name="proveedor"/>
-            <field name="exento_interno"/>
+            <!--<field name="exento_interno"/>
             <field name="exento_internaciones"/>
             <field name="exento_importacion"/>
             <field name="internaciones"/>
@@ -483,21 +477,14 @@
             <field name="credito_fiscal"/>
             <field name="correlativo"/>
             <field name="total_compra"/>
-            <field name="anexo"/>
-          
-            
-            
-            
-            
+            <field name="anexo"/>  
             <field name="retenido"/>
-            <field name="percibido"/>
-            
+            <field name="percibido"/>      
             <field name="excluido"/>
-            <field name="terceros"/>
+            <field name="terceros"/>-->
                   </tree>
             </field>
         </record>
-
 
         <!--action del objetivo-->
         <record model="ir.actions.act_window" id="calculo_ivapercibido1_action">
