@@ -25,7 +25,6 @@ select ai.id as id,ai.invoice_date as fecha
 	,rp.nit as NIT
 	,rp.nit as serie
 	,'monto' as monto
-	,'percepcion1%' as percepcion1%
 	,'dui' as dui
 	,False as Importacion
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
@@ -119,7 +118,6 @@ where ai.company_id= {0}
 	,rp.nit as NIT
 	,rp.nit as serie
 	,'monto' as monto
-	,'percepcion1%' as percepcion1%
 	,'dui' as dui
 	,False as Importacion
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
