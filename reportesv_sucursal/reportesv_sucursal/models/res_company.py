@@ -258,7 +258,7 @@ select  ai.id as id,ai.invoice_date as fecha
                  ,0.0 as  otros
 from account_move ai
 	inner join account_move_line aml on aml.move_id=aml.id
-	inner join res_partner rp on ai.partner_id=rp.id
+	inner join res_partner rp on aml.partner_id=rp.id
 	
 where ai.company_id= {0} 
 	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
