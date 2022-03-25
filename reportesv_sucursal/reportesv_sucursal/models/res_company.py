@@ -24,7 +24,10 @@ select ai.id as id,ai.invoice_date as fecha
 	,ai.doc_numero as factura
 	,rp.name as proveedor
 	,rp.nrc as NRC
-	,rp.nit as NIT
+	,rp.nit as nit
+	,ai.x_serie as serie
+	,0.0 as monto
+	,rp.dui as dui
 	,False as Importacion
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
      (select coalesce(sum(ail.price_subtotal),0.00) 
@@ -114,7 +117,10 @@ where ai.company_id= {0}
 	,ai.doc_numero as factura
 	,rp.name as proveedor
 	,rp.nrc as NRC
-	,rp.nit as NIT
+	,rp.nit as nit
+	,ai.x_serie as serie
+	,0.0 as monto
+	,rp.dui as dui
 	,False as Importacion
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
       (select coalesce(sum(ail.price_subtotal),0.00) 
@@ -206,7 +212,10 @@ select  ai.id as id,ai.invoice_date as fecha
 	,ai.doc_numero as factura
 	,rp.name as proveedor
 	,rp.nrc as NRC
-	,rp.nit as NIT
+	,rp.nit as nit
+	,ai.x_serie as serie
+	,0.0 as monto
+	,rp.dui as dui
 	,True as Importacion
                ,(ai.amount_total*100/13) as  Gravado
                ,0.0  Exento
@@ -379,11 +388,7 @@ order by s.fecha, s.factura
             )""".format(company_id,date_year,date_month)
         tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_taxpayer_report')
         self._cr.execute(sql)
-        if stock_id:
-            data = "SELECT * FROM public.odoosv_reportesv_taxpayer_report where sucursal = {0}".format(stock_id)
-            self._cr.execute(data)
-        else:
-            self._cr.execute("SELECT * FROM public.odoosv_reportesv_taxpayer_report")
+        self._cr.execute("SELECT * FROM public.odoosv_reportesv_taxpayer_report")
         if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
@@ -391,7 +396,7 @@ order by s.fecha, s.factura
 
     def get_consumerfull_details(self, company_id, date_year, date_month, stock_id):
         data = {}
-        sql = """CREATE OR REPLACE VIEW odoosv_reportesv_taxpayer_report AS (
+        sql = """CREATE OR REPLACE VIEW odoosv_reportesv_fullconsumer_report AS (
             select * from(
     select COALESCE(ai.date,ai.invoice_date) as fecha
     ,1 as sucursal
@@ -500,11 +505,7 @@ order by s.fecha, s.factura
             )""".format(company_id,date_year,date_month)
         tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_fullconsumer_report')
         self._cr.execute(sql)
-        if stock_id:
-            data = "SELECT * FROM public.odoosv_reportesv_fullconsumer_report where sucursal = {0}".format(stock_id)
-            self._cr.execute(data)
-        else:
-            self._cr.execute("SELECT * FROM public.odoosv_reportesv_fullconsumer_report")
+        self._cr.execute("SELECT * FROM public.odoosv_reportesv_fullconsumer_report")
         if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
@@ -632,11 +633,7 @@ order by SS.fecha, SS.Grupo
             )""".format(company_id,date_year,date_month,sv_invoice_serie_size)
         tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_consumer_report')
         self._cr.execute(sql) #Query for view"
-        if stock_id:
-            data = "SELECT * FROM public.odoosv_reportesv_consumer_report where sucursal = {0}".format(stock_id) #Query que extrae la data de la sucursal solicitada
-            self._cr.execute(data)
-        else:
-            self._cr.execute("SELECT * FROM public.odoosv_reportesv_consumer_report")
+        self._cr.execute("SELECT * FROM public.odoosv_reportesv_consumer_report")
         if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
