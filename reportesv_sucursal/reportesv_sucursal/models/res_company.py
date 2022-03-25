@@ -272,7 +272,7 @@ select  ai.id as id,ai.invoice_date as fecha
                ,0.0 as  excluido
                  ,0.0 as  otros
 from account_move ai
-	inner join account_move_line aml on aml.move_id=aml.id
+	inner join account_move_line aml on aml.move_id=ai.id
 	inner join res_partner rp on aml.partner_id=rp.id
 	
 where ai.company_id= {0} 
