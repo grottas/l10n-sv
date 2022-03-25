@@ -22,7 +22,7 @@ select ai.id as id,ai.invoice_date as fecha
 	,ai.doc_numero as factura
 	,rp.name as proveedor
 	,rp.nrc as NRC
-	,rp.nit as NIT
+	,rp.nit as nit
 	,rp.nit as serie
 	,0.0 as monto
 	,rp.nit as dui
@@ -115,7 +115,7 @@ where ai.company_id= {0}
 	,ai.doc_numero as factura
 	,rp.name as proveedor
 	,rp.nrc as NRC
-	,rp.nit as NIT
+	,rp.nit as nit
 	,rp.nit as serie
 	,0.0 as monto
 	,rp.nit as dui
@@ -210,7 +210,7 @@ select  ai.id as id,ai.invoice_date as fecha
 	,ai.doc_numero as factura
 	,rp.name as proveedor
 	,rp.nrc as NRC
-	,rp.nit as NIT
+	,rp.nit as nit
 	,rp.nit as serie
 	,0.0 as monto
 	,rp.nit as dui
