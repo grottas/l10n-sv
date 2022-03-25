@@ -188,8 +188,12 @@ class calculo_iva(models.Model):
 				dic['factura_id']=l.get('factura_id')
 				dic['calculo_id']=r.id
 				dic['correlativo']=i
+				dic['nit']=l.get('nit')
 				dic['fecha']=l.get('fecha')
+				dic['serie']=l.get('serie') #creado
 				dic['numero']=l.get('factura')
+				dic['dui']=l.get('dui') #creado
+				dic['monto']=l.get('monto') #creado
 				dic['proveedor']=l.get('proveedor')
 				dic['nrc']=l.get('nrc')
 				customer=self.env['res.partner'].search([('vat','=',l.get('nrc'))],limit=1)
@@ -211,7 +215,6 @@ class calculo_iva(models.Model):
 				dic['excluido']=l.get('excluido')
 				dic['terceros']=l.get('retencion3')
 				dic['total_compra']=l.get('exento')+l.get('gravado')+l.get('iva')+l.get('retenido')+l.get('percibido')
-
 
 				dic['anexo']='3'
 				dic['clase_doc']='1'
@@ -235,7 +238,7 @@ class calculo_iva(models.Model):
 				dic['factura_id']=l.get('factura_id')
 				dic['calculo_id']=r.id
 				dic['correlativo']=i
-				dic['nit']=customer.nit
+				dic['nit']=l.get('nit')
 				dic['fecha']=l.get('fecha')
 				dic['serie']=l.get('serie') #creado
 				dic['numero']=l.get('factura')
@@ -421,6 +424,9 @@ class calculo_compras(models.Model):
 	terceros=fields.Float("Compras por terceros")
 	tipo_documento_emitido=fields.Char("Tipo documento emitido")
 	total_compra=fields.Float("Total compras")
+	serie=fields.Char("Serie de documento")
+	dui=fields.Char("DUi del Agente")
+	monto=fields.Float("Monto Sujeto")
 
 
 #percibido 1%

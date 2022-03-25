@@ -98,22 +98,24 @@
                            <page string="Percibido">
                             <field name="percibido">
                               <tree>
-                                <field name="correlativo"/>
-                                <field name="fecha"/>
-                                <field name="proveedor"/>
-                                <field name="nit"/>
-                                <field name="nrc"/>
-                                <field name="exento_interno"/>
-                                <field name="exento_importacion"/>
-                                <field name="gravado_interno"/>
-                                <field name="gravado_importacion"/>
-                                <field name="credito_fiscal"/>
+                                 <field name="nit"/>    <!--si-->
+                                <field name="fecha"/>  <!--si-->
+                                <field name="tipo_documento_emitido"/>  <!--si-->
+                                <field name="serie"/>  <!--si-->
+                                <field name="numero"/> <!--si-->
+                                <field name="monto"/>  <!--si-->
+                                <field name="percibido"/> <!--si-->
+                                <field name="dui"/>    <!--si-->
+                                <field name="anexo"/>  <!--si-->
                                 
+                                <!--<field name="gravado_interno"/>
+                                <field name="gravado_importacion"/>
+                                <field name="credito_fiscal"/> 
                                 <field name="retenido"/>
                                 <field name="percibido"/>
                                 <field name="total_compra"/>
                                 <field name="excluido"/>
-                                <field name="terceros"/>
+                                <field name="terceros"/>-->
                               </tree>
                             </field>
                           </page>
@@ -421,7 +423,7 @@
             <field name="numero"/>
             <field name="nit"/>
             <field name="proveedor"/>
-            <field name="exento_interno"/>
+            <!--<field name="exento_interno"/>
             <field name="exento_internaciones"/>
             <field name="exento_importacion"/>
             <field name="internaciones"/>
@@ -430,11 +432,11 @@
             <field name="credito_fiscal"/>
             <field name="correlativo"/>
             <field name="total_compra"/>
-            <field name="anexo"/>
+            <field name="anexo"/>  
             <field name="retenido"/>
-            <field name="percibido"/>
+            <field name="percibido"/>      
             <field name="excluido"/>
-            <field name="terceros"/>
+            <field name="terceros"/>-->
                   </tree>
             </field>
         </record>
