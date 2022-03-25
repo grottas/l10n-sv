@@ -235,13 +235,9 @@ class calculo_iva(models.Model):
 				dic['factura_id']=l.get('factura_id')
 				dic['calculo_id']=r.id
 				dic['correlativo']=i
-				dic['nit']=l.get('nit') #creado
 				dic['fecha']=l.get('fecha')
-				dic['tipo']=l.get('tipo') #creado
 				dic['serie']=l.get('serie') #creado
-				dic['numero']=l.get('factura') #numero de factura
-				dic['total_compra']=l.get('monto') #creado
-				dic['percepcion']=l.get('percepcion1%') #creado
+				dic['factura']=l.get('factura')
 				dic['dui']=l.get('dui') #creado
 				dic['proveedor']=l.get('proveedor')
 				dic['nrc']=l.get('nrc')
@@ -455,5 +451,5 @@ class calculo_compras(models.Model):
 	terceros=fields.Float("Compras por terceros")
 	tipo_documento_emitido=fields.Char("Tipo documento emitido")
 	total_compra=fields.Float("Total compras")
-
-	
+	serie=fields.Float("Serie de documento")
+	dui=fields.Floar("DUi del Agente")
