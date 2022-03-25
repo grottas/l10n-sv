@@ -11,7 +11,7 @@ _logger = logging.getLogger(__name__)
 
 class res_company(models.Model):
     _name = "res.company"
-    _inherit = "res.company"
+	_inherit = "res.company"
 	percepcion2 = fields.Many2one(comodel_name='account.tax',string='Percepcion 2%')
 
     def get_purchase_details(self, company_id, date_year, date_month):
