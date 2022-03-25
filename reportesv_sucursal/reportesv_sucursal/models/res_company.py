@@ -247,7 +247,7 @@ order by s.Fecha, s.Factura,S.nrc,s.nit
             data = self._cr.dictfetchall()
         return data
 
-	def get_percepcion2_details(self, company_id, date_year, date_month):
+    def get_percepcion2_details(self, company_id, date_year, date_month):
         data = {}
         
 
