@@ -10,7 +10,7 @@ from odoo import exceptions
 _logger = logging.getLogger(__name__)
 
 class res_company(models.Model):
-    _name = "res.company"
+	_name = "res.company"
 	_inherit = "res.company"
 	percepcion2 = fields.Many2one(comodel_name='account.tax',string='Percepcion 2%')
 
