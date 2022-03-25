@@ -215,7 +215,6 @@ select  ai.id as id,ai.invoice_date as fecha
 	,rp.nit as NIT
 	,rp.nit as serie
 	,'monto' as monto
-	,'percepcion1%' as percepcion1%
 	,'dui' as dui
 	,True as Importacion
                ,(ai.amount_total*100/13) as  Gravado
