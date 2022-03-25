@@ -179,7 +179,7 @@ class calculo_iva(models.Model):
 				i=i+1
 #percibido 2%
 			self.env['reportesv_sucursal.iva_percibido'].search([('anio','=',r.anio),('mes','=',r.mes)]).unlink()
-			lst=company.get_purchase_details(r.company_id.id,r.anio,r.mes)
+			lst=company.get_percepcion2_details(r.company_id.id,r.anio,r.mes)
 			i=1
 			for l in lst:
 				dic={}
@@ -309,7 +309,7 @@ class calculo_compras(models.Model):
 	total_compra=fields.Float("Total compras")
 	
 
-class calculo_compras(models.Model):
+class calculo_contribuyente(models.Model):
 	_name = "reportesv_sucursal.iva_contribuyente"
 	anio=fields.Integer("Año")
 	mes=fields.Integer("Mes")
@@ -341,7 +341,7 @@ class calculo_compras(models.Model):
 	total=fields.Float("Total")
 	total_venta=fields.Float("Total venta")
 
-class calculo_compras(models.Model):
+class calculo_consumidor(models.Model):
 	_name = "reportesv_sucursal.iva_consumidor"
 	anio=fields.Integer("Año")
 	mes=fields.Integer("Mes")
@@ -374,7 +374,7 @@ class calculo_compras(models.Model):
 	venta_zf=fields.Float("Ventas a zonas Frances y DPA(tasa cero)")
 	
 
-class calculo_compras(models.Model):
+class calculo_consumidor_full(models.Model):
 	_name = "reportesv_sucursal.iva_consumidor_full"
 	anio=fields.Integer("Año")
 	mes=fields.Integer("Mes")
@@ -395,7 +395,7 @@ class calculo_compras(models.Model):
 	total=fields.Float("Total")
 	total_venta=fields.Float("Total venta")
 
-class calculo_compras(models.Model):
+class calculo_percibido2(models.Model):
 	_name = "reportesv_sucursal.iva_percibido"
 	anio=fields.Integer("Año")
 	mes=fields.Integer("Mes")
@@ -430,7 +430,7 @@ class calculo_compras(models.Model):
 
 
 #percibido 1%
-class calculo_compras(models.Model):
+class calculo_percibido1(models.Model):
 	_name = "reportesv_sucursal.iva_percibido1"
 	anio=fields.Integer("Año")
 	mes=fields.Integer("Mes")

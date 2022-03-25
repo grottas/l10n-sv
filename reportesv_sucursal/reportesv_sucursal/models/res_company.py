@@ -237,7 +237,22 @@ where ai.company_id= {0}
 	and ai.state in ('posted') 
 	and ((ai.nofiscal is not null and ai.nofiscal = False)or (ai.nofiscal is null))
 
-	union all
+) S
+order by s.Fecha, s.Factura,S.nrc,s.nit
+        )""".format(company_id,date_year,date_month)
+        tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_purchase_report')
+        self._cr.execute(sql)
+        self._cr.execute("SELECT * FROM public.odoosv_reportesv_purchase_report")
+        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+            data = self._cr.dictfetchall()
+        return data
+
+	def get_percepcion2_details(self, company_id, date_year, date_month):
+        data = {}
+        
+
+        sql = """CREATE OR REPLACE VIEW odoosv_reportesv_percepcion2_report AS (
+            select * from (
 
 select  ai.id as id,ai.invoice_date as fecha
 	,ai.doc_numero as factura
@@ -273,9 +288,9 @@ where ai.company_id= {0}
 ) S
 order by s.Fecha, s.Factura,S.nrc,s.nit
         )""".format(company_id,date_year,date_month)
-        tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_purchase_report')
+        tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_percepcion2_report')
         self._cr.execute(sql)
-        self._cr.execute("SELECT * FROM public.odoosv_reportesv_purchase_report")
+        self._cr.execute("SELECT * FROM public.odoosv_reportesv_percepcion2_report")
         if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
