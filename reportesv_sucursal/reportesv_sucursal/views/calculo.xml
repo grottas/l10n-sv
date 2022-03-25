@@ -124,7 +124,7 @@
                                 <field name="fecha"/>
                                 <field name="tipo_documento_emitido"/>
                                 <!--<field name="serie"/>-->
-                                <field name="factura"/>
+                                <field name="numero"/>
                                 <field name="monto"/>
                                 <field name="percibido"/>
                                 <field name="dui"/>
