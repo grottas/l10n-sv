@@ -452,4 +452,4 @@ class calculo_compras(models.Model):
 	tipo_documento_emitido=fields.Char("Tipo documento emitido")
 	total_compra=fields.Float("Total compras")
 	serie=fields.Float("Serie de documento")
-	dui=fields.Floar("DUi del Agente")
+	dui=fields.Float("DUi del Agente")
