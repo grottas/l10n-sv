@@ -237,7 +237,7 @@ class calculo_iva(models.Model):
 				dic['correlativo']=i
 				dic['fecha']=l.get('fecha')
 				dic['serie']=l.get('serie') #creado
-				dic['factura']=l.get('factura')
+				dic['numero']=l.get('factura')
 				dic['dui']=l.get('dui') #creado
 				dic['proveedor']=l.get('proveedor')
 				dic['nrc']=l.get('nrc')
