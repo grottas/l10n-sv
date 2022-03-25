@@ -120,15 +120,15 @@
                           <page string="Percibido 1%">
                             <field name="percibido1">
                               <tree>
-                                <field name="nit"/>
-                                <field name="fecha"/>
-                                <field name="tipo_documento_emitido"/>
-                                <!--<field name="serie"/>-->
-                                <field name="numero"/>
-                                <field name="monto"/>
-                                <field name="percibido"/>
-                                <field name="dui"/>
-                                <field name="anexo"/>
+                                <field name="nit"/>    <!--si-->
+                                <field name="fecha"/>  <!--si-->
+                                <field name="tipo_documento_emitido"/>  <!--si-->
+                                <field name="serie"/>  <!--si-->
+                                <field name="numero"/> <!--si-->
+                                <field name="monto"/>  <!--si-->
+                                <field name="percibido"/> <!--si-->
+                                <field name="dui"/>    <!--si-->
+                                <field name="anexo"/>  <!--si-->
                                 
                                 <!--<field name="gravado_interno"/>
                                 <field name="gravado_importacion"/>

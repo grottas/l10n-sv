@@ -239,6 +239,7 @@ class calculo_iva(models.Model):
 				dic['serie']=l.get('serie') #creado
 				dic['numero']=l.get('factura')
 				dic['dui']=l.get('dui') #creado
+				dic['monto']=l.get('monto') #creado
 				dic['proveedor']=l.get('proveedor')
 				dic['nrc']=l.get('nrc')
 				customer=self.env['res.partner'].search([('vat','=',l.get('nrc'))],limit=1)
@@ -453,3 +454,4 @@ class calculo_compras(models.Model):
 	total_compra=fields.Float("Total compras")
 	serie=fields.Float("Serie de documento")
 	dui=fields.Float("DUi del Agente")
+	monto=fields.Float("Monto Sujeto")
