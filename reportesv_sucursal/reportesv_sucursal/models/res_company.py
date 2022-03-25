@@ -12,11 +12,11 @@ _logger = logging.getLogger(__name__)
 class res_company(models.Model):
     _name = "res.company"
     _inherit = "res.company"
-    percepcion2 = fields.Many2one(comodel_name='account.tax',string='Percepcion 2%')
+    
 
     def get_purchase_details(self, company_id, date_year, date_month):
         data = {}
-        company=self.env['res.company'].browse(company_id)
+        
 
         sql = """CREATE OR REPLACE VIEW odoosv_reportesv_purchase_report AS (
             select * from (
@@ -237,39 +237,11 @@ where ai.company_id= {0}
 	and ai.state in ('posted') 
 	and ((ai.nofiscal is not null and ai.nofiscal = False)or (ai.nofiscal is null))
 
-	union all
-
-select  ai.id as id,ai.invoice_date as fecha
-	,ai.doc_numero as factura
-	,rp.name as proveedor
-	,rp.nrc as NRC
-	,rp.nit as NIT
-	,True as Importacion
-               ,(ai.amount_total*100/13) as  Gravado
-               ,0.0  Exento
-               ,ai.amount_total as  Iva
-               ,0.0 as  Retenido
-               ,aml.debit as  Percibido
-               ,0.0 as  nosujeto
-               ,0.0 as  excluido
-                 ,0.0 as  otros
-from account_move ai
-	
-	inner join account_move_line aml on aml.move_id=aml.id
-	inner join res_partner rp on aml.partner_id=rp.id
-	inner join account_tax_repartition_line atxrl on aml.account_id=atxrl.id
-
-where ai.company_id= {0} 
-	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
-	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
-	and ai.move_type='entry' 
-	and atxrl.invoice_tax_id =  {3}
-	and ai.state in ('posted') 
 	
 
 ) S
 order by s.Fecha, s.Factura,S.nrc,s.nit
-        )""".format(company_id,date_year,date_month,percepcion2_id)
+        )""".format(company_id,date_year,date_month)
         tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_purchase_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_reportesv_purchase_report")
