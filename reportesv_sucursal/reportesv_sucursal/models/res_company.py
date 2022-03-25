@@ -10,13 +10,13 @@ from odoo import exceptions
 _logger = logging.getLogger(__name__)
 
 class res_company(models.Model):
-	_name = "res.company"
-	_inherit = "res.company"
-	percepcion2 = fields.Many2one(comodel_name='account.tax',string='Percepcion 2%')
+    _name = "res.company"
+    _inherit = "res.company"
+    percepcion2 = fields.Many2one(comodel_name='account.tax',string='Percepcion 2%')
 
     def get_purchase_details(self, company_id, date_year, date_month):
         data = {}
-		company=self.env['res.company'].browse(compnay_id)
+        company=self.env['res.company'].browse(compnay_id)
 
         sql = """CREATE OR REPLACE VIEW odoosv_reportesv_purchase_report AS (
             select * from (
