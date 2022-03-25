@@ -122,7 +122,7 @@
                               <tree>
                                 <field name="nit"/>
                                 <field name="fecha"/>
-                                <field name="tipo"/>
+                                <field name="tipo_documento_emitido"/>
                                 <field name="serie"/>
                                 <field name="factura"/>
                                 <field name="monto"/>
