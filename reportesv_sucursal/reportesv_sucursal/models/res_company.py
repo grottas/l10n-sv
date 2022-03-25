@@ -255,7 +255,7 @@ select  ai.id as id,ai.invoice_date as fecha
                  ,0.0 as  otros
 from account_move ai
 	
-	inner join account_move_line aml on aml.move_id=am.id
+	inner join account_move_line aml on aml.move_id=aml.id
 	inner join res_partner rp on aml.partner_id=rp.id
 	inner join account_tax_repartition_line atxrl on aml.account_id = atxrl.account_id
 
