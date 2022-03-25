@@ -127,7 +127,7 @@
                                 <field name="tipo_documento_emitido"/>  <!--si-->
                                 <field name="serie"/>  <!--si-->
                                 <field name="numero"/> <!--si-->
-                                <field name="monto"/>  <!--si-->
+                                <field name="total_compra"/>  <!--si-->
                                 <field name="percibido"/> <!--si-->
                                 <field name="dui"/>    <!--si-->
                                 <field name="anexo"/>  <!--si-->
