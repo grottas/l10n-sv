@@ -127,15 +127,15 @@
                                 <field name="nrc"/>
                                 <field name="exento_interno"/>
                                 <field name="exento_importacion"/>
-                                <field name="gravado_interno"/>
-                                <field name="gravado_importacion"/>
-                                <field name="credito_fiscal"/>
                                 
+                                <!--<field name="gravado_interno"/>
+                                <field name="gravado_importacion"/>
+                                <field name="credito_fiscal"/> 
                                 <field name="retenido"/>
                                 <field name="percibido"/>
                                 <field name="total_compra"/>
                                 <field name="excluido"/>
-                                <field name="terceros"/>
+                                <field name="terceros"/>-->
                               </tree>
                             </field>
                           </page>
