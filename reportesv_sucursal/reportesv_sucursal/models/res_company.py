@@ -23,6 +23,11 @@ select ai.id as id,ai.invoice_date as fecha
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as NIT
+	,'tipo1' as tipo
+	,'serie' as serie
+	,'monto' as monto
+	,'percepcion1%' as percepcion1%
+	,'dui' as dui
 	,False as Importacion
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
      (select coalesce(sum(ail.price_subtotal),0.00) 
