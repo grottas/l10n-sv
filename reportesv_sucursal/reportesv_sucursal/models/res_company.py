@@ -25,7 +25,7 @@ select ai.id as id,ai.invoice_date as fecha
 	,rp.nit as NIT
 	,rp.nit as serie
 	,'monto' as monto
-	,'dui' as dui
+	,rp.nit as dui
 	,False as Importacion
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
      (select coalesce(sum(ail.price_subtotal),0.00) 
@@ -118,7 +118,7 @@ where ai.company_id= {0}
 	,rp.nit as NIT
 	,rp.nit as serie
 	,'monto' as monto
-	,'dui' as dui
+	,rp.nit as dui
 	,False as Importacion
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
       (select coalesce(sum(ail.price_subtotal),0.00) 
@@ -213,7 +213,7 @@ select  ai.id as id,ai.invoice_date as fecha
 	,rp.nit as NIT
 	,rp.nit as serie
 	,'monto' as monto
-	,'dui' as dui
+	,rp.nit as dui
 	,True as Importacion
                ,(ai.amount_total*100/13) as  Gravado
                ,0.0  Exento
