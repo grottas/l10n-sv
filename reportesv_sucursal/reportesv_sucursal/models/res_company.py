@@ -263,7 +263,7 @@ where ai.company_id= {0}
 	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
 	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
 	and ai.move_type='entry' 
-	and atxrl.account_tax_id =  {3}
+	and atxrl.account.tax_id =  {3} /* cambio */
 	and ai.state in ('posted') 
 	
 
