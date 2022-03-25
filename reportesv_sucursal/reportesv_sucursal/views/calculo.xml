@@ -120,15 +120,15 @@
                           <page string="Percibido 1%">
                             <field name="percibido1">
                               <tree>
-                                <field name="NIT AGENTE"/>
-                                <field name="FECHA DE EMISION"/>
-                                <field name="TIPO DE DOCUMENTO"/>
-                                <field name="SERIE DE DOCUMENTO"/>
-                                <field name="NUMERO DE DOCUMENTO"/>
-                                <field name="MONTO SUJETO"/>
-                                <field name="MONTO DE LA PERCEPCION 1%"/>
-                                <field name="DUI DEL AGENTE"/>
-                                <field name="NUMERO DEL ANEXO"/>
+                                <field name="nit"/>
+                                <field name="fecha"/>
+                                <field name="tipo"/>
+                                <field name="serie"/>
+                                <field name="factura"/>
+                                <field name="monto"/>
+                                <field name="percepcion1%"/>
+                                <field name="dui"/>
+                                <field name="anexo"/>
                                 
                                 <!--<field name="gravado_interno"/>
                                 <field name="gravado_importacion"/>
