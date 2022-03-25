@@ -239,9 +239,6 @@ class calculo_iva(models.Model):
 				dic['numero']=l.get('factura')
 				dic['proveedor']=l.get('proveedor')
 				dic['nrc']=l.get('nrc')
-				dic['tipo']=l.get('tipo')
-				dic['serie']=l.get('serie')
-				dic['numerodoc']=l.get('numerodoc')
 				customer=self.env['res.partner'].search([('vat','=',l.get('nrc'))],limit=1)
 				if customer:
 					dic['nit']=customer.nit
