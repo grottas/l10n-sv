@@ -254,7 +254,7 @@ order by s.Fecha, s.Factura,S.nrc,s.nit
         sql = """CREATE OR REPLACE VIEW odoosv_reportesv_percepcion2_report AS (
             select * from (
 
-select  ai.id as id,ai.invoice_date as fecha
+select  ai.id as id,ai.date as fecha
 	,ai.doc_numero as factura
 	,rp.name as proveedor
 	,rp.nrc as NRC
