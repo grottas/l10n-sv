@@ -260,12 +260,12 @@ select  ai.id as id,ai.date as fecha
 	,rp.nrc as NRC
 	,rp.nit as nit
 	,ai.x_serie as serie
-	,0.0 as monto
+	,(aml.debit*2/100) as monto
 	,rp.dui as dui
 	,True as Importacion
-               ,(ai.amount_total*100/13) as  Gravado
+               ,0.0 as  Gravado
                ,0.0  Exento
-               ,ai.amount_total as  Iva
+               ,0.0 as  Iva
                ,0.0 as  Retenido
                ,aml.debit as  percibido
                ,0.0 as  nosujeto

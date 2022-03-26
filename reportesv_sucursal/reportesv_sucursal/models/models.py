@@ -194,6 +194,7 @@ class calculo_iva(models.Model):
 				dic['numero']=l.get('factura')
 				dic['dui']=l.get('dui') #creado
 				dic['monto']=l.get('monto') #creado
+				dic['percibido']=l.get('percibido')
 				dic['proveedor']=l.get('proveedor')
 				dic['nrc']=l.get('nrc')
 				customer=self.env['res.partner'].search([('vat','=',l.get('nrc'))],limit=1)
