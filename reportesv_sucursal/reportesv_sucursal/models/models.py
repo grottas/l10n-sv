@@ -212,7 +212,7 @@ class calculo_iva(models.Model):
 					dic['gravado_importacion']=0.0
 				dic['credito_fiscal']=l.get('iva')
 				dic['retenido']=l.get('retenido')
-				dic['percibido']=l.get('Percibido')
+				dic['percibido']=l.get('percibido')
 				dic['excluido']=l.get('excluido')
 				dic['terceros']=l.get('retencion3')
 				dic['total_compra']=l.get('exento')+l.get('gravado')+l.get('iva')+l.get('retenido')+l.get('percibido')
