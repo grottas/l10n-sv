@@ -95,6 +95,45 @@
                               </tree>
                             </field>
                           </page>
+                           <page string="Percibido">
+                            <field name="percibido">
+                              <tree>
+                                 <field name="nit"/>    <!--si-->
+                                <field name="fecha"/>  <!--si-->
+                                <field name="tipo_documento_emitido"/>  <!--si-->
+                                <field name="serie"/>  <!--si-->
+                                <field name="numero"/> <!--si-->
+                                <field name="monto"/>  <!--si-->
+                                <field name="percibido"/> <!--si-->
+                                <field name="dui"/>    <!--si-->
+                                <field name="anexo"/>  <!--si-->
+                                
+                                <!--<field name="gravado_interno"/>
+                                <field name="gravado_importacion"/>
+                                <field name="credito_fiscal"/> 
+                                <field name="retenido"/>
+                                <field name="percibido"/>
+                                <field name="total_compra"/>
+                                <field name="excluido"/>
+                                <field name="terceros"/>-->
+                              </tree>
+                            </field>
+                          </page>
+                          <page string="Percibido 1%">
+                            <field name="percibido1">
+                              <tree>
+                                <field name="nit"/>    <!--si-->
+                                <field name="fecha"/>  <!--si-->
+                                <field name="tipo_documento_emitido"/>
+                                <field name="serie"/>
+                                <field name="numero"/>
+                                <field name="total_compra"/>
+                                <field name="percibido"/>
+                                <field name="dui"/>
+                                <field name="anexo"/> 
+                              </tree>
+                            </field>
+                          </page>
                         </notebook>
                       </sheet>
 
@@ -360,6 +399,102 @@
         <!--menu del objetivo-->
         <menuitem id="sucursales_iva_consumidorfull" parent="account_reports.account_reports_audit_reports_menu" name="Detalle de IVA Consumidor sin agrupar" action="calculo_ivaconsumidorfull_action" sequence="13"/>
 
+       
+<!--percepcion 2%-->       
+        <record model="ir.ui.view" id="reportessv_sucursal_ivapercibido_tree">
+            <field name="name">reportessv_sucursal_ivapercibido_tree</field>
+            <field name="model">reportesv_sucursal.iva_percibido</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="anio"/>
+            <field name="mes"/>
+            <field name="fecha"/>
+            <field name="clase_doc"/>
+            <field name="tipo_documento_emitido"/>
+            <field name="numero"/>
+            <field name="nit"/>
+            <field name="proveedor"/>
+            <!--<field name="exento_interno"/>
+            <field name="exento_internaciones"/>
+            <field name="exento_importacion"/>
+            <field name="internaciones"/>
+            <field name="gravado_interno"/>
+            <field name="gravado_importacion"/>
+            <field name="credito_fiscal"/>
+            <field name="correlativo"/>
+            <field name="total_compra"/>
+            <field name="anexo"/>  
+            <field name="retenido"/>
+            <field name="percibido"/>      
+            <field name="excluido"/>
+            <field name="terceros"/>-->
+                  </tree>
+            </field>
+        </record>
+
+
+        <!--action del objetivo-->
+        <record model="ir.actions.act_window" id="calculo_ivapercibido_action">
+            <field name="name">Detalle Iva Percibido</field>
+            <field name="res_model">reportesv_sucursal.iva_percibido</field>
+            <!--field name="view_type">form</field-->
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Iva Percibido</p>
+            </field>
+        </record>
+
+        <!--menu del objetivo-->
+        <menuitem id="sucursales_iva_percibido" parent="account_reports.account_reports_audit_reports_menu" name="Detalle de IVA Percibido" action="calculo_ivapercibido_action" sequence="10"/>
+
+
+<!--percepcion 1%-->
+        <record model="ir.ui.view" id="reportessv_sucursal_ivapercibido1_tree">
+            <field name="name">reportessv_sucursal_ivapercibido1_tree</field>
+            <field name="model">reportesv_sucursal.iva_percibido1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="anio"/>
+            <field name="mes"/>
+            <field name="fecha"/>
+            <field name="clase_doc"/>
+            <field name="tipo_documento_emitido"/>
+            <field name="numero"/>
+            <field name="nit"/>
+            <field name="proveedor"/>
+            <!--<field name="exento_interno"/>
+            <field name="exento_internaciones"/>
+            <field name="exento_importacion"/>
+            <field name="internaciones"/>
+            <field name="gravado_interno"/>
+            <field name="gravado_importacion"/>
+            <field name="credito_fiscal"/>
+            <field name="correlativo"/>
+            <field name="total_compra"/>
+            <field name="anexo"/>  
+            <field name="retenido"/>
+            <field name="percibido"/>      
+            <field name="excluido"/>
+            <field name="terceros"/>-->
+                  </tree>
+            </field>
+        </record>
+
+        <!--action del objetivo-->
+        <record model="ir.actions.act_window" id="calculo_ivapercibido1_action">
+            <field name="name">Detalle Iva Percibido</field>
+            <field name="res_model">reportesv_sucursal.iva_percibido1</field>
+            <!--field name="view_type">form</field-->
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Iva Percibido 1%</p>
+            </field>
+        </record>
+
+        <!--menu del objetivo-->
+        <menuitem id="sucursales_iva_percibido1" parent="account_reports.account_reports_audit_reports_menu" name="Detalle de IVA Percibido 1%" action="calculo_ivapercibido1_action" sequence="10"/>
 
 
 
