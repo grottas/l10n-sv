@@ -260,7 +260,7 @@ select  ai.id as id,ai.date as fecha
 	,rp.nrc as NRC
 	,rp.nit as nit
 	,ai.x_serie as serie
-	,(percibido/2*100) as monto
+	,(aml.debit/2*100) as monto
 	,rp.dui as dui
 	,True as Importacion
                ,0.0 as  Gravado
