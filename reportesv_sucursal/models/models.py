@@ -23,6 +23,7 @@ class calculo_iva(models.Model):
 	consumidores=fields.One2many(comodel_name='reportesv_sucursal.iva_consumidor', string='Consumidores',inverse_name='calculo_id')
 	consumidores_full=fields.One2many(comodel_name='reportesv_sucursal.iva_consumidor_full', string='Consumidores Detalle',inverse_name='calculo_id')
 
+#sdfsdfasfdsf
 	def calcular(self):
 		for r in self:
 			r.write({'fecha':datetime.now()})
