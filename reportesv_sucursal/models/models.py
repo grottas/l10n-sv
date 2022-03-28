@@ -430,7 +430,7 @@ class calculo_percibido2(models.Model):
 	monto=fields.Float("Monto Sujeto")
 
 
-#percibido 1%
+#percibido 1000%
 class calculo_percibido1(models.Model):
 	_name = "reportesv_sucursal.iva_percibido1"
 	anio=fields.Integer("Año")
