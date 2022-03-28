@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+sucursales_calculo,sucursales_calculo,model_reportesv_sucursal_calculo_iva,base.group_user,1,1,1,1
+sucursales_calculo_compra,sucursales_calculo_compra,model_reportesv_sucursal_iva_compras,base.group_user,1,1,1,1
+sucursales_calculo_contribuyente,sucursales_calculo_contribuyente,model_reportesv_sucursal_iva_contribuyente,base.group_user,1,1,1,1
+sucursales_calculo_consumidor,sucursales_calculo_consumidor,model_reportesv_sucursal_iva_consumidor,base.group_user,1,1,1,1
+sucursales_calculo_consumidor_full,sucursales_calculo_consumidor_full,model_reportesv_sucursal_iva_consumidor_full,base.group_user,1,1,1,1
+
