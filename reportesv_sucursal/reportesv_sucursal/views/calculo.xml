@@ -122,15 +122,15 @@
                           <page string="Percibido 1%">
                             <field name="percibido1">
                               <tree>
-                                <field name="Nit"/>
-                                <field name="Fecha"/>
-                                <field name="Tipo_documento_emitido"/>
-                                <field name="Serie"/>
-                                <field name="Numero"/>
-                                <field name="Total_compra"/>
-                                <field name="Percibido"/>
-                                <field name="Dui"/>
-                                <field name="Anexo"/> 
+                                <field name="nit"/>
+                                <field name="fecha"/>
+                                <field name="tipo_documento_emitido"/>
+                                <field name="serie"/>
+                                <field name="numero"/>
+                                <field name="total_compra"/>
+                                <field name="percibido"/>
+                                <field name="dui"/>
+                                <field name="anexo"/> 
                               </tree>
                             </field>
                           </page>
