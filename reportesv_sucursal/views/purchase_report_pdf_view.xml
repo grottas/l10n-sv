@@ -1,0 +1,340 @@
+<odoo>
+  <data>
+    <template id ='odoosv_purchase_report_pdf'>
+      <t t-call="web.html_container">
+        <t t-call="web.basic_layout">
+          <div class="page" style="font-size: 8pt">
+            <style type="text/css">
+              .spacing-line{
+                line-height: 5pt
+              }
+              .center-middle-title{
+                font-size: 15pt;
+                text-transform: uppercase;
+                line-height: 15pt;
+              }
+              .center-middle{
+                text-align: right;
+                vertical-align: middle !important;
+                padding:5px !important;
+                font-size:12pt !important;
+                width:35%;
+              }
+              .center-middle-r{
+                text-align: left;
+                vertical-align: middle !important;
+                padding:5px !important;
+                width:35%;
+                font-size:12pt !important;
+              }
+              .result{
+                text-align: right;
+                vertical-align: middle !important;
+                padding:8px !important;
+                font-size:12pt;
+              }
+              .center-middle-o{
+                text-align: center;
+                vertical-align: middle !important;
+                padding:0px;
+                font-size:12pt;
+              }
+              .tr-color{
+                background-color:lightgray;
+                width:100%;
+              }
+              table{
+                border-collapse: collapse;
+                empty-cells:hide;
+                width:100%;
+              }
+              table td:last-child{
+                padding: 0.5px;
+                width:100%;
+              }
+              .tabla-resumen {
+                table-layout:fixed;
+                position:absolute;
+                left:200px;
+                width:600px;
+              }
+              .iden {
+                text-align: center;
+                vertical-align: middle !important;
+                width:60px;
+                font-size:11pt;
+                padding:8px;
+              }
+              .standar {
+                text-align: center;
+                vertical-align: middle !important;
+                font-size:11pt;
+                width:100px;
+              }
+              .standar-r{
+                text-align: right;
+                vertical-align: middle !important;
+                font-size:11pt;
+                width:100px;
+                padding:8px;
+              }
+              .num-fact {
+                text-align: center;
+                vertical-align: middle !important;
+                font-size:11pt;
+                width:110px;
+              }
+              .num-fact-p {
+                text-align: center;
+                vertical-align: middle !important;
+                font-size:11pt;
+                width:110px;
+                padding:8px;
+              }
+              .partner-name {
+                text-align: left;
+                vertical-align: middle !important;
+                width:330px;
+                word-wrap:break-all !important;
+                white-space:initial;
+                font-size:11pt;
+              }
+            </style>
+            <!--Declaracion de variables-->
+            <t t-set="month" t-value="int(0)"/>
+            <t t-set="year" t-value="int(0)"/>
+            <t t-set="company_id" t-value="int(0)"/>
+            <t t-set="contador" t-value="null"/>
+            <t t-set="company" t-value="null"/>
+
+            <t t-set="compra" t-value="float(0.00)"/>
+            <!--t t-set="zero" t-value="'{0:.2f}'.format(float(0.00))"/-->
+            <t t-set="zero" t-value="float(0.00)"/>
+            <t t-set="totalExentas" t-value="float(0.00)"/>
+            <t t-set="totalGravadas" t-value="float(0.00)"/>
+            <t t-set="totalIva" t-value="float(0.00)"/>
+            <t t-set="totalRetenido" t-value="float(0.00)"/>
+            <t t-set="totalPercibido" t-value="float(0.00)"/>
+            <t t-set="totalCompras" t-value="float(0.00)"/>
+            <t t-set="totalExcluidos" t-value="float(0.00)"/>
+            <t t-set="totalRetenido3" t-value="float(0.00)"/>
+            <t t-set="importacion" t-value="false"/>
+            <t t-set="intEx" t-value="float(0.00)"/>
+            <t t-set="impEx" t-value="float(0.00)"/>
+            <t t-set="intGra" t-value="float(0.00)"/>
+            <t t-set="impGra" t-value="float(0.00)"/>
+            <!--Fin de declaraciones-->
+
+            <!--Encabezado-->
+              <t t-foreach="docs" t-as="o">
+                <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
+                <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
+                <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
+                <!--<t t-set="contador" t-value="o.sv_aprueba_partida"/> -->
+                <t t-set="company" t-value="o"/>
+
+                <div style="text-align: center">
+                  <h2 class="center-middle-title" style="font-size:20pt;">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
+                  <h2 class="center-middle-title">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</h2>
+                  <h2 class="center-middle-title">NIT: <span t-field="o.partner_id.nit"/> NRC: <span t-field="o.partner_id.nrc"/></h2>
+                  <h2 class="center-middle-title">MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></h2>
+                  <h2 class="center-middle-title">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</h2>
+                </div>
+              </t>
+            <!--Fin encabezado-->
+            <table id="contenido" class="table table-bordered" style="table-layout:fixed;width:800px;">
+              <colgroup>
+                <col class="iden"></col>
+                <col class="standar"></col>
+                <col class="num-fact"></col>
+                <col class="partner-name"></col>
+                <col span="11" class="standar"></col>
+              </colgroup>
+              <tr id="encabezado_l1" class="tr-color">
+                <th class="center-middle-o" colspan="5"></th>
+                <th class="center-middle-o" colspan="2">COMPRAS EXENTAS</th>
+                <th class="center-middle-o" colspan="3">COMPRAS GRAVADAS</th>
+                <th class="center-middle-o" colspan="5"></th>
+              </tr>
+              <tr id="encabezado_l2" class="tr-color">
+                <th class="iden">#</th>
+                <th class="standar">Fecha de emisión</th>
+                <th class="num-fact">Número de documento</th>
+                <th class="partner-name" style="text-align:center">Nombre del proveedor</th>
+                <th class="standar">N.R.C.</th>
+                <th class="standar">Internas</th>
+                <th class="standar" style="font-size:8pt;">Importaciones e Internacionales</th>
+                <th class="standar">Internas</th>
+                <th class="standar" style="font-size:8pt;">Importaciones e Internacionales</th>
+                <th class="standar">Crédito fiscal</th>
+                <th class="standar">Anticipo a Cuenta de IVA Retenido</th>
+                <th class="standar">Anticipo a Cuenta de IVA Percibido</th>
+                <th class="standar">Total compras</th>
+                <th class="standar">Compras a Sujetos Excluidos</th>
+                <th class="standar">Retención a Terceros</th>
+              </tr>
+              <tr id="datos" t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
+                <td class="iden"><span t-esc="int(c_index + 1)"/></td>
+                <td class="standar" style="padding:8px;"><span t-esc="c.get('fecha').strftime('%d-%m-%Y')"/></td>
+                <td class="num-fact-p"><span t-esc="c.get('factura')"/></td>
+                <td class="partner-name" style="font-size:10pt;padding:8px;"><span t-esc="c.get('proveedor')"/></td>
+                <td class="standar" style="padding:8px;"><span t-esc="c.get('nrc')"/></td>
+                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                  <t t-if="c.get('importacion') != true"  t-set="intEx" t-value="intEx+c.get('exento')"/>
+                  <span  t-if="c.get('importacion') != true" t-esc="'{0:.2f}'.format(c.get('exento'))"/>
+                  <span  t-else="" t-esc="zero"/>
+                </td>
+                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                  <t t-if="c.get('importacion') == true" t-set="impEx" t-value="impEx+c.get('exento')"/>
+                  <span t-if="c.get('importacion') == true" t-esc="'{0:.2f}'.format(c.get('exento'))"/>
+                  <span t-else="" t-esc="zero"/>
+                </td>
+                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                  <t t-if="c.get('importacion') != true" t-set="intGra" t-value="intGra+c.get('gravado')"/>
+                  <span t-if="c.get('importacion') != true" t-esc="'{0:.2f}'.format(c.get('gravado'))"/>
+                  <span t-else="" t-esc="zero"/>
+                </td>
+                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                  <t t-if="c.get('importacion') == true" t-set="intGra" t-value="intGra+c.get('gravado')"/>
+                  <span t-if="c.get('importacion') == true" t-esc="'{0:.2f}'.format(c.get('gravado'))"/>
+                  <span t-else="" t-esc="zero"/>
+                </td>
+                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                  <span t-esc="'{0:.2f}'.format(c.get('iva'))"/>
+                </td>
+                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                  <span t-esc="'{0:.2f}'.format(c.get('retenido'))"/>
+                </td>
+                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                  <span t-esc="'{0:.2f}'.format(c.get('percibido'))"/>
+                </td>
+                <t t-set="compra" t-value="c.get('exento') + c.get('gravado') + c.get('iva') + c.get('retenido') + c.get('percibido')"/>
+                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                  <span t-esc="'{0:.2f}'.format(compra)"/>
+                </td>
+                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                  <span t-esc="'{0:.2f}'.format(c.get('excluido'))"/>
+                </td>
+                <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
+                  <span t-esc="'{0:.2f}'.format(c.get('otros'))"/>
+                </td>
+                <!--Calculo de totales-->
+                <t t-set="totalIva" t-value="totalIva + c.get('iva')"/>
+                <t t-set="totalRetenido" t-value="totalRetenido + c.get('retenido')"/>
+                <t t-set="totalPercibido" t-value="totalPercibido + c.get('percibido')"/>
+                <t t-set="totalCompras" t-value="totalCompras + compra"/>
+                <t t-set="totalExcluidos" t-value="totalExcluidos + c.get('excluido')"/>
+                <t t-set="totalRetenido3" t-value="totalRetenido3 + c.get('otros')"/>
+                <!--Fin ce calculos-->
+              </tr>
+              <tr id="totales" class="tr-color">
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td class="result"><span t-esc="company.currency_id.symbol"/>
+                    <span t-esc="'{0:.2f}'.format(intEx)"/>
+                </td>
+                <td class="result"><span t-esc="company.currency_id.symbol"/>
+                    <span t-esc="'{0:.2f}'.format(impEx)"/>
+                </td>
+                <td class="result"><span t-esc="company.currency_id.symbol"/>
+                    <span t-esc="'{0:.2f}'.format(intGra)"/>
+                </td>
+                <td class="result"><span t-esc="company.currency_id.symbol"/>
+                    <span t-esc="'{0:.2f}'.format(impGra)"/>
+                </td>
+                <td class="result">
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/>
+                </td>
+                <td class="result">
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/>
+                </td>
+                <td class="result">
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/>
+                </td>
+                <td class="result">
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/>
+                </td>
+                <td class="result">
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExcluidos)"/>
+                </td>
+                <td class="result">
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido3)"/>
+                </td>
+              </tr>
+            </table>
+            <!--Contenido de reporte-->
+            <!--Tabla resumen-->
+          <table align="center">
+            <tr style="width:100%">
+              <td align="left" style="word-break: keep-all;">
+                <table class="tabla-resumen">
+                  <tr class="tr-color">
+                    <td colspan="2" class="center-middle-o" style="font-size:12pt;">RESUMEN DE COMPRAS</td>
+                  </tr>
+                  <tr>
+                    <td class="center-middle-r">Compras Exentas:</td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/>
+                                      <span t-esc="'{0:.2f}'.format(intEx)"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="center-middle-r">Importaciones Exentas:</td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/>
+                                      <span t-esc="'{0:.2f}'.format(impEx)"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="center-middle-r">Compras Gravadas:</td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/>
+                                      <span t-esc="'{0:.2f}'.format(intGra)"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="center-middle-r">Importaciones Gravadas:</td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/>
+                                      <span t-esc="'{0:.2f}'.format(impGra)"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="center-middle-r">Crédito Fiscal:</td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/></td>
+                  </tr>
+                  <tr>
+                    <td class="center-middle-r">IVA Percibido:</td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/></td>
+                  </tr>
+                  <tr>
+                    <td class="center-middle-r">IVA Retenido:</td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/></td>
+                  </tr>
+                  <tr>
+                    <td class="center-middle-r">TOTAL:</td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/></td>
+                  </tr>
+                </table>
+              </td>
+              <td style="width:30%"></td>
+              <td style="text-align: center; vertical-align: baseline">
+                <div style="text-align:center;vertical-align:baseline;">
+                    <p style="margin-top:150px"/>
+                    <p>_________________________________</p>
+                    <p class="spacing-line" t-if="contador" style="text-align:center;vertical-align:top;font-size:12pt"><span t-esc="contador"/></p>
+                    <p class="spacing-line" style="text-aling:center;vertical-align:top;font-size:12pt">Contador</p>
+                </div>
+              </td>
+            </tr>
+          </table>
+          </div>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>
