@@ -252,6 +252,7 @@ order by s.Fecha, s.Factura,S.nrc,s.nit
         
 #Query Percibido 2%
 #Otro comentario
+#otro
         sql = """CREATE OR REPLACE VIEW odoosv_reportesv_percepcion2_report AS (
             select * from (
 
