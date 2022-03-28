@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+odoosv_cajachica,odoosv_cajachica,model_odoosv_cajachica,account.group_account_manager,1,1,1,1
+all_odoosv_cajachica,all_odoosv_cajachica,model_odoosv_cajachica,base.group_user,1,0,0,0
+odoosv_vale_caja,odoosv_vale_caja,model_odoosv_vale_caja,base.group_user,1,1,1,1
+odoosv_usuario_caja,odoosv_usuario_caja,model_odoosv_usuario_caja,base.group_user,1,1,1,1
