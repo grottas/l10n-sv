@@ -250,7 +250,7 @@ order by s.Fecha, s.Factura,S.nrc,s.nit
     def get_percepcion2_details(self, company_id, date_year, date_month):
         data = {}
         
-
+#Query Percibido 2%
         sql = """CREATE OR REPLACE VIEW odoosv_reportesv_percepcion2_report AS (
             select * from (
 
