@@ -122,24 +122,15 @@
                           <page string="Percibido 1%">
                             <field name="percibido1">
                               <tree>
-                                <field name="nit"/>    <!--si-->
-                                <field name="fecha"/>  <!--si-->
-                                <field name="tipo_documento_emitido"/>  <!--si-->
-                                <field name="serie"/>  <!--si-->
-                                <field name="numero"/> <!--si-->
-                                <field name="total_compra"/>  <!--si-->
-                                <field name="percibido"/> <!--si-->
-                                <field name="dui"/>    <!--si-->
-                                <field name="anexo"/>  <!--si-->
-                                
-                                <!--<field name="gravado_interno"/>
-                                <field name="gravado_importacion"/>
-                                <field name="credito_fiscal"/> 
-                                <field name="retenido"/>
-                                <field name="percibido"/>
-                                <field name="total_compra"/>
-                                <field name="excluido"/>
-                                <field name="terceros"/>-->
+                                <field name="Nit"/>
+                                <field name="Fecha"/>
+                                <field name="Tipo_documento_emitido"/>
+                                <field name="Serie"/>
+                                <field name="Numero"/>
+                                <field name="Total_compra"/>
+                                <field name="Percibido"/>
+                                <field name="Dui"/>
+                                <field name="Anexo"/> 
                               </tree>
                             </field>
                           </page>
