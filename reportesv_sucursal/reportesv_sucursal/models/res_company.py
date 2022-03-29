@@ -16,7 +16,7 @@ class res_company(models.Model):
 
     def get_purchase_details(self, company_id, date_year, date_month):
         data = {}
-        
+     #Comment   
 
         sql = """CREATE OR REPLACE VIEW odoosv_reportesv_purchase_report AS (
             select * from (
