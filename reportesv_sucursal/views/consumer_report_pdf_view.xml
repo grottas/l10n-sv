@@ -175,11 +175,12 @@
                     <th rowspan="2" class="center-middle" style="white-space: nowrap;">Tipo</th>
                     <th rowspan="2" class="center-middle-o">Exentas</th>
                     <th colspan="2" class="center-middle">Gravadas</th>
-                    <th rowspan="2" class="center-middle-o">Retención</th>
+                    
                   </tr>
                   <tr class="tr-color">
                     <th class="center-middle-o" style="border-spacing: 0.5px">Locales</th>
                     <th class="center-middle-o" style="border-spacing: 0.5px">Exportación</th>
+                    <th class="center-middle-o" style="border-spacing: 0.5px">Retencion</th>
                   </tr>
                   <tr t-foreach="company.get_consumer_details(company_id,year,month,8,stock_id)" t-as="c" class="text-align:right;vertical-align:middle;height: auto;width: 70%;padding: 0px;border-collapse:collapse;">
                     <td class="center-middle" style="width:5% !important;"><span t-esc="int(c_index) + 1"/></td>
