@@ -1097,6 +1097,7 @@ order by s.fecha, s.factura
 	,0.0 as nosujeto
 	,estado
 	,tipod
+	,serie
 FROM (
 select S.fecha
 	,S.factura
@@ -1104,6 +1105,7 @@ select S.fecha
 	,S.grupo
 	,S.exento
 	,S.tipod
+	,S.serie
 	,case 
 		when S.tipo_localidad='Local' then S.Gravado 
 		else 0.00 end as GravadoLocal
@@ -1204,7 +1206,7 @@ where ai.company_id=   {0}
 	and (ai.nofiscal is null or ai.nofiscal = False)
 )S
 )SS
-group by SS.fecha, SS.estado,SS.tipod
+group by SS.fecha, SS.estado,SS.tipod,SS.serie
 order by SS.fecha
             )""".format(company_id,date_year,date_month,sv_invoice_serie_size)
         tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_consumer_report')
