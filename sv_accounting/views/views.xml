@@ -9,7 +9,7 @@
                  <xpath expr="//page[@name='general_info']" position="after">
                   <page string="Configuracion El Salvador">
                         <group>
-                        <field name="resolucion"/>
+                        <field name="propina1"/>
                         </group>
                     <page string="Configuracion El Salvador">
                         <group>
