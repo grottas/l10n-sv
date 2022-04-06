@@ -874,7 +874,7 @@ class odoosv_journal(models.Model):
 
 class odoosv_move(models.Model):
     _inherit='account.move'
-    serie=fields.Char("Serie de Documento")
+    serie=fields.Char("Serie de Documento",copy=False)
     tipo_documento_id=fields.Many2one('odoosv.fiscal.document',string="Tipo de Documento",ondelete="restrict")
     numeracion_automatica=fields.Boolean("Numeracion automatica",related='tipo_documento_id.numeracion_automatica',store=False)
     razon_notacredito_id=fields.Many2one('odoosv.razon_notacredito',string="Razon de la nota de credito",ondelete="restrict")
