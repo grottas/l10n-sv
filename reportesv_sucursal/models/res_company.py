@@ -13,7 +13,7 @@ class res_company(models.Model):
     _name = "res.company"
     _inherit = "res.company"
     resolucion=fields.Char(string='resolucion')
-    #propina1=fields.many2one(comodel_name='product.product', string='propina')
+    propina=fields.many2one(comodel_name='product.product', string='propina')
     
 
     def get_purchase_details(self, company_id, date_year, date_month):
@@ -1140,7 +1140,7 @@ select ai.invoice_date as fecha
       from account_move_line ail
 	  inner join res_company rc on ail.company_id=rc.id
       where ail.move_id=ai.id
-	      and (ail.product_id is null or ail.product_id <> rc.x_propina)
+	      and (ail.product_id is null or ail.product_id <> rc.propina)
       	  and ail.exclude_from_invoice_tab=False 
 	      and not exists(select ailt.account_tax_id 
 						 from account_move_line_account_tax_rel ailt
