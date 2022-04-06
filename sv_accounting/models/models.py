@@ -140,11 +140,18 @@ class odoofiscalsv_taxgroup(models.Model):
     code=fields.Char("Codigo")
     company_id=fields.Many2one('res.company',string="Company")
 
+#***************************************chevo*******************************************
+#class odoochevo_libro(models.Model):
+ 
+ #   _inherit='account.move.line'    
+  
+  #  prueba=fields.Char("Prueba")
+
 class odoosv_user(models.Model):
     _inherit='res.company'
 
     sv=fields.Boolean("Localizacion de El Salvador")
-
+    resolucion=fields.Char("resolucion")
     contador=fields.Char("Contador")
     dividir_facturas=fields.Boolean("Dividir facturas")
     lineas_factura=fields.Integer("Lineas por factura")

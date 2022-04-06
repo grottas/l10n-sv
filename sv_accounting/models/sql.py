@@ -185,7 +185,7 @@ DECLARE
 BEGIN
  var_grupo :=0;
  FOR var_r IN (select ROW_NUMBER () OVER (ORDER BY f.invoice_date,coalesce(F.doc_numero,cast(F.id as varchar) ))  as Registro
-					,left(coalesce(F.ref,cast(F.id as varchar)),p_series_lenght) as Serie
+					,left(coalesce(F.doc_numero,cast(F.id as varchar)),p_series_lenght) as Serie
 					,CAST((COALESCE(NULLIF(REGEXP_REPLACE( right(coalesce(F.doc_numero,cast(F.id as varchar)),(length(coalesce(F.doc_numero,cast(F.id as varchar)))-p_series_lenght)) , '[^0-9]+', '', 'g'), ''), '0')) AS INTEGER) as correlativo  
 					,F.invoice_date as fecha
 					,case 
@@ -235,7 +235,7 @@ DECLARE
 BEGIN
  var_grupo :=0;
  FOR var_r IN (select ROW_NUMBER () OVER (ORDER BY f.invoice_date,coalesce(F.doc_numero,cast(F.id as varchar) ))  as Registro
-					,left(coalesce(F.ref,cast(F.id as varchar)),p_series_lenght) as Serie
+					,left(coalesce(F.doc_numero,cast(F.id as varchar)),p_series_lenght) as Serie
 					,CAST((COALESCE(NULLIF(REGEXP_REPLACE( right(coalesce(F.doc_numero,cast(F.id as varchar)),(length(coalesce(F.doc_numero,cast(F.id as varchar)))-p_series_lenght)) , '[^0-9]+', '', 'g'), ''), '0')) AS INTEGER) as correlativo  
 					,F.invoice_date as fecha
 					,case 

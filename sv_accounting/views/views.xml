@@ -60,6 +60,7 @@
                             <field name="fiscal_position_extrangero_id"/>
                         </group>
                         <group string="Otros">
+                            <field name="resolucion"/>
                             <field name="contador"/>
                             <field name="dividir_facturas"/>
                             <field name="lineas_factura" attrs="{'invisible':[('dividir_facturas','=',False)],'required':[('dividir_facturas','=',True)]}"/>
@@ -86,7 +87,20 @@
                 </xpath>
             </field>
         </record>
-
+<!--**********************************chevo*******************************************
+        <record id="parnertfiscal_form" model="ir.ui.view">
+            <field name="name">parnertfiscal_form</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="base.view_account_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//page[@name='sales_purchases']" position="inside">
+                        <group string="prueba">
+                            <field name="prueba"/>
+                        </group>
+                </xpath>
+            </field>
+        </record>
+*-->
 
         <record id="svaccount_form" model="ir.ui.view">
             <field name="name">svaccount_form</field>
@@ -141,6 +155,8 @@
                  <xpath expr="//field[@name='date']" position="after">
                     <field name="line_ids" string="Product" filter_domain="[('line_ids.product_id', 'ilike', self)]"/>
                     <field name="tipo_documento_id"/>
+                    
+
                 </xpath>
             </field>
         </record>
