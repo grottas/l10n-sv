@@ -152,6 +152,7 @@ class odoosv_user(models.Model):
 
     sv=fields.Boolean("Localizacion de El Salvador")
     resolucion=fields.Char("resolucion")
+    propina=fields.Many2one('product.product',string="Propina de la venta")
     contador=fields.Char("Contador")
     dividir_facturas=fields.Boolean("Dividir facturas")
     lineas_factura=fields.Integer("Lineas por factura")
