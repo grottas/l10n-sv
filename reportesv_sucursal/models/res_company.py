@@ -1127,8 +1127,10 @@ select ai.invoice_date as fecha
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
      (select coalesce(sum(ail.price_total),0.00) 
       from account_move_line ail
+	  inner join product_product pp on ail.product_id=pp.id
       where ail.move_id=ai.id
-      	  and ail.exclude_from_invoice_tab=False 
+      	  and ail.exclude_from_invoice_tab=False
+		  and ail.product_id <> 5731	 
 	      and exists(select ailt.account_tax_id 
 					from account_move_line_account_tax_rel ailt
 				        inner join account_tax atx on ailt.account_tax_id=atx.id
