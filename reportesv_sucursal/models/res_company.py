@@ -13,7 +13,7 @@ class res_company(models.Model):
     _name = "res.company"
     _inherit = "res.company"
     resolucion=fields.Char(string='resolucion')
-    propina=fields.many2one(comodel_name='product.product', string='propina')
+    propina=fields.Many2one(comodel_name='product.product', string='propina')
     
 
     def get_purchase_details(self, company_id, date_year, date_month):
