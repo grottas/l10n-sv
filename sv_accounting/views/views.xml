@@ -7,9 +7,11 @@
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
                  <xpath expr="//page[@name='general_info']" position="after">
-                         <group string="Otros">
+                 <page string="Información General">
+                         <group>
                          <field name="propina"/>   
-                        </group>     
+                        </group>  
+                       </page>     
                     <page string="Configuracion El Salvador">
                         <group>
                             <group>
