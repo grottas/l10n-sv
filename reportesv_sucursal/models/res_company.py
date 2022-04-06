@@ -1183,7 +1183,7 @@ union all
 select COALESCE(ai.date,ai.invoice_date) as fecha
 	,coalesce(ai.doc_numero,cast(ai.id as varchar)) as factura		
 	,'Valida' as estado
-	,ai.x_serie as Serie
+	,ai.serie as serie
 	,(case when ai.tipo_documento_id='1' then 'F' else 'T' end) as tipod
 	,FG.grupo
 	,case when doc.codigo='Exportacion' then 'nolocal' else 'Local' end as sv_region

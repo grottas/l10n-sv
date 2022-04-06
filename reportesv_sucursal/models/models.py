@@ -169,7 +169,7 @@ class calculo_iva(models.Model):
 				dic['inicial']=l.get('delnum')
 				dic['final']=l.get('alnum')
 				dic['exento']=l.get('exento')
-				dic['serie']=l.get('delnum')[:8]
+				dic['serie']=l.get('serie')      #l.get('delnum')[:8]
 				dic['local']=l.get('gravadolocal')
 				dic['exportacion']=l.get('gravadoexportacion')
 				dic['retencion']=l.get('retenido')
