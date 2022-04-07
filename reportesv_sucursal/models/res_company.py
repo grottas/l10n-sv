@@ -29,7 +29,7 @@ select ai.id as id,ai.invoice_date as fecha
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,0.0 as monto
 	,rp.dui as dui
 	,False as Importacion
@@ -123,7 +123,7 @@ where ai.company_id= {0}
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,0.0 as monto
 	,rp.dui as dui
 	,False as Importacion
@@ -219,7 +219,7 @@ select  ai.id as id,ai.invoice_date as fecha
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,0.0 as monto
 	,rp.dui as dui
 	,True as Importacion
@@ -253,7 +253,7 @@ where ai.company_id= {0}
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,(aml.debit/2*100) as monto
 	,rp.dui as dui
 	,True as Importacion
@@ -299,7 +299,7 @@ select ai.id as id,ai.invoice_date as fecha
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,0.0 as monto
 	,rp.dui as dui
 	,False as Importacion
@@ -393,7 +393,7 @@ where ai.company_id= {0}
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,0.0 as monto
 	,rp.dui as dui
 	,False as Importacion
@@ -489,7 +489,7 @@ select  ai.id as id,ai.invoice_date as fecha
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,0.0 as monto
 	,rp.dui as dui
 	,True as Importacion
@@ -523,7 +523,7 @@ where ai.company_id= {0}
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,(aml.debit/2*100) as monto
 	,rp.dui as dui
 	,True as Importacion
@@ -570,7 +570,7 @@ select  ai.id as id,ai.date as fecha
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,(aml.debit/2*100) as monto
 	,rp.dui as dui
 	,True as Importacion
@@ -618,7 +618,7 @@ select ai.id as id,ai.invoice_date as fecha
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,rp.dui as dui
 	,False as Importacion
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
@@ -711,7 +711,7 @@ where ai.company_id= {0}
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,rp.dui as dui
 	,False as Importacion
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
@@ -803,7 +803,7 @@ select  ai.id as id,ai.invoice_date as fecha
 	,rp.name as proveedor
 	,rp.nrc as NRC
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,rp.dui as dui
 	,True as Importacion
                ,(ai.amount_total) as  Gravado
@@ -849,7 +849,7 @@ order by s.Fecha, s.Factura,S.nrc,s.nit
 	,rp.name as cliente
 	,rp.nrc as NRC	
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,rp.dui as dui
 	,ai.state as estado
 	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
@@ -929,7 +929,7 @@ select COALESCE(ai.date,ai.invoice_date) as fecha
 	,'Anulado' as cliente
 	,rp.nrc as NRC	
 	,rp.nit as nit
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,rp.dui as dui	
 	,ai.state as estado
 	,0.0 as Gravado
@@ -968,7 +968,7 @@ order by s.fecha, s.factura
     ,ai.id as factura_id
 	,ai.doc_numero as factura
 	,rp.name as cliente
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,rp.nrc as NRC	
 	,rp.nit as NIT	
 	,ai.state as estado
@@ -1049,7 +1049,7 @@ select COALESCE(ai.date,ai.invoice_date) as fecha
 	,'Anulado' as cliente
 	,rp.nrc as NRC	
 	,rp.nit as nit	
-	,ai.x_serie as serie
+	,ai.serie as serie
 	,ai.state as estado
 	,0.0 as Gravado
 	,0.0 as Exento
@@ -1210,7 +1210,7 @@ group by SS.fecha, SS.estado,SS.tipod,SS.serie
 order by SS.fecha
             )""".format(company_id,date_year,date_month,sv_invoice_serie_size)
         tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_consumer_report')
-        self._cr.execute(sql) #Query for view"
+        self._cr.execute(sql) #Query for views
         self._cr.execute("SELECT * FROM public.odoosv_reportesv_consumer_report")
         if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
