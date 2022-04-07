@@ -140,11 +140,19 @@ class odoofiscalsv_taxgroup(models.Model):
     code=fields.Char("Codigo")
     company_id=fields.Many2one('res.company',string="Company")
 
+#***************************************chevo*******************************************
+#class odoochevo_libro(models.Model):
+ 
+ #   _inherit='account.move.line'    
+  
+  #  prueba=fields.Char("Prueba")
+
 class odoosv_user(models.Model):
     _inherit='res.company'
 
     sv=fields.Boolean("Localizacion de El Salvador")
-
+    resolucion=fields.Char("resolucion")
+    propina=fields.Many2one('product.product',string="Propina de la venta")
     contador=fields.Char("Contador")
     dividir_facturas=fields.Boolean("Dividir facturas")
     lineas_factura=fields.Integer("Lineas por factura")
@@ -866,6 +874,7 @@ class odoosv_journal(models.Model):
 
 class odoosv_move(models.Model):
     _inherit='account.move'
+    serie=fields.Char("Serie de Documento",copy=False)
     tipo_documento_id=fields.Many2one('odoosv.fiscal.document',string="Tipo de Documento",ondelete="restrict")
     numeracion_automatica=fields.Boolean("Numeracion automatica",related='tipo_documento_id.numeracion_automatica',store=False)
     razon_notacredito_id=fields.Many2one('odoosv.razon_notacredito',string="Razon de la nota de credito",ondelete="restrict")

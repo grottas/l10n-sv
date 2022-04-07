@@ -2,7 +2,7 @@
 <odoo>
     <data>
 
-
+ 
         <record model="ir.ui.view" id="reportessv_sucursal_calculo_form">
             <field name="name">reportessv_sucursal_calculo_form</field>
             <field name="model">reportesv_sucursal.calculo_iva</field>
@@ -26,16 +26,19 @@
                                 <field name="correlativo"/>
                                 <field name="fecha"/>
                                 <field name="proveedor"/>
+                                <field name="dui"/>
                                 <field name="nit"/>
                                 <field name="nrc"/>
                                 <field name="exento_interno"/>
                                 <field name="exento_importacion"/>
+                                <field name="importacion_bienes"/>
                                 <field name="gravado_interno"/>
                                 <field name="gravado_importacion"/>
                                 <field name="credito_fiscal"/>
                                 
                                 <field name="retenido"/>
                                 <field name="percibido"/>
+                                <field name="dui"/>
                                 <field name="total_compra"/>
                                 <field name="excluido"/>
                                 <field name="terceros"/>
@@ -50,10 +53,15 @@
                                 <field name="fecha"/>
                                 <field name="cliente"/>
                                 <field name="nit"/>
+                                <field name="dui"/>
+                                <field name="resolucion"/>
                                 <field name="nrc"/>
+                                <field name="serie"/>
                                 <field name="exento"/>
                                 <field name="gravado"/>
                                 <field name="debito"/>
+                                <field name="debito3"/>
+                                <field name="venta3"/>
                                 <field name="total_venta"/>
                                 <field name="retenido"/>
                                 <field name="percibido"/>
@@ -61,16 +69,18 @@
                               </tree>
                             </field>
                           </page>
-                           <page string="Ventas a consumido">
+                           <page string="Ventas a consumidor">
                             <field name="consumidores">
                               <tree>
                                 <field name="correlativo"/>
                                 <field name="sucursal"/>
                                 <field name="fecha"/>
                                 <field name="inicial"/>
+                                <field name="resolucion"/>
                                 <field name="final"/>
                                 <field name="exento"/>
                                 <field name="local"/>
+                                <field name="serie"/>
                                 <field name="exportacion"/>
                                 <field name="retencion"/>
                                 <field name="total_venta"/>
@@ -95,7 +105,7 @@
                               </tree>
                             </field>
                           </page>
-                           <page string="Percibido">
+                           <page string="Percibido 2%">
                             <field name="percibido">
                               <tree>
                                  <field name="nit"/>    <!--si-->
@@ -127,7 +137,7 @@
                                 <field name="tipo_documento_emitido"/>
                                 <field name="serie"/>
                                 <field name="numero"/>
-                                <field name="total_compra"/>
+                                <field name="gravado_interno"/>
                                 <field name="percibido"/>
                                 <field name="dui"/>
                                 <field name="anexo"/> 
@@ -187,9 +197,10 @@
             <field name="clase_doc"/>
             <field name="tipo_documento_emitido"/>
             <field name="numero"/>
-            <field name="nit"/>
+            <field name="nrc"/>
             <field name="proveedor"/>
             <field name="exento_interno"/>
+             <field name="importacion_bienes"/>
             <field name="exento_internaciones"/>
             <field name="exento_importacion"/>
             <field name="internaciones"/>
@@ -198,6 +209,7 @@
             <field name="credito_fiscal"/>
             <field name="correlativo"/>
             <field name="total_compra"/>
+             <field name="dui"/>
             <field name="anexo"/>
           
             
@@ -259,14 +271,15 @@
    <field name="no_sujeto"/>
    <field name="gravado"/>
    <field name="debito"/>
-   <field name="terceros_debito"/>
-   <field name="tercero_no_domiciliciados"/>
+   <field name="debito3"/>
+   <field name="venta3"/>
    <field name="total_venta"/>
             
             <field name="sucursal"/>
             <field name="nrc"/>
             <field name="retenido"/>
             <field name="percibido"/>
+             <field name="dui"/>
             <field name="total"/>
                   </tree>
             </field>
@@ -446,7 +459,7 @@
         </record>
 
         <!--menu del objetivo-->
-        <menuitem id="sucursales_iva_percibido" parent="account_reports.account_reports_audit_reports_menu" name="Detalle de IVA Percibido" action="calculo_ivapercibido_action" sequence="10"/>
+        <menuitem id="sucursales_iva_percibido" parent="account_reports.account_reports_audit_reports_menu" name="Detalle de IVA Percibido 2%" action="calculo_ivapercibido_action" sequence="10"/>
 
 
 <!--percepcion 1%-->
@@ -462,6 +475,7 @@
             <field name="tipo_documento_emitido"/>
             <field name="numero"/>
             <field name="nit"/>
+             <field name="dui"/>
             <field name="proveedor"/>
             <!--<field name="exento_interno"/>
             <field name="exento_internaciones"/>

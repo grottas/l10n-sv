@@ -136,7 +136,7 @@
                 <div style="text-align: center">
                   <h2 class="center-middle-title" style="font-size:20pt;">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
                   <h2 class="center-middle-title">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</h2>
-                  <h2 class="center-middle-title">NIT: <span t-field="o.partner_id.nit"/> NRC: <span t-field="o.partner_id.nrc"/></h2>
+                  <h2 class="center-middle-title">NIT: <span t-field="o.vat"/> NRC: <span t-field="o.company_registry"/></h2>
                   <h2 class="center-middle-title">MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></h2>
                   <h2 class="center-middle-title">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</h2>
                 </div>
@@ -175,7 +175,7 @@
               </tr>
               <tr id="datos" t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
                 <td class="iden"><span t-esc="int(c_index + 1)"/></td>
-                <td class="standar" style="padding:8px;"><span t-esc="c.get('fecha').strftime('%d-%m-%Y')"/></td>
+                <td class="standar" style="padding:8px;"><span t-esc="c.get('fecha').strftime('%d/%m/%Y')"/></td>
                 <td class="num-fact-p"><span t-esc="c.get('factura')"/></td>
                 <td class="partner-name" style="font-size:10pt;padding:8px;"><span t-esc="c.get('proveedor')"/></td>
                 <td class="standar" style="padding:8px;"><span t-esc="c.get('nrc')"/></td>
@@ -272,7 +272,7 @@
             </table>
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
-          <table align="center">
+          <table align="center" style="top:300px">
             <tr style="width:100%">
               <td align="left" style="word-break: keep-all;">
                 <table class="tabla-resumen">
@@ -321,13 +321,14 @@
                   </tr>
                 </table>
               </td>
-              <td style="width:30%"></td>
-              <td style="text-align: center; vertical-align: baseline">
-                <div style="text-align:center;vertical-align:baseline;">
-                    <p style="margin-top:150px"/>
+              
+              <td style="width:30%;"></td>
+              <td style="text-align:center;vertical-align:baseline;margin-top:150px;">
+                <div style="text-align:center;vertical-align:baseline;margin-top:150px;">
+                    <p style="margin-top:150px;"/>
                     <p>_________________________________</p>
-                    <p class="spacing-line" t-if="contador" style="text-align:center;vertical-align:top;font-size:12pt"><span t-esc="contador"/></p>
-                    <p class="spacing-line" style="text-aling:center;vertical-align:top;font-size:12pt">Contador</p>
+                    <p class="spacing-line" t-if="contador" style="text-align:baseline;vertical-align:denter;font-size:12pt;"><span t-esc="contador"/></p>
+                    <p class="spacing-line" style="text-aling:center;vertical-align:baseline;center;font-size:12pt;">Contador</p>
                 </div>
               </td>
             </tr>

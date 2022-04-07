@@ -114,7 +114,12 @@
             <t t-set="debito" t-value="float(0.00)"/>
             <t t-set="ventaNeta" t-value="float(0.00)"/>
             <t t-set="totalDebito" t-value="float(0.00)"/>
+            <t t-set="totalDebito1" t-value="float(0.00)"/>
             <t t-set="totalNeto" t-value="float(0.00)"/>
+            <t t-set="totalNeto1" t-value="float(0.00)"/>
+            <t t-set="Total2" t-value="float(0.00)"/>
+            <t t-set="Total1" t-value="float(0.00)"/>
+            <t t-set="Total3" t-value="float(0.00)"/>
             <!--Fin de declaraciones-->
 
             <!--Encabezado-->
@@ -127,9 +132,8 @@
                 <t t-set="company" t-value="o"/>
                 <div style="text-align:center;">
                   <h2 class="center-middle-title" style="font-size:20px;">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
-                  <h2 class="center-middle-title">SUCURSAL: <span t-esc="o.get_stock_name(stock_id)"/></h2>
                   <h2 class="center-middle-title">LIBRO DE VENTAS A CONSUMIDORES Y EXPORTACIONES</h2>
-                  <h2 class="center-middle-title">NIT: <span t-field="o.partner_id.nit"/> NRC: <span t-field="o.partner_id.nrc"/></h2>
+                  <h2 class="center-middle-title">NIT: <span t-field="o.vat"/> NRC: <span t-field="o.company_registry"/></h2>
                   <h2 class="center-middle-title">MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></h2>
                   <h2 class="center-middle-title">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</h2>
                 </div>
@@ -163,14 +167,15 @@
                     <th rowspan="3" class="center-middle" style="width:20% !important">Fecha</th>
                     <th colspan="2" class="center-middle">Documentos Emitidos</th>
                     <th colspan="4" class="center-middle">Ventas</th>
-                    <th rowspan="3" class="center-middle-o" style="width:90% !important">Ventas Totales</th>
+                    <th rowspan="3" class="center-middle-o" style="width:25% !important">Retencion</th>
+                    <th rowspan="3" class="center-middle" style="width:25% !important">Ventas Totales</th>
                   </tr>
                   <tr class="tr-color">
                     <th rowspan="2" class="center-middle-o" style="white-space: nowrap;">Del No.</th>
                     <th rowspan="2" class="center-middle-o" style="white-space: nowrap;">Al No.</th>
+                    <th rowspan="2" class="center-middle" style="white-space: nowrap;">Tipo</th>
                     <th rowspan="2" class="center-middle-o">Exentas</th>
-                    <th colspan="2" class="center-middle">Gravadas</th>
-                    <th rowspan="2" class="center-middle-o">Retención</th>
+                    <th colspan="2" class="center-middle">Gravadas</th>   
                   </tr>
                   <tr class="tr-color">
                     <th class="center-middle-o" style="border-spacing: 0.5px">Locales</th>
@@ -178,41 +183,43 @@
                   </tr>
                   <tr t-foreach="company.get_consumer_details(company_id,year,month,8,stock_id)" t-as="c" class="text-align:right;vertical-align:middle;height: auto;width: 70%;padding: 0px;border-collapse:collapse;">
                     <td class="center-middle" style="width:5% !important;"><span t-esc="int(c_index) + 1"/></td>
-                    <td class="center-middle" style="width:25% !important"><span t-esc="c.get('fecha').strftime('%d-%m-%Y')"/></td>
+                    <td class="center-middle" style="width:25% !important"><span t-esc="c.get('fecha').strftime('%d/%m/%Y')"/></td>
                     <td class="center-middle-o" style="white-space: nowrap;padding:0.5px !important; width:25% !important"><span t-esc="c.get('delnum')"/></td>
                     <td class="center-middle-o" style="white-space: nowrap;padding:0.5px !important; width:25% !important"><span t-esc="c.get('alnum')"/></td>
-                    
+                    <td class="center-middle-o" style="white-space: nowrap;padding:0.5px !important; width:25% !important"><span t-esc="c.get('tipod')"/></td>
                     <td class="center-middle" style="text-align: right; width:25% !important"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('exento'))"/></td>
                     <td class="center-middle" style="text-align:right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('gravadolocal'))"/></td>
-                    
                     <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('gravadoexportacion'))"/></td>
                     <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('retenido'))"/></td>
                     <t t-set="total" t-value="total + c.get('exento') + c.get('retenido') + c.get('gravadolocal') + c.get('gravadoexportacion')"/>
-                    <td class="center-middle" style="text-align: right; width:90% !important"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>
+                    <td class="center-middle" style="text-align: center; width:20% !important"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>
 
-                  <!--Calculo de totales-->
-                  <t t-set="totalExentas" t-value="totalExentas + c.get('exento')"/>
-                  <t t-set="totalGravadasLocal" t-value="totalGravadasLocal + c.get('gravadolocal')"/>
-                  <t t-set="totalGravadasExp" t-value="totalGravadasExp + c.get('gravadoexportacion')"/>
-                  <t t-set="totalRetenido" t-value="totalRetenido + c.get('retenido')"/>
-                  <t t-set="ventas" t-value="ventas + total"/>
-                  <t t-set="totalIvaLocal" t-value="totalIvaLocal + c.get('ivalocal')"/>
-                  <t t-set="totalIvaExp" t-value="totalIvaExp + c.get('ivaexportacion')"/>
-                  <!--Calculo de totales adicionales-->
+                   <!--Calculo de totales-->
+                   <t t-set="totalExentas" t-value="totalExentas + c.get('exento')"/>
+                   <t t-set="totalGravadasLocal" t-value="totalGravadasLocal + c.get('gravadolocal') "/>
+                   <t t-set="totalGravadasExp" t-value="totalGravadasExp + c.get('gravadoexportacion')"/>
+                   <t t-set="totalRetenido" t-value="totalRetenido + c.get('retenido')"/>
+                   <t t-set="ventas" t-value="ventas + total"/>
+                   <t t-set="totalIvaLocal" t-value="totalIvaLocal + c.get('ivalocal')"/>
+                   <t t-set="totalIvaExp" t-value="totalIvaExp + c.get('ivaexportacion')"/>
+                   <!--Calculo de totales adicionales-->
 
                     <!-- En caso de cambio de iva cambiar los valores del siguiente bloque -->
+                   <t t-set="debit" t-value="float(0.00)"/>
+                   <t t-set="debito" t-value="float(0.13)"/>
+                   <t t-set="ventaNeta" t-value="float(1.13)"/>
+                   <t t-set="totalDebito" t-value="((totalExentas)*debito)/ventaNeta"/>
+                   <t t-set="totalDebito1" t-value="((totalGravadasLocal)*debito)/ventaNeta"/>
+                   <t t-set="totalNeto" t-value="(totalExentas)/1.13" />
+                   <t t-set="totalNeto1" t-value="(totalGravadasLocal)/1.13" />
+                   <t t-set="debit" t-value="(totalGravadasLocal)*0.13" />
 
-                  <t t-set="debito" t-value="float(0.13)"/>
-                  <t t-set="ventaNeta" t-value="float(1.13)"/>
-                  <t t-set="totalDebito" t-value="((totalExentas)*debito)/ventaNeta"/>
-                  <t t-set="totalNeto" t-value="(totalExentas)/1.13" />
 
 
 
-
-                  <t t-set="total" t-value="float(0.00)"/>
-                  <!--Fin ce calculos-->
-                </tr>
+                   <t t-set="total" t-value="float(0.00)"/>
+                   <!--Fin ce calculos-->
+              </tr>
                 <tr class="tr-color" style="text-aling:right;">
                   <td>
                   </td>
@@ -222,8 +229,10 @@
                   </td>
                   <td>
                   </td>
-                  <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasLocal)"/></td>
+                  <td>
+                  </td>
                   <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExentas)"/></td>
+                  <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasLocal)"/></td>
                   
                   <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasExp)"/></td>
                   <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/></td>
@@ -243,17 +252,17 @@
                       </tr>
                       <tr>
                         <td class="center-middle" style="text-align:left">Ventas Internas Gravadas</td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExentas)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalDebito)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalNeto)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasLocal)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIvaLocal)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalNeto1)"/></td>
                       </tr>
                       <tr>
                         <td class="center-middle" style="text-align:left">Ventas Internas Exentas</td>
  
 
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasLocal)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIvaLocal)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasLocal - totalIvaLocal)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExentas)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalDebito)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalNeto)"/></td>
                       </tr>
                       <tr>
                         <td class="center-middle" style="text-align:left;border-spacing: 0.3px">Ventas Gravada a Sujeto Tasa Cero (0%)</td>
