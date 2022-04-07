@@ -162,24 +162,24 @@
             <!--Contenido de reporte-->
             <!--t t-foreach="company.get_consumer_details(company_id, year, month, company.sv_invoice_serie_size)" t-as="c"-->
               <table class="table table-bordered" style="border: 1px solid black;text-align: right;vertical-align: middle;height: auto;width: 100%;padding: 0px;border-collapse: collapse;">
-                  <tr class="">
+                  <tr class="tr-color">
                     <th rowspan="3" class="center-middle" style="width:5% !important;">#</th>
                     <th rowspan="3" class="center-middle" style="width:20% !important">Fecha</th>
                     <th colspan="2" class="center-middle">Documentos Emitidos</th>
                     <th colspan="4" class="center-middle">Ventas</th>
                     <th rowspan="3" class="center-middle-o" style="width:25% !important">Retencion</th>
+                    <th rowspan="3" class="center-middle" style="width:25% !important">Ventas Totales</th>
                   </tr>
-                  <tr class="">
+                  <tr class="tr-color">
                     <th rowspan="2" class="center-middle-o" style="white-space: nowrap;">Del No.</th>
                     <th rowspan="2" class="center-middle-o" style="white-space: nowrap;">Al No.</th>
                     <th rowspan="2" class="center-middle" style="white-space: nowrap;">Tipo</th>
                     <th rowspan="2" class="center-middle-o">Exentas</th>
                     <th colspan="2" class="center-middle">Gravadas</th>   
                   </tr>
-                  <tr class="">
+                  <tr class="tr-color">
                     <th class="center-middle-o" style="border-spacing: 0.5px">Locales</th>
                     <th class="center-middle-o" style="border-spacing: 0.5px">Exportación</th>
-                    <th colspan="2" class="center-middle" style="width:20% !important;">Ventas Totales</th>
                   </tr>
                   <tr t-foreach="company.get_consumer_details(company_id,year,month,8,stock_id)" t-as="c" class="text-align:right;vertical-align:middle;height: auto;width: 70%;padding: 0px;border-collapse:collapse;">
                     <td class="center-middle" style="width:5% !important;"><span t-esc="int(c_index) + 1"/></td>
