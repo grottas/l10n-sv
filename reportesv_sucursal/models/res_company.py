@@ -277,7 +277,6 @@ where ai.company_id= {0}
 	and ai.state in ('posted') 
 
 ) S
-where S.Gravado <> 0
 order by s.Fecha, s.Factura,S.nrc,s.nit
         )""".format(company_id,date_year,date_month)
         tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_purchase_report')
@@ -548,6 +547,7 @@ where ai.company_id= {0}
 	and ai.state in ('posted') 
 
 ) S
+where S.Gravado <> 0
 order by s.Fecha, s.Factura,S.nrc,s.nit
         )""".format(company_id,date_year,date_month)
         tools.drop_view_if_exists(self._cr, 'odoosv_reportesv_purchase_report')
