@@ -213,6 +213,7 @@
                    <t t-set="totalNeto" t-value="(totalExentas)/1.13" />
                    <t t-set="totalNeto1" t-value="(totalGravadasLocal)/1.13" />
                    <t t-set="debit" t-value="(totalGravadasLocal)*0.13" />
+                   <t t-set="totaln" t-value="(totalIvaLocal - totalGravadasLocal) " />
 
 
 
@@ -254,7 +255,7 @@
                         <td class="center-middle" style="text-align:left">Ventas Internas Gravadas</td>
                         <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasLocal)"/></td>
                         <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIvaLocal)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravasLocal-totalIvaLocal)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totaln)"/></td>
                       </tr>
                       <tr>
                         <td class="center-middle" style="text-align:left">Ventas Internas Exentas</td>
