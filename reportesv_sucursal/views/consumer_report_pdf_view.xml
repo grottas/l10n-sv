@@ -213,7 +213,7 @@
                    <t t-set="totalNeto" t-value="(totalExentas)/1.13" />
                    <t t-set="totalNeto1" t-value="(totalGravadasLocal)/1.13" />
                    <t t-set="debit" t-value="(totalGravadasLocal)*0.13" />
-                   <t t-set="totaln" t-value="(totalIvaLocal - totalGravadasLocal) " />
+                   <t t-set="totaln" t-value="(totalGravadasLocal - totalIvaLocal) " />
 
 
 
