@@ -169,7 +169,7 @@
                   <td class="center-middle" style="text-align:right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('iva'))"/></td>
                   <t t-set="venta" t-value="venta + c.get('exento') + c.get('gravado') + c.get('iva')"/>
                   <td class="center-middle" style="text-align:right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(venta)"/></td>
-                  <td class="center-middle" style="text-align:right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'('ret')"/></td>
+                  <td class="center-middle" style="text-align:right;"><span t-esc="company.currency_id.symbol"/><span t-esc="('ret')"/></td>
                   <td class="center-middle" style="text-align:right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('percibido'))"/></td>
                   <t t-set="total" t-value="total + venta + c.get('percibido') + ret"/>
                   <td class="center-middle" style="text-align:right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>
