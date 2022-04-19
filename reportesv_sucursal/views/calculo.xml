@@ -51,6 +51,7 @@
                                 <field name="correlativo"/>
                                 <field name="sucursal"/>
                                 <field name="fecha"/>
+                                <field name="name"/>
                                 <field name="cliente"/>
                                 <field name="nit"/>
                                 <field name="dui"/>
@@ -266,6 +267,7 @@
    <field name="numero_cortado"/>
    <field name="numero_interno"/>
    <field name="nit"/>
+   <field name="name"/>
    <field name="cliente"/>
    <field name="exento"/>
    <field name="no_sujeto"/>

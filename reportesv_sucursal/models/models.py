@@ -100,6 +100,7 @@ class calculo_iva(models.Model):
 				dic['serie']=l.get('serie')              #l.get('serie')
 				dic['nit']=l.get('nit')
 				dic['dui']=l.get('dui')
+				dic['name']=l.get('cliente')
 				dic['cliente']=l.get('cliente')
 				dic['nrc']=l.get('nrc')
 				dic['debito3']=0.0
