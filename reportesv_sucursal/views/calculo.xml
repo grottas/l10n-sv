@@ -52,7 +52,6 @@
                                 <field name="sucursal"/>
                                 <field name="fecha"/>
                                 <field name="name"/>
-                                <field name="cliente"/>
                                 <field name="nit"/>
                                 <field name="dui"/>
                                 <field name="resolucion"/>
@@ -268,7 +267,6 @@
    <field name="numero_interno"/>
    <field name="nit"/>
    <field name="name"/>
-   <field name="cliente"/>
    <field name="exento"/>
    <field name="no_sujeto"/>
    <field name="gravado"/>
