@@ -231,12 +231,13 @@
                    <t t-set="ventasTerceros" t-value="float(0.00)"/>
 
                    <!--************************sumas****************************************-->
+                   <t t-set="totaln" t-value="(totalGravadasLocal1 - totalIvaLocal1) " />
                    <t t-set="sumaGravados1" t-value="totaln + totalGravadas "/>
                    <t t-set="sumaExentos1" t-value="totalExentas1 + totalExentas "/>
                    <t t-set="sumaExp1" t-value="totalGravadasExp1 + exportacion "/>
                    <t t-set="sumaIva1" t-value="totalIvaLocal1 + totalIva "/>
                    <t t-set="sumaRet1" t-value="totalR + totalRetenido"/>
-                  <t t-set="totaln" t-value="(totalGravadasLocal1 - totalIvaLocal1) " />
+                  
                    <!--Fin ce calculos-->
               </t>
 
