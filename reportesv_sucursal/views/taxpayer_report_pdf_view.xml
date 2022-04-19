@@ -106,6 +106,7 @@
             <t t-set="totalIvaLocal1" t-value="float(0.00)"/>
             <t t-set="totalIvaExp1" t-value="float(0.00)"/>
             <t t-set="total1" t-value="float(0.00)"/>
+            <t t-set="totaln" t-value="float(0.00)"/>
 
             <t t-set="debito" t-value="float(0.00)"/>
             <t t-set="ventaNeta" t-value="float(0.00)"/>
