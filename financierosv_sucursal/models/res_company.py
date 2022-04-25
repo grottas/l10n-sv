@@ -29,7 +29,7 @@ select aa.code
     ,aa.name as name
     ,aa.tipo as type
     ,(select acs.x_negativo from x_signos acs where x_company_id={0} and acs.x_name=left(aa.code,1)) as signonegativo
-    ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0) if previo<0 previo*-1 else previo
+    ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
