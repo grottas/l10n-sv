@@ -217,33 +217,31 @@ order by S2.code
         data = {}
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_resultado_report AS (
-           select * from ( 
-    select aa.code 
-    ,aa.name as name
+           select * from
+(
+select aa.code
+    ,aa.name
     ,aa.tipo as type
-    ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
-    from account_account aa1
-        inner join account_move_line aml1 on aa1.id=aml1.account_id
+    ,(select acs.x_negativo from x_signos acs where x_company_id={0} and acs.x_name=left(aa.code,1)) as signonegativo
+    ,(select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0) 
+        from account_move_line aml1
         inner join account_move am1 on aml1.move_id=am1.id
-        inner join account_group ag on am1.id=ag.id
-        where aa1.company_id={0}  and aa1.code like aa.code and aa.code like '%4%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted') and ag.id=212) else 0 end as previo2 
-,(select COALESCE(sum(aml2.debit),0)
-        from account_account aa2
-        inner join account_move_line aml2 on aa2.id=aml2.account_id
-        inner join account_move am2 on aml2.move_id=am2.id
-        inner join account_group ag on am2.id=ag.id
-        where aa2.company_id={0} and aa2.code like aa.code and aa.code like '%4%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') and ag.id=212 ) as debe2    
-,(select COALESCE(sum(aml2.credit),0)
-        from account_account aa2
-        inner join account_move_line aml2 on aa2.id=aml2.account_id
-        inner join account_move am2 on aml2.move_id=am2.id
-        inner join account_group ag on am2.id=ag.id
-        where aa2.company_id={0} and aa2.code like aa.code and aa.code like '%4%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted')  and ag.id=212 ) as haber2
+        inner join account_account a1 on aml1.account_id=a1.id
+        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))< {2}  and am1.state in ('posted')) as previo2
+    ,(select COALESCE(sum(aml1.debit),0)
+        from account_move_line aml1
+        inner join account_move am1 on aml1.move_id=am1.id
+        inner join account_account a1 on aml1.account_id=a1.id
+        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}   and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}   and am1.state in ('posted')) as debe2  
+    ,(select COALESCE(sum(aml1.credit),0)
+        from account_move_line aml1
+        inner join account_move am1 on aml1.move_id=am1.id
+        inner join account_account a1 on aml1.account_id=a1.id
+        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')) as haber2  
 
-from cuentas aa 
-where aa.company_id= {0} and length(trim(aa.code))>=4 and length(trim(aa.code))<6
+from cuentas aa
+where aa.company_id= {0}  and length(trim(aa.code))=4
 order by aa.code
-
 )S2
 where S2.previo2<>0 or S2.debe2<>0 or S2.haber2<>0 
 order by S2.code
