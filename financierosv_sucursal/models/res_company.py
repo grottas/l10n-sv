@@ -227,20 +227,20 @@ select aa.code
         from account_move_line aml1
         inner join account_move am1 on aml1.move_id=am1.id
         inner join account_account a1 on aml1.account_id=a1.id
-        where am1.company_id= {0} and a1.code like aa.code and '4102' and date_part('month',COALESCE(am1.date,am1.invoice_date))< {2}  and am1.state in ('posted')) as previo2
+        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))< {2}  and am1.state in ('posted')) as previo2
     ,(select COALESCE(sum(aml1.debit),0)
         from account_move_line aml1
         inner join account_move am1 on aml1.move_id=am1.id
         inner join account_account a1 on aml1.account_id=a1.id
-        where am1.company_id= {0} and a1.code like aa.code and'4102' and date_part('month',COALESCE(am1.date,am1.invoice_date))= {2}   and am1.state in ('posted')) as debe2  
+        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}   and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}   and am1.state in ('posted')) as debe2  
     ,(select COALESCE(sum(aml1.credit),0)
         from account_move_line aml1
         inner join account_move am1 on aml1.move_id=am1.id
         inner join account_account a1 on aml1.account_id=a1.id
-        where am1.company_id= {0} and a1.code like aa.code and '4102' and date_part('month',COALESCE(am1.date,am1.invoice_date))= {2}    and am1.state in ('posted')) as haber2  
+        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')) as haber2  
 
 from cuentas aa
-where aa.company_id= {0}  and length(trim(aa.code))=4
+where aa.company_id= {0}  and length(trim(aa.code))=4 and aa.code=4101
 order by aa.code
 )S2
 where S2.previo2<>0 or S2.debe2<>0 or S2.haber2<>0 
