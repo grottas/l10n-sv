@@ -16,6 +16,14 @@
               table td:last-child{
                 padding: 0.5px;  
               } 
+              footer {
+              background-color: black;
+              position: fixed;
+              bottom: 0;
+              width: 100%;
+              height: 40px;
+              color: white;
+              }
               .tabla-resumen {
                 table-layout:fixed;
                 position:absolute;
@@ -97,13 +105,13 @@
             <!--Tabla resumen-->
   
           </div>
-
+          <footer-active>
           <div class="footer-active" style="background-color: lightgray; bottom: 0; position: fixed; width: 100%; border-width: 55%;">
                 <div class="row">
-                 <td class="td4"><span>F._______________</span> <span>F._______________</span></td>
+                <div id="footer">Pie de página</div>
                 </div>
               </div>
-          
+          </footer-active>
         </t>
       </t>
     </template>
