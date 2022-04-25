@@ -25,11 +25,11 @@ class res_company(models.Model):
 select aa.code 
     ,aa.name as name
     ,aa.tipo as type
-    ,case when {3}=1 then  (select(COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0) - COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0))
+    ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo 
+        where aa1.company_id={0}  and aa1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo 
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
