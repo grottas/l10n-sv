@@ -68,12 +68,12 @@
                 </tr>
                 <tr t-foreach="company.get_balance_details(company_id, year, month, acum)" t-as="c">
                   <td class="td1" style="border:none;"><span t-esc="c.get('code')"/></td>
-                  <td class="td2"><span t-esc="c.get('name')"/></td>
-                  <td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>
-                  <td class="td4"><span t-esc="'{0:.2f}'.format(c.get('debe'))"/></td>
-                  <td class="td5"><span t-esc="'{0:.2f}'.format(c.get('haber'))"/></td>
+                  <td class="td2" style="border:none;"><span t-esc="c.get('name')"/></td>
+                  <td class="td3" style="border:none;"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>
+                  <td class="td4" style="border:none;"><span t-esc="'{0:.2f}'.format(c.get('debe'))"/></td>
+                  <td class="td5" style="border:none;"><span t-esc="'{0:.2f}'.format(c.get('haber'))"/></td>
                   <t t-set="total" t-value="c.get('previo') + c.get('debe') - c.get('haber')"/>
-                  <td class="td6"><span t-esc="'{0:.2f}'.format(total)"/></td>
+                  <td class="td6" style="border:none;"><span t-esc="'{0:.2f}'.format(total)"/></td>
                 </tr>
             </table>
             <!--Contenido de reporte-->
