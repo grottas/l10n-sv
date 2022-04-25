@@ -97,6 +97,13 @@
             <!--Tabla resumen-->
   
           </div>
+
+          <div class="footer" style="background-color: lightgray; bottom: 0; position: fixed; width: 100%; border-width: 55%;">
+                <div class="row">
+                 <td class="td4"><span>F._______________</span> <span>F._______________</span></td>
+                </div>
+              </div>
+          
         </t>
       </t>
     </template>
