@@ -240,7 +240,7 @@ select aa.code
         where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')) as haber2  
 
 from cuentas aa
-where aa.company_id= {0}  and length(trim(aa.code))=4 and aa.code='4101'
+where aa.company_id= {0}  and length(trim(aa.code))=4 
 order by aa.code
 )S2
 where S2.previo2<>0 or S2.debe2<>0 or S2.haber2<>0 
