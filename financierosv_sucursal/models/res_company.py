@@ -225,17 +225,17 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo 
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo2 
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
         inner join account_move am2 on aml2.move_id=am2.id
-        where aa2.company_id={0} and aa2.code like aa.code ||'%'  and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as debe     
+        where aa2.company_id={0} and aa2.code like aa.code ||'%'  and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as debe2     
 ,(select COALESCE(sum(aml2.credit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
         inner join account_move am2 on aml2.move_id=am2.id
-        where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber
+        where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber2
 
 from cuentas aa 
 where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code like '41%'
