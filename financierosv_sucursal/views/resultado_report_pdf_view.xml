@@ -1,0 +1,106 @@
+<odoo>
+  <data>
+    <template id ='odoosv_resultado_report_pdf'>
+      <t t-call="web.html_container">
+        <t t-call="web.basic_layout">
+          <div class="page" style="font-size: 8pt">
+            <style type="text/css">
+              .encabezado{text-align: center;}
+              .tr-color{
+                background-color:lightgray; 
+              }
+              table{
+                border-collapse: collapse;
+                empty-cells:hide;
+              }
+              table td:last-child{
+                padding: 0.5px;  
+              } 
+              .tabla-resumen {
+                table-layout:fixed;
+                position:absolute;
+                left:200px;
+              }
+              .th1{width:80px; text-size:15; text-align:center;}
+              .th2{width:500px;text-size:15; text-align:center;}
+              .th3{width:80px; text-size:15; text-align:center;}
+              .th4{width:80px; text-size:15; text-align:center;}
+              .th5{width:80px; text-size:15; text-align:center;}
+              .th6{width:80px; text-size:15; text-align:center;}
+            </style>
+            <!--Declaracion de variables-->
+            <t t-set="month" t-value="int(0)"/>
+            <t t-set="year" t-value="int(0)"/>
+            <t t-set="company_id" t-value="int(0)"/>
+            <t t-set="contador" t-value="null"/>
+            <t t-set="company" t-value="null"/>
+            <t t-set="mes" t-value="null"/>
+            <t t-set="acum" t-value="null"/>
+
+            <!--Fin de declaraciones-->
+
+            <!--Encabezado-->
+              <t t-foreach="docs" t-as="o">
+                <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
+                <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
+                <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
+                 <t t-set="acum" t-value="int(data.get('form').get('acum'))"/>
+                <t t-set="company" t-value="o"/>
+
+
+                <div class="encabezado">
+                  <h3><center>ESTADO DE RESULTADO</center></h3>
+                  <h6><center>PERTENECIENTE AL MES DE: <span t-esc="o.get_month_str(month)"/> DEL <span t-esc="year"/></center></h6>
+                  <h6><center>Valores expresados en dólares de los Estados Unidos de America</center></h6>
+                </div>
+              </t>
+            <!--Fin encabezado-->
+            <table class="table">
+             <tr class="tr-color">
+                  <th class="th1">Código</th>
+                  <th class="th2">Cuenta</th>
+                  <!--<th class="th3">Saldo Anterior</th>-->
+                  <th class="th4"></th>
+                  <th class="th5"></th>
+                  <th class="th6"></th>
+                </tr>
+                <tr t-foreach="company.get_resultado_details(company_id, year, month, acum)" t-as="c">
+                <t t-foreach="company.get_resultado_details1(company_id, year, month, acum)" t-as="c">
+                  <td class="td1"><span t-esc="c.get('code')"/></td>
+                  <td class="td2"><span t-esc="c.get('name')"/></td>
+                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                  <td class="td5"><span t-esc="'{0:.2f}'.format(c.get('haber'))"/></td>
+                  <td class="td4"></td>
+                  <t t-set="total" t-value="c.get('debe1') - c.get('haber')"/>
+                  <td class="td6"><span t-esc="'{0:.2f}'.format(total)"/></td>
+                  </t>
+                </tr>
+                 <tr t-foreach="company.get_resultado_details1(company_id, year, month, acum)" t-as="c">
+                  <td class="td1"><span t-esc="c.get('code')"/></td>
+                  <td class="td2"><span t-esc="c.get('name')"/></td>
+                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                  <td class="td4"><span t-esc="'{0:.2f}'.format(c.get('debe1'))"/></td>
+                  <td class="td5"><span t-esc="'{0:.2f}'.format(c.get('haber1'))"/></td>
+                  <t t-set="total" t-value="c.get('debe1') - c.get('haber1')"/>
+                  <td class="td6"><span t-esc="'{0:.2f}'.format(total)"/></td>
+                </tr>
+                 <tr t-foreach="company.get_resultado_details2(company_id, year, month, acum)" t-as="c">
+                  <td class="td1"><span t-esc="c.get('code')"/></td>
+                  <td class="td2"><span t-esc="c.get('name')"/></td>
+                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                  <td class="td4"><span t-esc="'{0:.2f}'.format(c.get('debe2'))"/></td>
+                  <td class="td5"><span t-esc="'{0:.2f}'.format(c.get('haber2'))"/></td>
+                  <t t-set="total" t-value="c.get('debe2') - c.get('haber2')"/>
+                  <td class="td6"><span t-esc="'{0:.2f}'.format(total)"/></td>
+                </tr>
+            </table>
+                
+            <!--Contenido de reporte-->
+            <!--Tabla resumen-->
+  
+          </div>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>

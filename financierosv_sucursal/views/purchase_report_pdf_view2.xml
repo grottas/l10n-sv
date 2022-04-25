@@ -1,0 +1,109 @@
+<odoo>
+  <data>
+    <template id ='company_odoosv_purchase_report_pdf_trash'>
+      <t t-call="web.html_container">
+        <t t-call="web.basic_layout">
+          <div class="page" style="font-size: 8pt">
+            <style type="text/css">
+              .spacing-line{
+                line-height: 5pt
+              }
+              .center-middle-title{
+                font-size: 15px;
+                text-transform: uppercase;
+                line-height: 10pt;
+              }
+              .center-middle{
+                text-align: center;
+                vertical-align: middle !important;
+                padding:0.5px !important;
+                width:100%;
+              }
+              .center-middle-o{
+                text-align: center;
+                vertical-align: middle !important;
+                white-space: nowrap !important;
+              }
+              .tr-color{
+                background-color:lightgray;
+                width:100%;
+              }
+              .table-content{
+                text-align: right;
+                vertical-align: middle;
+                height: auto;
+                width: 100%;
+                padding: 0px;
+                border-collapse: collapse;
+              }
+              table{
+                width:100%;
+              }
+              table td{
+                padding:0.5px;
+                white-space: nowrap;
+              }
+              table td:last-child{
+                padding: 0.5px;
+                width:100%;
+              }
+              .pagenumber:before {
+                position: relative;
+                border-width: 55%;
+                bottom: 1;
+                width: 100%;
+                font-size: 7pt;
+                background-color:gray;
+                content: "Pág. " conunter(page) " de " counter(pages);
+              }
+            </style>
+            
+              <!--Encabezado-->
+              <h3><center>LIBRO DIARIO MAYOR</center></h3>
+              <h9><center>Periodo comprendido entre el ____________ al ____________</center></h9>
+              <h9><center>Valores expresados en dólares de los Estados Unidos de America</center></h9>
+            <!--Fin Encabezado-->
+            
+            <!--Tabla formato del balance de comprobacion-->
+            <table class="table tabla1" style="font-size:75%; text-align:center; border:transparent;">
+              <thead>
+                <tr>
+                  <th style="width:15%; text-aling:left; border:hidden; background:#F3F1F0;">Nombre de cuenta</th>
+                  <th style="width:20%; text-aling:left; border:hidden; background:#F3F1F0;"></th>
+                  <th style="width:9%; text-aling:left; border:hidden; background:#F3F1F0;"></th>
+                  <th style="width:9%; text-aling:left; border:hidden; background:#F3F1F0;"></th>
+                  <th style="width:9%; text-aling:left; border:hidden; background:#F3F1F0;"></th>
+                </tr>
+                <tr>
+                  <th style="width:15%; background:#F3F1F0; border:hidden;"></th>
+                  <th style="width:20%; background:#F3F1F0; border:hidden;">Fecha</th>
+                  <th style="width:9%; background:#F3F1F0; border:hidden;">Debe</th>
+                  <th style="width:9%; background:#F3F1F0; border:hidden;">Haber</th>
+                  <th style="width:9%; background:#F3F1F0; border:hidden;">Saldo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-aling:left; "></td>
+                  <td style="text-align:left; border:hidden;"><center>07/04/22</center></td>
+                  <td style="text-align:right; border:hidden;">0.0</td>
+                  <td style="text-align:right; border:hidden;">0.0</td>
+                  <td style="text-align:right; border:hidden;">0.0</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left; border:hidden;"></td>
+                  <td style="text-align:left; border:hidden;"></td>
+                  <td style="text-align:right; border:hidden;">$</td>
+                  <td style="text-align:right; border:hidden;">$</td>
+                  <td style="text-align:right; border:hidden;"></td>
+                </tr>
+              </tbody>
+            </table>
+            <!--Fin Tabla formato del balance de comprobacion-->
+
+          </div>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>
