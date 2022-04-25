@@ -67,7 +67,7 @@
                   <th class="th6">Saldo</th>
                 </tr>
                 <tr t-foreach="company.get_balance_details(company_id, year, month, acum)" t-as="c">
-                  <td class="td1"><span t-esc="c.get('code')"/></td>
+                  <td class="td1" style="border:none;"><span t-esc="c.get('code')"/></td>
                   <td class="td2"><span t-esc="c.get('name')"/></td>
                   <td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>
                   <td class="td4"><span t-esc="'{0:.2f}'.format(c.get('debe'))"/></td>
