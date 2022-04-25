@@ -52,8 +52,8 @@
 
                 <div class="encabezado">
                   <h3><center>BALANCE DE COMPROBACION O DE SUMAS Y SALDOS</center></h3>
-                  <h6><center>PERTENECIENTE AL MES DE: <span t-esc="o.get_month_str(month)"/> DEL <span t-esc="year"/></center></h6>
-                  <h6><center>Valores expresados en dólares de los Estados Unidos de America</center></h6>
+                  <h6><center>PERIODO COMPRENDIDO AL MES DE: <span t-esc="o.get_month_str(month)"/> DEL <span t-esc="year"/></center></h6>
+                  <h6><center>(Valores expresados en dólares de los Estados Unidos de America)</center></h6>
                 </div>
               </t>
             <!--Fin encabezado-->
