@@ -29,7 +29,7 @@
                 position:absolute;
                 left:200px;
               }
-              .th1{width:300px; text-size:15; text-align:center;}
+              .th1{width:350px; text-size:15; text-align:center;}
               .th2{width:100px;text-size:15; text-align:center;}
               .th3{width:100px; text-size:15; text-align:center;}
               .th4{width:100px; text-size:15; text-align:center;}
