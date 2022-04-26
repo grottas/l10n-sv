@@ -14,8 +14,12 @@
                 empty-cells:hide;
               }
               table td:last-child{
-                padding: 0.25px;  
-              } 
+                padding: 0.25px; 
+                
+              }
+              table td:last-child{ 
+                 height: 0.5px;
+              }
               footer {
               background-color: black;
               position: fixed;
