@@ -836,7 +836,7 @@ order by S2.code
         where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber5
 
 from cuentas aa 
-where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '1101%' and  '1105%'
+where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '1100%' and  '1106%'
 order by aa.code
 
 )S2
@@ -916,7 +916,7 @@ order by S2.code
         where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber7
 
 from cuentas aa 
-where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '2101%' and  '2107%'
+where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '2100%' and  '2106%'
 order by aa.code
 
 )S2
@@ -956,7 +956,7 @@ order by S2.code
         where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber8
 
 from cuentas aa 
-where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '2101%' and  '2105%'
+where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '2100%' and  '2106%'
 order by aa.code
 
 )S2
@@ -996,7 +996,7 @@ order by S2.code
         where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber9
 
 from cuentas aa 
-where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '3101%' and  '3105%'
+where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '3100%' and  '3106%'
 order by aa.code
 
 )S2
