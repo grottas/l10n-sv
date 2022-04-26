@@ -108,6 +108,14 @@
                   <t t-set="total" t-value="c.get('debe1') - c.get('haber1')"/>
                   <td class="td6"></td>
                 </tr>
+                <tr t-foreach="company.get_resultado_details2(company_id, year, month, acum)" t-as="c">
+                  <td class="td1"></td>
+                  <td class="td2"><b><strong>COSTOS</strong></b></td>
+                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                  <td class="td4"></td>
+                  <td class="5"><span t-esc="'{0:.2f}'.format(c.get('debe2'))"/></td>
+                  <td class="td6"></td> <!--<span t-esc="'{0:.2f}'.format(total)"/>-->
+                </tr>
                  <tr t-foreach="company.get_resultado_details2(company_id, year, month, acum)" t-as="c">
                   <td class="td1"><span t-esc="c.get('code')"/></td>
                   <td class="td2"><span t-esc="c.get('name')"/></td>
@@ -115,6 +123,15 @@
                   <td class="td4"><span t-esc="'{0:.2f}'.format(c.get('debe2'))"/></td>
                   <td class="td5"><span t-esc="'{0:.2f}'.format(c.get('haber2'))"/></td>
                   <t t-set="total" t-value="c.get('debe2') - c.get('haber2')"/>
+                  <td class="td6"></td>
+                </tr>
+                <tr t-foreach="company.get_resultado_details8(company_id, year, month, acum)" t-as="c">
+                  <td class="td1"><span t-esc="c.get('code')"/></td>
+                  <td class="td2"><b><strong><span t-esc="c.get('name')"/></b></strong></td>
+                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                  <td class="td4"><span t-esc="'{0:.2f}'.format(c.get('debe8'))"/></td>
+                  <t t-set="total" t-value="c.get('8') - c.get('haber8')"/>
+                  <td class="td5"><span t-esc="'{0:.2f}'.format(total)"/></td>
                   <td class="td6"></td>
                 </tr>
                 <tr t-foreach="company.get_resultado_details3(company_id, year, month, acum)" t-as="c">
