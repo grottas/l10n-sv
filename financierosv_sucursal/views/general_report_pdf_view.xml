@@ -5,6 +5,9 @@
         <t t-call="web.basic_layout">
           <div class="page" style="font-size: 8pt">
             <style type="text/css">
+              @page{
+                size: landscape;  
+              }
               .encabezado{text-align: center;}
               .tr-color{
                 background-color:lightgray;
