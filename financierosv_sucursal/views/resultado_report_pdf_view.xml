@@ -188,7 +188,6 @@
                   <t t-set="total" t-value="c.get('debe6') - c.get('haber6')"/>
                   <td class="td6"></td>
                 </tr>
-                </tr>
             </table>
                 
             <!--Contenido de reporte-->
