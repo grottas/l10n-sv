@@ -36,12 +36,12 @@
               .th5{width:80px; text-size:15; text-align:center;}
               .th6{width:80px; text-size:15; text-align:center;}
 
-              .td1{text-size:18;}
-              .td2{text-size:18; }
-              .td3{text-size:18; }
-              .td4{text-size:18; }
-              .td5{text-size:18; }
-              .td6{text-size:18; }
+              .td1{text-size:15px;}
+              .td2{text-size:15px; }
+              .td3{text-size:15px; }
+              .td4{text-size:15px; }
+              .td5{text-size:15px; }
+              .td6{text-size:18px; }
 
             </style>
             <!--Declaracion de variables-->
@@ -184,7 +184,7 @@
                   <td class="td2" style="border:none;"><span t-esc="c.get('name')"/></td>
                   <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
                   <td class="td4" style="border:none;"><span t-esc="'{0:.2f}'.format(c.get('debe6'))"/></td>
-                  <td class="td5"></td>
+                  <td class="td5" style="border:none;" ></td>
                   <t t-set="total" t-value="c.get('debe6') - c.get('haber6')"/>
                   <td class="td6" style="border:none;"></td>
                 </tr>
@@ -192,7 +192,7 @@
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"><span t-esc="c.get('name')"/></td>
                   <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
+                  <td class="td4"></td>
                   <td class="td5" style="border:none;"><span t-esc="'{0:.2f}'.format(c.get('debe11'))"/></td>
                   <t t-set="total" t-value="c.get('debe11') - c.get('haber11')"/>
                   <td class="td6" style="border:none;"></td>
@@ -201,7 +201,7 @@
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"></td>
                   <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4"></td>
+                  <td class="td4" style="border:none;"></td>
                   <td class="td5" style="border:none;"></td>
                   <t t-set="total" t-value=" total7 - total10"/>
                   <td class="td6" style="border:none;"></td>
