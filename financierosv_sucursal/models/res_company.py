@@ -876,7 +876,7 @@ order by S2.code
         where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber6
 
 from cuentas aa 
-where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '1201%' and  '1105%'
+where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '1201'
 order by aa.code
 
 )S2
