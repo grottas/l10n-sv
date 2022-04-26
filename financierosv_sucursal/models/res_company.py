@@ -840,7 +840,7 @@ where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code like '1101%' an
 order by aa.code
 
 )S2
-where S2.previo4<>0 or S2.debe4<>0 or S2.haber4<>0 
+where S2.previo5<>0 or S2.debe5<>0 or S2.haber5<>0 
 order by S2.code
 
         )""".format(company_id,date_year,date_month,acum)
