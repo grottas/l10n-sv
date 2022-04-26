@@ -127,12 +127,18 @@
                   <td class="td6" style="border:none;"><span t-esc="'{0:.2f}'.format(total)"/></td>
                   <td class="td1" style="border:none;"></td>
                 </tr>
+                 <tr>
+                  <td class="td1" style="border:none;"></td>
+                  <td class="td1" style="border:none;"></td>
+                  <td class="td2" style="border:none;"></td>
+                  <td class="td6" style="border:none;"></td>
+                </tr>
                 <tr>
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><strong>TOTAL ACTIVO</strong></td>
                   <t t-set="total" t-value="totalc + totalnc"/>
                   <td class="td6" style="border:none;"></td>
-                  <td class="td1" style="border:none;"><span t-esc="'{0:.2f}'.format(total)"/></td>
+                  <td class="td1" style="border:none;"><strong t-esc="'{0:.2f}'.format(total)"/></td>
                 </tr>
                 <tr>
                   <td class="td1" style="border:none;"></td>
@@ -206,7 +212,7 @@
                   <t t-set="total1" t-value="totaln1 + totaln2"/>
                   <t t-set="total2" t-value="total1 + totaln3"/>
                   <td class="td6" style="border:none;"></td>
-                  <td class="td1" style="border:none;"><span t-esc="'{0:.2f}'.format(total2)"/></td>
+                  <td class="td1" style="border:none;"><strong t-esc="'{0:.2f}'.format(total2)"/></td>
                 </tr>
             </table>
             
