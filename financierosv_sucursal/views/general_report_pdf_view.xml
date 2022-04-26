@@ -56,6 +56,11 @@
             <t t-set="company" t-value="null"/>
             <t t-set="mes" t-value="null"/>
             <t t-set="acum" t-value="null"/>
+            <t t-set="total1" t-value="float(0.00)"/>
+            <t t-set="total2" t-value="float(0.00)"/>
+            <t t-set="totaln1" t-value="float(0.00)"/>
+            <t t-set="totaln2" t-value="float(0.00)"/>
+            <t t-set="totaln3" t-value="float(0.00)"/>
 
             <!--Fin de declaraciones-->
 
