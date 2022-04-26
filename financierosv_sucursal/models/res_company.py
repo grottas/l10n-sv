@@ -849,4 +849,164 @@ order by S2.code
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
         if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data                     
+        return data 
+
+    def get_general_details6(self, company_id, date_year, date_month, acum):
+        data = {}
+
+        sql = """CREATE OR REPLACE VIEW odoosv_financierosv_general_report AS (
+            select * from ( 
+    select aa.code 
+    ,aa.name as name
+    ,aa.tipo as type
+    ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
+    from account_account aa1
+        inner join account_move_line aml1 on aa1.id=aml1.account_id
+        inner join account_move am1 on aml1.move_id=am1.id
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo6
+,(select COALESCE(sum(aml2.debit),0)
+        from account_account aa2
+        inner join account_move_line aml2 on aa2.id=aml2.account_id
+        inner join account_move am2 on aml2.move_id=am2.id
+        where aa2.company_id={0} and aa2.code like aa.code ||'%'  and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as debe6     
+,(select COALESCE(sum(aml2.credit),0)
+        from account_account aa2
+        inner join account_move_line aml2 on aa2.id=aml2.account_id
+        inner join account_move am2 on aml2.move_id=am2.id
+        where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber6
+
+from cuentas aa 
+where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '1101%' and  '1105%'
+order by aa.code
+
+)S2
+where S2.previo6<>0 or S2.debe6<>0 or S2.haber6<>0 
+order by S2.code
+
+        )""".format(company_id,date_year,date_month,acum)
+        tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
+        self._cr.execute(sql)
+        self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
+        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+            data = self._cr.dictfetchall()
+        return data     
+
+    def get_general_details7(self, company_id, date_year, date_month, acum):
+        data = {}
+
+        sql = """CREATE OR REPLACE VIEW odoosv_financierosv_general_report AS (
+            select * from ( 
+    select aa.code 
+    ,aa.name as name
+    ,aa.tipo as type
+    ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
+    from account_account aa1
+        inner join account_move_line aml1 on aa1.id=aml1.account_id
+        inner join account_move am1 on aml1.move_id=am1.id
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo7
+,(select COALESCE(sum(aml2.debit),0)
+        from account_account aa2
+        inner join account_move_line aml2 on aa2.id=aml2.account_id
+        inner join account_move am2 on aml2.move_id=am2.id
+        where aa2.company_id={0} and aa2.code like aa.code ||'%'  and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as debe7     
+,(select COALESCE(sum(aml2.credit),0)
+        from account_account aa2
+        inner join account_move_line aml2 on aa2.id=aml2.account_id
+        inner join account_move am2 on aml2.move_id=am2.id
+        where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber7
+
+from cuentas aa 
+where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '1101%' and  '1105%'
+order by aa.code
+
+)S2
+where S2.previo7<>0 or S2.debe7<>0 or S2.haber7<>0 
+order by S2.code
+
+        )""".format(company_id,date_year,date_month,acum)
+        tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
+        self._cr.execute(sql)
+        self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
+        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+            data = self._cr.dictfetchall()
+        return data                         
+
+    def get_general_details8(self, company_id, date_year, date_month, acum):
+        data = {}
+
+        sql = """CREATE OR REPLACE VIEW odoosv_financierosv_general_report AS (
+            select * from ( 
+    select aa.code 
+    ,aa.name as name
+    ,aa.tipo as type
+    ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
+    from account_account aa1
+        inner join account_move_line aml1 on aa1.id=aml1.account_id
+        inner join account_move am1 on aml1.move_id=am1.id
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo8
+,(select COALESCE(sum(aml2.debit),0)
+        from account_account aa2
+        inner join account_move_line aml2 on aa2.id=aml2.account_id
+        inner join account_move am2 on aml2.move_id=am2.id
+        where aa2.company_id={0} and aa2.code like aa.code ||'%'  and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as debe8     
+,(select COALESCE(sum(aml2.credit),0)
+        from account_account aa2
+        inner join account_move_line aml2 on aa2.id=aml2.account_id
+        inner join account_move am2 on aml2.move_id=am2.id
+        where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber8
+
+from cuentas aa 
+where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '1101%' and  '1105%'
+order by aa.code
+
+)S2
+where S2.previo8<>0 or S2.debe8<>0 or S2.haber8<>0 
+order by S2.code
+
+        )""".format(company_id,date_year,date_month,acum)
+        tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
+        self._cr.execute(sql)
+        self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
+        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+            data = self._cr.dictfetchall()
+        return data 
+
+    def get_general_details9(self, company_id, date_year, date_month, acum):
+        data = {}
+
+        sql = """CREATE OR REPLACE VIEW odoosv_financierosv_general_report AS (
+            select * from ( 
+    select aa.code 
+    ,aa.name as name
+    ,aa.tipo as type
+    ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
+    from account_account aa1
+        inner join account_move_line aml1 on aa1.id=aml1.account_id
+        inner join account_move am1 on aml1.move_id=am1.id
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo9
+,(select COALESCE(sum(aml2.debit),0)
+        from account_account aa2
+        inner join account_move_line aml2 on aa2.id=aml2.account_id
+        inner join account_move am2 on aml2.move_id=am2.id
+        where aa2.company_id={0} and aa2.code like aa.code ||'%'  and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as debe9     
+,(select COALESCE(sum(aml2.credit),0)
+        from account_account aa2
+        inner join account_move_line aml2 on aa2.id=aml2.account_id
+        inner join account_move am2 on aml2.move_id=am2.id
+        where aa2.company_id={0} and aa2.code like aa.code ||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber9
+
+from cuentas aa 
+where aa.company_id= {0} and length(trim(aa.code))=4 and aa.code between '1101%' and  '1105%'
+order by aa.code
+
+)S2
+where S2.previo9<>0 or S2.debe9<>0 or S2.haber9<>0 
+order by S2.code
+
+        )""".format(company_id,date_year,date_month,acum)
+        tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
+        self._cr.execute(sql)
+        self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
+        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+            data = self._cr.dictfetchall()
+        return data     
