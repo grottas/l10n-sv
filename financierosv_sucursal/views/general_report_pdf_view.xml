@@ -5,7 +5,7 @@
         <t t-call="web.basic_layout">
           <div class="page" style="font-size: 8pt">
             <style type="text/css">
-              @page{
+              .page{
                 size: landscape;  
               }
               .encabezado{text-align: center;}
