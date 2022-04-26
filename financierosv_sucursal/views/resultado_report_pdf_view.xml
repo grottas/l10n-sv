@@ -35,6 +35,14 @@
               .th4{width:80px; text-size:15; text-align:center;}
               .th5{width:80px; text-size:15; text-align:center;}
               .th6{width:80px; text-size:15; text-align:center;}
+
+              .td1{text-size:15;}
+              .td2{text-size:15; }
+              .td3{text-size:15; }
+              .td4{text-size:15; }
+              .td5{text-size:15; }
+              .td6{text-size:15; }
+
             </style>
             <!--Declaracion de variables-->
             <t t-set="month" t-value="int(0)"/>
@@ -143,7 +151,6 @@
                   <t t-set="total" t-value="c.get('debe8') - c.get('haber8')"/>
                   <td class="td5" style="border:none;"><span t-esc="'{0:.2f}'.format(total)"/></td>
                   <td class="td6" style="border:none;"></td>
-                </tr>
                 </tr>
                  <tr t-foreach="company.get_resultado_details4(company_id, year, month, acum)" t-as="c">
                   <td class="td1" style="border:none;"></td>
