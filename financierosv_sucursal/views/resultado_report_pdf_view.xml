@@ -72,9 +72,18 @@
                   <th class="th5"></th>
                   <th class="th6"></th>
                 </tr>
+                 <tr t-foreach="company.get_resultado_details7(company_id, year, month, acum)" t-as="c">
+                  <td class="td1"></td>
+                  <td class="td2"><u><strong>CUENTAS DE RESULTADOS ACREEDORAS</strong></u></td>
+                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                  <td class="td4"></td>
+                  <td class="td5"></td>
+                  <t t-set="total" t-value="c.get('haber7') - c.get('debe7')"/>
+                  <td class="td6"><span t-esc="'{0:.2f}'.format(total)"/></td>
+                </tr>
                 <tr t-foreach="company.get_resultado_details7(company_id, year, month, acum)" t-as="c">
                   <td class="td1"></td>
-                  <td class="td2"><strong>Ventas</strong></td>
+                  <td class="td2"><strong>VENTAS</strong></td>
                   <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
                   <td class="td4"></td>
                   <t t-set="total" t-value="c.get('haber7') - c.get('debe7')"/>
