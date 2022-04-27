@@ -79,9 +79,6 @@
                 <t t-set="total" t-value="c.get('haber') + c.get('debe')"/>
                  <td class="td7"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>
               </tr>
-              <tr t-foreach="company.get_mayor_details1(company_id, year, month, acum)" t-as="c">
-              <td class="td3"><span t-esc="c.get('date').strftime('%d/%m/%Y')"/></td>
-              </tr>
              
             </table>
           </div>
