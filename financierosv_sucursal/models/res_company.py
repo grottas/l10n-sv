@@ -60,7 +60,8 @@ order by S.code
         return data
       
 
-#LIBRO MAYOR
+#********************LIBRO MAYOR*****************************************************************************
+    
     def get_mayor_details(self, company_id, date_year, date_month, acum):
         data = {}
 
@@ -107,32 +108,6 @@ order by S1.code
         if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
-
-#*************libro mayor anexo**************************
-    def get_mayor_details1(self, company_id, date_year, date_month, acum):
-        data = {}
-
-        sql = """CREATE OR REPLACE VIEW odoosv_financierosv_mayor_report AS (
-            select * from ( 
-select am.date   
-    from account_move_line aml
-    inner join account_move am on aml.move_id=am.id
-    inner Join account_account aa on aa.id=aml.account_id
-    inner join account_group ag on 
-    where aa.code like am.code ||'%'  and date_part('month',COALESCE(am.date,am.invoice_date))>= {2} and date_part('month',COALESCE(am.date,am.invoice_date))<={2} and am.company_id={0}  and am.state in ('posted')
-from am
-)S1
-order by S1.date
-
-
-        )""".format(company_id,date_year,date_month,acum)
-        tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_mayor_report')
-        self._cr.execute(sql)
-        self._cr.execute("SELECT * FROM public.odoosv_financierosv_mayor_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
-            data = self._cr.dictfetchall()
-        return data
-
 #*****************ESTADO DE RESULTADO***********************************************
     def get_resultado_details(self, company_id, date_year, date_month, acum):
         data = {}
