@@ -207,7 +207,7 @@
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
                   <t t-set="total" t-value="c.get('haber9') - c.get('debe9')"/>
-                  <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(total)"/></td>
+                  '{0:.2f}'.format
                   <td class="td1" style="border:none;"></td>
                 </tr>   
                  <tr>
@@ -222,7 +222,9 @@
             
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
-  
+           <footer>
+            <t t-class="td6" style="border:none;"><span>F._______________ </span></t>
+            </footer>
           </div>
         </t>
       </t>
