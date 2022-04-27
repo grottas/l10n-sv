@@ -20,13 +20,6 @@
               table td:last-child{ 
                  height: 0.5px;
               }
-              .footer{
-              background-color: black;
-              position: fixed;
-              bottom: 0;
-              width: 500px;
-              height: 100px;
-              }
               .tabla-resumen {
                 table-layout:fixed;
                 position:absolute;
@@ -225,8 +218,8 @@
           </div>
 
             <footer class="footer-active">
-             <div style="text-align:left; position:fixed; top: 1000px">F._______________________              F._______________________                   F._______________________ </div>
-             <div style="text-align:left; position:fixed; top: 1030px">contador</div>
+             <div style="text-align:right; position:fixed; top: 1000px">F._______________________              F._______________________                   F._______________________ </div>
+             <div style="text-align:center; position:fixed; top: 1000px">F._______________________              F._______________________                   F._______________________ </div>
            </footer>
         </t>
       </t>
