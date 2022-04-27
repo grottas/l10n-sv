@@ -65,15 +65,11 @@ order by S.code
         data = {}
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_mayor_report AS (
-            select S1.*
-                , case when COALESCE(S1.signonegativo,False) =true then -1
-                else 1 end as TipoCuenta 
+            select *
 from
 (
 select aa.code
     ,aa.name
-    
-    ,(select acs.x_negativo from x_signos acs where x_company_id={0} and acs.x_name=left(aa.code,1)) as signonegativo
     ,(select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0) 
         from account_move_line aml1
         inner join account_move am1 on aml1.move_id=am1.id
@@ -103,7 +99,7 @@ order by aa.code
 
 ) S1
 where abs(S1.previo)>0.0001 or abs(S1.debe)>0.0001 or abs(S1.haber)>0.0001
-group by S1.date,S1.code,S1.name
+group by S1.date,S1.code,S1.name,S1.previo
 
         )""".format(company_id,date_year,date_month,acum)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_mayor_report')
