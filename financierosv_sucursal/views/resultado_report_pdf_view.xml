@@ -221,13 +221,12 @@
             <!--Tabla resumen-->
   
           </div>
-          <footer-active>
-          <div class="footer-active" style="background-color: lightgray; bottom: 0; position: fixed; width: 100%; border-width: 55%;">
-                <div class="row">
-                <div id="footer">Pie de página</div>
-                </div>
-              </div>
-          </footer-active>
+          
+               <div class="" style="position:fixed;top:1360px;left:820px;width:500px;font-size:22px">F:__________________________</div>
+               <div class="" style="position:fixed;top:1385px;left:840px;width:500px;font-size:18px">Por Los Ranchos S.A de C.V  </div>
+          
+
+          
         </t>
       </t>
     </template>
