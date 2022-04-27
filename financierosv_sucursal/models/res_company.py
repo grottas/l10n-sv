@@ -103,7 +103,7 @@ order by aa.code
 
 ) S1
 where abs(S1.previo)>0.0001 or abs(S1.debe)>0.0001 or abs(S1.haber)>0.0001
-group by S1.date,S1.code
+group by S1.date,S1.code,S1.name
 
         )""".format(company_id,date_year,date_month,acum)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_mayor_report')
