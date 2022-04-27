@@ -128,7 +128,7 @@ select am.date as date
         inner join account_group ag on ag.id=a1.group_id
         where am1.company_id= {0} and a1.code like am.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')) as haber    
     
-    from  account.move am
+    from  account_move am
     order by date
 )S1
 group by S1.date
