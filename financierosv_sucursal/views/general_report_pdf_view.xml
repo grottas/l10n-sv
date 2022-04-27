@@ -225,17 +225,17 @@
             
           </div>
 
-          <footer>
+          <footer class="footer-active">
            <div style="text-align:left; position:fixed; top: 900px;">F._______________________</div>
            <div style="text-align:center; position:fixed; top: 900px;">F._______________________</div>  
           </footer>
 
-           <footer>
+           <footer class="footer">
             <div style="text-align:center; position:fixed; top: 900px;">F._______________________</div> 
            </footer>
 
-            <footer>
-             <div style="text-align:right; position:fixed; top: 900px;">F._______________________</div>
+            <footer class="footer-active">
+             <div style="text-align:right; position:fixed;">F._______________________</div>
            </footer>
         </t>
       </t>
