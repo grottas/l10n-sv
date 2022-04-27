@@ -221,12 +221,18 @@
             
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
-            <footer>
 
-            <div class="td1"><u><strong>TOTAL PASIVO + CAPITAL</strong></u></div>
-            </footer>
           
  </div>
+
+  <footer>
+
+            <div><u><strong></strong></u></div>
+            <p class="footer">
+                    F.____________  &nbsp;&nbsp;&nbsp;&nbsp;F.____________ &nbsp;&nbsp;&nbsp;&nbsp;F.____________<br /> 
+                        Contador
+                </p>
+            </footer>
 
         </t>
       </t>
