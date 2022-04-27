@@ -223,7 +223,7 @@
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
            <footer>
-            <t t-class="td6" style="border:none;"><span>F._______________ </span></t>
+            <p style="text-align:center">F._______________________</p>
             </footer>
           </div>
         </t>
