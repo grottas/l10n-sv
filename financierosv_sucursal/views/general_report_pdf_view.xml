@@ -29,6 +29,29 @@
                 border-style: double; border-width:4px;
                 border-right:none;border-left:none;border-top:none;
               }
+
+              .footer-style {
+                  padding-top: 50px;
+                  background-color: #2C3E50;
+              }
+              footer {
+                color: white;
+              }
+              footer h3 {
+                margin-bottom: 30px;
+                  font-weight: 800;
+              }
+              footer .footer-above {
+                padding-top: 50px;
+                background-color: #2C3E50;
+              }
+              footer .footer-col {
+                margin-bottom: 50px;
+              }
+              footer .footer-below {
+                padding: 25px 0;
+                background-color: #233140;
+              }
               .th1{width:350px; text-size:15; text-align:center;}
               .th2{width:100px;text-size:15; text-align:center;}
               .th3{width:100px; text-size:15; text-align:center;}
@@ -214,13 +237,46 @@
             
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
-            
-          </div>
 
-            <footer class="footer-active">
-             <div style="text-align:right; position:fixed; top: 1000px">F._______________________              F._______________________                   F._______________________ </div>
-             <div style="text-align:center; position:fixed; top: 1000px">F._______________________              F._______________________                   F._______________________ </div>
-           </footer>
+            <footer class="text-center footer-style">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 footer-col">
+                <h3>Dirección</h3>
+                <p>
+                    CABA - Argentina <br />
+                    carrasco 400
+                </p>
+            </div>
+            <div class="col-md-4 footer-col">
+                <h3>Mis redes</h3>
+                <ul class="list-inline">
+                    <li>
+                        <a  target="_blank" href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a  target="_blank" href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                    </li>
+                    <li>
+                        <a  target="_blank" href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a  target="_blank" href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                    </li>
+                    <li>
+                        <a  target="_blank" href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 footer-col">
+                <h3>Trabajo FreeLancer</h3>
+                <p>Tengo más de X años de experiencia en maquetación web y me apasiona lo que hago!</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+ </div>
         </t>
       </t>
     </template>
