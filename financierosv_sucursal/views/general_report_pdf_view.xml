@@ -225,9 +225,14 @@
             
           </div>
 
-          <footer class="footer-active">
-           <div style="text-align:left; position:fixed;">F._______________________          F._______________________              F._______________________</div>
-          </footer>
+
+           <footer class="footer">
+            <div style="text-align:center; position:fixed; top: 900px;">F._______________________</div> 
+           </footer>
+
+            <footer class="footer-active">
+             <div style="text-align:right; position:fixed; top: 900px">F._______________________</div>
+           </footer>
         </t>
       </t>
     </template>
