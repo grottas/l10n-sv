@@ -225,13 +225,9 @@
             
           </div>
 
-
-           <footer class="footer">
-            <div style="text-align:center; position:fixed; top: 1200px">F._______________________</div> 
-           </footer>
-
             <footer class="footer-active">
-             <div style="text-align:right; position:fixed; top: 900px">F._______________________              F._______________________                   F._______________________ </div>
+             <div style="text-align:center; position:fixed; top: 1000px">F._______________________              F._______________________                   F._______________________ </div>
+             <div style="text-align:center; position:fixed; top: 1030px">contador</div>
            </footer>
         </t>
       </t>
