@@ -16,7 +16,7 @@
               table td:last-child{
                 padding: 0.5px;  
               } 
-              footer {
+              .footer {
               background-color: black;
               position: fixed;
               bottom: 0;
@@ -220,10 +220,13 @@
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
   
+   <div class="footer" style="position:absolute;top:1360px;left:820px;width:500px;font-size:22px">F:__________________________</div>
+               <div class="" style="position:absolute;top:1385px;left:840px;width:500px;font-size:18px">Por Los Ranchos S.A de C.V  </div>
+
           </div>
           
-               <div class="" style="position:fixed;top:1360px;left:820px;width:500px;font-size:22px">F:__________________________</div>
-               <div class="" style="position:fixed;top:1385px;left:840px;width:500px;font-size:18px">Por Los Ranchos S.A de C.V  </div>
+               <div class="footer" style="position:absolute;top:1360px;left:820px;width:500px;font-size:22px">F:__________________________</div>
+               <div class="footer" style="position:absolute;top:1385px;left:840px;width:500px;font-size:18px">Por Los Ranchos S.A de C.V  </div>
           
 
           
