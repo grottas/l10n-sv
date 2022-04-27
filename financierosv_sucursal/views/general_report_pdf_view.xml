@@ -222,17 +222,11 @@
             
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
-           
-            
-          
-          <div class="footer" style="background-color: lightgray; bottom: 0; position: fixed; width: 100%; width: 50%;">
-            <p style="text-align:center">F._______________________</p>
-             </div>
             
           </div>
 
           <footer>
-           <p style="text-align:left; position:fixed; top:900px">F._______________________</p>  <p style="text-align:center; top:900px">F._______________________</p> <p style="text-align:rigth; top:900px">F._______________________</p>
+           <p style="text-align:left; position:fixed; top:900px">F._______________________</p>  <p style="text-align:center; position:fixed; top:900px">F._______________________</p> <p style="text-align:rigth; top:900px">F._______________________</p>
           </footer>
         </t>
       </t>
