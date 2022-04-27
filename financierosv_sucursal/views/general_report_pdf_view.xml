@@ -24,9 +24,8 @@
               background-color: black;
               position: fixed;
               bottom: 0;
-              width: 100%;
-              height: 40px;
-              color: white;
+              width: 500px;
+              height: 100px;
               }
               .tabla-resumen {
                 table-layout:fixed;
@@ -226,8 +225,8 @@
           </div>
 
             <footer class="footer-active">
-             <div style="text-align:center; position:fixed; top: 1000px">F._______________________              F._______________________                   F._______________________ </div>
-             <div style="text-align:center; position:fixed; top: 1030px">contador</div>
+             <div style="text-align:left; position:fixed; top: 1000px">F._______________________              F._______________________                   F._______________________ </div>
+             <div style="text-align:left; position:fixed; top: 1030px">contador</div>
            </footer>
         </t>
       </t>
