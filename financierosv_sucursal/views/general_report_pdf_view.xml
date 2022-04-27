@@ -252,23 +252,23 @@
                 <tr>
                   <td class="td2" style="border:none;"></td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;">F._________________</td>
-                  <td class="td1" style="border:none;">F._________________</td>
-                  <td class="td2" style="border:none;">F._________________</td>
+                  <td class="td4" style="border:none;">F.________________________</td>
+                  <td class="td1" style="border:none;"></td>
+                  <td class="td2" style="border:none;">F.________________________</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
+                  <td class="td1" style="border:none;">F.________________________</td>
                 </tr>
                 <tr> 
                   <td class="td2" style="border:none;"></td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none; text-align:center;">RRHH</td>
-                  <td class="td1" style="border:none; text-align:center;">Contador</td>
+                  <td class="td4" style="border:none; text-align:center;">Rep. Legal</td>
+                  <td class="td1" style="border:none; text-align:center;"></td>
                   <td class="td2" style="border:none; text-align:center;">Auditor</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                </tr>               
+                  <td class="td1" style="border:none;">Contador</td>
+                </tr>                
   </table>
             
             <!--Contenido de reporte-->
