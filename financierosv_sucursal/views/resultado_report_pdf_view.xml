@@ -221,7 +221,7 @@
                 
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
-            <table class="table">
+            <table class="table-sm">
                 <tr>
                  <th class="th7" style="border:none;"></th>
                   <th class="th7" style="border:none;"></th>
