@@ -221,50 +221,56 @@
             <!--Tabla resumen-->
             <table class="table">
                 <tr>
-                 <th class="th1"></th>
-                  <th class="th2"></th>
+                 <th class="th1" style="border:none;"></th>
+                  <th class="th2" style="border:none;"></th>
                   <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th4"></th>
-                  <th class="th1"></th>
-                  <th class="th2"></th>
+                  <th class="th4" style="border:none;"></th>
+                  <th class="th1" style="border:none;"></th>
+                  <th class="th2" style="border:none;"></th>
                   <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th4"></th>
+                  <th class="th4" style="border:none;"></th>
                 </tr>
                  <tr>
-                 <th class="th1"></th>
-                  <th class="th2"></th>
-                  <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th4"></th>
-                  <th class="th1"></th>
-                  <th class="th2"></th>
-                  <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th4"></th>
+                  <td class="td1" style="border:none;"></td>
+                  <td class="td2" style="border:none;"></td>
+                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                  <td class="td4" style="border:none;"></td>
+                  <td class="td5" style="border:none;"></td>
+                  <t t-set="total" t-value=" total7 - total10"/>
+                  <td class="td6" style="border:none;"></td>
                 </tr>
                 <tr>
-                 <th class="th1"></th>
-                  <th class="th2"></th>
-                  <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th4">F.__________</th>
-                  <th class="th1">F.__________</th>
-                  <th class="th2">F.__________</th>
-                  <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th4"></th>
+                  <td class="td1" style="border:none;"></td>
+                  <td class="td2" style="border:none;"></td>
+                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                  <td class="td4" style="border:none;"></td>
+                  <td class="td5" style="border:none;"></td>
+                  <t t-set="total" t-value=" total7 - total10"/>
+                  <td class="td6" style="border:none;"></td>
+                </tr>
+                <tr>
+                 <td class="td1"></td>
+                  <td class="td2"></td>
+                  <!--<td class="td3">Saldo Anterior</td>-->
+                  <td class="td4">F._________________</td>
+                  <td class="td1">F._________________</td>
+                  <td class="td2">F._________________</td>
+                  <!--<td class="td3">Saldo Anterior</td>-->
+                  <td class="td4"></td>
                 </tr>
                 <tr> 
-                   <th class="th1"></th>
-                  <th class="th2"></th>
-                  <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th4">RRHH</th>
-                  <th class="th1">Contador</th>
-                  <th class="th2">Auditor</th>
-                  <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th4"></th>
+                   <td class="td1"></td>
+                  <td class="td2"></td>
+                  <!--<td class="td3">Saldo Anterior</td>-->
+                  <td class="td4">RRHH</td>
+                  <td class="td1">Contador</td>
+                  <td class="td2">Auditor</td>
+                  <!--<td class="td3">Saldo Anterior</td>-->
+                  <td class="td4"></td>
                 </tr>               
   </table>
           </div>
-          
-               <div class="footer" style="position:absolute;top:1360px;left:820px;width:500px;font-size:22px">F:__________________________</div>
-               <div class="footer" style="position:absolute;top:1385px;left:840px;width:500px;font-size:18px">Por Los Ranchos S.A de C.V  </div>
+        
           
 
           
