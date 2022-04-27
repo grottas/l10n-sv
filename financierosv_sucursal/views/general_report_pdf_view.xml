@@ -20,7 +20,7 @@
               table td:last-child{ 
                  height: 0.5px;
               }
-              footer{
+              .footer{
               background-color: black;
               position: fixed;
               bottom: 0;
@@ -222,14 +222,18 @@
             
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
-           <footer>
+           
             <p style="text-align:center">F._______________________</p>
           
           <div class="footer" style="background-color: lightgray; bottom: 0; position: fixed; width: 100%; width: 50%;">
             <p style="text-align:center">F._______________________</p>
              </div>
-            </footer>
+            
           </div>
+
+          <footer>
+           <p style="text-align:left">F._______________________</p>
+          </footer>
         </t>
       </t>
     </template>
