@@ -226,15 +226,15 @@
           </div>
 
           <footer>
-           <p style="text-align:left; position:fixed; top:900px;">F._______________________</p> 
+           <div style="text-align:left; position:fixed;">F._______________________</div> 
           </footer>
 
            <footer>
-          <p style="text-align:center; top:900px;">F._______________________</p> 
+          <div style="text-align:center; top:1500px;">F._______________________</div> 
            </footer>
 
             <footer>
-          <p style="text-align:right; position:fixed; top:900px;">F._______________________</p>
+          <div style="text-align:right; position:fixed; top:1500px;">F._______________________</div>
            </footer>
         </t>
       </t>
