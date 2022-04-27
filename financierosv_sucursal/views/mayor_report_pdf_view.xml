@@ -80,6 +80,7 @@
                  <td class="td7"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>
               </tr>
              
+             
             </table>
           </div>
         </t>
