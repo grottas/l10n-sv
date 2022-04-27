@@ -89,7 +89,7 @@ select aa.code
         inner join account_move am1 on aml1.move_id=am1.id
         inner join account_account a1 on aml1.account_id=a1.id
         where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')) as haber  
-     ,(select am.date
+     ,(select am1.date
         from account_move am1
         inner join account_move_line aml1 on am1.id=aml1.move_id
         inner join account_account a1 on aml1.account_id=a1.id
