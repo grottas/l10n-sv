@@ -218,6 +218,55 @@
                   <td class="td1" style="border:none;"><xxx><strong t-esc="'{0:,.2f}'.format(total2)"/></xxx></td>
                 </tr>
             </table>
+
+            <table class="table">
+                <tr>
+                 <th class="th1" style="border:none;"></th>
+                  <th class="th2" style="border:none;"></th>
+                  <!--<th class="th3">Saldo Anterior</th>-->
+                  <th class="th4" style="border:none;"></th>
+                  <th class="th1" style="border:none;"></th>
+                  <th class="th2" style="border:none;"></th>
+                  <!--<th class="th3">Saldo Anterior</th>-->
+                  <th class="th4" style="border:none;"></th>
+                </tr>
+                 <tr>
+                  <td class="td1" style="border:none;"></td>
+                  <td class="td2" style="border:none;"></td>
+                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                  <td class="td4" style="border:none;"></td>
+                  <td class="td5" style="border:none;"></td>
+                  <td class="td6" style="border:none;"></td>
+                </tr>
+                <tr>
+                  <td class="td1" style="border:none;"></td>
+                  <td class="td2" style="border:none;"></td>
+                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                  <td class="td4" style="border:none;"></td>
+                  <td class="td5" style="border:none;"></td>
+                  <td class="td6" style="border:none;"></td>
+                </tr>
+                <tr>
+                 <td class="td1" style="border:none;"></td>
+                  <td class="td2" style="border:none;"></td>
+                  <!--<td class="td3">Saldo Anterior</td>-->
+                  <td class="td4" style="border:none;">F._________________</td>
+                  <td class="td1" style="border:none;">F._________________</td>
+                  <td class="td2" style="border:none;">F._________________</td>
+                  <!--<td class="td3">Saldo Anterior</td>-->
+                  <td class="td4"></td>
+                </tr>
+                <tr> 
+                   <td class="td1" style="border:none;"></td>
+                  <td class="td2" style="border:none;"></td>
+                  <!--<td class="td3">Saldo Anterior</td>-->
+                  <td class="td4" style="border:none; text-align:center;">RRHH</td>
+                  <td class="td1" style="border:none; text-align:center;">Contador</td>
+                  <td class="td2" style="border:none; text-align:center;">Auditor</td>
+                  <!--<td class="td3">Saldo Anterior</td>-->
+                  <td class="td4" style="border:none;"></td>
+                </tr>               
+  </table>
             
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
