@@ -27,7 +27,6 @@ class res_company(models.Model):
 from (
 select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
     ,(select acs.x_negativo from x_signos acs where x_company_id={0} and acs.x_name=left(aa.code,1)) as signonegativo
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
@@ -104,7 +103,6 @@ order by aa.code
 
 ) S1
 where abs(S1.previo)>0.0001 or abs(S1.debe)>0.0001 or abs(S1.haber)>0.0001
-order by S1.code
 group by S1.date
 
         )""".format(company_id,date_year,date_month,acum)
