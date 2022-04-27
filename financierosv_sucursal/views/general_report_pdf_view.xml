@@ -230,11 +230,11 @@
           </footer>
 
            <footer>
-          <p style="text-align:center; position:fixed; top:900px;">F._______________________</p> 
+          <p style="text-align:center; top:900px;">F._______________________</p> 
            </footer>
 
             <footer>
-          <p style="text-align:right; top:900px;">F._______________________</p>
+          <p style="text-align:right; position:fixed; top:900px;">F._______________________</p>
            </footer>
         </t>
       </t>
