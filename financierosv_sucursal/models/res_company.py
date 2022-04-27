@@ -131,7 +131,7 @@ select am.date as date
     from  account_move am
     order by date
 )S1
-group by S1.date
+group by S1.date,S1.debe,S1.haber
 
 
         )""".format(company_id,date_year,date_month,acum)
