@@ -83,7 +83,7 @@
                 </div>
               </t>
             <!--Fin encabezado-->
-            <table class="table-bordered">
+            <table class="table-sm">
                 <tr class="tr">
                   <th class="th2"></th>
                   <th class="th1"></th>
