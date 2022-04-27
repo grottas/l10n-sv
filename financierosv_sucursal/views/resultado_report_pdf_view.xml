@@ -219,10 +219,20 @@
                 
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
-  
-   <div class="footer" style="position:absolute;top:1360px;left:820px;width:500px;font-size:22px">F:__________________________</div>
-               <div class="" style="position:absolute;top:1385px;left:840px;width:500px;font-size:18px">Por Los Ranchos S.A de C.V  </div>
-
+            <table class="table">
+                <tr>
+                  <th class="th1">hola</th>
+                  <th class="th2"></th>
+                  <!--<th class="th3">Saldo Anterior</th>-->
+                  <th class="th4"></th>
+                </tr>
+                <tr> 
+                   <td class="td1" style="border:none;">hola</td>
+                   <td class="td2" style="border:none;"></td>
+                   <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
+                   <td class="td4" style="border:none;"></td>
+                </tr>               
+  </table>
           </div>
           
                <div class="footer" style="position:absolute;top:1360px;left:820px;width:500px;font-size:22px">F:__________________________</div>
