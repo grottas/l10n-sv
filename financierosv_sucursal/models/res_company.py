@@ -72,7 +72,7 @@ from
 (
 select aa.code
     ,aa.name
-    ,aa.tipo as type
+    
     ,(select acs.x_negativo from x_signos acs where x_company_id={0} and acs.x_name=left(aa.code,1)) as signonegativo
     ,(select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0) 
         from account_move_line aml1
@@ -154,7 +154,7 @@ group by S1.date,S1.debe,S1.haber
            select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -193,7 +193,7 @@ order by S2.code
            select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -233,7 +233,7 @@ order by S2.code
            select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -272,7 +272,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -311,7 +311,7 @@ order by S2.code
           select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -350,7 +350,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -389,7 +389,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -429,7 +429,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -469,7 +469,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -509,7 +509,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -549,7 +549,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -589,7 +589,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -631,7 +631,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -671,7 +671,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -711,7 +711,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -751,7 +751,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -791,7 +791,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -831,7 +831,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -871,7 +871,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -911,7 +911,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -951,7 +951,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
@@ -991,7 +991,7 @@ order by S2.code
             select * from ( 
     select aa.code 
     ,aa.name as name
-    ,aa.tipo as type
+    
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
