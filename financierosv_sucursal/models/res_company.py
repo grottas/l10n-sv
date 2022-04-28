@@ -113,12 +113,13 @@ from account_move_line aml
                 inner Join account_account aa on aa.id=aml.account_id
                 inner Join account_group ag on ag.id=aa.group_id
                 where am1.company_id= {0} and aa.code like ag.code_prefix_start ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')
+                and ag.code_prefix_start = '{4}'
 
 group by am1.date            
 order by am1.date
 )S
 
-        )""".format(company_id,date_year,date_month,acum)
+        )""".format(company_id,date_year,date_month,acum,cuenta)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_mayor_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_mayor_report")
