@@ -100,7 +100,7 @@ order by S1.code
             data = self._cr.dictfetchall()
         return data
 
-    def get_mayor_details1(self, company_id, date_year, date_month, acum):
+    def get_mayor_details1(self, company_id, date_year, date_month, acum, cuenta):
         data = {}
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_mayor_report AS (
