@@ -12,6 +12,8 @@
               table{
                 border-collapse: collapse;
                 empty-cells:hide;
+                width: 100%;
+              	height: 500px;
               }
               table td:last-child{
                 padding: 0.25px; 
