@@ -42,6 +42,9 @@
             <t t-set="company" t-value="null"/>
             <t t-set="acum" t-value="true"/>
             <t t-set="total" t-value="float(0.00)"/>
+            <t t-set="debe1" t-value="float(0.00)"/>
+            <t t-set="haber1" t-value="float(0.00)"/>
+
             <!--Fin de declaraciones-->
 
             <!--Encabezado-->
@@ -73,7 +76,8 @@
                 <td class="td3"><span t-esc="c.get('name')"/></td>
                 <td class="td3">Saldo Anterior</td>
                 <td class="td4"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>
-                <t t-set="total" t-value="c.get('haber') + c.get('debe')"/>
+                <t t-set="debe1" t-value=" c.get('debe')"/>
+                <t t-set="haber1" t-value=" c.get('haber1')"/>
                <!--<td class="td7"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>-->
                 <td class="td3"></td>
                  <td class="td3"></td>
@@ -86,14 +90,12 @@
                   <th class="th6">Saldo</th>
               </tr>
               <tr t-foreach="company.get_mayor_details1(company_id, year, month, acum)" t-as="c">
-              <t  t="company.get_mayor_details(company_id, year, month, acum)" t-as="c">
                 <td class="td1"></td>
                 <td class="td1"></td>
                 <td class="td3"><span t-esc="c.get('date').strftime('%d/%m/%Y')"/></td>
-                <td class="td5"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('debe'))"/></td>
-                  <td class="td6"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('haber'))"/></td>
+                <td class="td5"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format('debe1')"/></td>
+                  <td class="td6"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format('haber1')"/></td>
                 <td class="td1"></td>
-                </t>
               </tr>
               <tr>
                 <td class="td1"></td>
