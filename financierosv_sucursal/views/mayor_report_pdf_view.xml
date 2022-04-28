@@ -90,7 +90,7 @@
                   <th class="th6">Saldo</th>
               </tr>
                 <tr t-foreach="company.get_mayor_details(company_id, year, month, acum)" t-as="c">
-                <tr t-foreach="company.get_mayor_details1(company_id, year, month, acum)" t-as="0">
+                <tr t-foreach="company.get_mayor_details1(company_id, year, month, acum)" t-as="o">
                 <td class="td1"></td>
                 <td class="td1"></td>
                 <td class="td3"><span t-esc="o.get('date').strftime('%d/%m/%Y')"/></td>
