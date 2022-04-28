@@ -105,7 +105,7 @@ order by S1.code
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_mayor_report AS (
             select * from ( 
-select am.date     
+select am.date as date     
                 ,sum(aml.debit) as debit
                 ,sum(aml.credit) as credit
 from account_move_line aml
