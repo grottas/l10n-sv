@@ -31,12 +31,12 @@
                 border-style: double; border-width:4px;
                 border-right:none;border-left:none;border-top:none;
               }
-              footer {
-        text-align: center;
-        color: whitesmoke;
-        width: 100%;
-        bottom: 0;
-        position:fixed;
+              .footer {
+              text-align: center;
+              color: whitesmoke;
+              width: 100%;
+              bottom: 0;
+              position:fixed;
     }
               .th1{width:350px; text-size:15; text-align:center;}
               .th2{width:100px;text-size:15; text-align:center;}
@@ -222,7 +222,8 @@
                 </tr>
             </table>
 
-            <table class="table-sm">
+<footer>
+            <table class="table">
                 <tr>
                  <th class="th7" style="border:none;"></th>
                   <th class="th7" style="border:none;"></th>
@@ -255,25 +256,25 @@
                 <tr>
                   <td class="td2" style="border:none;"></td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;">F.________________________</td>
+                  <td class="td4" style="border:none;">F.___________________________</td>
                   <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;">F.________________________</td>
+                  <td class="td2" style="border:none;">F.___________________________</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none;"></td>
-                  <td class="td1" style="border:none;">F.________________________</td>
+                  <td class="td1" style="border:none;">F.__________________________</td>
                 </tr>
                 <tr> 
                   <td class="td2" style="border:none;"></td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none; text-align:center;">Rep. Legal</td>
                   <td class="td1" style="border:none; text-align:center;"></td>
-                  <td class="td2" style="border:none; text-align:center;">Auditor</td>
+                  <td class="td2" style="border:none; text-align:right;">Auditor</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none;"></td>
                   <td class="td1" style="border:none;">Contador</td>
                 </tr>                
   </table>
-            
+  </footer>          
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
           
