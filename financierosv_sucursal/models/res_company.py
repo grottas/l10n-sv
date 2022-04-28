@@ -114,8 +114,9 @@ from account_move_line aml
                 inner Join account_group ag on ag.id=aa.group_id
                 where am1.company_id= {0} and aa.code like ag.code_prefix_start ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')
 
-group by am1.date,aa.code             
-order by am1.date,aa.code
+where aa.company_id= {0}  and length(trim(aa.code))=4
+group by am1.date            
+order by am1.date
 )S
 
         )""".format(company_id,date_year,date_month,acum)
