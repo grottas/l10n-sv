@@ -86,7 +86,7 @@
                 </div>
               </t>
             <!--Fin encabezado-->
-            <table class="table-md">
+            <table class="table">
                 <tr class="tr">
                   <th class="th2"></th>
                   <th class="th1"></th>
@@ -251,24 +251,7 @@
                   <td class="td5" style="border:none;"></td>
                   <td class="td6" style="border:none;"></td>
                 </tr>
-                 <tr>
-                <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
-                <tr>
-                <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
+                 
                 <tr>
                   <td class="td2" style="border:none;"></td>
                   <!--<td class="td3">Saldo Anterior</td>-->
