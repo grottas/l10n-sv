@@ -74,7 +74,6 @@
                 <td class="td3"><span t-esc="c.get('name')"/></td>
               
                 <td class="td4"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>
-                  <td class="td3"><span t-esc="c.get('date').strftime('%d/%m/%Y')"/></td>
                   <td class="td5"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('debe'))"/></td>
                   <td class="td6"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('haber'))"/></td>
                 <t t-set="total" t-value="c.get('haber') + c.get('debe')"/>
@@ -82,7 +81,7 @@
               </tr>
               <tr t-foreach="company.get_mayor_details1(company_id, year, month, acum)" t-as="c">
               <td class="td1"></td>
-              <td class="td3"><span t-esc="c.get('date')"/></td>
+              <td class="td3"><span t-esc="c.get('date').strftime('%d/%m/%Y')"/></td>
               </tr>
              
              
