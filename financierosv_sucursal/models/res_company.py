@@ -74,7 +74,7 @@ select aa.code
         from account_move_line aml1
         inner join account_move am1 on aml1.move_id=am1.id
         inner join account_account a1 on aml1.account_id=a1.id
-        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))< {2}  and am1.state in ('posted')) as previo
+        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))< {2}  and am1.state in ('posted')) else 0 end as previo 
     ,(select COALESCE(sum(aml1.debit),0)
         from account_move_line aml1
         inner join account_move am1 on aml1.move_id=am1.id
