@@ -105,16 +105,16 @@ order by S1.code
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_mayor_report AS (
             select * from ( 
-select am.date     
+select am1.date     
                 ,sum(aml.debit) as debit
                 ,sum(aml.credit) as credit
 from account_move_line aml
-                inner join account_move am on aml.move_id=am.id
+                inner join account_move am1 on aml.move_id=am.id
                 inner Join account_account aa on aa.id=aml.account_id
                 where am1.company_id= {0} and aa.code like||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')
 
-group by am.date              
-order by am.date
+group by am1.date              
+order by am1.date
 )S
 
         )""".format(company_id,date_year,date_month,acum)
