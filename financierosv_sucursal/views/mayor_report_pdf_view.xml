@@ -82,6 +82,7 @@
                 <td class="td6"></td>
               </tr>
             </table>
+
             <table class="table-bordered">
               <tr class="th">
                  <th class="th1"></th>
@@ -121,8 +122,6 @@
               <td class="td5"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('debit'))"/></td>
                   <td class="td6"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('credit'))"/></td>
               </tr>-->
-             
-            </table>
           </div>
         </t>
       </t>

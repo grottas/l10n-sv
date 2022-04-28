@@ -14,7 +14,8 @@
                 empty-cells:hide;
               }
               table td:last-child{
-                padding: 0.5px;  
+                padding: 0.25px; 
+                width:25%; 
               } 
               .footer {
               background-color: black;
