@@ -44,6 +44,7 @@
             <t t-set="total" t-value="float(0.00)"/>
             <t t-set="debe1" t-value="float(0.00)"/>
             <t t-set="haber1" t-value="float(0.00)"/>
+            <t t-set="acum" t-value="null"/>
 
             <!--Fin de declaraciones-->
 
@@ -52,6 +53,7 @@
                 <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
                 <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
+                <t t-set="acum" t-value="int(data.get('form').get('acum'))"/>
                 <t t-set="company" t-value="o"/>
 
                 <div class="encabezado">
