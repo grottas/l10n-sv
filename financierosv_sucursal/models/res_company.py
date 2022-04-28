@@ -111,7 +111,7 @@ select am1.date
 from account_move_line aml
                 inner join account_move am1 on aml.move_id=am1.id
                 inner Join account_account aa on aa.id=aml.account_id
-                where am1.company_id= {0} and aa.code like||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')
+                where am1.company_id= {0} and aa.code like '%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')
 
 group by am1.date              
 order by am1.date
