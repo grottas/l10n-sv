@@ -46,11 +46,11 @@
               .th6{width:100px; text-size:15; text-align:center;}
               .th7{width:250px; text-size:15; text-align:center;}
 
-              .td1{text-size:15px;}
-              .td2{text-size:15px; }
-              .td3{text-size:15px; }
-              .td4{text-size:15px; }
-              .td5{text-size:15px; }
+              .td1{text-size:18px;}
+              .td2{text-size:18px; }
+              .td3{text-size:18px; }
+              .td4{text-size:18px; }
+              .td5{text-size:18px; }
               .td6{text-size:18px; }
 
             </style>
@@ -235,24 +235,6 @@
                 </tr>
                  <tr>
                  <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
-                <tr>
-                <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
-                 <tr>
-                <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"></td>
                   <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
