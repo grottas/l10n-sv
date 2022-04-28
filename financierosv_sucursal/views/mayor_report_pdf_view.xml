@@ -86,6 +86,7 @@
                   <th class="th6">Saldo</th>
               </tr>
               <tr t-foreach="company.get_mayor_details1(company_id, year, month, acum)" t-as="c">
+              <tr  t="company.get_mayor_details(company_id, year, month, acum)" t-as="c">
                 <td class="td1"></td>
                 <td class="td1"></td>
                 <td class="td3"><span t-esc="c.get('date').strftime('%d/%m/%Y')"/></td>
