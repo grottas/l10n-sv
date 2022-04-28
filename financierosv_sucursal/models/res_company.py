@@ -105,7 +105,7 @@ order by S1.code
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_mayor_report AS (
             select * from ( 
-select am.date as date     
+select am.date     
                 ,sum(aml.debit) as debit
                 ,sum(aml.credit) as credit
 from account_move_line aml
@@ -115,9 +115,7 @@ from account_move_line aml
 
 group by am.date              
 order by am.date
-)
-
-
+)S
 
         )""".format(company_id,date_year,date_month,acum)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_mayor_report')
