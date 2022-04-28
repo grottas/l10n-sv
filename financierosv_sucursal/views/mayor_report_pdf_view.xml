@@ -100,8 +100,7 @@
                 <td class="td1"></td>
                 <t t-set="total" t-value="c.get('debit') - c.get('credit')"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(total)"/></td>
-                
-
+              </tr>
               </tr>
              
             <!-- <tr t-foreach="company.get_mayor_details(company_id, year, month, acum)" t-as="c">
