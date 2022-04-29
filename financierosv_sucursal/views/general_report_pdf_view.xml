@@ -101,7 +101,7 @@
                   <td class="td6" style="border:none;"></td>
                 </tr>
                 <tr>
-                  <td class="td1" style="border:none;">. </td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">. </td>
                   <td class="td2" style="border:none;"> <u><strong> </strong></u></td>
                   <td class="td2" style="border:none;"> </td>
                   <td class="td6" style="border:none;"> </td>
@@ -121,7 +121,7 @@
                   <td class="td1" style="border:none;"></td>
                 </tr>
                  <tr>
-                  <td class="td1" style="border:none;">.</td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"></td>
                   <td class="td6" style="border:none;"></td>
@@ -141,7 +141,7 @@
                   <td class="td1" style="border:none;"></td>
                 </tr>
                  <tr>
-                  <td class="td1" style="border:none;">.</td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"></td>
                   <td class="td6" style="border:none;" ></td>
@@ -154,13 +154,13 @@
                   <td class="td1" style="border:none;"><xxx><strong t-esc="'{0:,.2f}'.format(total)"/></xxx></td>
                 </tr>
                  <tr>
-                  <td class="td1" style="border:none;">.</td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"></td>
                   <td class="td6" style="border:none;" ></td>
                 </tr>
                 <tr>
-                  <td class="td1" style="border:none;">.</td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"></td>
                   <td class="td6" style="border:none;"></td>
@@ -172,7 +172,7 @@
                   <td class="td6" style="border:none;"></td>
                 </tr>
                 <tr>
-                  <td class="td1" style="border:none;">.</td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"></td>
                   <td class="td6" style="border:none;"></td>
@@ -192,7 +192,7 @@
                   <td class="td1" style="border:none;"></td>
                 </tr>
                  <tr>
-                  <td class="td1" style="border:none;">.</td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"></td>
                   <td class="td6" style="border:none;"></td>
@@ -212,7 +212,7 @@
                   <td class="td1" style="border:none;"></td>
                 </tr>
                  <tr>
-                 <td class="td1" style="border:none;color:#FFFFFF">. </td>
+                 <td class="td1" style="border:none;color:#FFFFFF;">. </td>
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"></td>
                   <td class="td6" style="border:none;"></td>
@@ -256,23 +256,23 @@
                   <th class="th7" style="border:none;"></th> 
                   </tr>
                 <tr>
-                  <td class="td2" style="border:none;"></td>
+                  <td class="td2" style="border:none;color:#FFFFFF;">.</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none;color:black;">F.___________________________</td>
-                  <td class="td1" style="border:none;"></td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td2" style="border:none;">F.___________________________</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td1" style="border:none;">F.__________________________</td>
+                  <td class="td4" style="border:none;">.</td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">F.__________________________</td>
                 </tr>
                 <tr> 
-                  <td class="td2" style="border:none;"></td>
+                  <td class="td2" style="border:none;color:#FFFFFF;">.</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none; text-align:center;">Rep. Legal</td>
-                  <td class="td1" style="border:none; text-align:center;"></td>
+                  <td class="td1" style="border:none; text-align:center;color:#FFFFFF;">.</td>
                   <td class="td2" style="border:none; text-align:center;">Auditor</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;"></td>
+                  <td class="td4" style="border:none;">color:#FFFFFF;.</td>
                   <td class="td1" style="border:none; text-align:center;">Contador</td>
                 </tr>                
   </table>
