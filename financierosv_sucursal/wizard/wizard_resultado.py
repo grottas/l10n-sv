@@ -14,9 +14,9 @@ class wizard_sv_resultado_report(models.TransientModel):
     date_year = fields.Integer("Año de facturación", default=2022, requiered=True)
    # contabilizada=fields.Boolean(string="contabilizada", default=False)
     acum=fields.Boolean(string="Acumulativo",default=False)
-    contador= fields.String("Contador", requiered=False)
-    responsable= fields.String("Responsable Legal", requiered=False)
-    auditor= fields.String("Auditor",  requiered=False)
+    contador= fields.String(string="Contador", requiered=False)
+    responsable= fields.String(string="Responsable Legal", requiered=False)
+    auditor= fields.String(string="Auditor",  requiered=False)
     #show_serie = fields.Boolean("Ventas a Consumidor", default=False)
     #serie_lenght = fields.Integer("Agrupación de facturas", default = 1)
 
