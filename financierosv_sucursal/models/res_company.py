@@ -139,7 +139,8 @@ order by am1.date
 
 from
 (
-select aa.code,aa.id
+select aa.code
+     ,aa.id as id
     ,aa.name
     ,aa.internal_type as type
     ,(select acs.x_negativo from x_signos acs where x_company_id={0} and acs.x_name=left(aa.code,1)) as signonegativo
@@ -173,7 +174,7 @@ where S1.previo<>0 or S1.debe<>0 or S1.haber<>0
             data = self._cr.dictfetchall()
         return data
 
-    def get_auxiliar_details1(self, company_id, date_year, date_month, acum, cuenta):
+    def get_auxiliar_details1(self, company_id, date_year, date_month, acum, id):
         data = {}
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_auxiliar_report AS (
@@ -188,8 +189,8 @@ select am.date
 from account_move_line aml
                 inner join account_move am on aml.move_id=am.id
                 inner Join account_journal j on am.journal_id= j.id
- where am1.company_id= {0} and aa.code like ag.code_prefix_start ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')
-                and ag.code_prefix_start = '{4}'
+ where am.company_id= {0} and aml.account_id = '{4}' and date_part('month',COALESCE(am.date,am.invoice_date))>= {2}  and date_part('month',COALESCE(am.date,am.invoice_date))<= {2}    and am.state in ('posted')
+                
 order by am.date
 )S
 
