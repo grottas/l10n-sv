@@ -74,13 +74,15 @@
                   <th class="th5" style="border:none;" ></th>
                   <th class="th6" style="border:none;" ></th>
               </tr>
-              <tr class="tr-color" t-foreach="company.get_mayor_details(company_id, year, month, acum)" t-as="c">
+              <t class="tr-color" t-foreach="company.get_mayor_details(company_id, year, month, acum)" t-as="c">
+                <tr>
                 <td class="td1"><span t-esc="c.get('code')"/></td>
                 <td class="td2"><span t-esc="c.get('name')"/></td>
                 <td class="td3">Saldo Anterior</td>
                 <td class="td4"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>
                 <td class="td5"></td>
                  <td class="td6"></td>
+
                 <!--<t t-set="debe1" t-value="debe1 + c.get('debe')"/>
                 <t t-set="haber1" t-value=" haber1 + c.get('haber')"/>
                <td class="td7"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>-->
@@ -112,6 +114,7 @@
                 <td class="td6"></td>
               </tr>
               </tr>
+              </t>
 </table>
 
             
