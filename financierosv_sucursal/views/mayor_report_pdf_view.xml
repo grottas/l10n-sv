@@ -103,6 +103,7 @@
                 <td class="td6"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(s.get('credit'))"/></td>
                 <t t-set="totald" t-value="totald + s.get('debit')"/>
                  <t t-set="totalh" t-value="totalh + s.get('credit')"/>
+                 <t t-set="total" t-value="s.get('debit') - s.get('credit')"/>
                  <td class="td6"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format('total')"/></td>
               </tr>  
               <tr>
