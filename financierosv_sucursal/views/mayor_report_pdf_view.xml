@@ -103,8 +103,8 @@
                 <td class="td3"><span t-esc="s.get('date').strftime('%d/%m/%Y')"/></td>
                 <td class="td5"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(s.get('debit'))"/></td>
                 <td class="td6"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(s.get('credit'))"/></td>
-                <t t-set="totald" t-value=" totald + s.get('debit'))"/>
-                 <t t-set="totalh" t-value="totalh + s.get('credit'))"/>
+                <t t-set="totald" t-value="totald + s.get('debit')"/>
+                 <t t-set="totalh" t-value="totalh + s.get('credit')"/>
                  <t t-set="total1" t-value="sum(totald)"/>
                  <t t-set="total2" t-value="sum(totalh)"/>
                  <t t-set="total" t-value="s.get('debit') - s.get('credit')"/>
