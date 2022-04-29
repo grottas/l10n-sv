@@ -251,7 +251,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
                    <tr>
                     <td class="td1" style="border:none;"></td>
@@ -260,7 +260,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
                   <tr>
                     <td class="td1" style="border:none;"></td>
@@ -269,7 +269,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
                    <tr>
                     <td class="td1" style="border:none;"></td>
@@ -278,7 +278,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
                    <tr>
                     <td class="td1" style="border:none;"></td>
@@ -287,7 +287,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
                    <tr>
                     <td class="td1" style="border:none;"></td>
@@ -296,7 +296,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
                   <tr>
                     <td class="td1" style="border:none;"></td>
@@ -305,7 +305,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
                    <tr>
                     <td class="td1" style="border:none;"></td>
@@ -314,7 +314,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
                   <tr>
                     <td class="td1" style="border:none;"></td>
@@ -323,7 +323,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
                   <tr>
                     <td class="td1" style="border:none;"></td>
@@ -332,7 +332,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
                   <tr>
                     <td class="td1" style="border:none;"></td>
@@ -341,7 +341,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total7 - total10"/>
-                    <td class="td6" style="border:none;"></b></td>
+                    <td class="td6" style="border:none;"></td>
                   </tr>
               </table>
       
@@ -366,6 +366,15 @@
 
             </style>
 
+            <t t-set="acum" t-value="null"/>
+
+                  <t t-foreach="docs" t-as="v">
+                    <t t-set="responsable" t-value="int(data.get('form').get('responsable'))"/>
+                     <t t-set="auditor" t-value="int(data.get('form').get('auditor'))"/>
+                      <t t-set="contador" t-value="int(data.get('form').get('contador'))"/>
+                      
+
+
            <div>
             <table class="table-bordered">
                 <tr>
@@ -388,6 +397,16 @@
                   <td class="td4" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;">F.__________________________</td>
                 </tr>
+                 <tr> 
+                  <td class="td2" style="border:none;color:#FFFFFF;">.</td>
+                  <!--<td class="td3">Saldo Anterior</td>-->
+                  <td class="td4" style="border:none; text-align:center;"><span t-esc="contador"/></td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                  <td class="td2" style="border:none; text-align:center;"><span t-esc="responsable"/></td>
+                  <!--<td class="td3">Saldo Anterior</td>-->
+                  <td class="td4" style="border:none;color:#FFFFFF;"><span t-esc="auditor"/></td>
+                  <td class="td1" style="border:none; text-align:center;"></td>
+                </tr>     
                 <tr> 
                   <td class="td2" style="border:none;color:#FFFFFF;">.</td>
                   <!--<td class="td3">Saldo Anterior</td>-->

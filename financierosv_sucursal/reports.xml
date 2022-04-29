@@ -41,6 +41,16 @@
             name="financierosv_sucursal.odoosv_resultado_report_pdf"
             menu="False"
         />
+
+        <report
+            id="report_auxiliar_pdf"
+            string="Libro Auxiliar"
+            model="res.company"
+            report_type="qweb-pdf"
+            file="financierosv_sucursal.odoosv_auxiliar_report_pdf"
+            name="financierosv_sucursal.odoosv_auxiliar_report_pdf"
+            menu="False"
+        />
 <!--
         <report
             id="report_taxpayer_sales_pdf"
@@ -146,6 +156,21 @@
             <field name="header_spacing">0</field>
             <field name="dpi">90</field>
             <field name="report_ids" eval="[(6,0,[ref('financierosv_sucursal.report_resultado_pdf'),])]"/>
+        </record>
+
+        <record id="paperformat_book_report_pdf" model="report.paperformat">
+            <field name="name">Libros financieros PDF</field>
+            <field name="default" eval="True" />
+            <field name="format">Letter</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(6,0,[ref('financierosv_sucursal.report_auxiliar_pdf'),])]"/>
         </record>
 <!--
         <record id="paperformat_book_consumer_report_pdf" model="report.paperformat">
