@@ -89,16 +89,22 @@
             <!--Fin encabezado-->
             <table class="table-bordered">
                 <tr class="tr">
-                  <th class="th2"></th>
-                  <th class="th1"></th>
-                  <th class="th2"></th>
-                  <th class="th3"></th>
+                  <th class="th2"> </th>
+                  <th class="th1"> </th>
+                  <th class="th2"> </th>
+                  <th class="th3"> </th>
                 </tr>
                 <tr>
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"><u><strong>ACTIVO</strong></u></td>
                   <td class="td2" style="border:none;"></td>
                   <td class="td6" style="border:none;"></td>
+                </tr>
+                <tr>
+                  <td class="td1" style="border:none;"> </td>
+                  <td class="td2" style="border:none;"> <u><strong> </strong></u></td>
+                  <td class="td2" style="border:none;"> </td>
+                  <td class="td6" style="border:none;"> </td>
                 </tr>
                  <tr t-foreach="company.get_general_details(company_id, year, month, acum)" t-as="c">
                   <td class="td1" style="border:none;"></td>
@@ -259,7 +265,7 @@
   </footer> 
 
   <footer class="footer-activate">
-  <div>Hola pie </div> 
+  <div style="top:500px">Hola pie </div> 
   </footer>          
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
