@@ -246,33 +246,33 @@
            <div>
             <table class="table-bordered">
                 <tr>
-                 <th class="th7" style="border:none;"></th>
-                  <th class="th7" style="border:none;"></th>
+                 <th class="th7" style="border:none;">.</th>
+                  <th class="th7" style="border:none;">.</th>
                   <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th7" style="border:none;"></th>
-                  <th class="th7" style="border:none;"></th>
-                  <th class="th7" style="border:none;"></th>
+                  <th class="th7" style="border:none;">.</th>
+                  <th class="th7" style="border:none;">.</th>
+                  <th class="th7" style="border:none;">.</th>
                   <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th7" style="border:none;"></th> 
+                  <th class="th7" style="border:none;">.</th> 
                   </tr>
                 <tr>
                   <td class="td2" style="border:none;color:#FFFFFF;">.</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;color:black;">F.___________________________</td>
+                  <td class="td4" style="border:none;">F.___________________________</td>
                   <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td2" style="border:none;">F.___________________________</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;">.</td>
-                  <td class="td1" style="border:none;color:#FFFFFF;">F.__________________________</td>
+                  <td class="td4" style="border:none;color:#FFFFFF;">.</td>
+                  <td class="td1" style="border:none;">F.__________________________</td>
                 </tr>
                 <tr> 
                   <td class="td2" style="border:none;color:#FFFFFF;">.</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none; text-align:center;">Rep. Legal</td>
-                  <td class="td1" style="border:none; text-align:center;color:#FFFFFF;">.</td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td2" style="border:none; text-align:center;">Auditor</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;">color:#FFFFFF;.</td>
+                  <td class="td4" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none; text-align:center;">Contador</td>
                 </tr>                
   </table>
