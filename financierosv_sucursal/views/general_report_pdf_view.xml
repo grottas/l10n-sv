@@ -240,7 +240,7 @@
                   <td class="td1" style="border:none;"><xxx><strong t-esc="'{0:,.2f}'.format(total2)"/></xxx></td>
                 </tr>
             </table>  
- </div>
+       </div>
 
   <div class="footer" style="font-size: 9pt"> 
   <style type="text/css">
