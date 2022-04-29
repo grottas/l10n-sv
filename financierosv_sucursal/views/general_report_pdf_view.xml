@@ -87,7 +87,7 @@
                 </div>
               </t>
             <!--Fin encabezado-->
-            <table class="table">
+            <table class="table-bordered">
                 <tr class="tr">
                   <th class="th2"></th>
                   <th class="th1"></th>
@@ -224,7 +224,7 @@
             </table>
 
 <footer>
-            <table class="table">
+            <table class="table-bordered">
                 <tr>
                  <th class="th7" style="border:none;"></th>
                   <th class="th7" style="border:none;"></th>
