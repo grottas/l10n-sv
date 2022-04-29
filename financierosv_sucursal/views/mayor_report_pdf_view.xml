@@ -82,6 +82,7 @@
                 <td class="td4"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>
                 <td class="td5"></td>
                 <td class="td6"></td>
+                </tr>
               <tr>
             <table class="table-bordered">
               <tr class="th">
@@ -101,7 +102,6 @@
                 <td class="td4"></td>
               </tr>
               </table>
-              </tr>
               </tr>
               </t>
             </table>
