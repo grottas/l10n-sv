@@ -41,7 +41,7 @@
             name="financierosv_sucursal.odoosv_resultado_report_pdf"
             menu="False"
         />
-
+<!--
         <report
             id="report_auxiliar_pdf"
             string="Libro Auxiliar"
@@ -157,7 +157,7 @@
             <field name="dpi">90</field>
             <field name="report_ids" eval="[(6,0,[ref('financierosv_sucursal.report_resultado_pdf'),])]"/>
         </record>
-
+<!--
         <record id="paperformat_book_report_pdf" model="report.paperformat">
             <field name="name">Libros financieros PDF</field>
             <field name="default" eval="True" />
