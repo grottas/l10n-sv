@@ -127,6 +127,75 @@ order by am1.date
             data = self._cr.dictfetchall()
         return data
 
+
+#****************************Libro Anexo Mayor***************************************************
+    def get_auxiliar_details(self, company_id, date_year, date_month, acum):
+        data = {}
+
+        sql = """CREATE OR REPLACE VIEW odoosv_financierosv_auxiliar_report AS (
+            select *
+from
+(
+select aa.code
+    ,aa.name
+    ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
+   from account_move_line aml1
+        inner join account_move am1 on aml1.move_id=am1.id
+        inner join account_account a1 on aml1.account_id=a1.id
+        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2}   and am1.state in ('posted')) else 0 end as previo  
+    ,(select COALESCE(sum(aml1.debit),0)
+        from account_move_line aml1
+        inner join account_move am1 on aml1.move_id=am1.id
+        inner join account_account a1 on aml1.account_id=a1.id
+        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}   and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}   and am1.state in ('posted')) as debe  
+    ,(select COALESCE(sum(aml1.credit),0)
+        from account_move_line aml1
+        inner join account_move am1 on aml1.move_id=am1.id
+        inner join account_account a1 on aml1.account_id=a1.id
+        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')) as haber  
+from cuentas aa
+where aa.company_id= {0}  and length(trim(aa.code))=4
+order by aa.code
+) S1
+where abs(S1.previo)>0.0001 or abs(S1.debe)>0.0001 or abs(S1.haber)>0.0001
+order by S1.code
+
+        )""".format(company_id,date_year,date_month,acum)
+        tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_auxiliar_report')
+        self._cr.execute(sql)
+        self._cr.execute("SELECT * FROM public.odoosv_financierosv_auxiliar_report")
+        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+            data = self._cr.dictfetchall()
+        return data
+
+    def get_auxiliar_details1(self, company_id, date_year, date_month, acum, cuenta):
+        data = {}
+
+        sql = """CREATE OR REPLACE VIEW odoosv_financierosv_auxiliar_report AS (
+            select * from ( 
+select am1.date     
+                ,sum(aml.debit) as debit
+                ,sum(aml.credit) as credit
+from account_move_line aml
+                inner join account_move am1 on aml.move_id=am1.id
+                inner Join account_account aa on aa.id=aml.account_id
+                inner Join account_group ag on ag.id=aa.group_id
+                where am1.company_id= {0} and aa.code like ag.code_prefix_start ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')
+                and ag.code_prefix_start = '{4}'
+
+group by am1.date            
+order by am1.date
+)S
+
+        )""".format(company_id,date_year,date_month,acum,cuenta)
+        tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_auxiliar_report')
+        self._cr.execute(sql)
+        self._cr.execute("SELECT * FROM public.odoosv_financierosv_auxiliar_report")
+        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+            data = self._cr.dictfetchall()
+        return data
+
+
 #*****************ESTADO DE RESULTADO***********************************************
     def get_resultado_details(self, company_id, date_year, date_month, acum):
         data = {}
