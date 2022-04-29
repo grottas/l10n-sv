@@ -3,48 +3,56 @@
     <template id ='odoosv_resultado_report_pdf'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
-          <div class="page" style="font-size: 8pt">
+          <div class="page" style="font-size: 10pt;">
             <style type="text/css">
-              .encabezado{text-align: center;}
+              .encabezado{text-align: center;position:top;}
               .tr-color{
-                background-color:lightgray; 
+                background-color:black; 
+
               }
               table{
                 border-collapse: collapse;
                 empty-cells:hide;
+                width: 100%;
+              	height: 90%;
               }
               table td:last-child{
-                padding: 0.25px; 
-                width:25%; 
-              } 
-              .footer {
-              background-color: black;
-              position: fixed;
-              bottom: 0;
-              width: 100%;
-              height: 40px;
-              color: white;
+                padding: 0.1px; 
+                
+              }
+              table td:last-child{ 
+                 height: 0.1px;
               }
               .tabla-resumen {
                 table-layout:fixed;
                 position:absolute;
                 left:200px;
               }
-              .th1{width:80px; text-size:15; text-align:center;}
-              .th2{width:200px;text-size:15; text-align:center;}
-              .th3{width:80px; text-size:15; text-align:center;}
-              .th4{width:80px; text-size:15; text-align:center;}
-              .th5{width:80px; text-size:15; text-align:center;}
-              .th6{width:80px; text-size:15; text-align:center;}
-              .th7{width:300px; text-size:15; text-align:center;}
+              xxx{
+                border-style: double; border-width:4px;
+                border-right:none;border-left:none;border-top:none;
+              }
+              .footer {
+              text-align: center;
+              color: whitesmoke;
+              width: 100%;
+              bottom: 0;
+              position:fixed;
+    }
+              .th1{width:350px; text-size:15; text-align:center;}
+              .th2{width:100px;text-size:15; text-align:center;}
+              .th3{width:100px; text-size:15; text-align:center;}
+              .th4{width:100px; text-size:15; text-align:center;}
+              .th5{width:100px; text-size:15; text-align:center;}
+              .th6{width:100px; text-size:15; text-align:center;}
+              .th7{width:250px; text-size:15; text-align:center;}
 
-
-              .td1{text-size:15px;}
-              .td2{text-size:15px; }
-              .td3{text-size:15px; }
-              .td4{text-size:15px; }
-              .td5{text-size:15px; }
-              .td6{text-size:18px; }
+              .td1{text-size:18px;  height:0px;}
+              .td2{text-size:18px; height:0px;}
+              .td3{text-size:18px; height:0px;}
+              .td4{text-size:18px; height:0px;}
+              .td5{text-size:18px; height:0px;}
+              .td6{text-size:18px; height:0px;}
 
             </style>
             <!--Declaracion de variables-->
@@ -79,9 +87,9 @@
                   <th class="th1" style="border:none;color:#FFFFFF;"> .</th>
                   <th class="th2" style="border:none;color:#FFFFFF;"> .</th>
                   <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th4"></th>
-                  <th class="th5"></th>
-                  <th class="th6"></th>
+                  <th class="th4" style="border:none;color:#FFFFFF;"></th>
+                  <th class="th5" style="border:none;color:#FFFFFF;"></th>
+                  <th class="th6" style="border:none;color:#FFFFFF;"></th>
                 </tr>
                  <tr t-foreach="company.get_resultado_details7(company_id, year, month, acum)" t-as="c">
                   <td class="td1" style="border:none;"></td>
@@ -221,6 +229,7 @@
             </table>
       
           </div>
+
     <div class="footer" style="font-size: 9pt"> 
   <style type="text/css">
               .th1{width:350px; text-size:15; text-align:center;}
@@ -275,9 +284,6 @@
   </table>
       </div>
  </div>      
-          
-
-          
         </t>
       </t>
     </template>
