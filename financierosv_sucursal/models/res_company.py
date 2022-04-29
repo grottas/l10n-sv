@@ -186,6 +186,7 @@ select am.date
                 ,aml.credit as credit
                 ,am.ref as ref
                 ,j.name as journal
+                ,am.tipo_documento_id as tipo
 from account_move_line aml
                 inner join account_move am on aml.move_id=am.id
                 inner Join account_journal j on am.journal_id= j.id
