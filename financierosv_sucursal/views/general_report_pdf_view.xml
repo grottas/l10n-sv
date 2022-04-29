@@ -89,7 +89,7 @@
             <!--Fin encabezado-->
             <table class="table-bordered">
                 <tr class="tr">
-                  <th class="th2"> </th>
+                  <th class="th2">. </th>
                   <th class="th1"> </th>
                   <th class="th2"> </th>
                   <th class="th3"> </th>
@@ -101,7 +101,7 @@
                   <td class="td6" style="border:none;"></td>
                 </tr>
                 <tr>
-                  <td class="td1" style="border:none;"> </td>
+                  <td class="td1" style="border:none;">. </td>
                   <td class="td2" style="border:none;"> <u><strong> </strong></u></td>
                   <td class="td2" style="border:none;"> </td>
                   <td class="td6" style="border:none;"> </td>
@@ -263,14 +263,15 @@
                 </tr>                
   </table>
   </footer> 
-
-  <footer class="footer-activate">
-  <div style="top:500px">Hola pie </div> 
-  </footer>          
+       
             <!--Contenido de reporte-->
             <!--Tabla resumen-->
           
  </div>
+
+ <footer class="footer-activate">
+  <div style="top:500px">Hola pie </div> 
+  </footer>   
  
 
         </t>
