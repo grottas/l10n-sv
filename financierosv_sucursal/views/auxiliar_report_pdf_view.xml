@@ -111,15 +111,15 @@
                  <td class="td6" style="border:none;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>
                 </tr>
               <tr>
-                <td class="td1" style="border:none;"></td>
+                <td class="td1" style="border:none;color:#FFFFFF;"> .</td>
                 <td class="td2" style="border:none;"></td>
-                <td class="td3" style="border:none;"><strong>Total</strong></td>
-                <td class="td5" style="border:none;"><strong t-esc="'{0:.2f}'.format(totald)"/></td>   <!--<strong t-esc="'{0:.2f}'.format('totald')"/>  <strong t-esc="'{0:.2f}'.format('totalh')"/>-->
-                <td class="td6" style="border:none;"><strong t-esc="'{0:.2f}'.format(totalh)"/></td>
+                <td class="td3" style="border:none;"></td>
+                <td class="td5" style="border:none;"></td>   <!--<strong t-esc="'{0:.2f}'.format('totald')"/>  <strong t-esc="'{0:.2f}'.format('totalh')"/>-->
+                <td class="td6" style="border:none;"></td>
                 <td class="td6" style="border:none;"></td>
               </tr>
               <tr>
-                <td class="td1" style="border:none;">-</td>
+                <td class="td1" style="border:none;color:#FFFFFF;">-</td>
                 <td class="td2" style="border:none;"></td>
                 <td class="td3" style="border:none;"><strong></strong></td>
                 <td class="td5" style="border:none;"><strong></strong></td>
