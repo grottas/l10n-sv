@@ -3,7 +3,7 @@
     <template id ='odoosv_general_report_pdf'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
-          <div class="page" style="font-size: 11pt">
+          <div class="page" style="font-size: 10pt">
             <style type="text/css">
               .encabezado{text-align: center;position:top;}
               .tr-color{
@@ -89,7 +89,7 @@
             <!--Fin encabezado-->
             <table class="table-bordered">
                 <tr class="tr" >
-                  <th class="th2" style="border:none;">. </th>
+                  <th class="th2" style="border:none;color:#FFFFFF;">. </th>
                   <th class="th1" style="border:none;"> </th>
                   <th class="th2" style="border:none;"> </th>
                   <th class="th3" style="border:none;"> </th>
@@ -212,7 +212,7 @@
                   <td class="td1" style="border:none;"></td>
                 </tr>
                  <tr>
-                 <td class="td1" style="border:none;">. </td>
+                 <td class="td1" style="border:none;color:#FFFFFF">. </td>
                   <td class="td1" style="border:none;"></td>
                   <td class="td2" style="border:none;"></td>
                   <td class="td6" style="border:none;"></td>
