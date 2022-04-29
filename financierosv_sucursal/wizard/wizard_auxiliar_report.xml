@@ -26,14 +26,14 @@
     </record>
 
   <record id="action_auxiliar_report_wizard" model="ir.actions.act_window">
-		<field name="name">Libro Diarioauxiliar</field>
+		<field name="name">Libro Diario Auxiliar</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">wizard.sv.auxiliar.report</field>
 		<field name="view_mode">form</field>
     <field name="target">new</field>
 	</record>
 
-      <menuitem id="auxiliar_report" name="Libro Diarioauxiliarr" action="action_auxiliar_report_wizard" parent="account_reports.account_reports_audit_reports_menu" sequence="9"/>
+      <menuitem id="auxiliar_report" name="Libro Diario Auxiliar" action="action_auxiliar_report_wizard" parent="account_reports.account_reports_audit_reports_menu" sequence="9"/>
       <!--menuitem id="mayor_report" name="mayor_Sales_Report" action="" parent="pdf_reports" sequence="11"/>
       <menuitem id="consumer_report" name="Consumer_Sales_Report" action="" parent="pdf_reports" sequence="12"/-->
   </data>

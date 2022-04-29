@@ -366,12 +366,6 @@
 
             </style>
 
-            <t t-set="acum" t-value="null"/>
-
-                  <t t-foreach="docs" t-as="v">
-                    <t t-set="responsable" t-value="int(data.get('form').get('responsable'))"/>
-                     <t t-set="auditor" t-value="int(data.get('form').get('auditor'))"/>
-                      <t t-set="contador" t-value="int(data.get('form').get('contador'))"/>
                       
 
 
@@ -400,11 +394,11 @@
                  <tr> 
                   <td class="td2" style="border:none;color:#FFFFFF;">.</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none; text-align:center;"><span t-esc="contador"/></td>
+                  <td class="td4" style="border:none; text-align:center;"></td>
                   <td class="td1" style="border:none;color:#FFFFFF;">.</td>
-                  <td class="td2" style="border:none; text-align:center;"><span t-esc="responsable"/></td>
+                  <td class="td2" style="border:none; text-align:center;"></td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;color:#FFFFFF;"><span t-esc="auditor"/></td>
+                  <td class="td4" style="border:none;color:#FFFFFF;"></td>
                   <td class="td1" style="border:none; text-align:center;"></td>
                 </tr>     
                 <tr> 
