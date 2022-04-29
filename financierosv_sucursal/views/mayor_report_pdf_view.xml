@@ -3,7 +3,7 @@
     <template id ='odoosv_mayor_report_pdf'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
-          <div class="page" style="font-size: 8pt">
+          <div class="page" style="font-size: 8pt;">
             
             <!--estilos para el formato de la vista-->
             <style type="text/css">
@@ -25,13 +25,13 @@
                 position:absolute;
                 left:200px;
               }
-              .th1{width:80px; text-size:15; text-align:center;}
-              .th2{width:500px;text-size:15; text-align:center;}
-              .th3{width:80px; text-size:15; text-align:center;}
-              .th4{width:80px; text-size:15; text-align:center;}
-              .th5{width:80px; text-size:15; text-align:center;}
-              .th6{width:80px; text-size:15; text-align:center;}
-              .th7{width:80px; text-size:15; text-align:center;}
+              .th1{width:80px; text-size:18; text-align:center;}
+              .th2{width:500px;text-size:18; text-align:center;}
+              .th3{width:80px; text-size:18; text-align:center;}
+              .th4{width:80px; text-size:18; text-align:center;}
+              .th8{width:80px; text-size:18; text-align:center;}
+              .th6{width:80px; text-size:18; text-align:center;}
+              .th7{width:80px; text-size:18; text-align:center;}
             </style>
 
             <!--Declaracion de variables-->
@@ -57,14 +57,15 @@
                 <t t-set="company" t-value="o"/>
 
                 <div class="encabezado">
-                  <h3><center>LIBRO MAYOR</center></h3>
+                  <h3><center>LOS RANCHOS S.A. DE C.V.</center></h3>
+                  <h4><center>LIBRO DIARIO MAYOR</center></h4>
                   <h6><center>PERTENECIENTE AL MES DE: <span t-esc="o.get_month_str(month)"/> DEL <span t-esc="year"/></center></h6>
-                  <h6><center>Valores expresados en dólares de los Estados Unidos de America</center></h6>
+                  <h6><center>(Valores expresados en dólares de los Estados Unidos de América)</center></h6>
                 </div>
               </t>
             <!--Fin encabezado-->
 
-            <table class="table-bordered">
+            <table class="table">
               <tr class="th">
                  <th class="th1" style="border:none;"></th>
                   <th class="th2" style="border:none;" ></th>
@@ -73,8 +74,8 @@
                   <th class="th5" style="border:none;" ></th>
                   <th class="th6" style="border:none;" ></th>
               </tr>
-              <t class="tr-color" t-foreach="company.get_mayor_details(company_id, year, month, acum)" t-as="c">
-              <tr class="" >
+              <t t-foreach="company.get_mayor_details(company_id, year, month, acum)" t-as="c">
+              <tr class="tr-color" >
                 <td class="td1"><span t-esc="c.get('code')"/></td>
                 <td class="td2"><span t-esc="c.get('name')"/></td>
                 <td class="td3">Saldo Anterior</td>
@@ -83,7 +84,7 @@
                 <td class="td6"></td>
               </tr>
               <tr>
-            <table class="table-bordered">
+            <table class="table">
               <tr class="th">
                  <th class="th1"></th>
                   <th class="th2"></th>
