@@ -7,7 +7,7 @@
         <form>
           <group>
             <field name="company_id"/>
-            <field name="contador"/>
+           
           </group>
           <group col="4">
             <field name="date_month"/>
@@ -15,8 +15,7 @@
           </group>
           <group col="4">
            <!-- <field name="contabilizada"/>-->
-          <field name="auditor"/>
-          <field name="responsable"/>
+          
           </group>
           <footer>
             <button name="print_resultado_report" string="Imprimir" type="object" default_focus="1" class="oe_highlight"/>
