@@ -194,7 +194,7 @@ from account_move_line aml
 order by am.date
 )S
 
-        )""".format(company_id,date_year,date_month,acum,cuenta)
+        )""".format(company_id,date_year,date_month,acum,id)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_auxiliar_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_auxiliar_report")
