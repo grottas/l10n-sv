@@ -133,32 +133,37 @@ order by am1.date
         data = {}
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_auxiliar_report AS (
-            select *
+           select S1.*
+                , case when COALESCE(S1.signonegativo,False) =true then -1
+                else 1 end as TipoCuenta 
+
 from
 (
-select aa.code
+select aa.code,aa.id
     ,aa.name
+    ,aa.internal_type as type
+    ,(select acs.x_negativo from x_signos acs where x_company_id={0} and acs.x_name=left(aa.code,1)) as signonegativo
     ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
-   from account_move_line aml1
+    from account_account aa1
+        inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        inner join account_account a1 on aml1.account_id=a1.id
-        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2}   and am1.state in ('posted')) else 0 end as previo  
-    ,(select COALESCE(sum(aml1.debit),0)
-        from account_move_line aml1
-        inner join account_move am1 on aml1.move_id=am1.id
-        inner join account_account a1 on aml1.account_id=a1.id
-        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}   and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}   and am1.state in ('posted')) as debe  
-    ,(select COALESCE(sum(aml1.credit),0)
-        from account_move_line aml1
-        inner join account_move am1 on aml1.move_id=am1.id
-        inner join account_account a1 on aml1.account_id=a1.id
-        where am1.company_id= {0} and a1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')) as haber  
-from cuentas aa
-where aa.company_id= {0}  and length(trim(aa.code))=4
+        where aa1.company_id={0}  and aa1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo 
+,(select COALESCE(sum(aml2.debit),0)
+        from account_account aa2
+        inner join account_move_line aml2 on aa2.id=aml2.account_id
+        inner join account_move am2 on aml2.move_id=am2.id
+        where aa2.company_id={0} and aa2.code like aa.code||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as debe     
+,(select COALESCE(sum(aml2.credit),0)
+        from account_account aa2
+        inner join account_move_line aml2 on aa2.id=aml2.account_id
+        inner join account_move am2 on aml2.move_id=am2.id
+        where aa2.company_id={0} and aa2.code like aa.code||'%'  and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber
+         
+from account_account aa
+where aa.company_id= {0}  and length(trim(aa.code))>4 and aa.internal_type<>'view'
 order by aa.code
 ) S1
-where abs(S1.previo)>0.0001 or abs(S1.debe)>0.0001 or abs(S1.haber)>0.0001
-order by S1.code
+where S1.previo<>0 or S1.debe<>0 or S1.haber<>0
 
         )""".format(company_id,date_year,date_month,acum)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_auxiliar_report')
@@ -173,18 +178,19 @@ order by S1.code
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_auxiliar_report AS (
             select * from ( 
-select am1.date     
-                ,sum(aml.debit) as debit
-                ,sum(aml.credit) as credit
+select am.date
+                ,am.name  as name
+                ,aml.name as sv_concepto
+                ,aml.debit as debit
+                ,aml.credit as credit
+                ,am.ref as ref
+                ,j.name as journal
 from account_move_line aml
-                inner join account_move am1 on aml.move_id=am1.id
-                inner Join account_account aa on aa.id=aml.account_id
-                inner Join account_group ag on ag.id=aa.group_id
-                where am1.company_id= {0} and aa.code like ag.code_prefix_start ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')
+                inner join account_move am on aml.move_id=am.id
+                inner Join account_journal j on am.journal_id= j.id
+ where am1.company_id= {0} and aa.code like ag.code_prefix_start ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))>= {2}  and date_part('month',COALESCE(am1.date,am1.invoice_date))<= {2}    and am1.state in ('posted')
                 and ag.code_prefix_start = '{4}'
-
-group by am1.date            
-order by am1.date
+order by am.date
 )S
 
         )""".format(company_id,date_year,date_month,acum,cuenta)
