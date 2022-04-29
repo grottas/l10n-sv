@@ -250,7 +250,7 @@
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none; text-align:center;">Rep. Legal</td>
                   <td class="td1" style="border:none; text-align:center;"></td>
-                  <td class="td2" style="border:none; text-align:left;">Auditor</td>
+                  <td class="td2" style="border:none; text-align:center;">Auditor</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none;"></td>
                   <td class="td1" style="border:none; text-align:center;">Contador</td>
@@ -258,7 +258,7 @@
   </table>
   </footer> 
 
-  <footer>
+  <footer class="footer">
   <div>Hola pie </div> 
   </footer>          
             <!--Contenido de reporte-->
