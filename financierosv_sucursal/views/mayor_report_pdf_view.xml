@@ -65,7 +65,7 @@
               </t>
             <!--Fin encabezado-->
 
-            <table class="table">
+            <table class="table-bordered">
               <tr class="th">
                  <th class="th1" style="border:none;"></th>
                   <th class="th2" style="border:none;" ></th>
@@ -84,7 +84,7 @@
                 <td class="td6"></td>
               </tr>
               <tr>
-            <table class="table">
+            <table class="table-bordered">
               <tr class="th">
                  <th class="th1"></th>
                   <th class="th2"></th>
