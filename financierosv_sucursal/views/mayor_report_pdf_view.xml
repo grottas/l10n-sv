@@ -105,7 +105,7 @@
                  <t t-set="totalh" t-value="totalh + s.get('credit')"/>
                  <t t-set="total" t-value="s.get('debit') - s.get('credit')"/>
                  <td class="td6"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>
-              </tr>  
+                
               <tr>
                 <td class="td1"></td>
                 <td class="td2"></td>
@@ -114,12 +114,13 @@
                 <td class="td6"><strong t-esc="'{0:.2f}'.format(totalh)"/></td>
                 <td class="td6"></td>
               </tr>
+              </tr>
               <tr>
-                <td class="td1"></td>
+                <td class="td1">-</td>
                 <td class="td2"></td>
-                <td class="td3"><strong></strong></td>
-                <td class="td5"><strong></strong></td>
-                <td class="td6"><strong></strong></td>
+                <td class="td3"><strong>-</strong></td>
+                <td class="td5"><strong>-</strong></td>
+                <td class="td6"><strong>-</strong></td>
                 <td class="td6"></td>
               </tr>
               </tr>
