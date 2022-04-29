@@ -239,9 +239,11 @@
                   <td class="td6" style="border:none;"></td>
                   <td class="td1" style="border:none;"><xxx><strong t-esc="'{0:,.2f}'.format(total2)"/></xxx></td>
                 </tr>
-            </table>
+            </table>  
+ </div>
 
-<footer>
+  <div class="footer" style="font-size: 9pt"> 
+           <div>
             <table class="table-bordered">
                 <tr>
                  <th class="th7" style="border:none;"></th>
@@ -272,17 +274,10 @@
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none;"></td>
                   <td class="td1" style="border:none; text-align:center;">Contador</td>
-                </tr>                
+                </tr> 
+                </div>                
   </table>
-  </footer>   
- </div>
-
-  <div class="footer" style="font-size: 11pt"> 
-           <div>Hola</div> 
       </div>
-
- 
-
         </t>
       </t>
     </template>
