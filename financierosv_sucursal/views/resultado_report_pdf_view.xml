@@ -74,10 +74,10 @@
                 </div>
               </t>
             <!--Fin encabezado-->
-            <table class="table">
+            <table class="table-bordered">
              <tr class="tr">
-                  <th class="th1"></th>
-                  <th class="th2"></th>
+                  <th class="th1" style="border:none;color:#FFFFFF;"> .</th>
+                  <th class="th2" style="border:none;color:#FFFFFF;"> .</th>
                   <!--<th class="th3">Saldo Anterior</th>-->
                   <th class="th4"></th>
                   <th class="th5"></th>
@@ -201,7 +201,7 @@
                   <td class="td6" style="border:none;"></td>
                 </tr>
                  <tr>
-                  <td class="td1" style="border:none;"></td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">. </td>
                   <td class="td2" style="border:none;"></td>
                   <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
                   <td class="td4" style="border:none;"></td>
@@ -219,116 +219,62 @@
                   <td class="td6" style="border:none;"><b><span t-esc="'{0:,.2f}'.format(total)"/></b></td>
                 </tr>
             </table>
-                
-            <!--Contenido de reporte-->
-            <!--Tabla resumen-->
-            <table class="table-sm">
+      
+          </div>
+    <div class="footer" style="font-size: 9pt"> 
+  <style type="text/css">
+              .th1{width:350px; text-size:15; text-align:center;}
+              .th2{width:100px;text-size:15; text-align:center;}
+              .th3{width:100px; text-size:15; text-align:center;}
+              .th4{width:100px; text-size:15; text-align:center;}
+              .th5{width:100px; text-size:15; text-align:center;}
+              .th6{width:100px; text-size:15; text-align:center;}
+              .th7{width:100px; text-size:15; text-align:center;}
+
+              .td1{text-size:18px;  height:0px;}
+              .td2{text-size:18px; height:0px;}
+              .td3{text-size:18px; height:0px;}
+              .td4{text-size:18px; height:0px;}
+              .td5{text-size:18px; height:0px;}
+              .td6{text-size:18px; height:0px;}
+
+            </style>
+
+           <div>
+            <table class="table">
                 <tr>
-                 <th class="th7" style="border:none;"></th>
-                  <th class="th7" style="border:none;"></th>
+                 <th class="th7" style="border:none;color:#FFFFFF;">.</th>
+                  <th class="th7" style="border:none;color:#FFFFFF;">.</th>
                   <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th7" style="border:none;"></th>
-                  <th class="th7" style="border:none;"></th>
-                  <th class="th7" style="border:none;"></th>
+                  <th class="th7" style="border:none;color:#FFFFFF;">.</th>
+                  <th class="th7" style="border:none;color:#FFFFFF;">.</th>
+                  <th class="th7" style="border:none;color:#FFFFFF;">.</th>
                   <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th7" style="border:none;"></th>
-                </tr>
-                 <tr>
-                 <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
+                  <th class="th7" style="border:none;color:#FFFFFF;">.</th> 
+                  </tr>
                 <tr>
-                <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
-                <tr>
-                 <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
-                <tr>
-                <th class="th7" style="border:none;"></th>
-                  <th class="th7" style="border:none;"></th>
-                  <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th7" style="border:none;"></th>
-                  <th class="th7" style="border:none;"></th>
-                  <th class="th7" style="border:none;"></th>
-                  <!--<th class="th3">Saldo Anterior</th>-->
-                  <th class="th7" style="border:none;"></th>
-                </tr>
-                 <tr>
-                 <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
-                <tr>
-                <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
-                <tr>
-                 <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
-                <tr>
-                <td class="td1" style="border:none;"></td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
-                  <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td5" style="border:none;"></td>
-                  <td class="td6" style="border:none;"></td>
-                </tr>
-                <tr>
-                  <td class="td2" style="border:none;"></td>
+                  <td class="td2" style="border:none;color:#FFFFFF;">.</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;">F.________________________</td>
-                  <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;">F.________________________</td>
+                  <td class="td4" style="border:none;">F.___________________________</td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                  <td class="td2" style="border:none;">F.___________________________</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td1" style="border:none;">F.________________________</td>
+                  <td class="td4" style="border:none;color:#FFFFFF;">.</td>
+                  <td class="td1" style="border:none;">F.__________________________</td>
                 </tr>
                 <tr> 
-                  <td class="td2" style="border:none;"></td>
+                  <td class="td2" style="border:none;color:#FFFFFF;">.</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none; text-align:center;">Rep. Legal</td>
-                  <td class="td1" style="border:none; text-align:center;"></td>
+                  <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td2" style="border:none; text-align:center;">Auditor</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;"></td>
-                  <td class="td1" style="border:none;">Contador</td>
-                </tr>               
+                  <td class="td4" style="border:none;color:#FFFFFF;">.</td>
+                  <td class="td1" style="border:none; text-align:center;">Contador</td>
+                </tr>                
   </table>
-          </div>
-        
+      </div>
+ </div>      
           
 
           
