@@ -82,7 +82,7 @@
                     </div>
                   </t>
               <!--Fin encabezado-->
-              <table class="table-bordered" style="border-color:black;border:5px;">
+              <table class="table-bordered" style="border-color:#000000;border:5px;">
               <tr class="tr">
                     <th class="th1" style="border:none;color:#FFFFFF;"> .</th>
                     <th class="th2" style="border:none;color:#FFFFFF;"> .</th>
@@ -379,7 +379,7 @@
 
 
            <div>
-            <table class="table-bordered">
+            <table class="table-bordered" style="border-color:#000000;border:5px;" >
                 <tr>
                  <th class="th7" style="border:none;color:#FFFFFF;">.</th>
                   <th class="th7" style="border:none;color:#FFFFFF;">.</th>
