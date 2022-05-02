@@ -410,12 +410,12 @@
                   <td class="td1" style="border:none;">F.__________________________</td>
                 </tr>
                  <tr> 
-                  <td class="td2" style="border:none; text-align:center;"><span t-esc="repr"/></td>
-                  <td class="td4" style="border:none; text-align:center;"></td>
-                  <td class="td1" style="border:none; text-align:center;"><span t-esc="audi"/></td>
                   <td class="td2" style="border:none; text-align:center;"></td>
-                  <td class="td4" style="border:none; text-align:center;"><span t-esc="cont"/></td>
+                  <td class="td4" style="border:none; text-align:center;"><span t-esc="repr"/></td>
                   <td class="td1" style="border:none; text-align:center;"></td>
+                  <td class="td2" style="border:none; text-align:center;"><span t-esc="audi"/></td>
+                  <td class="td4" style="border:none; text-align:center;"></td>
+                  <td class="td1" style="border:none; text-align:center;"><span t-esc="cont"/></td>
                 </tr>     
                 <tr> 
                   <td class="td2" style="border:none;color:#FFFFFF;">.</td>
