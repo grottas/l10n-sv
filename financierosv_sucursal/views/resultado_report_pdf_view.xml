@@ -375,6 +375,9 @@
 
             </style>
 
+            <t t-set="cont" t-value=" Nombre"/>
+              <t t-set="acum" t-value=" "/>
+
              <t t-foreach="docs" t-as="x">
                     <t t-set="cont" t-value="char(data.get('form').get('cont'))"/>
                     <t t-set="audi" t-value="char(data.get('form').get('audi'))"/>
