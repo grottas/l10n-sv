@@ -69,6 +69,12 @@
             <t t-set="totaln1" t-value="float(0.00)"/>
             <t t-set="totaln2" t-value="float(0.00)"/>
             <t t-set="totaln3" t-value="float(0.00)"/>
+            <t t-set="totala" t-value="float(0.00)"/>
+            <t t-set="totals" t-value="float(0.00)"/>
+            <t t-set="totald" t-value="float(0.00)"/>
+            <t t-set="totalf" t-value="float(0.00)"/>
+            <t t-set="totalg" t-value="float(0.00)"/>
+            <t t-set="totalh" t-value="float(0.00)"/>
 
             <!--Fin de declaraciones-->
 
@@ -117,8 +123,8 @@
                 <tr t-foreach="company.get_general_details5(company_id, year, month, acum)" t-as="c">
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
-                  <t t-set="total" t-value="c.get('debe5') - c.get('haber5')"/>
-                  <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(total)"/></td>
+                  <t t-set="totala" t-value="c.get('debe5') - c.get('haber5')"/>
+                  <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totala)"/></td>
                   <td class="td1" style="border:none;"></td>
                 </tr>
                  <tr>
@@ -137,8 +143,8 @@
                 <tr t-foreach="company.get_general_details6(company_id, year, month, acum)" t-as="c">
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
-                  <t t-set="total" t-value="c.get('debe6') - c.get('haber6')"/>
-                  <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(total)"/></td>
+                  <t t-set="totals" t-value="c.get('debe6') - c.get('haber6')"/>
+                  <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totals)"/></td>
                   <td class="td1" style="border:none;"></td>
                 </tr>
                  <tr>
@@ -150,9 +156,9 @@
                 <tr>
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><u><strong>TOTAL ACTIVO</strong></u></td>
-                  <t t-set="total" t-value="totalc + totalnc"/>
+                  <t t-set="totald" t-value="totalc + totalnc"/>
                   <td class="td6" style="border:none;"></td>
-                  <td class="td1" style="border:none;"><xxx><strong t-esc="'{0:,.2f}'.format(total)"/></xxx></td>
+                  <td class="td1" style="border:none;"><xxx><strong t-esc="'{0:,.2f}'.format(totald)"/></xxx></td>
                 </tr>
                  <tr>
                   <td class="td1" style="border:none;color:#FFFFFF;">.</td>
@@ -188,8 +194,8 @@
                 <tr t-foreach="company.get_general_details7(company_id, year, month, acum)" t-as="c">
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
-                  <t t-set="total" t-value=" c.get('debe7') - c.get('haber7')"/>
-                  <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(total)"/></td>
+                  <t t-set="totalf" t-value=" c.get('debe7') - c.get('haber7')"/>
+                  <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totalf)"/></td>
                   <td class="td1" style="border:none;"></td>
                 </tr>
                  <tr>
@@ -208,8 +214,8 @@
                 <tr t-foreach="company.get_general_details8(company_id, year, month, acum)" t-as="c">
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
-                  <t t-set="total" t-value="c.get('haber8') - c.get('debe8')"/>
-                  <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(total)"/></td>
+                  <t t-set="totalg" t-value="c.get('haber8') - c.get('debe8')"/>
+                  <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totalg)"/></td>
                   <td class="td1" style="border:none;"></td>
                 </tr>
                  <tr>
@@ -228,10 +234,22 @@
                 <tr t-foreach="company.get_general_details9(company_id, year, month, acum)" t-as="c">
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
-                  <t t-set="total" t-value="c.get('haber9') - c.get('debe9')"/>
+                  <t t-set="totalh" t-value="c.get('haber9') - c.get('debe9')"/>
+                  <td class="td1" style="border:none;"><span t-esc="'{0:,.2f}'.format(totalh)"/></td>
+                   <td class="td6" style="border:none;"></td>
+                </tr>  
+                 <tr>
+                 <td class="td1" style="border:none;color:#FFFFFF;">. </td>
                   <td class="td1" style="border:none;"></td>
-                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(total)"/></td>
-                </tr>   
+                  <td class="td2" style="border:none;"></td>
+                  <td class="td6" style="border:none;"></td>
+                </tr> 
+                 <tr>
+                 <td class="td1" style="border:none;color:#FFFFFF;">. </td>
+                  <td class="td1" style="border:none;"></td>
+                  <td class="td2" style="border:none;"></td>
+                  <td class="td6" style="border:none;"></td>
+                </tr>
                  <tr>
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><u><strong>TOTAL PASIVO + CAPITAL</strong></u></td>
@@ -262,8 +280,20 @@
 
             </style>
 
+
+             <t t-set="repre" t-value="nombre"/>
+              <t t-set="audi" t-value="audi"/>
+              <t t-set="cont" t-value=" Nombre"/>
+             
+
+             <t t-foreach="docs" t-as="x">
+                    <t t-set="repre" t-value="data.get('form').get('repre')"/>
+                    <t t-set="cont" t-value="data.get('form').get('cont')"/>
+                    <t t-set="audi" t-value="data.get('form').get('audi')"/>
+                    <t t-set="company" t-value="x"/>   
+
            <div>
-            <table class="table">
+            <table class="table-bordered" style="border-color:#000000;border:5px;" >
                 <tr>
                  <th class="th7" style="border:none;color:#FFFFFF;">.</th>
                   <th class="th7" style="border:none;color:#FFFFFF;">.</th>
@@ -284,6 +314,14 @@
                   <td class="td4" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;">F.__________________________</td>
                 </tr>
+                 <tr> 
+                  <td class="td2" style="border:none; text-align:center;"></td>
+                  <td class="td4" style="border:none; text-align:center;"><span t-esc="repre"/></td>
+                  <td class="td1" style="border:none; text-align:center;"></td>
+                  <td class="td2" style="border:none; text-align:center;"><span t-esc="audi"/></td>
+                  <td class="td4" style="border:none; text-align:center;"></td>
+                  <td class="td1" style="border:none; text-align:center;"><span t-esc="cont"/></td>
+                </tr>     
                 <tr> 
                   <td class="td2" style="border:none;color:#FFFFFF;">.</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
@@ -294,9 +332,10 @@
                   <td class="td4" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none; text-align:center;">Contador</td>
                 </tr>                
-  </table>
-      </div>
- </div>     
+                </table>
+              </div>
+               </t>
+                 </div>   
         </t>
       </t>
     </template>
