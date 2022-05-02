@@ -129,7 +129,7 @@
                   </tr>
                   <tr t-foreach="company.get_resultado_details10(company_id, year, month, acum)" t-as="c">
                     <td class="td1" style="border:none;"></td>
-                    <td class="td2" style="border:none;"><u><b><strong t-esc="c.get('name')"/></b></td>
+                    <td class="td2" style="border:none;"><u><b><strong t-esc="c.get('name')"/></b></u></td>
                     <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
                     <td class="td4" style="border:none;"></td>
                     <td class="td5" style="border:none;"></td>
