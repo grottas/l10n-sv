@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+odoosv_saldo,odoosv_saldo,model_odoosv_saldo,base.group_system,1,1,1,1
+odoosv_cxc,odoosv_cxc,model_odoosv_cxc,base.group_system,1,1,1,1
+odoosv_cxp,odoosv_cxp,model_odoosv_cxp,base.group_system,1,1,1,1

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+     <!--tree del objetivo-->
+     <record model="ir.ui.view" id="saldo_tree">
+        <field name="name">saldo_tree</field>
+        <field name="model">odoosv.saldo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" placeholder=""/>
+                        <field name="account_id"/>
+                        <field name="partner_id"/>
+                        <field name="analytic_account_id"/>
+                        <field name="debe"/>
+                        <field name="haber"/>
+                        <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--action del objetivo-->
+    <record model="ir.actions.act_window" id="saldo_action">
+        <field name="name">Saldos</field>
+        <field name="res_model">odoosv.saldo</field>
+        <!--field name="view_type">form</field-->
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Saldos</p>
+        </field>
+        
+    </record>
+
+
+    <record model="ir.actions.server" id="crear_partida_action">
+        <field name="name">Crear Partida</field>
+        <field name="model_id"  ref="inicio.model_odoosv_saldo"></field>
+        <field name="binding_model_id"  ref="inicio.model_odoosv_saldo"></field>
+        <field name="binding_type">action</field>
+        <!--field name="view_type">form</field-->
+        <field name="state">code</field>
+        <field name="code">
+records.crear_partida()
+        </field>        
+    </record>
+
+    <!--menu del objetivo-->
+    <menuitem id="inicio_menu" parent="base.menu_custom" name="Carga inicial" sequence="9"/>
+    <menuitem id="saldo_menu" parent="inicio.inicio_menu" name="Saldos" action="saldo_action" sequence="9"/>
+
+
+
+
+
+
+    <!--tree del objetivo-->
+    <record model="ir.ui.view" id="saldocxc_tree">
+        <field name="name">saldocxc_tree</field>
+        <field name="model">odoosv.cxc</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" placeholder=""/>
+                        <field name="partner_id"/>
+                        <field name="name"/>
+                        <field name="monto"/>
+                        <field name="saldo"/>
+                        <field name="company_id"/>
+                        <field name="move_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--action del objetivo-->
+    <record model="ir.actions.act_window" id="saldocxc_action">
+        <field name="name">Saldos cxc</field>
+        <field name="res_model">odoosv.cxc</field>
+        <!--field name="view_type">form</field-->
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Saldos CXC</p>
+        </field>
+        
+    </record>
+
+
+    <record model="ir.actions.server" id="crear_partidacxc_action">
+        <field name="name">Crear CXC</field>
+        <field name="model_id"  ref="inicio.model_odoosv_cxc"></field>
+        <field name="binding_model_id"  ref="inicio.model_odoosv_cxc"></field>
+        <field name="binding_type">action</field>
+        <!--field name="view_type">form</field-->
+        <field name="state">code</field>
+        <field name="code">
+records.crear_cxc()
+        </field>        
+    </record>
+
+
+    
+    
+
+    <!--menu del objetivo-->
+    <menuitem id="saldocxc_menu" parent="inicio.inicio_menu" name="Saldos CXC" action="saldocxc_action" sequence="10"/>
+
+
+
+
+
+
+
+
+    <!--tree del objetivo-->
+    <record model="ir.ui.view" id="saldocxp_tree">
+        <field name="name">saldocxp_tree</field>
+        <field name="model">odoosv.cxp</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" placeholder=""/>
+                        <field name="partner_id"/>
+                        <field name="name"/>
+                        <field name="monto"/>
+                        <field name="saldo"/>
+                        <field name="company_id"/>
+                        <field name="move_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--action del objetivo-->
+    <record model="ir.actions.act_window" id="saldocxp_action">
+        <field name="name">Saldos cxp</field>
+        <field name="res_model">odoosv.cxp</field>
+        <!--field name="view_type">form</field-->
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Saldos CXP</p>
+        </field>
+        
+    </record>
+
+
+    <record model="ir.actions.server" id="crear_partidacxp_action">
+        <field name="name">Crear CXP</field>
+        <field name="model_id"  ref="inicio.model_odoosv_cxp"></field>
+        <field name="binding_model_id"  ref="inicio.model_odoosv_cxp"></field>
+        <field name="binding_type">action</field>
+        <!--field name="view_type">form</field-->
+        <field name="state">code</field>
+        <field name="code">
+records.crear_cxp()
+        </field>        
+    </record>
+
+
+    
+    
+
+    <!--menu del objetivo-->
+    <menuitem id="saldocxp_menu" parent="inicio.inicio_menu" name="Saldos CXP" action="saldocxp_action" sequence="11"/>
+
+
+
+
+
+
+    <record id="inicio_settings_form" model="ir.ui.view">
+        <field name="name">inicio_settings_form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_info']" position="after">
+                <page string="Saldos iniciales">
+                   
+                    <group string="Cuentas">
+                        <field name="cuenta_cxc"/>
+                        <field name="cuenta_cxp"/>
+                        
+                    </group>
+                   
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</data>
+</odoo>
