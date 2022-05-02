@@ -94,7 +94,7 @@
                 </div>
               </t>
             <!--Fin encabezado-->
-            <table class="table-bordered">
+            <table class="table-bordered" style="border-color:#000000;border:5px;">
                 <tr class="tr" >
                   <th class="th2" style="border:none;color:#FFFFFF;">. </th>
                   <th class="th1" style="border:none;"> </th>
