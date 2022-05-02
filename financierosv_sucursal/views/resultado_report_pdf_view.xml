@@ -375,15 +375,15 @@
 
             </style>
 
-            <t t-set="cont" t-value=" Nombre"/>
-              <t t-set="repr" t-value="nombre "/>
+            <t t-set="repr" t-value="nombre"/>
               <t t-set="audi" t-value="audi"/>
+              <t t-set="cont" t-value=" Nombre"/>
              
 
              <t t-foreach="docs" t-as="x">
+                    <t t-set="repr" t-value="data.get('form').get('repr')"/>
                     <t t-set="cont" t-value="data.get('form').get('cont')"/>
                     <t t-set="audi" t-value="data.get('form').get('audi')"/>
-                    <t t-set="repr" t-value="data.get('form').get('repr')"/>
                     <t t-set="company" t-value="x"/>         
 
 
