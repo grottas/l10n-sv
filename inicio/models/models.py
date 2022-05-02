@@ -170,7 +170,7 @@ class saldo_inicial_cxp(models.Model):
 
             linea={}
             linea['name']='saldo inicial doc'+r.name+ ' monto:' +str(r.monto)+' saldo:'+str(r.saldo)
-            linea['account_id']=r.partner_id.property_account_receivable_id.id
+            linea['account_id']=r.partner_id.property_account_payable_id.id
             linea['exclude_from_invoice_tab']=True
             linea['debit']=0
             linea['credit']=r.saldo
