@@ -16,7 +16,8 @@ class wizard_sv_resultado_report(models.TransientModel):
     acum=fields.Boolean(string="Acumulativo",default=False)
     cont=fields.Char(string="Contador")
     audi=fields.Char(string="Auditor")
-    repr=fields.Char(string="Representante")
+    repre=fields.Char(string="Representante")
+    
     #show_serie = fields.Boolean("Ventas a Consumidor", default=False)
     #serie_lenght = fields.Integer("Agrupación de facturas", default = 1)
 

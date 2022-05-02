@@ -375,13 +375,13 @@
 
             </style>
 
-            <t t-set="repr" t-value="nombre"/>
+            <t t-set="repre" t-value="nombre"/>
               <t t-set="audi" t-value="audi"/>
               <t t-set="cont" t-value=" Nombre"/>
              
 
              <t t-foreach="docs" t-as="x">
-                    <t t-set="repr" t-value="data.get('form').get('repr')"/>
+                    <t t-set="repre" t-value="data.get('form').get('repre')"/>
                     <t t-set="cont" t-value="data.get('form').get('cont')"/>
                     <t t-set="audi" t-value="data.get('form').get('audi')"/>
                     <t t-set="company" t-value="x"/>         
@@ -411,7 +411,7 @@
                 </tr>
                  <tr> 
                   <td class="td2" style="border:none; text-align:center;"></td>
-                  <td class="td4" style="border:none; text-align:center;"><span t-esc="repr"/></td>
+                  <td class="td4" style="border:none; text-align:center;"><span t-esc="repre"/></td>
                   <td class="td1" style="border:none; text-align:center;"></td>
                   <td class="td2" style="border:none; text-align:center;"><span t-esc="audi"/></td>
                   <td class="td4" style="border:none; text-align:center;"></td>
