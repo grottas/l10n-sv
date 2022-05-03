@@ -52,8 +52,8 @@
                   <t t-set="fechai" t-value="(data.get('form').get('fechai'))"/>
                   <t t-set="fechaf" t-value="(data.get('form').get('fechaf'))"/>
 
-                  <t t-set="fecha1" t-value="(data.get('form').get('fechai').strftime('%d %b, %Y'))"/>
-                  <t t-set="fecha2" t-value="(data.get('form').get('fechaf').strftime('%d %b, %Y'))"/>
+                  <t t-set="fecha1" t-value="(data.get('form').get('fechai').datetime('%d %b, %Y'))"/>
+                  <t t-set="fecha2" t-value="(data.get('form').get('fechaf').datetime('%d %b, %Y'))"/>
 
                 <t t-set="company" t-value="o"/>
 
