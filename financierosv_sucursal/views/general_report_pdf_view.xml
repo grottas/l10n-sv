@@ -38,11 +38,13 @@
               width: 100%;
               bottom: 0;
               position:fixed;
-    }
+    }         
+            .transformacion3 { text-transform: lowercase;}
+
               .th1{width:350px; text-size:15; text-align:center;}
               .th2{width:100px;text-size:15; text-align:center;}
               .th3{width:100px; text-size:15; text-align:center;}
-              .th4{width:100px; text-size:15; text-align:center;}
+              .th4{width:50px; text-size:15; text-align:center;}
               .th5{width:100px; text-size:15; text-align:center;}
               .th6{width:100px; text-size:15; text-align:center;}
               .th7{width:250px; text-size:15; text-align:center;}
@@ -52,7 +54,7 @@
               .td3{text-size:18px; height:0px;}
               .td4{text-size:18px; height:0px;}
               .td5{text-size:18px; height:0px;}
-              .td6{text-size:18px; height:0px;}
+              .td6{text-size:18px; height:0px;text-align:center;}
 
             </style>
             <!--Declaracion de variables-->
@@ -89,14 +91,14 @@
 
                 <div class="encabezado">
                    <h3><center>LOS RANCHOS DE EL SALVADOR, S.A. DE C.V.</center></h3>
-                  <h6><center>BALANCE GENERAL DEL MES DE: <span t-esc="o.get_month_str(month)"/> DEL <span t-esc="year"/></center></h6>
+                  <h6><center>BALANCE GENERAL DEL MES DE: <span class="transformacion3" t-esc="o.get_month_str(month)"/> DEL <span t-esc="year"/></center></h6>
                   <h6><center>(Cifras expresadas en dólares de los Estados Unidos de América)</center></h6>
                 </div>
               </t>
             <!--Fin encabezado-->
             <table class="table-bordered" style="border-color:#000000;border:5px;">
                 <tr class="tr" >
-                  <th class="th2" style="border:none;color:#FFFFFF;">. </th>
+                  <th class="th4" style="border:none;color:#FFFFFF;">. </th>
                   <th class="th1" style="border:none;"> </th>
                   <th class="th2" style="border:none;"> </th>
                   <th class="th3" style="border:none;"> </th>
@@ -130,7 +132,7 @@
                  <tr>
                   <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
+                  <td class="td2" style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
                   <td class="td6" style="border:none;"></td>
                 </tr>
                  <tr t-foreach="company.get_general_details1(company_id, year, month, acum)" t-as="c">
@@ -150,7 +152,7 @@
                  <tr>
                   <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
+                  <td class="td2" style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
                   <td class="td6" style="border:none;" ></td>
                 </tr>
                 <tr>
@@ -158,7 +160,7 @@
                   <td class="td1" style="border:none;"><u><strong>TOTAL ACTIVO</strong></u></td>
                   <t t-set="totald" t-value="totalc + totalnc"/>
                   <td class="td6" style="border:none;"></td>
-                  <td class="td1" style="border:none;"><xxx><strong t-esc="'{0:,.2f}'.format(totald)"/></xxx></td>
+                  <td class="td6" style="border:none;"><xxx><strong t-esc="'{0:,.2f}'.format(totald)"/></xxx></td>
                 </tr>
                  <tr>
                   <td class="td1" style="border:none;color:#FFFFFF;">.</td>
@@ -201,7 +203,7 @@
                  <tr>
                   <td class="td1" style="border:none;color:#FFFFFF;">.</td>
                   <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
+                  <td class="td2" style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
                   <td class="td6" style="border:none;"></td>
                 </tr>
                 <tr t-foreach="company.get_general_details3(company_id, year, month, acum)" t-as="c">
@@ -221,7 +223,7 @@
                  <tr>
                  <td class="td1" style="border:none;color:#FFFFFF;">. </td>
                   <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
+                  <td class="td2" style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
                   <td class="td6" style="border:none;"></td>
                 </tr>
                 <tr t-foreach="company.get_general_details4(company_id, year, month, acum)" t-as="c">
@@ -235,13 +237,13 @@
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
                   <t t-set="totalh" t-value="c.get('previo9') + c.get('haber9') - c.get('debe9')"/>
-                  <td class="td1" style="border:none;"><span t-esc="'{0:,.2f}'.format(totalh)"/></td>
+                  <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totalh)"/></td>
                    <td class="td6" style="border:none;"></td>
                 </tr>  
                  <tr>
                  <td class="td1" style="border:none;color:#FFFFFF;">. </td>
                   <td class="td1" style="border:none;"></td>
-                  <td class="td2" style="border:none;"></td>
+                  <td class="td2" style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
                   <td class="td6" style="border:none;"></td>
                 </tr> 
                  <tr>
@@ -256,32 +258,31 @@
                   <t t-set="total1" t-value="totaln1 + totaln2"/>
                   <t t-set="total2" t-value="total1 + totaln3"/>
                   <td class="td6" style="border:none;"></td>
-                  <td class="td1" style="border:none;"><xxx><strong t-esc="'{0:,.2f}'.format(total2)"/></xxx></td>
+                  <td class="td6" style="border:none;"><xxx><strong t-esc="'{0:,.2f}'.format(total2)"/></xxx></td>
                 </tr>
             </table>  
        </div>
 
-  <div class="footer" style="font-size: 9pt"> 
-  <style type="text/css">
-              .th1{width:350px; text-size:15; text-align:center;}
+  div class="footer" style="font-size: 10pt;font-family: Verdana, Cursive, sans-serif;"> 
+           <style type="text/css">
+              .th1{width:50px; text-size:15; text-align:center;}
               .th2{width:100px;text-size:15; text-align:center;}
               .th3{width:100px; text-size:15; text-align:center;}
               .th4{width:100px; text-size:15; text-align:center;}
               .th5{width:100px; text-size:15; text-align:center;}
               .th6{width:100px; text-size:15; text-align:center;}
-              .th7{width:100px; text-size:15; text-align:center;}
+              .th7{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
 
-              .td1{text-size:18px;  height:0px;}
-              .td2{text-size:18px; height:0px;}
-              .td3{text-size:18px; height:0px;}
-              .td4{text-size:18px; height:0px;}
-              .td5{text-size:18px; height:0px;}
-              .td6{text-size:18px; height:0px;}
+              .td1{text-size:18px;  height:0px;font-family: Verdana, Arial, sans-serif;}
+              .td2{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
+              .td3{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
+              .td4{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
+              .td5{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
+              .td6{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
 
             </style>
 
-
-             <t t-set="repre" t-value="nombre"/>
+            <t t-set="repre" t-value="nombre"/>
               <t t-set="audi" t-value="audi"/>
               <t t-set="cont" t-value=" Nombre"/>
              
@@ -290,12 +291,13 @@
                     <t t-set="repre" t-value="data.get('form').get('repre')"/>
                     <t t-set="cont" t-value="data.get('form').get('cont')"/>
                     <t t-set="audi" t-value="data.get('form').get('audi')"/>
-                    <t t-set="company" t-value="x"/>   
+                    <t t-set="company" t-value="x"/>         
+
 
            <div>
-            <table class="table-bordered" style="border-color:#000000;border:5px;" >
+            <table class="table-bordered" style="border-color:#000000;border:5px;">
                 <tr>
-                 <th class="th7" style="border:none;color:#FFFFFF;">.</th>
+                 <th class="th1" style="border:none;color:#FFFFFF;">.</th>
                   <th class="th7" style="border:none;color:#FFFFFF;">.</th>
                   <!--<th class="th3">Saldo Anterior</th>-->
                   <th class="th7" style="border:none;color:#FFFFFF;">.</th>
@@ -307,12 +309,12 @@
                 <tr>
                   <td class="td2" style="border:none;color:#FFFFFF;">.</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
-                  <td class="td4" style="border:none;">F.___________________________</td>
+                  <td class="td4" style="border:none;">F.______________________________</td>
                   <td class="td1" style="border:none;color:#FFFFFF;">.</td>
-                  <td class="td2" style="border:none;">F.___________________________</td>
+                  <td class="td2" style="border:none;">F.______________________________</td>
                   <!--<td class="td3">Saldo Anterior</td>-->
                   <td class="td4" style="border:none;color:#FFFFFF;">.</td>
-                  <td class="td1" style="border:none;">F.__________________________</td>
+                  <td class="td1" style="border:none;">F._____________________________</td>
                 </tr>
                  <tr> 
                   <td class="td2" style="border:none; text-align:center;"></td>

@@ -14,9 +14,10 @@
           </group>
           <group col="4">
            <!-- <field name="contabilizada"/>-->
-            <field name="cont"/>
+          <field name="cont"/>
           <field name="audi"/>
           <field name="repre"/>
+          <field name="acum"/>
           </group>
           <footer>
             <button name="print_general_report" string="Imprimir" type="object" default_focus="1" class="oe_highlight"/>
