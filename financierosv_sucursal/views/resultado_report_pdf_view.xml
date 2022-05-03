@@ -39,7 +39,7 @@
               bottom: 0;
               position:fixed;
               }
-              .th1{width:80px; text-size:15; text-align:center;}
+              .th1{width:40px; text-size:15; text-align:center;}
               .th2{width:200px;text-size:15; text-align:center;}
               .th3{width:100px; text-size:15; text-align:center;}
               .th4{width:100px; text-size:15; text-align:center;}
