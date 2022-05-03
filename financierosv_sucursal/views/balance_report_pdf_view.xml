@@ -56,7 +56,7 @@
 
 
                 <div class="encabezado">
-                <t "company.get_balance_details(company_id, year, month, acum, fechai,fechaf)" t-as="c">
+                <t t="company.get_balance_details(company_id, year, month, acum, fechai,fechaf)" t-as="c">
                   <h3><center>LOS RANCHOS S.A. de C.V.</center></h3>
                   <h6><center>BALANCE DE SUMAS Y SALDOS DEL <span t-esc="c.get('fi')"/> al <span t-esc="c.get('ff')"/>  <span t-esc="year"/></center></h6>
                   <h6><center>(Valores expresados en dólares de los Estados Unidos de America)</center></h6>
