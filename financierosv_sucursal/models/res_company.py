@@ -37,12 +37,12 @@ select aa.code
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
         inner join account_move am2 on aml2.move_id=am2.id
-        where aa2.company_id={0} and aa2.code like aa.code||'%' and COALESCE(am1.date,am1.invoice_date)=CAST('{4}' as date) and am2.state in ('posted') ) as debe     
+        where aa2.company_id={0} and aa2.code like aa.code||'%' and COALESCE(am2.date,am2.invoice_date)=CAST('{4}' as date) and am2.state in ('posted') ) as debe     
 ,(select COALESCE(sum(aml2.credit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
         inner join account_move am2 on aml2.move_id=am2.id
-        where aa2.company_id={0} and aa2.code like aa.code||'%' and  COALESCE(am1.date,am1.invoice_date)<=CAST('{4}' as date) and am2.state in ('posted') ) as haber
+        where aa2.company_id={0} and aa2.code like aa.code||'%' and  COALESCE(am2.date,am2.invoice_date)<=CAST('{4}' as date) and am2.state in ('posted') ) as haber
          
 
 from cuentas aa     
