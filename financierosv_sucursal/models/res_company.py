@@ -694,7 +694,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo 
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo 
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
@@ -734,7 +734,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo1 
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo1 
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
@@ -774,7 +774,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo2
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo2
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
@@ -814,7 +814,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo3 
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo3 
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
@@ -854,7 +854,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo4
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo4
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
@@ -894,7 +894,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo5
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo5
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
@@ -934,7 +934,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo6
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo6
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
@@ -974,7 +974,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo7
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo7
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
@@ -1014,7 +1014,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo8
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo8
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
@@ -1054,7 +1054,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))={2} and am1.state in ('posted')) else 0 end as previo9
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo9
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
