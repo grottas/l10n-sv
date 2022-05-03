@@ -3,7 +3,7 @@
     <template id ='odoosv_resultado_report_pdf'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
-          <div class="page" style="font-size: 10pt; font-family: Verdana, Times New Roman, cursive;">
+          <div class="page" style="font-size: 10pt; font-family: Verdana, Arial, sans-serif;">
             <style type="text/css">
               .encabezado{text-align: center;position:top;}
               .tr-color{
@@ -378,9 +378,9 @@
       
           </div>
 
-        <div class="footer" style="font-size: 10pt"> 
+        <div class="footer" style="font-size: 10pt;font-family: Verdana, Cursive, sans-serif;"> 
            <style type="text/css">
-              .th1{width:350px; text-size:15; text-align:center;}
+              .th1{width:50px; text-size:15; text-align:center;}
               .th2{width:100px;text-size:15; text-align:center;}
               .th3{width:100px; text-size:15; text-align:center;}
               .th4{width:100px; text-size:15; text-align:center;}
@@ -412,7 +412,7 @@
            <div>
             <table class="table-bordered" style="border-color:#000000;border:5px;">
                 <tr>
-                 <th class="th7" style="border:none;color:#FFFFFF;">.</th>
+                 <th class="th1" style="border:none;color:#FFFFFF;">.</th>
                   <th class="th7" style="border:none;color:#FFFFFF;">.</th>
                   <!--<th class="th3">Saldo Anterior</th>-->
                   <th class="th7" style="border:none;color:#FFFFFF;">.</th>
