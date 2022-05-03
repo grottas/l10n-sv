@@ -3,7 +3,7 @@
     <template id ='odoosv_resultado_report_pdf'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
-          <div class="page" style="font-size: 10pt; font-family: Verdana, Arial, sans-serif;">
+          <div class="page" style="font-size: 10pt; font-family: cursive, cursive,cursive;">
             <style type="text/css">
               .encabezado{text-align: center;position:top;}
               .tr-color{
