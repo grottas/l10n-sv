@@ -118,7 +118,7 @@
                     <td class="td1" style="border:none;"></td>
                     <td class="td2" style="border:none;"><strong>VENTAS</strong></td>
                     <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                    <td class="td4" style="border:none;"></td>
+                    <td class="td4" style=""></td>
                     <t t-set="total" t-value="(c.get('previo7') + c.get('debe7') - c.get('haber7'))*-1"/>
                     <td class="td5" style="border:none;"><u><span t-esc="'{0:,.2f}'.format(total)"/></u></td>
                     <td class="td6" style="border:none;"></td> <!--<span t-esc="'{0:.2f}'.format(total)"/>-->
