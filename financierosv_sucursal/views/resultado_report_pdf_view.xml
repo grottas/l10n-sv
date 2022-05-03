@@ -39,20 +39,20 @@
               bottom: 0;
               position:fixed;
               }
-              .th1{width:40px; text-size:15; text-align:center;}
-              .th2{width:200px;text-size:15; text-align:center;}
-              .th3{width:100px; text-size:15; text-align:center;}
-              .th4{width:100px; text-size:15; text-align:center;}
-              .th5{width:100px; text-size:15; text-align:center;}
-              .th6{width:100px; text-size:15; text-align:center;}
-              .th7{width:100px; text-size:15; text-align:center;}
+              .th1{width:40px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
+              .th2{width:200px;text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
+              .th3{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
+              .th4{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
+              .th5{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
+              .th6{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
+              .th7{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
 
-              .td1{text-size:18px;  height:0px;}
-              .td2{text-size:18px; height:0px;}
-              .td3{text-size:18px; height:0px;}
-              .td4{text-size:18px; height:0px;}
-              .td5{text-size:18px; height:0px;}
-              .td6{text-size:18px; height:0px;}
+              .td1{text-size:18px;  height:0px;font-family: "Times New Roman", Times, serif;}
+              .td2{text-size:18px; height:0px;font-family: "Times New Roman", Times, serif;}
+              .td3{text-size:18px; height:0px;font-family: "Times New Roman", Times, serif;}
+              .td4{text-size:18px; height:0px;font-family: "Times New Roman", Times, serif;}
+              .td5{text-size:18px; height:0px;font-family: "Times New Roman", Times, serif;}
+              .td6{text-size:18px; height:0px;font-family: "Times New Roman", Times, serif;}
 
               </style>
               <!--Declaracion de variables-->
@@ -89,7 +89,7 @@
                     <t t-set="company" t-value="o"/>
 
 
-                    <div class="encabezado">
+                    <div class="encabezado" >
                       <h3><center>LOS RANCHOS DE EL SALVADOR, S.A. DE C.V.</center></h3>
                       <h6><center>ESTADO DE RESULTADO DEL MES DE: <span t-esc="o.get_month_str(month)"/> DEL <span t-esc="year"/></center></h6>
                       <h6><center>(Valores expresados en dólares de los Estados Unidos de America)</center></h6>
@@ -386,14 +386,14 @@
               .th4{width:100px; text-size:15; text-align:center;}
               .th5{width:100px; text-size:15; text-align:center;}
               .th6{width:100px; text-size:15; text-align:center;}
-              .th7{width:100px; text-size:15; text-align:center;}
+              .th7{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
 
-              .td1{text-size:18px;  height:0px;}
-              .td2{text-size:18px; height:0px;}
-              .td3{text-size:18px; height:0px;}
-              .td4{text-size:18px; height:0px;}
-              .td5{text-size:18px; height:0px;}
-              .td6{text-size:18px; height:0px;}
+              .td1{text-size:18px;  height:0px;font-family: Verdana, Arial, sans-serif;}
+              .td2{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
+              .td3{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
+              .td4{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
+              .td5{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
+              .td6{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
 
             </style>
 
