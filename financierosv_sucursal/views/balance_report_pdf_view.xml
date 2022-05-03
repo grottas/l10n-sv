@@ -38,6 +38,7 @@
             <t t-set="company" t-value="null"/>
             <t t-set="mes" t-value="null"/>
             <t t-set="acum" t-value="null"/>
+            <t t-set="fecha" t-value="2022-12-1"/>
 
             <!--Fin de declaraciones-->
 
@@ -47,6 +48,8 @@
                 <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
                  <t t-set="acum" t-value="int(data.get('form').get('acum'))"/>
+                  <t t-set="fecha" t-value="data.get('form').get('fecha')"/>
+
                 <t t-set="company" t-value="o"/>
 
 
@@ -66,7 +69,7 @@
                   <th class="th5">Haber</th>
                   <th class="th6">Saldo</th>
                 </tr>
-                <tr t-foreach="company.get_balance_details(company_id, year, month, acum)" t-as="c">
+                <tr t-foreach="company.get_balance_details(company_id, year, month, acum, fecha)" t-as="c">
                   <td class="td1" style="border:none;"><span t-esc="c.get('code')"/></td>
                   <td class="td2" style="border:none;"><span t-esc="c.get('name')"/></td>
                   <td class="td3" style="border:none;"><span t-esc="'{0:,.2f}'.format(c.get('previo'))"/></td>
