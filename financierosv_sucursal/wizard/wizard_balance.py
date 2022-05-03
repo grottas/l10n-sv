@@ -14,7 +14,7 @@ class wizard_sv_balance_report(models.TransientModel):
     date_year = fields.Integer("Año:", default=2022, requiered=True)
    # contabilizada=fields.Boolean(string="contabilizada", default=False)
     acum=fields.Boolean(string="Acumulativo",default=False)
-    fecha=fields.timestamp(string="fecha",default='1/12/2022')
+    fecha=fields.Date(string="fecha",default='1/12/2022')
     #show_serie = fields.Boolean("Ventas a Consumidor", default=False)
     #serie_lenght = fields.Integer("Agrupación de facturas", default = 1)
 
