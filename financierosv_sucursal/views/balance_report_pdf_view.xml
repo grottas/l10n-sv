@@ -48,7 +48,7 @@
                 <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
                  <t t-set="acum" t-value="int(data.get('form').get('acum'))"/>
-                  <t t-set="fecha" t-value="date(data.get('form').get('fecha'))"/>
+                  <t t-set="fecha" t-value="(data.get('form').get('fecha'))"/>
 
                 <t t-set="company" t-value="o"/>
 
