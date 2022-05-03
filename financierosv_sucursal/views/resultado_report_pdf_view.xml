@@ -3,7 +3,7 @@
     <template id ='odoosv_resultado_report_pdf'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
-          <div class="page" style="font-size: 10pt; font-family: Verdana, Times, serif;">
+          <div class="page" style="font-size: 10pt; font-family: Verdana, Times New Roman, cursive;">
             <style type="text/css">
               .encabezado{text-align: center;position:top;}
               .tr-color{
@@ -254,7 +254,7 @@
                     <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
-                    <t t-set="total" t-value=" total7 - total10"/>
+                    <t t-set="total" t-value=" total0 - total10"/>
                     <td class="td6" style="border:none;"><u><b><strong t-esc="'{0:,.2f}'.format(total)"/></b></u></td>
                   </tr>
                   <tr>

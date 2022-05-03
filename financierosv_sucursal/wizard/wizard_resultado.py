@@ -10,7 +10,7 @@ class wizard_sv_resultado_report(models.TransientModel):
     _name = 'wizard.sv.resultado.report'
 
     company_id=fields.Many2one('res.company', string="Company", help='Company',default=lambda self: self.env.user.company_id.id)
-    date_month = fields.Selection([('1','Enero'),('2','Febrero'),('3','Marzo'),('4','Abril'),('5','Mayo'),('6','Junio'),('7','Julio'),('8','Agosto'),('9','Septiembre'),('10','Octubre'),('11','Noviembre'),('12','Diciembre')],string='Mes de facturación', default='3',required=True)
+    date_month = fields.Selection([('1','enero'),('2','febrero'),('3','marzo'),('4','abril'),('5','mayo'),('6','junio'),('7','julio'),('8','agosto'),('9','septiembre'),('10','octubre'),('11','noviembre'),('12','diciembre')],string='Mes de facturación', default='3',required=True)
     date_year = fields.Integer("Año de facturación", default=2022, requiered=True)
    # contabilizada=fields.Boolean(string="contabilizada", default=False)
     acum=fields.Boolean(string="Acumulativo",default=True)
