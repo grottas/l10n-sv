@@ -263,7 +263,7 @@
             </table>  
        </div>
 
-  div class="footer" style="font-size: 10pt;font-family: Verdana, Cursive, sans-serif;"> 
+  <div class="footer" style="font-size: 10pt;font-family: Verdana, Cursive, sans-serif;"> 
            <style type="text/css">
               .th1{width:50px; text-size:15; text-align:center;}
               .th2{width:100px;text-size:15; text-align:center;}
