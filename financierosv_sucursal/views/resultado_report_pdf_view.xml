@@ -47,7 +47,7 @@
               .th3{width:75px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th4{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th5{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
-              .th6{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
+              .th6{width:80px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th7{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
 
               .td1{text-size:18px;  height:0px;font-family: "Times New Roman", Times, serif;text-align:center;}
@@ -271,7 +271,7 @@
                     <td class="td4" style="border:none;" ></td>
                     <td class="td5" style="border:none;"></td>
                     <t t-set="total" t-value=" total0 - total10"/>
-                    <td class="td6" style="border:none;"><b><strong t-esc="'{0:,.2f}'.format(total)"/></b></td>
+                    <td class="td6" style="border: black 1px solid;border-right:none;border-left:none;border-top:none;"><strong t-esc="'{0:,.2f}'.format(total)"/></td>
                   </tr>
                   <tr>
                     <td class="td1" style="border:none;"></td>
