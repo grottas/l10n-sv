@@ -97,8 +97,8 @@
                     <t t-set="fechaf" t-value="(data.get('form').get('fechaf'))"/>
                     <t t-set="company" t-value="o"/>
 
-                    <t t-set="fecha1" t-value="(fechai).date('%d/%m/%Y')"/>
-                     <t t-set="fecha2" t-value="(fechaf).date('%d/%m/%Y')"/>
+                    <t t-set="fecha1" t-value="datetime.datetime.strptime(fechai, '%d/%m/%Y')"/>
+                     <t t-set="fecha2" t-value="datetime.datetime.strptime(fechai, '%d/%m/%Y')"/>
 
 
                     <div class="encabezado" >
