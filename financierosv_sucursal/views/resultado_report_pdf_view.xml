@@ -81,6 +81,8 @@
             <t t-set="total12" t-value="float(0.00)"/>
             <t t-set="fechai" t-value="2022-12-1"/>
             <t t-set="fechaf" t-value="2022-12-1"/>
+            <t t-set="fecha1" t-value="2022-12-1"/>
+            <t t-set="fecha2" t-value="2022-12-1"/>
 
 
                 <!--Fin de declaraciones-->
@@ -95,13 +97,13 @@
                     <t t-set="fechaf" t-value="(data.get('form').get('fechaf'))"/>
                     <t t-set="company" t-value="o"/>
 
-                    <t t-set="fecha1" t-value="datetime.strftime(fechai, '%d/%m/%Y')"/>
-                     <t t-set="fecha2" t-value="datetime.strftime(fechaf, '%d/%m/%Y')"/>
+                    <t t-set="fecha1" t-value="(fechai).strftime('%d/%m/%Y')"/>
+                     <t t-set="fecha2" t-value="(fechaf).strftime('%d/%m/%Y')"/>
 
 
                     <div class="encabezado" >
                       <h3><center>LOS RANCHOS DE EL SALVADOR, S.A. DE C.V.</center></h3>
-                      <h6><center>ESTADO DE RESULTADO DEL <span t-esc="fecha1"/> AL <span t-esc="fechaf"/></center></h6>
+                      <h6><center>ESTADO DE RESULTADO DEL <span t-esc="fecha1"/> AL <span t-esc="fecha2"/></center></h6>
                       <h6><center>(Valores expresados en dólares de los Estados Unidos de America)</center></h6>
                     </div>
                   </t>
