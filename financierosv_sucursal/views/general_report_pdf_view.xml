@@ -206,7 +206,10 @@
                   <td class="td1" style="border:none;"><strong t-esc="c.get('name')"/></td>
                   <td class="td2" style="border:none;"></td>
                   <t t-set="totaln1" t-value=" c.get('previo2') + c.get('debe2') - c.get('haber2')"/>
+                  <t t-if="totaln1<0" >
+                  <t t-set="totaln1" t-value="totaln1*-1"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totaln1)"/></td>
+                </t>
                 </tr>
                 <tr t-foreach="company.get_general_details7(company_id, year, month, acum, fechai, fechaf)" t-as="c">
                   <td class="td1" style="border:none;"></td>
