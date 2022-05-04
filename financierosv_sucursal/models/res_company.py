@@ -131,7 +131,7 @@ order by am1.date
 
 
 #****************************Libro Anexo Mayor***************************************************
-    def get_auxiliar_details(self, company_id, date_year, date_month, acum):
+    def get_auxiliar_details(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_auxiliar_report AS (
@@ -150,17 +150,17 @@ select aa.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code||'%' and date_part('month',COALESCE(am1.date,am1.invoice_date))<{2} and am1.state in ('posted')) else 0 end as previo 
+        where aa1.company_id={0}  and aa1.code like aa.code||'%' and COALESCE(am1.date,am1.invoice_date)>=CAST('{4}' as date) and COALESCE(am1.date,am1.invoice_date)<=CAST('{5}' as date) and am1.state in ('posted')) else 0 end as previo 
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
         inner join account_move am2 on aml2.move_id=am2.id
-        where aa2.company_id={0} and aa2.code like aa.code||'%' and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as debe     
+        where aa2.company_id={0} and aa2.code like aa.code||'%' and COALESCE(am2.date,am2.invoice_date)>=CAST('{4}' as date) and COALESCE(am2.date,am2.invoice_date)<=CAST('{5}' as date) and am2.state in ('posted') ) as debe     
 ,(select COALESCE(sum(aml2.credit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
         inner join account_move am2 on aml2.move_id=am2.id
-        where aa2.company_id={0} and aa2.code like aa.code||'%'  and date_part('month',COALESCE(am2.date,am2.invoice_date))={2} and am2.state in ('posted') ) as haber
+        where aa2.company_id={0} and aa2.code like aa.code||'%'  and COALESCE(am2.date,am2.invoice_date)>=CAST('{4}' as date) and COALESCE(am2.date,am2.invoice_date)<=CAST('{5}' as date) and am2.state in ('posted') ) as haber
          
 from account_account aa
 where aa.company_id= {0}  and length(trim(aa.code))>4 and aa.internal_type<>'view'
@@ -168,7 +168,7 @@ order by aa.code
 ) S1
 where S1.previo<>0 or S1.debe<>0 or S1.haber<>0
 
-        )""".format(company_id,date_year,date_month,acum)
+        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_auxiliar_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_auxiliar_report")
@@ -176,7 +176,7 @@ where S1.previo<>0 or S1.debe<>0 or S1.haber<>0
             data = self._cr.dictfetchall()
         return data
 
-    def get_auxiliar_details1(self, company_id, date_year, date_month, acum, id):
+    def get_auxiliar_details1(self, company_id, date_year, date_month, acum, fechai, fechaf, id):
         data = {}
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_auxiliar_report AS (
@@ -192,12 +192,12 @@ select am.date
 from account_move_line aml
                 inner join account_move am on aml.move_id=am.id
                 inner Join account_journal j on am.journal_id= j.id
- where am.company_id= {0} and aml.account_id = '{4}' and date_part('month',COALESCE(am.date,am.invoice_date))>= {2}  and date_part('month',COALESCE(am.date,am.invoice_date))<= {2}    and am.state in ('posted')
+ where am.company_id= {0} and aml.account_id = '{6}' and COALESCE(am.date,am.invoice_date)>=CAST('{4}' as date) and COALESCE(am.date,am.invoice_date)<=CAST('{5}' as date)    and am.state in ('posted')
                 
 order by am.date
 )S
 
-        )""".format(company_id,date_year,date_month,acum,id)
+        )""".format(company_id,date_year,date_month,acum, fechai, fechaf,id)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_auxiliar_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_auxiliar_report")
