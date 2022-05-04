@@ -98,11 +98,11 @@
                     <t t-set="company" t-value="o"/>
 
                     <t t-set="fecha1" t-value="datetime.datetime.strptime(fechai, '%Y-%m-%d')"/>
-                     <t t-set="fecha2" t-value="datetime.datetime.strptime(fechai, '%Y-%m-%d')"/>
+                     <t t-set="fecha2" t-value="datetime.datetime.strptime(fechaf, '%Y-%m-%d')"/>
                      
-                     <t t-set="fecha11" t-value="fecha1.strftime('%m/%d/%Y')"/>
-                     <t t-set="fecha22" t-value="fecha2.strftime('%m/%d/%Y')"/>
-                     cr_date.strftime("%m/%d/%Y")
+                     <t t-set="fecha11" t-value="fecha1.strftime('%m/%b/%Y')"/>
+                     <t t-set="fecha22" t-value="fecha2.strftime('%m/%b/%Y')"/>
+                     
 
 
                     <div class="encabezado" >
