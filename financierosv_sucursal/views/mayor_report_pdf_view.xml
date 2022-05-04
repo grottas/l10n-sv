@@ -26,8 +26,8 @@
                 left:200px;
               }
 
-              .transformacion3 { text-transform: lowercase;}
-              
+              .transformacion3 { text-transform: uppercase;}
+
               .th1{width:80px; text-size:18; text-align:center;}
               .th2{width:500px;text-size:18; text-align:center;}
               .th3{width:80px; text-size:18; text-align:center;}

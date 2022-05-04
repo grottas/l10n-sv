@@ -39,7 +39,7 @@
               bottom: 0;
               position:fixed;
     }         
-            .transformacion3 { text-transform: lowercase;}
+            .transformacion3 { text-transform: uppercase;}
 
               .th1{width:350px; text-size:15; text-align:center;}
               .th2{width:100px;text-size:15; text-align:center;}
