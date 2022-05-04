@@ -14,6 +14,8 @@ class wizard_sv_general_report(models.TransientModel):
     date_year = fields.Integer("Año de facturación", default=2022, requiered=True)
    # contabilizada=fields.Boolean(string="contabilizada", default=False)
     acum=fields.Boolean(string="Acumulativo",default=True)
+    fechai=fields.Date(string="Fecha Inicial",default='2022-3-1')
+    fechaf=fields.Date(string="Fecha Final",default='2022-3-31')
     cont=fields.Char(string="Contador")
     audi=fields.Char(string="Auditor")
     repre=fields.Char(string="Representante")
