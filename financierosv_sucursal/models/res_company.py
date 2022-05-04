@@ -115,7 +115,7 @@ from account_move_line aml
                 inner Join account_account aa on aa.id=aml.account_id
                 inner Join account_group ag on ag.id=aa.group_id
                 where am1.company_id= {0} and aa.code like ag.code_prefix_start ||'%' and COALESCE(am1.date,am1.invoice_date)>=CAST('{4}' as date) and COALESCE(am1.date,am1.invoice_date)<=CAST('{5}' as date)    and am1.state in ('posted')
-                and ag.code_prefix_start = '{4}'
+                and ag.code_prefix_start = '{6}'
 
 group by am1.date            
 order by am1.date
