@@ -205,16 +205,14 @@
                  <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><strong t-esc="c.get('name')"/></td>
                   <td class="td2" style="border:none;"></td>
-                  <t t-set="totaln1" t-value=" c.get('previo2') + c.get('debe2') - c.get('haber2')"/>
-                  <t t-if="totaln1" t-value="(totaln1 < 0)">
-                  <t t-set="totaln1" t-value="(totaln1)*-1"/>
+                  <t t-set="totaln1" t-value=" (c.get('previo2') + c.get('debe2') - c.get('haber2')) * -1"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totaln1)"/></td>
                 </t>
                 </tr>
                 <tr t-foreach="company.get_general_details7(company_id, year, month, acum, fechai, fechaf)" t-as="c">
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
-                  <t t-set="totalf" t-value=" c.get('previo7') + c.get('debe7') - c.get('haber7')"/>
+                  <t t-set="totalf" t-value=" (c.get('previo7') + c.get('debe7') - c.get('haber7')) * -1"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totalf)"/></td>
                   <td class="td1" style="border:none;"></td>
                 </tr>
@@ -228,13 +226,13 @@
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><strong t-esc="c.get('name')"/></td>
                   <td class="td2" style="border:none;"></td>
-                  <t t-set="totaln2" t-value="c.get('previo3') + c.get('haber3') - c.get('debe3')"/>
+                  <t t-set="totaln2" t-value="(c.get('previo3') + c.get('haber3') - c.get('debe3')) * -1"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totaln2)"/></td>
                 </tr>
                 <tr t-foreach="company.get_general_details8(company_id, year, month, acum, fechai, fechaf)" t-as="c">
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
-                  <t t-set="totalg" t-value="c.get('previo8') + c.get('haber8') - c.get('debe8')"/>
+                  <t t-set="totalg" t-value="(c.get('previo8') + c.get('haber8') - c.get('debe8')) * -1"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totalg)"/></td>
                   <td class="td1" style="border:none;"></td>
                 </tr>
@@ -248,13 +246,13 @@
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><strong t-esc="c.get('name')"/></td>
                   <td class="td2" style="border:none;"></td>
-                  <t t-set="totaln3" t-value="c.get('previo4') + c.get('haber4') - c.get('debe4')"/>
+                  <t t-set="totaln3" t-value="(c.get('previo4') + c.get('haber4') - c.get('debe4')) * -1"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totaln3)"/></td>
                 </tr> 
                 <tr t-foreach="company.get_general_details9(company_id, year, month, acum, fechai, fechaf)" t-as="c">
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
-                  <t t-set="totalh" t-value="c.get('previo9') + c.get('haber9') - c.get('debe9')"/>
+                  <t t-set="totalh" t-value="(c.get('previo9') + c.get('haber9') - c.get('debe9')) * -1"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totalh)"/></td>
                    <td class="td6" style="border:none;"></td>
                 </tr>  
