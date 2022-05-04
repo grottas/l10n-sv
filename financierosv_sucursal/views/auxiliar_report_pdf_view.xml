@@ -102,7 +102,7 @@
                   <th class="th5">Haber</th>
                   <th class="th6">Saldo</th>    
               </tr>
-                <tr t-foreach="company.get_auxiliar_details1(company_id, year, month, acum, id)" t-as="s">
+                <tr t-foreach="company.get_auxiliar_details1(company_id, year, month, acum, fechai, fechaf, id)" t-as="s">
                
                 <td class="td3" style="border:none;"><span t-esc="s.get('date').strftime('%d/%m/%Y')"/></td>
                  <td class="td1" style="border:none;text-align:center;"><span t-esc="s.get('name')"/></td>
