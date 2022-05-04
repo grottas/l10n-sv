@@ -856,7 +856,7 @@ order by S2.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am2 on aml1.move_id=am2.id
-        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and COALESCE(am2.date,am2.invoice_date)>=CAST('{4}' as date) and COALESCE(am2.date,am2.invoice_date)<=CAST('{5}' as date) and am1.state in ('posted')) else 0 end as previo4
+        where aa1.company_id={0}  and aa1.code like aa.code ||'%' and COALESCE(am2.date,am2.invoice_date)>=CAST('{4}' as date) and COALESCE(am2.date,am2.invoice_date)<=CAST('{5}' as date) and am2.state in ('posted')) else 0 end as previo4
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
