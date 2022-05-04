@@ -45,9 +45,9 @@
               .th1{width:40px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th2{width:200px;text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th3{width:75px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
-              .th4{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
+              .th4{width:75px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th5{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
-              .th6{width:80px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
+              .th6{width:75px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th7{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
 
               .td1{text-size:18px;  height:0px;font-family: "Times New Roman", Times, serif;text-align:center;}
