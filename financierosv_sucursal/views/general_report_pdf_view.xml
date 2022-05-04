@@ -95,7 +95,7 @@
 
                 <div class="encabezado">
                    <h3><center>LOS RANCHOS DE EL SALVADOR, S.A. DE C.V.</center></h3>
-                  <h6><center>BALANCE GENERAL DEL DEL <span t-esc="fechai"/> al <span t-esc="fechaf"/></center></h6>
+                  <h6><center>BALANCE GENERAL  DEL <span t-esc="fechai"/> AL <span t-esc="fechaf"/></center></h6>
                   <h6><center>(Cifras expresadas en dólares de los Estados Unidos de América)</center></h6>
                 </div>
               </t>

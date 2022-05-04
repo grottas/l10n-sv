@@ -48,6 +48,9 @@
             <t t-set="totalh" t-value="float(0.00)"/>
             <t t-set="total1" t-value="float(0.00)"/>
             <t t-set="total2" t-value="float(0.00)"/>
+            <t t-set="fechai" t-value="2022-12-1"/>
+            <t t-set="fechaf" t-value="2022-12-1"/>
+            
             <t t-set="acum" t-value="null"/>
 
             <!--Fin de declaraciones-->
@@ -58,12 +61,13 @@
                 <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
                 <t t-set="acum" t-value="int(data.get('form').get('acum'))"/>
+                <t t-set="fechai" t-value="(data.get('form').get('fechai'))"/>
+                  <t t-set="fechaf" t-value="(data.get('form').get('fechaf'))"/>
                 <t t-set="company" t-value="o"/>
 
                 <div class="encabezado">
-                  <h3><center>LOS RANCHOS S.A. DE C.V.</center></h3>
-                  <h4><center>LIBRO DIARIO MAYOR</center></h4>
-                  <h6><center>PERTENECIENTE AL MES DE: <span t-esc="o.get_month_str(month)"/> DEL <span t-esc="year"/></center></h6>
+                  <h3><center>LOS RANCHOS DE EL SALVADOR S.A. DE C.V.</center></h3>
+                  <h5><center>LIBRO MAYOR  DEL <span t-esc="fechai"/> AL <span t-esc="fechaf"/></center></h5>
                   <h6><center>(Valores expresados en dólares de los Estados Unidos de América)</center></h6>
                 </div>
               </t>
@@ -78,7 +82,7 @@
                   <th class="th5" style="border:none;" ></th>
                   <th class="th6" style="border:none;" ></th>
               </tr>
-              <tr class="tr-color" t-foreach="company.get_mayor_details(company_id, year, month, acum)" t-as="c">
+              <tr class="tr-color" t-foreach="company.get_mayor_details(company_id, year, month, acum, fechai, fechaf, fechai, fechaf)" t-as="c">
                 <td class="td1" style="border:none;"><span t-esc="c.get('code')"/></td>
                 <td class="td2" style="border:none;"><span t-esc="c.get('name')"/></td>
                 <td class="td3" style="border:none;">Saldo Anterior</td>
@@ -97,7 +101,7 @@
                   <th class="th5">Haber</th>
                   <th class="th6">Saldo</th>
               </tr>
-                <tr t-foreach="company.get_mayor_details1(company_id, year, month, acum, c.get('code'))" t-as="s">
+                <tr t-foreach="company.get_mayor_details1(company_id, year, month, acum, fechai, fechaf, c.get('code'))" t-as="s">
                 <td class="td1" style="border:none;"></td>
                 <td class="td2" style="border:none;"></td>
                 <td class="td3" style="border:none;"><span t-esc="s.get('date').strftime('%d/%m/%Y')"/></td>
@@ -130,7 +134,7 @@
 </table>
             
              
-            <!-- <tr t-foreach="company.get_mayor_details(company_id, year, month, acum)" t-as="c">
+            <!-- <tr t-foreach="company.get_mayor_details(company_id, year, month, acum, fechai, fechaf)" t-as="c">
                 <td class="td1"><span t-esc="c.get('code')"/></td>
                 <td class="td3"><span t-esc="c.get('name')"/></td>
               
@@ -143,7 +147,7 @@
                 <t t-set="total" t-value="c.get('haber') + c.get('debe')"/>
                  <td class="td7"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>
               </tr>
-              <tr t-foreach="company.get_mayor_details1(company_id, year, month, acum)" t-as="c">
+              <tr t-foreach="company.get_mayor_details1(company_id, year, month, acum, fechai, fechaf)" t-as="c">
               <td class="td1"></td>
                <td class="td1"></td>
               <td class="td3"><span t-esc="c.get('date').strftime('%d/%m/%Y')"/></td>

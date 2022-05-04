@@ -12,6 +12,8 @@ class wizard_sv_mayor_report(models.TransientModel):
     date_month = fields.Selection([('1','Enero'),('2','Febrero'),('3','Marzo'),('4','Abril'),('5','Mayo'),('6','Junio'),('7','Julio'),('8','Agosto'),('9','Septiembre'),('10','Octubre'),('11','Noviembre'),('12','Diciembre')],string='Mes de facturación', default='3',required=True)
     date_year = fields.Integer("Año de facturación", default=2022, requiered=True)
     acum=fields.Boolean(string="Acumulativo",default=False)
+    fechai=fields.Date(string="Fecha Inicial",default='2022-3-1')
+    fechaf=fields.Date(string="Fecha Final",default='2022-3-31')
     #stock_location_id=fields.Many2one('stock.location', string="Sucursal", help="Sucursal de la que se desea el Libro de IVA",default=lambda self: self.env.user.sucursal_id.id)
 
 

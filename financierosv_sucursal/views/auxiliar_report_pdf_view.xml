@@ -66,7 +66,7 @@
 
                 <div class="encabezado">
                   <h3><center>LOS RANCHOS DE EL SALVADOR S.A. DE C.V.</center></h3>
-                  <h4><center>LIBRO DIARIO AUXILIAR DEL <span t-esc="fechai"/> al <span t-esc="fechaf"/></center></h4>
+                  <h4><center>LIBRO DIARIO AUXILIAR DEL <span t-esc="fechai"/> AL <span t-esc="fechaf"/></center></h4>
                   <h6><center>PERTENECIENTE AL MES DE: <span t-esc="o.get_month_str(month)"/> DEL <span t-esc="year"/></center></h6>
                   <h6><center>(Valores expresados en dólares de los Estados Unidos de América)</center></h6>
                 </div>
