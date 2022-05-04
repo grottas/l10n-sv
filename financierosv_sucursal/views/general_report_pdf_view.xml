@@ -43,7 +43,7 @@
 
               .th1{width:350px; text-size:15; text-align:center;}
               .th2{width:100px;text-size:15; text-align:center;}
-              .th3{width:100px; text-size:15; text-align:center;}
+              .th3{width:75px; text-size:15; text-align:center;}
               .th4{width:50px; text-size:15; text-align:center;}
               .th5{width:100px; text-size:15; text-align:center;}
               .th6{width:100px; text-size:15; text-align:center;}

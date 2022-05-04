@@ -45,7 +45,7 @@
               .th1{width:40px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th2{width:200px;text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th3{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
-              .th4{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
+              .th4{width:75px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th5{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th6{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
               .th7{width:100px; text-size:15; text-align:center;font-family: "Times New Roman", Times, serif;}
@@ -95,10 +95,13 @@
                     <t t-set="fechaf" t-value="(data.get('form').get('fechaf'))"/>
                     <t t-set="company" t-value="o"/>
 
+                    <t t-set="fecha1" t-value="datetime.strptime(fechai, '%d/%m/%Y')"/>
+                     <t t-set="fecha2" t-value="datetime.strptime(fechaf, '%d/%m/%Y')"/>
+
 
                     <div class="encabezado" >
                       <h3><center>LOS RANCHOS DE EL SALVADOR, S.A. DE C.V.</center></h3>
-                      <h6><center>ESTADO DE RESULTADO DEL <span t-esc="fechai"/> AL <span t-esc="fechaf"/></center></h6>
+                      <h6><center>ESTADO DE RESULTADO DEL <span t-esc="fecha1"/> AL <span t-esc="fechaf"/></center></h6>
                       <h6><center>(Valores expresados en dólares de los Estados Unidos de America)</center></h6>
                     </div>
                   </t>
@@ -230,7 +233,7 @@
                     <td class="td1" style="border:none;"></td>
                     <td class="td2" style="border:none;"><strong>OTROS GASTOS</strong></td>
                     <!--<td class="td3"><span t-esc="'{0:.2f}'.format(c.get('previo'))"/></td>-->
-                    <td class="td4" style="border:none;"></td>
+                    <td class="td4" style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
                     <t t-set="total11" t-value="c.get('previo11') + c.get('debe11') - c.get('haber11')"/>
                     <td class="td5" style="border:none;"><span t-esc="'{0:,.2f}'.format(total11)"/></td>
                   
