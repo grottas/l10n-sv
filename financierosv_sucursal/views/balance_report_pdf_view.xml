@@ -29,6 +29,9 @@
               .th4{width:80px; text-size:15; text-align:center;}
               .th5{width:80px; text-size:15; text-align:center;}
               .th6{width:80px; text-size:15; text-align:center;}
+
+              .transformacion3 { text-transform: uppercase;}
+
             </style>
             <!--Declaracion de variables-->
             <t t-set="month" t-value="int(0)"/>
@@ -40,6 +43,8 @@
             <t t-set="acum" t-value="null"/>
             <t t-set="fechai" t-value="2022-12-1"/>
             <t t-set="fechaf" t-value="2022-12-1"/>
+            <t t-set="fecha1" t-value="2022-12-1"/>
+            <t t-set="fecha2" t-value="2022-12-1"/>
 
             <!--Fin de declaraciones-->
 
@@ -52,12 +57,17 @@
                   <t t-set="fechai" t-value="(data.get('form').get('fechai'))"/>
                   <t t-set="fechaf" t-value="(data.get('form').get('fechaf'))"/>
 
+                  <t t-set="fecha1" t-value="datetime.datetime.strptime(fechai, '%Y-%m-%d')"/>
+                     <t t-set="fecha2" t-value="datetime.datetime.strptime(fechaf, '%Y-%m-%d')"/>
+                     
+                     <t t-set="fecha11" t-value="fecha1.strftime('%d %b, %Y')"/>
+                     <t t-set="fecha22" t-value="fecha2.strftime('%d %b, %Y')"/>
                 <t t-set="company" t-value="o"/>
 
 
                 <div class="encabezado">
                   <h3><center>LOS RANCHOS DE EL SALVADOR S.A. de C.V.</center></h3>
-                  <h6><center>BALANCE DE SUMAS Y SALDOS DEL <span t-esc="fechai"/> AL <span t-esc="fechaf"/></center></h6>
+                  <h6><center>BALANCE DE SUMAS Y SALDOS DEL <span class="transformacion3" t-esc="fecha11"/> AL <span class="transformacion3" t-esc="fecha22"/></center></h6>
                   <h6><center>(Valores expresados en dólares de los Estados Unidos de America)</center></h6>
                 </div>
 

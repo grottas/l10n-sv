@@ -25,6 +25,9 @@
                 position:absolute;
                 left:200px;
               }
+
+              .transformacion3 { text-transform: lowercase;}
+              
               .th1{width:80px; text-size:18; text-align:center;}
               .th2{width:500px;text-size:18; text-align:center;}
               .th3{width:80px; text-size:18; text-align:center;}
@@ -50,6 +53,8 @@
             <t t-set="total2" t-value="float(0.00)"/>
             <t t-set="fechai" t-value="2022-12-1"/>
             <t t-set="fechaf" t-value="2022-12-1"/>
+            <t t-set="fecha1" t-value="2022-12-1"/>
+            <t t-set="fecha2" t-value="2022-12-1"/>
             
             <t t-set="acum" t-value="null"/>
 
@@ -65,9 +70,15 @@
                   <t t-set="fechaf" t-value="(data.get('form').get('fechaf'))"/>
                 <t t-set="company" t-value="o"/>
 
+                <t t-set="fecha1" t-value="datetime.datetime.strptime(fechai, '%Y-%m-%d')"/>
+              <t t-set="fecha2" t-value="datetime.datetime.strptime(fechaf, '%Y-%m-%d')"/>
+                     
+                     <t t-set="fecha11" t-value="fecha1.strftime('%d %b, %Y')"/>
+                     <t t-set="fecha22" t-value="fecha2.strftime('%d %b, %Y')"/>
+
                 <div class="encabezado">
                   <h3><center>LOS RANCHOS DE EL SALVADOR S.A. DE C.V.</center></h3>
-                  <h5><center>LIBRO MAYOR  DEL <span t-esc="fechai"/> AL <span t-esc="fechaf"/></center></h5>
+                  <h5><center>LIBRO MAYOR  DEL <span class="transformacion3" t-esc="fecha11"/> AL <span class="transformacion3" t-esc="fecha22"/></center></h5>
                   <h6><center>(Valores expresados en dólares de los Estados Unidos de América)</center></h6>
                 </div>
               </t>
