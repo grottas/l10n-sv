@@ -97,7 +97,6 @@
             <t t-set="totalventas" t-value="float(0.00)"/>
             <t t-set="exportacion" t-value="float(0.00)"/>
 
-
             <t t-set="totalExentas1" t-value="float(0.00)"/>
             <t t-set="totalGravadasLocal1" t-value="float(0.00)"/>
             <t t-set="totalGravadasExp1" t-value="float(0.00)"/>
@@ -106,6 +105,11 @@
             <t t-set="totalIvaLocal1" t-value="float(0.00)"/>
             <t t-set="totalIvaExp1" t-value="float(0.00)"/>
             <t t-set="total1" t-value="float(0.00)"/>
+
+            <!--NUEVAS VARIABLES-->
+            <t t-set="total1" t-value="float(0.00)"/>
+            <t t-set="total" t-value="float(0.00)"/>
+            <t t-set="total3" t-value="float(0.00)"/>
 
             <t t-set="debito" t-value="float(0.00)"/>
             <t t-set="ventaNeta" t-value="float(0.00)"/>
@@ -225,7 +229,7 @@
                    <t t-set="totalDebito" t-value="((totalGravadasLocal1)*debito)/ventaNeta"/>
                    <t t-set="totalNeto" t-value="(totalExentas1)/1.13" />
                    <t t-set="totalR" t-value="float(0.00)"/>
-                   <t t-set="debit" t-value="(totalGravadasLocal1)/1.13" />
+                   <t t-set="debit" t-value="(totalGravadasLocal1)" />
 
                    <t t-set="ventasTerceros" t-value="float(0.00)"/>
 
