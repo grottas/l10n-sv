@@ -209,7 +209,9 @@
                    <t t-set="debit" t-value="float(0.00)"/>
                    <t t-set="debito" t-value="float(0.13)"/>
                    <t t-set="ventaNeta" t-value="float(1.13)"/>
-                   <t t-set="totalDebito" t-value="((totalExentas)*debito)/ventaNeta"/>
+                   <!--<t t-set="totalDebito" t-value="((totalExentas)*debito)/ventaNeta"/>-->
+                   <t t-set="totalDebito" t-value="float(0.00)"/>
+
                    <t t-set="totalDebito1" t-value="((totalGravadasLocal)*debito)/ventaNeta"/>
                    <t t-set="totalNeto" t-value="(totalExentas)/1.13" />
                    <t t-set="totalNeto1" t-value="(totalGravadasLocal)/1.13" />
