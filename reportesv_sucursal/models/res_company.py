@@ -1160,7 +1160,7 @@ select ai.invoice_date as fecha
  	       inner join account_tax atx on ait.tax_line_id=atx.id
 	       inner join account_tax_group atg on atx.tax_group_id=atg.id
        where ait.move_id=ai.id
-	       and lower(atg.code)='exento'
+	       and lower(atg.code)='Exento'
        ) as Iva
 	   ,/*Calculando el retenido*/
       (Select coalesce(sum(ait.debit-ait.credit),0.00)
