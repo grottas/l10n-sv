@@ -209,9 +209,10 @@
                    <t t-set="debito" t-value="float(0.13)"/>
                    <t t-set="ventaNeta" t-value="float(1.13)"/>
                    <!--<t t-set="totalDebito" t-value="((totalExentas)*debito)/ventaNeta"/>-->
-                   <t t-set="totalDebito" t-value="(totalExentas)"/>
+                   <t t-set="totalDebito" t-value="float(0.00)"/>
                    <t t-set="totalDebito1" t-value="((totalGravadasLocal)*debito)/ventaNeta"/>
-                   <t t-set="totalNeto" t-value="(totalExentas)/1.13" />
+                   <t t-set="totalNeto" t-value="(totalExentas)" />
+                    <!--<t t-set="totalNeto" t-value="(totalExentas)/1.13" />-->
                    <t t-set="totalNeto1" t-value="(totalGravadasLocal)/1.13" />
                    <t t-set="debit" t-value="(totalGravadasLocal)*0.13" />
                    <t t-set="totaln" t-value="(totalGravadasLocal - totalIvaLocal) " />
@@ -259,7 +260,7 @@
                         <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totaln)"/></td>
                       </tr>
                       <tr>
-                        <td class="center-middle" style="text-align:left">campo en prueba</td>
+                        <td class="center-middle" style="text-align:left">Ventas Internas Exentas</td>
                         <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExentas)"/></td>
                         <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalDebito)"/></td>
                         <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalNeto)"/></td>
