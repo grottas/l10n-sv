@@ -274,7 +274,7 @@
                       <tr>
                         <!--Calculo de totales-->
                         <t t-set="total1" t-value="total1 + totalGravadasLocal + totalExentas + totalGravadasExp "/>
-                        <t t-set="total2" t-value="total2 + totalIvaLocal + totalIvaExp + totalDebito"/>
+                        <t t-set="total2" t-value="total2 + totalNuevo + totalIvaExp + totalDebito"/>
                         <t t-set="total3" t-value="total3 - total2 + total1"/>
                         <!---->
                         <td class="center-middle" style="text-align: left;">Totales</td>
