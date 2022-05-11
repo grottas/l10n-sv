@@ -98,6 +98,7 @@
 
             <t t-set="total" t-value="float(0.00)"/>
             <t t-set="zero" t-value="float(0.00)"/>
+            <t t-set="totalNuevo" t-value="float(0.00)"/>
             <t t-set="totalExentas" t-value="float(0.00)"/>
             <t t-set="totalGravadasLocal" t-value="float(0.00)"/>
             <t t-set="totalGravadasExp" t-value="float(0.00)"/>
