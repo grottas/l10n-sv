@@ -98,7 +98,6 @@
 
             <t t-set="total" t-value="float(0.00)"/>
             <t t-set="zero" t-value="float(0.00)"/>
-            <t t-set="totalNuevo" t-value="float(0.00)"/>
             <t t-set="totalExentas" t-value="float(0.00)"/>
             <t t-set="totalGravadasLocal" t-value="float(0.00)"/>
             <t t-set="totalGravadasExp" t-value="float(0.00)"/>
@@ -121,6 +120,10 @@
             <t t-set="Total2" t-value="float(0.00)"/>
             <t t-set="Total1" t-value="float(0.00)"/>
             <t t-set="Total3" t-value="float(0.00)"/>
+            
+            <!--NUEVAS VARIABLES-->
+            <t t-set="totalNuevo" t-value="float(0.00)"/>
+            <t t-set="totalVN" t-value="float(0.00)"/>
             <!--Fin de declaraciones-->
 
             <!--Encabezado-->
@@ -219,10 +222,9 @@
                    <t t-set="totaln" t-value="(totalGravadasLocal - totalNuevo) " />
                    <!--nueva variable-->
                   <t t-set="totalNuevo" t-value="(totalGravadasLocal - totalNeto1 )" />
-
-
-
-                   <t t-set="total" t-value="float(0.00)"/>
+                  <t t-set="totalVN" t-value="(totalGravadasExp - totalIvaExp)" />
+                  <t t-set="total" t-value="float(0.00)"/>
+                   
                    <!--Fin ce calculos-->
               </tr>
                 <tr class="tr-color" style="text-aling:right;">
@@ -271,13 +273,13 @@
                         <td class="center-middle" style="text-align:left;border-spacing: 0.3px">Ventas Gravada a Sujeto Tasa Cero (0%)</td>
                         <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasExp)"/></td>
                         <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIvaExp)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasExp - totalIvaExp)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalVN)"/></td>
                       </tr>
                       <tr>
                         <!--Calculo de totales-->
                         <t t-set="total1" t-value="total1 + totalGravadasLocal + totalExentas + totalGravadasExp "/>
                         <t t-set="total2" t-value="total2 + totalNuevo + totalIvaExp + totalDebito"/>
-                        <t t-set="total3" t-value="total3 - total2 + total1"/>
+                        <t t-set="total3" t-value="total3 + totaln + totalNeto + totalVN"/>
                         <!---->
                         <td class="center-middle" style="text-align: left;">Totales</td>
                         <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total1)"/></td>
