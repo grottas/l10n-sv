@@ -51,7 +51,7 @@
                                 <field name="correlativo"/>
                                 <field name="sucursal"/>
                                 <field name="fecha"/>
-                                <field name="name"/>
+                                <field name="cliente"/>
                                 <field name="nit"/>
                                 <field name="dui"/>
                                 <field name="resolucion"/>
@@ -84,24 +84,6 @@
                                 <field name="exportacion"/>
                                 <field name="retencion"/>
                                 <field name="total_venta"/>
-                              </tree>
-                            </field>
-                          </page>
-                           <page string="Ventas a Consumidor sin Agrupar">
-                            <field name="consumidores_full">
-                              <tree>
-                                <field name="correlativo"/>
-                                <field name="sucursal"/>
-                                <field name="fecha"/>
-                                <field name="cliente"/>
-                                <field name="nit"/>
-                                <field name="exento"/>
-                                <field name="gravado"/>
-                                <field name="debito"/>
-                                <field name="total_venta"/>
-                                <field name="retenido"/>
-                                <field name="percibido"/>
-                                <field name="total"/>
                               </tree>
                             </field>
                           </page>
@@ -266,7 +248,7 @@
    <field name="numero_cortado"/>
    <field name="numero_interno"/>
    <field name="nit"/>
-   <field name="name"/>
+   <field name="cliente"/>
    <field name="exento"/>
    <field name="no_sujeto"/>
    <field name="gravado"/>
