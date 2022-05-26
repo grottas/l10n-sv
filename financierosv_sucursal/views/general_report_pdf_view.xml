@@ -225,8 +225,7 @@
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><strong t-esc="c.get('name')"/></td>
                   <td class="td2" style="border:none;"></td>
-                  <!--<t t-set="totaln2" t-value="(c.get('previo3') + c.get('haber3') - c.get('debe3')) * -1"/>   AGUAS DOS-->
-                  <t t-set="totaln2" t-value="(c.get('previo3') + c.get('haber3') - c.get('debe3'))"/>
+                  <t t-set="totaln2" t-value="(c.get('previo3') + c.get('haber3') - c.get('debe3')) * -1"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totaln2)"/></td>
                 </tr>
                 <tr t-foreach="company.get_general_details8(company_id, year, month, acum, fechai, fechaf)" t-as="c">
@@ -242,11 +241,13 @@
                   <td class="td2" style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
                   <td class="td6" style="border:none;"></td>
                 </tr>
+                <!--utilidaes no distribuidas-->
                 <tr t-foreach="company.get_general_details4(company_id, year, month, acum, fechai, fechaf)" t-as="c">
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><strong t-esc="c.get('name')"/></td>
                   <td class="td2" style="border:none;"></td>
-                  <t t-set="totaln3" t-value="(c.get('previo4') + c.get('haber4') - c.get('debe4')) * -1"/>
+                   <!--<t t-set="totaln3" t-value="(c.get('previo4') + c.get('haber4') - c.get('debe4')) * -1"/>    cambio-->
+                  <t t-set="totaln3" t-value="(c.get('previo4') + c.get('haber4') - c.get('debe4'))"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totaln3)"/></td>
                 </tr> 
                 <tr t-foreach="company.get_general_details9(company_id, year, month, acum, fechai, fechaf)" t-as="c">
