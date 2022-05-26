@@ -225,6 +225,7 @@
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><strong t-esc="c.get('name')"/></td>
                   <td class="td2" style="border:none;"></td>
+                  <!--<t t-set="totaln2" t-value="(c.get('previo3') + c.get('haber3') - c.get('debe3')) * -1"/>   AGUAS DOS-->
                   <t t-set="totaln2" t-value="(c.get('previo3') + c.get('haber3') - c.get('debe3')) * -1"/>
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totaln2)"/></td>
                 </tr>
