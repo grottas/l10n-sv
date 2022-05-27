@@ -77,7 +77,7 @@
                      <t t-set="fecha22" t-value="fecha2.strftime('%d %b, %Y')"/>
 
                 <div class="encabezado">
-                  <h3><center>LOS RANCHOS DE EL SALVADOR S.A. DE C.V.</center></h3>
+                  <h3><center>PRUEBAS, S.A. DE C.V.</center></h3>
                   <h5><center>LIBRO MAYOR  DEL <span class="transformacion3" t-esc="fecha11"/> AL <span class="transformacion3" t-esc="fecha22"/></center></h5>
                   <h6><center>(Valores expresados en dólares de los Estados Unidos de América)</center></h6>
                 </div>
