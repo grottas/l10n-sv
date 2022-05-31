@@ -21,11 +21,11 @@ class res_company(models.Model):
         data = {}
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_balance_report AS (
-            select S.* 
+            select S.*
                 ,case when COALESCE(S.signonegativo,False) =true then -1
                 else 1 end as TipoCuenta
 from (
-select aa.code 
+select aa.code
     ,aa.name as name
     ,date_part('day',CAST('{4}' as date)) as fi
     ,date_part('day',CAST('{5}' as date)) as ff
@@ -34,12 +34,12 @@ select aa.code
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
-        where aa1.company_id={0}  and aa1.code like aa.code||'%'  and COALESCE(am1.date,am1.invoice_date)<CAST('{4}' as date) and am1.state in ('posted')) else 0 end as previo 
+        where aa1.company_id={0}  and aa1.code like aa.code||'%'  and COALESCE(am1.date,am1.invoice_date)<CAST('{4}' as date) and am1.state in ('posted')) else 0 end as previo
 ,(select COALESCE(sum(aml2.debit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
         inner join account_move am2 on aml2.move_id=am2.id
-        where aa2.company_id={0} and aa2.code like aa.code||'%' and COALESCE(am2.date,am2.invoice_date)>=CAST('{4}' as date) and COALESCE(am2.date,am2.invoice_date)<=CAST('{5}' as date) and am2.state in ('posted') ) as debe     
+        where aa2.company_id={0} and aa2.code like aa.code||'%' and COALESCE(am2.date,am2.invoice_date)>=CAST('{4}' as date) and COALESCE(am2.date,am2.invoice_date)<=CAST('{5}' as date) and am2.state in ('posted') ) as debe    
 ,(select COALESCE(sum(aml2.credit),0)
         from account_account aa2
         inner join account_move_line aml2 on aa2.id=aml2.account_id
@@ -47,9 +47,9 @@ select aa.code
         where aa2.company_id={0} and aa2.code like aa.code||'%' and COALESCE(am2.date,am2.invoice_date)>=CAST('{4}' as date) and COALESCE(am2.date,am2.invoice_date)<=CAST('{5}' as date) and am2.state in ('posted') ) as haber
          
 
-from cuentas aa     
+from cuentas aa
 ) S
-where S.previo<>0 or S.debe<>0 or S.haber<>0 
+where S.previo<>0 or S.debe<>0 or S.haber<>0
 order by S.code
 
         )""".format(company_id,date_year,date_month,acum,fechai,fechaf)
