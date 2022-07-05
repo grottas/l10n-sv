@@ -233,8 +233,8 @@
                 <tr t-foreach="company.get_general_details8(company_id, year, month, acum, fechai, fechaf)" t-as="c">
                   <td class="td1" style="border:none;"></td>
                   <td class="td1" style="border:none;"><span t-esc="c.get('name')"/></td>
-                  <!--<t t-set="totalg" t-value="(c.get('previo8') + c.get('haber8') - c.get('debe8')) * -1"/>-->
-                  <t t-set="totalg" t-value="(c.get('previo8') + c.get('haber8') - c.get('debe8'))"/>
+                  <t t-set="totalg" t-value="(c.get('previo8') + c.get('haber8') - c.get('debe8')) * -1"/>
+                  <!--<t t-set="totalg" t-value="(c.get('previo8') + c.get('haber8') - c.get('debe8'))"/>-->
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(totalg)"/></td>
                   <td class="td1" style="border:none;"></td>
                 </tr>
