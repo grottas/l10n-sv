@@ -16,7 +16,7 @@ class res_company(models.Model):
     
     
 #BALANCE DE COMPROBACION SUMAS Y SALDOS
-
+####
     def get_balance_details(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
 
