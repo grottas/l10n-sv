@@ -22,7 +22,7 @@ class res_company(models.Model):
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_balance_report AS (
             select S.* 
-                ,case when COALESCE(S.signonegativo,False) =true then -1
+                ,case when COALESCE(S.signonegativo,False) =true then 1
                 else 1 end as TipoCuenta
 from (
 select aa.code 
