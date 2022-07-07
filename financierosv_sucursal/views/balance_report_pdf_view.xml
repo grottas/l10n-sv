@@ -31,6 +31,8 @@
             </style>
             
             <!--Declaracion de variables-->
+            <t t-set="tt" t-value="int(0)"/>
+            <t t-set="tt2" t-value="int(0)"/>
             <t t-set="month" t-value="int(0)"/>
             <t t-set="year" t-value="int(0)"/>
             <t t-set="company_id" t-value="int(0)"/>
@@ -83,11 +85,11 @@
                   <td class="td5" style="border:none;"><span t-esc="'{0:,.2f}'.format(c.get('haber'))"/></td>
                   <t t-set="tt" t-value="c.get('previo') + c.get('debe')"/>
                   
-                  <t t-if="tt !< c.get('haber')">
+                  <t t-if="tt > c.get('haber')">
                     <t t-set="tt2" t-value="tt *-1"/>
                   </t>
                   <t t-set="total" t-value="tt2 - c.get('haber')"/>
-                  
+
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(total)"/></td>
                 </tr>
             </table>
