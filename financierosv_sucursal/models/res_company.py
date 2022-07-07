@@ -49,7 +49,7 @@ select aa.code
 
 from cuentas aa     
 ) S
-where S.previo<>0 or S.debe<>0 or S.haber<>0 
+where S.previo<>0 or S.debe<>0 or S.haber<>0  
 order by S.code
 
         )""".format(company_id,date_year,date_month,acum,fechai,fechaf)
