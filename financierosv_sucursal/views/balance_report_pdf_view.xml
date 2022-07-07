@@ -83,13 +83,7 @@
                   <td class="td3" style="border:none;"><span t-esc="'{0:,.2f}'.format(c.get('previo'))"/></td>
                   <td class="td4" style="border:none;"><span t-esc="'{0:,.2f}'.format(c.get('debe'))"/></td>
                   <td class="td5" style="border:none;"><span t-esc="'{0:,.2f}'.format(c.get('haber'))"/></td>
-                  <t t-set="tt" t-value="c.get('previo') + c.get('debe')"/>
-                  
-                  <t t-if="tt < 0">
-                    <t t-set="tt2" t-value="tt *-1"/>
-                  </t>
-                  <t t-set="total" t-value="tt2 - c.get('haber')"/>
-
+                  <t t-set="total" t-value="c.get('previo') + c.get('debe') - c.get('debe')"/>        
                   <td class="td6" style="border:none;"><span t-esc="'{0:,.2f}'.format(total)"/></td>
                 </tr>
             </table>
