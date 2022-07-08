@@ -75,7 +75,7 @@ select aa.code
          
 
 from cuentas aa
-where aa.code like '1%' and aa.code like '4%'
+where aa.code like '1%' or aa.code like '4%'
 
 ) S
 where S.previo<>0 or S.debe<>0 or S.haber<>0
