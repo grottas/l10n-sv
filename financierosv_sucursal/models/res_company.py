@@ -48,7 +48,7 @@ select aa.code
          
 
 from cuentas aa
-where aa.code not like '4%' and aa.code not like '5%'
+where aa.code not like '1%' and aa.code not like '4%'
 
 union all
 
@@ -57,7 +57,7 @@ select aa.code
     ,date_part('day',CAST('{4}' as date)) as fi
     ,date_part('day',CAST('{5}' as date)) as ff
     ,(select acs.x_negativo from x_signos acs where x_company_id={0} and acs.x_name=left(aa.code,1)) as signonegativo
-    ,case when {3}=1 then  (select COALESCE(sum(aml1.debit),0) - COALESCE(sum(aml1.credit),0)
+    ,case when {3}=1 then  (select COALESCE(sum(aml1.credit),0) - COALESCE(sum(aml1.debit),0)
     from account_account aa1
         inner join account_move_line aml1 on aa1.id=aml1.account_id
         inner join account_move am1 on aml1.move_id=am1.id
@@ -75,7 +75,7 @@ select aa.code
          
 
 from cuentas aa
-where aa.code like '4%' and aa.code not like '5%'
+where aa.code like '1%' and aa.code not like '4%'
 
 ) S
 where S.previo<>0 or S.debe<>0 or S.haber<>0
