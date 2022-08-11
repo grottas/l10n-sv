@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SelectionComboOrderMenuList" owl="1">
+        <div class="order-menu">
+            <t t-foreach="props.OrderMenu" t-as="order" t-key="order.id">
+                <div class="order_menu_row">
+                    <div class="category">
+                        <t t-esc="order.categoryName"/>
+                    </div>
+                    <t t-foreach="order.products" t-as="product" t-key="product.id">
+                        <div class="order_item">
+                            <span class="product_name"><t t-esc="product.product_name + '(' + product.qty + ')'"/></span>
+                            <span class="product_price"><t t-esc="(product.price).toFixed(2)"/></span>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </div>
+    </t>
+
+</templates>
