@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="reporteodoo_settings_form" model="ir.ui.view">
+        <field name="name">reporteodoo_settings_form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_info']" position="after">
+                <page string="Configuracion de reportes">
+                   
+                    <group string="Cuentas">
+                        <field name="level_group1"/>
+                        <field name="level_group2"/>
+                        <field name="level_group3"/>
+                        <field name="level_group4"/>
+                        <field name="level_group5"/>
+                        <field name="level_group6"/>
+                        <field name="level_group7"/>
+                        <field name="contador"/>
+                        <field name="auditor"/>
+                        <field name="representante"/>
+
+                        <button name="configurar_cuentas"  type="object" string="Configurar cuentas"/>
+
+                    </group>
+                    
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="informe_form" model="ir.ui.view">
+        <field name="name">informe_form</field>
+        <field name="model">account.financial.html.report</field>
+        <field name="inherit_id" ref="account_reports.view_account_financial_report_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                
+                   
+                    <group string="Reportes SV">
+                        <field name="nivel_interno"/>
+                        <field name="cuentas"/>   
+                        <field name="bloquear"/>    
+                        <field name="company_id"/>    
+                        <field name="hide_if_empty"/>    
+                        <button name="crear_structura"  type="object" string="Crear Estructura"/>                  
+                    </group>
+                    
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_group_form" model="ir.ui.view">
+        <field name="name">account_group_form</field>
+        <field name="model">account.group</field>
+        <field name="inherit_id" ref="account.view_account_group_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="signo_negativo"/>        
+            </xpath>
+        </field>
+    </record>
+
+
+    <template id="firmas_template" name="firmas_template"  inherit_id="account_reports.footnotes_template">
+        <xpath expr="." position="inside">
+            <div class="row" style="height:130px;"></div>
+            <div class="row">
+
+                <table style="width:100%;">
+                   
+                  <tr>
+                    <td class="text-center" style="border-top:thin solid black; width:30%;"><span>CONTADOR</span></td>
+                    <td style="width:5%"></td>
+                    <td class="text-center" style="border-top:thin solid black; width:30%; "><span>AUDITOR</span></td>
+                    <td style="width:5%"></td>
+                    <td class="text-center" style="border-top:thin solid black; width:30%; "><span>REPRESENTANTE LEGAL</span></td>
+                  </tr>
+                </table>
+                
+              </div>
+        </xpath>
+    </template>
+
+</data>
+</odoo>
