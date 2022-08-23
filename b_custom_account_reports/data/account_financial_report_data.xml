@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Account Financial Report Actions -->
+        <record id="action_custom_trial_balance" model="ir.actions.client">
+            <field name="name">Custom Trial Balance</field>
+            <field name="tag">account_report</field>
+            <field name="context" eval="{'model': 'custom.trial.balance'}"/>
+        </record>
+
+        <!-- Account Financial Report Menuitems -->
+        <menuitem id="menu_custom_trial_balance" name="Custom Trial Balance"
+                  parent="menu_custom_reports"
+                  action="b_custom_account_reports.action_custom_trial_balance"
+                  groups="account.group_account_user"/>
+
+        <menuitem id="menu_custom_reports" name="Custom Reports"
+                  parent="account.menu_finance_reports"
+                  sequence="0"/>
+        
+    </data>
+
+</odoo>
