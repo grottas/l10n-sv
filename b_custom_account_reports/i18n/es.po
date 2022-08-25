@@ -30,7 +30,8 @@ msgid ""
 "<span class=\"fa fa-filter\"/>\n"
 "                Options:"
 msgstr ""
-
+"<span class=\"fa fa-filter\"/>\n"
+"                Opciones:"
 #. module: b_custom_account_reports
 #: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
 msgid "Accumulative"
