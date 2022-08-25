@@ -62,13 +62,13 @@ class CustomTrialBalance(models.AbstractModel):
 				  ]
 		header2 = [
 			{'name': '', 'style': 'width: 100%'},
-			{'name': _('Saldo Anterior'), 'class': 'number o_account_coa_column_contrast'},
+			{'name': _('Previous balance'), 'class': 'number o_account_coa_column_contrast'},
 		]
 
 		header2 += [
 			{'name': _('Debit'), 'class': 'number o_account_coa_column_contrast'},
 			{'name': _('Credit'), 'class': 'number o_account_coa_column_contrast'},
-			{'name': _('Saldo'), 'class': 'number o_account_coa_column_contrast'},
+			{'name': _('Balance'), 'class': 'number o_account_coa_column_contrast'},
 		]
 		return [header1, header2]
 
@@ -159,7 +159,7 @@ class CustomTrialBalance(models.AbstractModel):
 
 	def print_pdf(self, options):
 		report_name = 'financierosv_sucursal.report_balance_pdf'
-		report = self.env['ir.actions.report']._get_report_from_name(report_name)
+		# report = self.env['ir.actions.report']._get_report_from_name(report_name)
 		date_from = fields.Date.from_string(options.get('date').get('date_from'))
 		date_to = fields.Date.from_string(options.get('date').get('date_to'))
 
@@ -176,8 +176,4 @@ class CustomTrialBalance(models.AbstractModel):
 			'form': form,
 			'model': 'res_company'
 		}
-
-		# datas = {'ids': self._ids,
-		# 		 'form': self.read()[0],
-		# 		 'model': 'wizard.sv.balance.report'}
 		return self.env.ref('financierosv_sucursal.report_balance_pdf').report_action(self, data=data)
