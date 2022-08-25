@@ -1,0 +1,162 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* b_custom_account_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-25 02:49+0000\n"
+"PO-Revision-Date: 2022-08-25 02:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_line_template
+msgid ""
+"<i class=\"fa fa-caret-right invisible\" role=\"img\" aria-"
+"label=\"Unfolded\" title=\"Unfolded\"/>"
+msgstr ""
+"<i class=\"fa fa-caret-right invisible\" role=\"img\" aria-"
+"label=\"Desplegado\" title=\"Desplegado\"/>"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid ""
+"<span class=\"fa fa-filter\"/>\n"
+"                Options:"
+msgstr ""
+"<span class=\"fa fa-filter\"/>\n"
+"                Opciones:"
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid "Accumulative"
+msgstr "Acumulativo"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_line_template
+msgid "Annotate"
+msgstr "Anotar"
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#, python-format
+msgid "Balance"
+msgstr "Balance"
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#, python-format
+msgid "Credit"
+msgstr "Crédito"
+
+#. module: b_custom_account_reports
+#: model:ir.ui.menu,name:b_custom_account_reports.menu_custom_reports
+msgid "Custom Reports"
+msgstr "Reportes personalizados"
+
+#. module: b_custom_account_reports
+#: model:ir.actions.client,name:b_custom_account_reports.action_custom_trial_balance
+#: model:ir.ui.menu,name:b_custom_account_reports.menu_custom_trial_balance
+msgid "Custom Trial Balance"
+msgstr "Balance de Comprobación Personalizado"
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#, python-format
+msgid "Debit"
+msgstr "Débito"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_line_template
+msgid "Folded"
+msgstr "Doblada"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid "Hierarchy"
+msgstr "Jerarquía"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid ""
+"Hierarchy and\n"
+"                    Subtotals"
+msgstr ""
+"Jerarquía y\n"
+"                    subtotales"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid "Include Unposted Entries"
+msgstr "Incluir asientos no contabilzados"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid "Include unposted entries"
+msgstr "Incluir asientos no contabilzados"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid ""
+"Only Show\n"
+"                    Unreconciled Entries"
+msgstr ""
+"Solo Mostrar\n"
+"                    Entradas no conciliadas"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid "Only Show Unreconciled Entries"
+msgstr "Mostrar solo entradas sin conciliar"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid "Posted Entries Only"
+msgstr "Solo asientos publicados"
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#, python-format
+msgid "Previous balance"
+msgstr "Balance anterior"
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#, python-format
+msgid "Total"
+msgstr "Total"
+
+#. module: b_custom_account_reports
+#: model:ir.model,name:b_custom_account_reports.model_custom_trial_balance
+msgid "Trial Balance Report"
+msgstr "Balance de comprobación"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid "Unfold"
+msgstr "Desplegados"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid "Unfold All"
+msgstr "Desplegar todos"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_line_template
+msgid "Unfolded"
+msgstr "Desplegado"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid "Unreconciled"
+msgstr "No reconciliado"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid "With Draft Entries"
+msgstr "Con entradas de borrador"

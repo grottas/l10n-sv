@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="search_template_custom">
+            <div class="btn-group dropdown o_account_reports_filter_date" t-if="options.get('date') != None">
+                <t t-call="account_reports.search_template_date_filter"/>
+            </div>
+            <div class="btn-group dropdown o_account_reports_filter_journals" t-if="options.get('journals') != None">
+                <t t-call="account_reports.search_template_journals"/>
+            </div>
+            <div class="btn-group dropdown o_account_reports_filter_ir_filters"
+                 t-if="options.get('ir_filters') != None">
+                <t t-call="account_reports.search_template_ir_filters"/>
+            </div>
+            <div id="fiscal_position_choice_option" class="btn-group dropdown o_account_reports_filter_fiscal_position"
+                 t-if="options.get('accumulative') != None">
+                <t t-call="b_custom_account_reports.custom_search_extra_options"/>
+            </div>
+        </template>
+
+        <template id="custom_search_extra_options">
+            <button type="button" class="o-no-caret btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                <span class="fa fa-filter"/>
+                Options:
+                <t t-if="options.get('all_entries') != None" groups="account.group_account_readonly">
+                    <t t-if="options['all_entries']">With Draft Entries</t>
+                    <t t-if="not options['all_entries']">Posted Entries Only</t>
+                </t>
+                <t t-if="options.get('unreconciled') != None">
+                    <t t-if="options.get('all_entries') != None">,</t>
+                    <t t-if="options['unreconciled']">Only Show Unreconciled Entries</t>
+                </t>
+            </button>
+            <div class="dropdown-menu o_filter_menu" role="menu">
+                <a role="menuitem" class="dropdown-item js_account_report_bool_filter"
+                   t-if="options.get('all_entries') != None" title="Include unposted entries" data-filter="all_entries"
+                   groups="account.group_account_readonly">Include Unposted Entries
+                </a>
+                <a role="menuitem" class="dropdown-item js_account_report_bool_filter"
+                   t-if="options.get('hierarchy') != None" title="Hierarchy" data-filter="hierarchy">Hierarchy and
+                    Subtotals
+                </a>
+                <a role="menuitem" class="dropdown-item js_account_report_bool_filter"
+                   t-if="options.get('unreconciled') != None" title="Unreconciled" data-filter="unreconciled">Only Show
+                    Unreconciled Entries
+                </a>
+                <a role="menuitem" class="dropdown-item js_account_report_bool_filter"
+                   t-if="options.get('unfold_all') != None" title="Unfold" data-filter="unfold_all">Unfold All
+                </a>
+                <a role="menuitem" class="dropdown-item js_account_report_bool_filter"
+                   t-if="options.get('accumulative') != None" title="Accumulative"
+                   data-filter="accumulative">Accumulative
+                </a>
+            </div>
+        </template>
+    </data>
+</odoo>
