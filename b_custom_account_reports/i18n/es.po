@@ -46,13 +46,13 @@ msgstr "Anotar"
 #: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
 #, python-format
 msgid "Balance"
-msgstr "Balance"
+msgstr "Saldo"
 
 #. module: b_custom_account_reports
 #: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
 #, python-format
 msgid "Credit"
-msgstr "Crédito"
+msgstr "Haber"
 
 #. module: b_custom_account_reports
 #: model:ir.ui.menu,name:b_custom_account_reports.menu_custom_reports
@@ -69,7 +69,7 @@ msgstr "Balance de Comprobación Personalizado"
 #: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
 #, python-format
 msgid "Debit"
-msgstr "Débito"
+msgstr "Debe"
 
 #. module: b_custom_account_reports
 #: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_line_template
@@ -123,7 +123,7 @@ msgstr "Solo asientos publicados"
 #: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
 #, python-format
 msgid "Previous balance"
-msgstr "Balance anterior"
+msgstr "Saldo anterior"
 
 #. module: b_custom_account_reports
 #: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
