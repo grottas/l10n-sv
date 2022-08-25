@@ -104,7 +104,7 @@
                                 <td class="td5" style="border:none;">
                                     <span t-esc="'{0:,.2f}'.format(c.get('haber'))"/>
                                 </td>
-                                <t t-set="total" t-value="c.get('previo') + c.get('debe') - c.get('debe')"/>
+                                <t t-set="total" t-value="c.get('previo') + c.get('debe') - c.get('haber')"/>
                                 <td class="td6" style="border:none;">
                                     <span t-esc="'{0:,.2f}'.format(total)"/>
                                 </td>

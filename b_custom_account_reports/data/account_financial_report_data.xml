@@ -9,16 +9,14 @@
             <field name="context" eval="{'model': 'custom.trial.balance'}"/>
         </record>
 
-        <!-- Account Financial Report Menuitems -->
-        <menuitem id="menu_custom_trial_balance" name="Custom Trial Balance"
-                  parent="menu_custom_reports"
-                  action="b_custom_account_reports.action_custom_trial_balance"
-                  groups="account.group_account_user"/>
-
         <menuitem id="menu_custom_reports" name="Custom Reports"
                   parent="account.menu_finance_reports"
                   sequence="0"/>
-        
+
+        <!-- Account Financial Report Menuitems -->
+        <menuitem id="menu_custom_trial_balance" name="Custom Trial Balance"
+                  parent="menu_custom_reports"
+                  action="b_custom_account_reports.action_custom_trial_balance"/>
     </data>
 
 </odoo>
