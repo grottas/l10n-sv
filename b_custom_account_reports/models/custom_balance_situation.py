@@ -25,27 +25,25 @@
 #
 ########################################################################
 
-import json
 from odoo import fields, models, api, _
 
 
-class CustomTrialBalance(models.AbstractModel):
-	_name = "custom.trial.balance"
-	_description = "Trial Balance Report"
+class CustomBalanceSituation(models.AbstractModel):
+	_name = 'custom.balance.situation'
+	_description = 'Custom Balance Sheet'
 	_inherit = "account.coa.report"
 
-	filter_comparison = None
+	# filter_comparison = False
 	filter_analytic = False
 	filter_hierarchy = True
 	filter_multi_company = True
-	filter_unfold_all = True
-	filter_accumulative = False
+	filter_unfold_all = False
 
 	@api.model
 	def _get_templates(self):
-		templates = super(CustomTrialBalance, self)._get_templates()
-		templates['line_template'] = 'b_custom_account_reports.custom_line_template'
-		templates['search_template'] = 'b_custom_account_reports.search_template_custom'
+		templates = super(CustomBalanceSituation, self)._get_templates()
+		templates['line_template'] = 'b_custom_account_reports.custom_sheet_balance'
+		# templates['search_template'] = 'b_custom_account_reports.search_template_custom'
 
 		return templates
 
@@ -64,8 +62,6 @@ class CustomTrialBalance(models.AbstractModel):
 		]
 
 		header2 += [
-			{'name': _('Debit'), 'class': 'number o_account_coa_column_contrast'},
-			{'name': _('Credit'), 'class': 'number o_account_coa_column_contrast'},
 			{'name': _('Balance'), 'class': 'number o_account_coa_column_contrast'},
 		]
 		return [header1, header2]
@@ -109,16 +105,12 @@ class CustomTrialBalance(models.AbstractModel):
 					account_sum.get('debit', 0.0) - account_init_bal.get('debit', 0.0),
 					account_sum.get('credit', 0.0) - account_init_bal.get('credit', 0.0),
 				]
+
 				account_balance += sums[-2] - sums[-1]
 
-			# Append the totals.
-			if new_options.get('accumulative', False):
+				# Append the totals.
 				sums += [
 					account_balance or 0.0
-				]
-			else:
-				sums += [
-					0.0
 				]
 
 			# account.account report line.
@@ -156,22 +148,4 @@ class CustomTrialBalance(models.AbstractModel):
 		return lines
 
 	def print_pdf(self, options):
-		report_name = 'financierosv_sucursal.report_balance_pdf'
-		# report = self.env['ir.actions.report']._get_report_from_name(report_name)
-		date_from = fields.Date.from_string(options.get('date').get('date_from'))
-		date_to = fields.Date.from_string(options.get('date').get('date_to'))
-
-		form = {
-			'fechai': date_from,
-			'fechaf': date_to,
-			'date_year': 2022,
-			'date_month': 1,
-			'acum': options.get('accumulative', False),
-			'company_id': [self.env.company.id]
-		}
-		data = {
-			'ids': [self.env.company.id],
-			'form': form,
-			'model': 'res_company'
-		}
-		return self.env.ref('financierosv_sucursal.report_balance_pdf').report_action(self, data=data)
+		pass
