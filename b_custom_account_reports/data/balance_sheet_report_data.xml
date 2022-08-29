@@ -4,9 +4,10 @@
 
         <record id="report_balance_sheet" model="account.financial.html.report">
             <field name="name">Custom Balance Sheet</field>
-            <field name="date_range" eval="False"/>
+            <field name="date_range" eval="True"/>
             <field name="analytic" eval="True"/>
             <field name="unfold_all_filter" eval="True"/>
+            <field name='parent_id' ref='b_custom_account_reports.menu_custom_reports'/>
         </record>
 
         <record id="balance_line_1000" model="account.financial.html.report.line">
