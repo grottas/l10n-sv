@@ -16,6 +16,13 @@
             <field name="context" eval="{'model': 'custom.balance.situation'}"/>
         </record>
 
+        <record id="action_report_bs" model="ir.actions.client">
+            <field name="name">Balance Sheet</field>
+            <field name="tag">account_report</field>
+            <field name="context"
+                   eval="{'model': 'account.financial.html.report'}"/>
+        </record>
+
         <menuitem id="menu_custom_reports" name="Custom Reports"
                   parent="account.menu_finance_reports"
                   sequence="0"/>
@@ -25,10 +32,16 @@
                   parent="menu_custom_reports"
                   action="b_custom_account_reports.action_custom_trial_balance"/>
 
-        <!-- Account Balance Sheet Menuitems -->
+        Account Balance Sheet Menuitems
         <menuitem id="menu_custom_sheet_balance" name="Custom Sheet Balance"
                   parent="menu_custom_reports"
                   action="b_custom_account_reports.action_custom_sheet_balance"/>
+
+        <!--        &lt;!&ndash; Account Balance Sheet Menuitems &ndash;&gt;-->
+        <!--        <menuitem id="menu_sheet_balance" name="Sheet Balance"-->
+        <!--                  parent="menu_custom_reports"-->
+        <!--                  action="b_custom_account_reports.action_report_bs"/>-->
+
 
     </data>
 

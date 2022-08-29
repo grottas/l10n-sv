@@ -39,7 +39,8 @@
 		'data/account_financial_report_data.xml',
 		'views/custom_line_template.xml',
 		'views/custom_search_extras_options.xml',
-		'views/custom_sheet_balance.xml'
+		'views/custom_sheet_balance.xml',
+		'data/balance_sheet_report_data.xml'
 	],
 	'demo': [],
 	'installable': True,

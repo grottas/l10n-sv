@@ -25,6 +25,7 @@
 #
 ########################################################################
 
+from odoo.tools.misc import formatLang, format_date
 from odoo import fields, models, api, _
 
 
@@ -51,20 +52,17 @@ class CustomBalanceSituation(models.AbstractModel):
 	def _get_columns(self, options):
 		header1 = [
 					  {'name': '', 'style': 'width: 100%'},
-					  {'name': '', 'class': 'number', 'colspan': 1},
 				  ] + [
-					  {'name': options['date']['string'], 'class': 'number', 'colspan': 2},
-					  {'name': '', 'class': 'number', 'colspan': 1},
+					  {'name': options['date']['string'], 'class': 'number', 'colspan': 5}
 				  ]
-		header2 = [
-			{'name': '', 'style': 'width: 100%'},
-			{'name': _('Previous balance'), 'class': 'number o_account_coa_column_contrast'},
-		]
 
-		header2 += [
-			{'name': _('Balance'), 'class': 'number o_account_coa_column_contrast'},
-		]
-		return [header1, header2]
+		header2 = [
+					  {'name': '', 'style': 'width: 100%'},
+				  ] + [
+					  {'name': '', 'class': 'number', 'colspan': 5}
+				  ]
+
+		return [header1]
 
 	@api.model
 	def _get_lines(self, options, line_id=None):
@@ -72,15 +70,19 @@ class CustomBalanceSituation(models.AbstractModel):
 		# Then, the '_do_query' will compute all sums/unaffected earnings/initial balances for all comparisons.
 		new_options = options.copy()
 		new_options['unfold_all'] = True
+		new_options['unfolded_lines'] = [
+			'-account.account-964|-account.group-118'
+		]
 		options_list = self._get_options_periods_list(new_options)
-		accounts_results, taxes_results = self.env['account.general.ledger']._do_query(options_list, fetch_lines=False)
+		accounts_results, taxes_results = self.env['account.general.ledger']._do_query(options_list, fetch_lines=True)
 
 		lines = []
-		totals = [0.0] * (2 * (len(options_list) + 1))
+		totals = [0.0] * ((len(options_list)))
 
 		# Add lines, one per account.account record.
 		for account, periods_results in accounts_results:
 			sums = []
+			sums1 = []
 			account_balance = 0.0
 			for i, period_values in enumerate(reversed(periods_results)):
 				account_sum = period_values.get('sum', {})
@@ -90,28 +92,22 @@ class CustomBalanceSituation(models.AbstractModel):
 				if i == 0:
 					# Append the initial balances.
 					initial_balance = account_init_bal.get('balance', 0.0) + account_un_earn.get('balance', 0.0)
-					if new_options.get('accumulative', False):
-						sums += [
-							initial_balance or 0.0
-						]
-					else:
-						sums += [
-							0.0
-						]
 					account_balance += initial_balance
 
-				# Append the debit/credit columns.
-				sums += [
+				sums1 += [
 					account_sum.get('debit', 0.0) - account_init_bal.get('debit', 0.0),
 					account_sum.get('credit', 0.0) - account_init_bal.get('credit', 0.0),
 				]
 
-				account_balance += sums[-2] - sums[-1]
+				account_balance += sums1[-2] - sums1[-1]
+				# account_balance += sums1[-1] - sums1[-2]
 
 				# Append the totals.
 				sums += [
 					account_balance or 0.0
 				]
+
+			name = account.name_get()[0][1]
 
 			# account.account report line.
 			columns = []
@@ -121,9 +117,8 @@ class CustomBalanceSituation(models.AbstractModel):
 
 				# Create columns.
 				columns.append(
-					{'name': self.format_value(value, blank_if_zero=True), 'class': 'number', 'no_format_name': value})
-
-			name = account.name_get()[0][1]
+					{'name': self.format_value(value, blank_if_zero=False), 'class': 'number', 'no_format_name':
+						value})
 
 			lines.append({
 				'id': self._get_generic_line_id('account.account', account.id),
@@ -146,6 +141,3 @@ class CustomBalanceSituation(models.AbstractModel):
 		})
 
 		return lines
-
-	def print_pdf(self, options):
-		pass

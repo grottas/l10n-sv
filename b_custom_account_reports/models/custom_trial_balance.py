@@ -129,7 +129,7 @@ class CustomTrialBalance(models.AbstractModel):
 
 				# Create columns.
 				columns.append(
-					{'name': self.format_value(value, blank_if_zero=True), 'class': 'number', 'no_format_name': value})
+					{'name': self.format_value(value, blank_if_zero=False), 'class': 'number', 'no_format_name': value})
 
 			name = account.name_get()[0][1]
 
