@@ -338,7 +338,7 @@
                                         <td class="td2" style="border:none;"></td>
                                         <!--<t t-set="totaln3" t-value="(c.get('previo4') + c.get('haber4') - c.get('debe4')) * -1"/>-->
                                         <t t-set="totaln3"
-                                           t-value="(c.get('previo4') + c.get('haber4') - c.get('debe4'))"/>
+                                           t-value="(c.get('previo4') + c.get('haber4') - c.get('debe4')) * -1"/>
                                         <td class="td6" style="border:none;">
                                             <span t-esc="'{0:,.2f}'.format(totaln3)"/>
                                         </td>
@@ -376,7 +376,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <table class="table-bordered" style="border-color:#000000;border:5px;">
+                                <table class="table" style="border-color:#000000;border:5px;">
                                     <tr>
                                         <td class="td1" style="border:none;"></td>
                                         <td class="td1" style="border:none;">
@@ -416,103 +416,55 @@
                                 </table>
                             </div>
                         </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
                         <div class="row">
+                            <t t-set="repre" t-value="nombre"/>
+                            <t t-set="audi" t-value="audi"/>
+                            <t t-set="cont" t-value=" Nombre"/>
                             <div class="col-12">
-                                <!--                                <div class="footer" style="font-size: 10pt;font-family: Verdana, Cursive, sans-serif;">-->
-                                <style type="text/css">
-                                    .th1{width:50px; text-size:15; text-align:center;}
-                                    .th2{width:100px;text-size:15; text-align:center;}
-                                    .th3{width:100px; text-size:15; text-align:center;}
-                                    .th4{width:100px; text-size:15; text-align:center;}
-                                    .th5{width:100px; text-size:15; text-align:center;}
-                                    .th6{width:100px; text-size:15; text-align:center;}
-                                    .th7{width:100px; text-size:15; text-align:center;font-family: "Times New
-                                    Roman", Times,
-                                    serif;}
-
-                                    .td1{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
-                                    .td2{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
-                                    .td3{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
-                                    .td4{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
-                                    .td5{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
-                                    .td6{text-size:18px; height:0px;font-family: Verdana, Arial, sans-serif;}
-
-                                </style>
-
-                                <t t-set="repre" t-value="nombre"/>
-                                <t t-set="audi" t-value="audi"/>
-                                <t t-set="cont" t-value=" Nombre"/>
-
-
                                 <t t-foreach="docs" t-as="x">
                                     <t t-set="repre" t-value="data.get('form').get('repre')"/>
                                     <t t-set="cont" t-value="data.get('form').get('cont')"/>
                                     <t t-set="audi" t-value="data.get('form').get('audi')"/>
                                     <t t-set="company" t-value="x"/>
-                                    <div>
-                                        <table class="table-bordered" style="border-color:#000000;border:5px;">
-                                            <tr>
-                                                <th class="th1" style="border:none;color:#FFFFFF;">.</th>
-                                                <th class="th7" style="border:none;color:#FFFFFF;">.</th>
-                                                <!--<th class="th3">Saldo Anterior</th>-->
-                                                <th class="th7" style="border:none;color:#FFFFFF;">.</th>
-                                                <th class="th7" style="border:none;color:#FFFFFF;">.</th>
-                                                <th class="th7" style="border:none;color:#FFFFFF;">.</th>
-                                                <!--<th class="th3">Saldo Anterior</th>-->
-                                                <th class="th7" style="border:none;color:#FFFFFF;">.</th>
-                                            </tr>
-                                            <tr>
-                                                <td class="td2" style="border:none;color:#FFFFFF;">.</td>
-                                                <!--<td class="td3">Saldo Anterior</td>-->
-                                                <td class="td4" style="border:none;">
-                                                    F.______________________________
-                                                </td>
-                                                <td class="td1" style="border:none;color:#FFFFFF;">.</td>
-                                                <td class="td2" style="border:none;">
-                                                    F.______________________________
-                                                </td>
-                                                <!--<td class="td3">Saldo Anterior</td>-->
-                                                <td class="td4" style="border:none;color:#FFFFFF;">.</td>
-                                                <td class="td1" style="border:none;">
-                                                    F._____________________________
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td2" style="border:none; text-align:center;"></td>
-                                                <td class="td4" style="border:none; text-align:center;">
-                                                    <span t-esc="repre"/>
-                                                </td>
-                                                <td class="td1" style="border:none; text-align:center;"></td>
-                                                <td class="td2" style="border:none; text-align:center;">
-                                                    <span t-esc="audi"/>
-                                                </td>
-                                                <td class="td4" style="border:none; text-align:center;"></td>
-                                                <td class="td1" style="border:none; text-align:center;">
-                                                    <span t-esc="cont"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td2" style="border:none;color:#FFFFFF;">.</td>
-                                                <!--<td class="td3">Saldo Anterior</td>-->
-                                                <td class="td4" style="border:none; text-align:center;">Rep. Legal
-                                                </td>
-                                                <td class="td1" style="border:none;color:#FFFFFF;">.</td>
-                                                <td class="td2" style="border:none; text-align:center;">Auditor</td>
-                                                <!--<td class="td3">Saldo Anterior</td>-->
-                                                <td class="td4" style="border:none;color:#FFFFFF;">.</td>
-                                                <td class="td1" style="border:none; text-align:center;">Contador
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                    <table class="table-bordered" style="border:none;border-color:#FFFFFF">
+                                        <tr>
+                                            <td style="text-align:center; border:none;">F
+                                                .______________________________
+                                            </td>
+                                            <td style="text-align:center;border:none;">
+                                                F.______________________________
+                                            </td>
+                                            <td style="text-align:center;border:none;">
+                                                F.______________________________
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:center;border:none;">
+                                                <span t-esc="repre"/>
+                                            </td>
+                                            <td style="text-align:center;border:none;">
+                                                <span t-esc="audi"/>
+                                            </td>
+                                            <td style="text-align:center;border:none;">
+                                                <span t-esc="cont"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:center;border:none;">Rep. Legal</td>
+                                            <td style="text-align:center;border:none;">Auditor</td>
+                                            <td style="text-align:center;border:none;">Contador</td>
+                                        </tr>
+                                    </table>
                                 </t>
                             </div>
                         </div>
                     </div>
-
-                    <!--                    </div>-->
-
-
                 </t>
             </t>
         </template>

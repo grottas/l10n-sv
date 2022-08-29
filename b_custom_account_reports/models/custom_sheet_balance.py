@@ -4,6 +4,8 @@ from odoo import fields, models, api, _
 class CustomSheetBalance(models.Model):
 	_inherit = "account.financial.html.report"
 
+	filter_analytic = False
+
 	def print_pdf(self, options):
 		if self.id == self.env.ref('b_custom_account_reports.report_balance_sheet').id:
 
@@ -17,7 +19,7 @@ class CustomSheetBalance(models.Model):
 				'fechaf': date_to,
 				'date_year': 2022,
 				'date_month': 1,
-				'acum': options.get('accumulative', False),
+				'acum': options.get('accumulative', True),
 				'company_id': [self.env.company.id]
 			}
 			data = {
