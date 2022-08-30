@@ -60,11 +60,47 @@
             <field name="level" eval="1"/>
         </record>
 
+        <record id="result_state_4102" model="account.financial.html.report.line">
+            <field name="name">COSTOS POR SERVICIOS POR RESTAURANTE</field>
+            <field name="code">state_4102</field>
+            <field name="parent_id" ref="result_state_41"/>
+            <field name="domain" eval="[('account_id.code','=like','41%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="1"/>
+        </record>
+
         <record id="result_state_42" model="account.financial.html.report.line">
             <field name="name">GASTOS OPERATIVOS</field>
             <field name="code">state_42</field>
             <field name="parent_id" ref="result_state_4"/>
-            <field name="formulas">state_4102</field>
+            <field name="formulas">state_4201 + state_4202</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="result_state_4201" model="account.financial.html.report.line">
+            <field name="name">GASTOS DE ADMINISTRACION</field>
+            <field name="code">state_4201</field>
+            <field name="parent_id" ref="result_state_42"/>
+            <field name="domain" eval="[('account_id.code','=like','4201%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="result_state_4202" model="account.financial.html.report.line">
+            <field name="name">GASTOS DE VENTA</field>
+            <field name="code">state_4202</field>
+            <field name="parent_id" ref="result_state_42"/>
+            <field name="domain" eval="[('account_id.code','=like','4202%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
             <field name="sequence" eval="2"/>
             <field name="level" eval="1"/>
         </record>
@@ -73,23 +109,22 @@
             <field name="name">GASTOS NO OPERACIONALES</field>
             <field name="code">state_43</field>
             <field name="parent_id" ref="result_state_4"/>
-            <field name="formulas">state_4102</field>
+            <field name="formulas">state_4301</field>
             <field name="sequence" eval="3"/>
             <field name="level" eval="1"/>
         </record>
 
-        <record id="result_state_4102" model="account.financial.html.report.line">
-            <field name="name">COSTOS POR SERVICIOS POR RESTAURANTE</field>
-            <field name="code">state_4102</field>
-            <field name="parent_id" ref="result_state_41"/>
-            <field name="domain" eval="[('account_id.code','=like','41020%')]"/>
+        <record id="result_state_4301" model="account.financial.html.report.line">
+            <field name="name">GASTOS FINANCIEROS</field>
+            <field name="code">state_4301</field>
+            <field name="parent_id" ref="result_state_43"/>
+            <field name="domain" eval="[('account_id.code','=like','4301%')]"/>
             <field name="formulas">sum</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">foldable</field>
             <field name="sequence" eval="2"/>
             <field name="level" eval="1"/>
         </record>
-
 
     </data>
 </odoo>
