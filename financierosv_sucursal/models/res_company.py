@@ -7,17 +7,28 @@ from pytz import timezone
 from datetime import datetime, date, timedelta
 from odoo.exceptions import UserError, ValidationError
 from odoo import exceptions
+
 _logger = logging.getLogger(__name__)
+
 
 class res_company(models.Model):
     _name = "res.company"
     _inherit = "res.company"
-    resolucion=fields.Char(string='resolucion')
-    
-    
-#BALANCE DE COMPROBACION SUMAS Y SALDOS
-####
+    resolucion = fields.Char(string='resolucion')
+
+    # BALANCE DE COMPROBACION SUMAS Y SALDOS
+    ####
     def get_balance_details(self, company_id, date_year, date_month, acum, fechai, fechaf):
+        """
+
+        :param company_id:
+        :param date_year:
+        :param date_month:
+        :param acum:
+        :param fechai:
+        :param fechaf:
+        :return:
+        """
         data = {}
 
         sql = """CREATE OR REPLACE VIEW odoosv_financierosv_balance_report AS (
@@ -52,17 +63,16 @@ from cuentas aa
 where S.previo<>0 or S.debe<>0 or S.haber<>0  
 order by S.code
 
-        )""".format(company_id,date_year,date_month,acum,fechai,fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_balance_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_balance_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
-      
 
-#********************LIBRO MAYOR*****************************************************************************
-    
+    # ********************LIBRO MAYOR*****************************************************************************
+
     def get_mayor_details(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
 
@@ -94,11 +104,11 @@ order by aa.code
 where abs(S1.previo)>0.0001 or abs(S1.debe)>0.0001 or abs(S1.haber)>0.0001
 order by S1.code
 
-        )""".format(company_id,date_year,date_month,acum,fechai,fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_mayor_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_mayor_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -121,16 +131,15 @@ group by am1.date
 order by am1.date
 )S
 
-        )""".format(company_id,date_year,date_month,acum,fechai,fechaf,cuenta)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf, cuenta)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_mayor_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_mayor_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
-
-#****************************Libro Anexo Mayor***************************************************
+    # ****************************Libro Anexo Mayor***************************************************
     def get_auxiliar_details(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
 
@@ -168,11 +177,11 @@ order by aa.code
 ) S1
 where S1.previo<>0 or S1.debe<>0 or S1.haber<>0
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_auxiliar_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_auxiliar_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -197,16 +206,15 @@ from account_move_line aml
 order by am.date
 )S
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf,id)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf, id)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_auxiliar_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_auxiliar_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
-
-#*****************ESTADO DE RESULTADO***********************************************
+    # *****************ESTADO DE RESULTADO***********************************************
     def get_resultado_details(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
 
@@ -238,11 +246,11 @@ order by aa.code
 where S2.previo<>0 or S2.debe<>0 or S2.haber<>0  
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -278,11 +286,11 @@ order by aa.code
 where S2.previo1<>0 or S2.debe1<>0 or S2.haber1<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -317,11 +325,11 @@ order by aa.code
 where S2.previo2<>0 or S2.debe2<>0 or S2.haber2<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -356,11 +364,11 @@ order by aa.code
 where S2.previo3<>0 or S2.debe3<>0 or S2.haber3<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -395,11 +403,11 @@ order by aa.code
 where S2.previo4<>0 or S2.debe4<>0 or S2.haber4<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -434,13 +442,13 @@ order by aa.code
 where S2.previo5<>0 or S2.debe5<>0 or S2.haber5<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data  
+        return data
 
     def get_resultado_details6(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
@@ -474,13 +482,13 @@ order by aa.code
 where S2.previo6<>0 or S2.debe6<>0 or S2.haber6<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data                  
+        return data
 
     def get_resultado_details7(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
@@ -514,11 +522,11 @@ order by aa.code
 where S2.previo7<>0 or S2.debe7<>0 or S2.haber7<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -554,11 +562,11 @@ order by aa.code
 where S2.previo8<>0 or S2.debe8<>0 or S2.haber8<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -594,11 +602,11 @@ order by aa.code
 where S2.previo9<>0 or S2.debe9<>0 or S2.haber9<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -634,13 +642,13 @@ order by aa.code
 where S2.previo10<>0 or S2.debe10<>0 or S2.haber10<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data  
+        return data
 
     def get_resultado_details11(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
@@ -674,16 +682,15 @@ order by aa.code
 where S2.previo11<>0 or S2.debe11<>0 or S2.haber11<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_resultado_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_resultado_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data                   
+        return data
 
-
-#**************************************BALANCE GENERAL...!!!************************************************
+    # **************************************BALANCE GENERAL...!!!************************************************
     def get_general_details(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
 
@@ -716,11 +723,11 @@ order by aa.code
 where S2.previo<>0 or S2.debe<>0 or S2.haber<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -756,13 +763,13 @@ order by aa.code
 where S2.previo1<>0 or S2.debe1<>0 or S2.haber1<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data 
+        return data
 
     def get_general_details2(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
@@ -796,11 +803,11 @@ order by aa.code
 where S2.previo2<>0 or S2.debe2<>0 or S2.haber2<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data
 
@@ -836,13 +843,13 @@ order by aa.code
 where S2.previo3<>0 or S2.debe3<>0 or S2.haber3<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data 
+        return data
 
     def get_general_details4(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
@@ -876,13 +883,13 @@ order by aa.code
 where S2.previo4<>0 or S2.debe4<>0 or S2.haber4<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data 
+        return data
 
     def get_general_details5(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
@@ -916,13 +923,13 @@ order by aa.code
 where S2.previo5<>0 or S2.debe5<>0 or S2.haber5<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data 
+        return data
 
     def get_general_details6(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
@@ -956,13 +963,13 @@ order by aa.code
 where S2.previo6<>0 or S2.debe6<>0 or S2.haber6<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data     
+        return data
 
     def get_general_details7(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
@@ -996,13 +1003,13 @@ order by aa.code
 where S2.previo7<>0 or S2.debe7<>0 or S2.haber7<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data                         
+        return data
 
     def get_general_details8(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
@@ -1036,13 +1043,13 @@ order by aa.code
 where S2.previo8<>0 or S2.debe8<>0 or S2.haber8<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
-        return data 
+        return data
 
     def get_general_details9(self, company_id, date_year, date_month, acum, fechai, fechaf):
         data = {}
@@ -1076,10 +1083,10 @@ order by aa.code
 where S2.previo9<>0 or S2.debe9<>0 or S2.haber9<>0 
 order by S2.code
 
-        )""".format(company_id,date_year,date_month,acum, fechai, fechaf)
+        )""".format(company_id, date_year, date_month, acum, fechai, fechaf)
         tools.drop_view_if_exists(self._cr, 'odoosv_financierosv_general_report')
         self._cr.execute(sql)
         self._cr.execute("SELECT * FROM public.odoosv_financierosv_general_report")
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self._cr.description:  # Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             data = self._cr.dictfetchall()
         return data     

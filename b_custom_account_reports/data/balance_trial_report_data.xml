@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_balance_trial" model="account.financial.html.report">
+            <field name="name">Balance Trial New</field>
+            <field name="date_range" eval="True"/>
+            <field name="analytic" eval="False"/>
+            <field name="unfold_all_filter" eval="True"/>
+            <field name='parent_id' ref='b_custom_account_reports.menu_custom_reports'/>
+        </record>
+
+        <record id="balance_trial_1000" model="account.financial.html.report.line">
+            <field name="name">ACTIVO</field>
+            <field name="code">trial_1</field>
+            <field name="financial_report_id" ref="report_balance_trial"/>
+            <field name="formulas">trial_11 + trial_12</field>
+            <field name="sequence" eval="0"/>
+            <field name="level" eval="0"/>
+        </record>
+
+        <record id="balance_trial_1100" model="account.financial.html.report.line">
+            <field name="name">Activo Corriente</field>
+            <field name="code">trial_11</field>
+            <field name="parent_id" ref="balance_trial_1000"/>
+            <field name="formulas">trial_1101 + trial_1103 + trial_1104 + trial_1105</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="balance_trial_1101" model="account.financial.html.report.line">
+            <field name="name">1101 EFECTIVO Y EQUIVALENTES</field>
+            <field name="code">trial_1101</field>
+            <field name="parent_id" ref="balance_trial_1100"/>
+            <field name="domain" eval="[('account_id.code','=like','11010%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_1103" model="account.financial.html.report.line">
+            <field name="name">1103 DEUDORES COMERCIALES Y OTRAS CUENTAS POR COBRAR</field>
+            <field name="code">trial_1103</field>
+            <field name="parent_id" ref="balance_trial_1100"/>
+            <field name="domain" eval="[('account_id.code','=like','11030%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="3"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_1104" model="account.financial.html.report.line">
+            <field name="name">1104 INVENTARIOS</field>
+            <field name="code">trial_1104</field>
+            <field name="parent_id" ref="balance_trial_1100"/>
+            <field name="domain" eval="[('account_id.code','=like','11040%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="4"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_1105" model="account.financial.html.report.line">
+            <field name="name">1105 PAGOS ANTICIPADOS</field>
+            <field name="code">trial_1105</field>
+            <field name="parent_id" ref="balance_trial_1100"/>
+            <field name="domain" eval="[('account_id.code','=like','11050%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="5"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_1200" model="account.financial.html.report.line">
+            <field name="name">NO CORRIENTE</field>
+            <field name="code">trial_12</field>
+            <field name="parent_id" ref="balance_trial_1000"/>
+            <field name="formulas">trial_1201 + trial_1202 + trial_1203 + trial_1204 + trial_1206 + trial_1209</field>
+            <field name="sequence" eval="9"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="balance_trial_1201" model="account.financial.html.report.line">
+            <field name="name">1201 PROPIEDAD, PLANTA Y EQUIPO</field>
+            <field name="code">trial_1201</field>
+            <field name="parent_id" ref="balance_trial_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12010%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="10"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_1202" model="account.financial.html.report.line">
+            <field name="name">1202 DEPRECIACION ACUMULADA</field>
+            <field name="code">trial_1202</field>
+            <field name="parent_id" ref="balance_trial_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12020%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="10"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_1203" model="account.financial.html.report.line">
+            <field name="name">1203 REVALUACIONES</field>
+            <field name="code">trial_1203</field>
+            <field name="parent_id" ref="balance_trial_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12030%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="11"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_1204" model="account.financial.html.report.line">
+            <field name="name">1204 DEPRECIACIONES ACUMULADAS DE REVALUACIONES</field>
+            <field name="code">trial_1204</field>
+            <field name="parent_id" ref="balance_trial_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12040%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="12"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_1206" model="account.financial.html.report.line">
+            <field name="name">1206 ACTIVOS INTANGIBLES</field>
+            <field name="code">trial_1206</field>
+            <field name="parent_id" ref="balance_trial_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12060%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="13"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_1209" model="account.financial.html.report.line">
+            <field name="name">1209 CUENTAS POR COBRAR PARTES RELACIONADAS LARGO PLAZO</field>
+            <field name="code">trial_1209</field>
+            <field name="parent_id" ref="balance_trial_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12090%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="14"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_4100" model="account.financial.html.report.line">
+            <field name="name">COSTOS Y GASTOS DE LA OPERACIÓN</field>
+            <field name="code">trial_41</field>
+            <field name="financial_report_id" ref="report_balance_trial"/>
+            <field name="formulas">trial_4101 + trial_4102</field>
+            <field name="sequence" eval="4"/>
+            <field name="level" eval="0"/>
+        </record>
+
+        <record id="balance_trial_4101" model="account.financial.html.report.line">
+            <field name="name">4101 COSTOS DE VENTA DE MERCADERIA</field>
+            <field name="code">trial_4101</field>
+            <field name="parent_id" ref="balance_trial_4100"/>
+            <field name="domain" eval="[('account_id.code','=like','41010%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_4102" model="account.financial.html.report.line">
+            <field name="name">4102 COSTOS POR SERVICIOS POR RESTAURANTE</field>
+            <field name="code">trial_4102</field>
+            <field name="parent_id" ref="balance_trial_4100"/>
+            <field name="domain" eval="[('account_id.code','=like','41020%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_4200" model="account.financial.html.report.line">
+            <field name="name">GASTOS OPERACIONALES</field>
+            <field name="code">trial_42</field>
+            <field name="financial_report_id" ref="report_balance_trial"/>
+            <field name="formulas">trial_4201 + trial_4202</field>
+            <field name="sequence" eval="5"/>
+            <field name="level" eval="0"/>
+        </record>
+
+        <record id="balance_trial_4201" model="account.financial.html.report.line">
+            <field name="name">4201 GASTOS DE ADMINISTRACIÓN</field>
+            <field name="code">trial_4201</field>
+            <field name="parent_id" ref="balance_trial_4200"/>
+            <field name="domain" eval="[('account_id.code','=like','42010%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_4202" model="account.financial.html.report.line">
+            <field name="name">4202 GASTOS DE VENTA</field>
+            <field name="code">trial_4202</field>
+            <field name="parent_id" ref="balance_trial_4200"/>
+            <field name="domain" eval="[('account_id.code','=like','42020%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_2000" model="account.financial.html.report.line">
+            <field name="name">PASIVO</field>
+            <field name="code">trial_2</field>
+            <field name="financial_report_id" ref="report_balance_trial"/>
+            <field name="formulas">trial_21 + trial_22</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="0"/>
+        </record>
+
+        <record id="balance_trial_2100" model="account.financial.html.report.line">
+            <field name="name">CORRIENTE</field>
+            <field name="code">trial_21</field>
+            <field name="parent_id" ref="balance_trial_2000"/>
+            <field name="formulas">trial_2102 + trial_2103 + trial_2105 + trial_2106 + trial_2109</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="balance_trial_2102" model="account.financial.html.report.line">
+            <field name="name">2102 DEUDAS COMERCIALES Y OTRAS CUENTAS POR PAGAR A CORTO PLAZO</field>
+            <field name="code">trial_2102</field>
+            <field name="parent_id" ref="balance_trial_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21020%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_2103" model="account.financial.html.report.line">
+            <field name="name">2103 CUENTAS Y DOCUMENTOS POR PAGAR A CORTO PLAZO</field>
+            <field name="code">trial_2103</field>
+            <field name="parent_id" ref="balance_trial_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21030%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_2105" model="account.financial.html.report.line">
+            <field name="name">2105 OBLIGACIONES A CORTO PLAZO POR BENEFICIOS A EMPLEADOS</field>
+            <field name="code">trial_2105</field>
+            <field name="parent_id" ref="balance_trial_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21050%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="3"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_2106" model="account.financial.html.report.line">
+            <field name="name">2106 IMPUESTOS POR PAGAR</field>
+            <field name="code">trial_2106</field>
+            <field name="parent_id" ref="balance_trial_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21060%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="4"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_2109" model="account.financial.html.report.line">
+            <field name="name">2109 CUENTAS POR PAGAR PARTES RELACIONADAS</field>
+            <field name="code">trial_2109</field>
+            <field name="parent_id" ref="balance_trial_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21090%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="5"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_2200" model="account.financial.html.report.line">
+            <field name="name">NO CORRIENTE</field>
+            <field name="code">trial_22</field>
+            <field name="parent_id" ref="balance_trial_2000"/>
+            <field name="formulas">trial_2201</field>
+            <field name="sequence" eval="6"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="balance_trial_2201" model="account.financial.html.report.line">
+            <field name="name">2201 PRESTAMOS BANCARIOS A LARGO PLAZO</field>
+            <field name="code">trial_2201</field>
+            <field name="parent_id" ref="balance_trial_2200"/>
+            <field name="domain" eval="[('account_id.code','=like','22010%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="7"/>
+            <field name="level" eval="2"/>
+        </record>
+
+        <record id="balance_trial_3100" model="account.financial.html.report.line">
+            <field name="name">CAPITAL, RESERVAS Y SUPERAVIT</field>
+            <field name="code">trial_31</field>
+            <field name="financial_report_id" ref="report_balance_trial"/>
+            <field name="formulas">trial_3101 + trial_3102 + trial_3103 + trial_3104 + trial_3105</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="0"/>
+        </record>
+
+        <record id="balance_trial_3101" model="account.financial.html.report.line">
+            <field name="name">3101 CAPITAL SOCIAL</field>
+            <field name="code">trial_3101</field>
+            <field name="parent_id" ref="balance_trial_3100"/>
+            <field name="domain" eval="[('account_id.code','=like','31010%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="balance_trial_3102" model="account.financial.html.report.line">
+            <field name="name">3102 SUPERAVIT POR REVALUACION DE ACTIVO</field>
+            <field name="code">trial_3102</field>
+            <field name="parent_id" ref="balance_trial_3100"/>
+            <field name="domain" eval="[('account_id.code','=like','31020%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="3"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="balance_trial_3103" model="account.financial.html.report.line">
+            <field name="name">3103 UTILIDADES RESTRINGIDAS</field>
+            <field name="code">trial_3103</field>
+            <field name="parent_id" ref="balance_trial_3100"/>
+            <field name="domain" eval="[('account_id.code','=like','31030%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="4"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="balance_trial_3104" model="account.financial.html.report.line">
+            <field name="name">3104 UTILIDADES NO DISTRIBUIDAS</field>
+            <field name="code">trial_3104</field>
+            <field name="parent_id" ref="balance_trial_3100"/>
+            <field name="domain" eval="[('account_id.code','=like','31040%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="5"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="balance_trial_3105" model="account.financial.html.report.line">
+            <field name="name">3105 DEFICIT ACUMULADO</field>
+            <field name="code">trial_3105</field>
+            <field name="parent_id" ref="balance_trial_3100"/>
+            <field name="domain" eval="[('account_id.code','=like','31050%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">foldable</field>
+            <field name="sequence" eval="6"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="balance_trial_4444" model="account.financial.html.report.line">
+            <field name="name">TOTAL PASIVO + CAPITAL</field>
+            <field name="code">trial_40</field>
+            <field name="financial_report_id" ref="report_balance_trial"/>
+            <field name="formulas">trial_2 + trial_31</field>
+            <field name="sequence" eval="3"/>
+            <field name="level" eval="0"/>
+        </record>
+
+    </data>
+</odoo>

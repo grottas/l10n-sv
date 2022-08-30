@@ -40,7 +40,9 @@
 		'views/custom_line_template.xml',
 		'views/custom_search_extras_options.xml',
 		'views/custom_sheet_balance.xml',
-		'data/balance_sheet_report_data.xml'
+		'data/balance_sheet_report_data.xml',
+		'data/balance_trial_report_data.xml',
+		'data/result_state_report.xml'
 	],
 	'demo': [],
 	'installable': True,
