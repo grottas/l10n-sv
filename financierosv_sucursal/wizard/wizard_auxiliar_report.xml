@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+        <record id="wizard_report_download_assistant_xls" model="ir.ui.view">
+            <field name="name">wizard.report.download.assistant.xls.form</field>
+            <field name="model">wizard.report.download.assistant.xls</field>
+            <field name="arch" type="xml">
+                <form string="Report XLS" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <label for="file" string="Guarde el archivo con la extensión '.xls'."/>
+                            <field name="file_name" invisible="1"/>
+                            <field name="file" readonly="1" widget="binary" filename="file_name" nolabel="1"/>
+                        </group>
+                        <footer>
+                            <button string="Close" class="oe_highlight" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="report_auxiliar_wizard_view" model="ir.ui.view">
+            <field name="name">wizard.sv.auxiliar.report.form.view</field>
+            <field name="model">wizard.sv.auxiliar.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="company_id"/>
+                        <!--<field name="stock_location_id"/>-->
+                    </group>
+                    <group col="4">
+                        <field name="fechai"/>
+                        <field name="fechaf"/>
+                    </group>
+                    <group col="4">
+                        <field name="acum"/>
+                    </group>
+                    <footer>
+                        <button name="print_auxiliar_report" string="Imprimir" type="object" default_focus="1" class="btn btn-primary"/>
+                        <button name="generate_xls" string="Generate XLS" type="object" class="btn btn-secondary"/>
+                        <button string="Cancelar" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_auxiliar_report_wizard" model="ir.actions.act_window">
+            <field name="name">Libro Diario Auxiliar</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.sv.auxiliar.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="auxiliar_report" name="Libro Diario Auxiliar" action="action_auxiliar_report_wizard"
+                  parent="account_reports.account_reports_audit_reports_menu" sequence="9"/>
+
+        <!-- Este es el Menu Reportes personalizados del modulos de reportes
+        <menuitem id="menu_custom_reports" name="Custom Reports" parent="account.menu_finance_reports" sequence="0"/>-->
+
+    </data>
+</odoo>
