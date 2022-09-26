@@ -1,0 +1,568 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* b_custom_account_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-21 19:58+0000\n"
+"PO-Revision-Date: 2022-09-21 19:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#, python-format
+msgid "(No Group)"
+msgstr "(No Grupo)"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_line_template
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_sheet_balance
+msgid ""
+"<i class=\"fa fa-caret-right invisible\" role=\"img\" aria-"
+"label=\"Unfolded\" title=\"Unfolded\"/>"
+msgstr ""
+"<i class=\"fa fa-caret-right invisible\" role=\"img\" aria-"
+"label=\"Desplegado\" title=\"Desplegado\"/>"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid ""
+"<span class=\"fa fa-filter\"/>\n"
+"                Options:"
+msgstr ""
+"<span class=\"fa fa-filter\"/>\n"
+"                Opciones:"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1000
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1000
+msgid "ACTIVO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1206
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1206
+msgid "ACTIVOS INTANGIBLES"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:ir.model,name:b_custom_account_reports.model_account_financial_html_report_line
+msgid "Account Report (HTML Line)"
+msgstr "Informe de la cuenta (línea HTML)"
+
+#. module: b_custom_account_reports
+#: model:ir.model,name:b_custom_account_reports.model_account_financial_html_report
+msgid "Account Report (HTML)"
+msgstr "Informe de la cuenta (HTML)"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "Accumulative"
+msgstr "Acumulativo"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1100
+msgid "Activo Corriente"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_line_template
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_sheet_balance
+msgid "Annotate"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#, python-format
+msgid "Balance"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_sheet_balance.py:0
+#, python-format
+msgid "Balance General"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/expanded_balance_sheet.py:0
+#, python-format
+msgid "Balance de Comprobación"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_3101
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_3101
+msgid "CAPITAL SOCIAL"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_3100
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_3100
+msgid "CAPITAL, RESERVAS Y SUPERAVIT"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1100
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_2100
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_2100
+msgid "CORRIENTE"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_41
+msgid "COSTOS DE VENTA"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_4101
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_4101
+msgid "COSTOS DE VENTA DE MERCADERIA"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_4102
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_4102
+msgid "COSTOS POR SERVICIOS POR RESTAURANTE"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_4100
+msgid "COSTOS Y GASTOS DE LA OPERACIÓN"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_4
+msgid "CUENTAS DE RESULTADO DEUDORA"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_5100
+msgid "CUENTAS DE RESULTADO INGRESOS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_5
+msgid "CUENTAS DE RESULTADOS ACREEDORAS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1209
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1209
+msgid "CUENTAS POR COBRAR PARTES RELACIONADAS LARGO PLAZO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_2109
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_2109
+msgid "CUENTAS POR PAGAR PARTES RELACIONADAS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_2103
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_2103
+msgid "CUENTAS Y DOCUMENTOS POR PAGAR A CORTO PLAZO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report,name:b_custom_account_reports.expanded_balance_sheet_report
+#: model:ir.actions.client,name:b_custom_account_reports.action_checking_balance
+#: model:ir.ui.menu,name:b_custom_account_reports.menu_checking_balance
+msgid "Checking Balance"
+msgstr "Balance de Comprobación"
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#, python-format
+msgid "Credit"
+msgstr "Crédito"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report,name:b_custom_account_reports.report_balance_sheet
+#: model:ir.actions.client,name:b_custom_account_reports.action_custom_balance_sheet
+#: model:ir.ui.menu,name:b_custom_account_reports.menu_custom_balance_sheet
+msgid "Custom Balance Sheet"
+msgstr "Balance General"
+
+#. module: b_custom_account_reports
+#: model:ir.ui.menu,name:b_custom_account_reports.menu_custom_reports
+msgid "Custom Reports"
+msgstr "Reportes Personalizados"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report,name:b_custom_account_reports.result_state_report
+#: model:ir.actions.client,name:b_custom_account_reports.action_custom_result_state
+#: model:ir.ui.menu,name:b_custom_account_reports.menu_custom_result_state
+msgid "Custom Result State"
+msgstr "Estado de Resultado Personalizado"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_3105
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_3105
+msgid "DEFICIT ACUMULADO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1202
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1202
+msgid "DEPRECIACION ACUMULADA"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1204
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1204
+msgid "DEPRECIACIONES ACUMULADAS DE REVALUACIONES"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_53
+msgid "DESCUENTOS SOBRE LAS VENTAS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_2102
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_2102
+msgid "DEUDAS COMERCIALES Y OTRAS CUENTAS POR PAGAR A CORTO PLAZO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1103
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1103
+msgid "DEUDORES COMERCIALES Y OTRAS CUENTAS POR COBRAR"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#, python-format
+msgid "Debit"
+msgstr "Débito"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1101
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1101
+msgid "EFECTIVO Y EQUIVALENTES"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_result_state.py:0
+#, python-format
+msgid "Estado de Resultado"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_line_template
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_sheet_balance
+msgid "Folded"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_4201
+msgid "GASTOS DE ADMINISTRACION"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_4201
+msgid "GASTOS DE ADMINISTRACIÓN"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_4202
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_4202
+msgid "GASTOS DE VENTA"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_4301
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_4301
+msgid "GASTOS FINANCIEROS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_4300
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_43
+msgid "GASTOS NO OPERACIONALES"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_4200
+msgid "GASTOS OPERACIONALES"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_42
+msgid "GASTOS OPERATIVOS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "Hierarchy"
+msgstr "Jerarquico"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid ""
+"Hierarchy and\n"
+"                    Subtotals"
+msgstr ""
+"Jerarquía y\n"
+"                    subtotales"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "Hierarchy and Subtotals"
+msgstr "Jerarquía y subtotales"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_2106
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_2106
+msgid "IMPUESTOS POR PAGAR"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_04
+msgid "IMPUESTOS SOBRE LA RENTA"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1104
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1104
+msgid "INVENTARIOS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "Include Unposted Entries"
+msgstr "Incluir asientos sin publicar"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "Include unposted entries"
+msgstr "Incluir asientos sin publicar"
+
+#. module: b_custom_account_reports
+#: model:ir.model.fields,help:b_custom_account_reports.field_account_financial_html_report__position
+#: model:ir.model.fields,help:b_custom_account_reports.field_account_financial_html_report_line__position
+msgid "Indicates the position where it will be printed in the excel file"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1200
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_2200
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1200
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_2200
+msgid "NO CORRIENTE"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_2105
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_2105
+msgid "OBLIGACIONES A CORTO PLAZO POR BENEFICIOS A EMPLEADOS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_45
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_45
+msgid "OTROS GASTOS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_4501
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_4501
+msgid "OTROS GASTOS NO OPERACIONALES"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+msgid ""
+"Only Show\n"
+"                    Unreconciled Entries"
+msgstr ""
+"Solo mostrar\n"
+"                    asientos sin conciliar"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "Only Show Unreconciled Entries"
+msgstr "Solo mostrar asientos sin conciliar"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1105
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1105
+msgid "PAGOS ANTICIPADOS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_2000
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_2000
+msgid "PASIVO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_2201
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_2201
+msgid "PRESTAMOS BANCARIOS A LARGO PLAZO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1201
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1201
+msgid "PROPIEDAD, PLANTA Y EQUIPO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_2107
+msgid "PROVISIONES"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:ir.model.fields,field_description:b_custom_account_reports.field_account_financial_html_report__position
+#: model:ir.model.fields,field_description:b_custom_account_reports.field_account_financial_html_report_line__position
+msgid "Position"
+msgstr "Posición"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "Posted Entries Only"
+msgstr "Solo entradas publicadas"
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#, python-format
+msgid "Previous balance"
+msgstr "Saldo anterior"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_02
+msgid "RESERVA LEGAL 7%"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1203
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_1203
+msgid "REVALUACIONES"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_51
+msgid "SERVICIOS DE RESTAURANTE"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_3102
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_3102
+msgid "SUPERAVIT POR REVALUACION DE ACTIVO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_1112
+msgid "TOTAL ACTIVO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_5555
+msgid "TOTAL ACTIVO MAS COSTOS y GASTOS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_4000
+msgid "TOTAL PASIVO + CAPITAL"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_4444
+msgid "TOTAL PASIVO + CAPITAL E INGRESOS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: code:addons/b_custom_account_reports/models/custom_trial_balance.py:0
+#: code:addons/b_custom_account_reports/models/expanded_balance_sheet.py:0
+#, python-format
+msgid "Total"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:ir.model,name:b_custom_account_reports.model_custom_trial_balance
+msgid "Trial Balance Report"
+msgstr "Balance de prueba"
+
+#. module: b_custom_account_reports
+#: model:ir.actions.client,name:b_custom_account_reports.action_custom_trial_balance
+#: model:ir.ui.menu,name:b_custom_account_reports.menu_custom_trial_balance
+msgid "Trial Balance Sums and Balance"
+msgstr "Balance de Comprobación de Sumas y Saldos"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_33
+msgid "UTILIDAD ANTES IMPUESTOS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_01
+msgid "UTILIDAD DE OPERACIÓN"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_05
+msgid "UTILIDADES DEL EJERCICIO"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_3104
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_3104
+msgid "UTILIDADES NO DISTRIBUIDAS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_line_3103
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_3103
+msgid "UTILIDADES RESTRINGIDAS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "Unfold"
+msgstr "Desplegar"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "Unfold All"
+msgstr "Desplegar todo"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_line_template
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_sheet_balance
+msgid "Unfolded"
+msgstr "Desplegado"
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "Unreconciled"
+msgstr "Sin conciliar"
+
+#. module: b_custom_account_reports
+#: model:account.financial.html.report.line,name:b_custom_account_reports.balance_trial_5101
+#: model:account.financial.html.report.line,name:b_custom_account_reports.result_state_5153
+msgid "VENTAS"
+msgstr ""
+
+#. module: b_custom_account_reports
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.custom_search_extra_options
+#: model_terms:ir.ui.view,arch_db:b_custom_account_reports.sheet_extra_options
+msgid "With Draft Entries"
+msgstr "Con asientos en borrador"

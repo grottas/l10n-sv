@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <menuitem id="menu_custom_reports" name="Custom Reports" parent="account.menu_finance_reports" sequence="0"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ACTION Trial Balance Sums and Balance -->
+        <record id="action_custom_trial_balance" model="ir.actions.client">
+            <field name="name">Trial Balance Sums and Balance</field>
+            <field name="tag">account_report</field>
+            <field name="context" eval="{'model': 'custom.trial.balance'}"/>
+        </record>
+
+        <!-- MENU Trial Balance Sums and Balance -->
+        <menuitem id="menu_custom_trial_balance" name="Trial Balance Sums and Balance"
+                  parent="b_custom_account_reports.menu_custom_reports"
+                  action="b_custom_account_reports.action_custom_trial_balance"/>
+
+        <!-- MENU Custom Result State -->
+        <menuitem id="menu_custom_result_state" name="Custom Result State"
+                  parent="b_custom_account_reports.menu_custom_reports"
+                  action="b_custom_account_reports.action_custom_result_state"/>
+
+        <!-- MENU Custom Balance Sheet -->
+        <menuitem id="menu_custom_balance_sheet" name="Custom Balance Sheet"
+                  parent="b_custom_account_reports.menu_custom_reports"
+                  action="b_custom_account_reports.action_custom_balance_sheet"/>
+
+        <!-- MENU Checking Balance -->
+        <menuitem id="menu_checking_balance" name="Checking Balance"
+                  parent="b_custom_account_reports.menu_custom_reports"
+                  action="b_custom_account_reports.action_checking_balance"/>
+
+    </data>
+</odoo>

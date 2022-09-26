@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Reporte del Balance General -->
+        <record id="report_balance_sheet" model="account.financial.html.report" forcecreate="True">
+            <field name="name">Custom Balance Sheet</field>
+            <field name="date_range" eval="True"/>
+            <field name="analytic" eval="False"/>
+            <field name="unfold_all_filter" eval="True"/>
+            <field name="generated_menu_id" ref="b_custom_account_reports.menu_custom_reports"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <!-- ACTION Custom Balance Sheet -->
+        <record id="action_custom_balance_sheet" model="ir.actions.client">
+            <field name="name">Custom Balance Sheet</field>
+            <field name="tag">account_report</field>
+            <field name="context" eval="{'model': 'account.financial.html.report', 'id': ref('report_balance_sheet')}"/>
+        </record>
+
+        <!-- Se definen la fórmula para el total de activo la misma es Corriente + no Corriente -->
+        <record id="balance_line_1000" model="account.financial.html.report.line">
+            <field name="name">ACTIVO</field>
+            <field name="code">line_1</field>
+            <field name="financial_report_id" ref="report_balance_sheet"/>
+            <field name="sequence" eval="0"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se define el grupo de Activos Corriente y la fórmula es la sumas de sus cuentas -->
+        <record id="balance_line_1100" model="account.financial.html.report.line">
+            <field name="name">CORRIENTE</field>
+            <field name="code">line_11</field>
+            <field name="parent_id" ref="balance_line_1000"/>
+            <field name="formulas">line_1101 + line_1103 + line_1104 + line_1105</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="1"/>
+            <field name="parent_id" ref="balance_line_1000"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 11010 -->
+        <record id="balance_line_1101" model="account.financial.html.report.line">
+            <field name="name">EFECTIVO Y EQUIVALENTES</field>
+            <field name="code">line_1101</field>
+            <field name="parent_id" ref="balance_line_1100"/>
+            <field name="domain" eval="[('account_id.code','=like','11010%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 11030 -->
+        <record id="balance_line_1103" model="account.financial.html.report.line">
+            <field name="name">DEUDORES COMERCIALES Y OTRAS CUENTAS POR COBRAR</field>
+            <field name="code">line_1103</field>
+            <field name="parent_id" ref="balance_line_1100"/>
+            <field name="domain" eval="[('account_id.code','=like','11030%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="3"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 11040 -->
+        <record id="balance_line_1104" model="account.financial.html.report.line">
+            <field name="name">INVENTARIOS</field>
+            <field name="code">line_1104</field>
+            <field name="parent_id" ref="balance_line_1100"/>
+            <field name="domain" eval="[('account_id.code','=like','11040%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="4"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 11050 -->
+        <record id="balance_line_1105" model="account.financial.html.report.line">
+            <field name="name">PAGOS ANTICIPADOS</field>
+            <field name="code">line_1105</field>
+            <field name="parent_id" ref="balance_line_1100"/>
+            <field name="domain" eval="[('account_id.code','=like','11050%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="5"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se define el grupo de los activos no corrientes y la suma de las cuentas que lo integran -->
+        <record id="balance_line_1200" model="account.financial.html.report.line">
+            <field name="name">NO CORRIENTE</field>
+            <field name="code">line_12</field>
+            <field name="parent_id" ref="balance_line_1000"/>
+            <field name="formulas">line_1201 + line_1202 + line_1203 + line_1204 + line_1206 + line_1209</field>
+            <field name="sequence" eval="6"/>
+            <field name="level" eval="1"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 12010 -->
+        <record id="balance_line_1201" model="account.financial.html.report.line">
+            <field name="name">PROPIEDAD, PLANTA Y EQUIPO</field>
+            <field name="code">line_1201</field>
+            <field name="parent_id" ref="balance_line_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12010%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="7"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 12020 -->
+        <record id="balance_line_1202" model="account.financial.html.report.line">
+            <field name="name">DEPRECIACION ACUMULADA</field>
+            <field name="code">line_1202</field>
+            <field name="parent_id" ref="balance_line_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12020%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="8"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 12030 -->
+        <record id="balance_line_1203" model="account.financial.html.report.line">
+            <field name="name">REVALUACIONES</field>
+            <field name="code">line_1203</field>
+            <field name="parent_id" ref="balance_line_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12030%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="9"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 12040 -->
+        <record id="balance_line_1204" model="account.financial.html.report.line">
+            <field name="name">DEPRECIACIONES ACUMULADAS DE REVALUACIONES</field>
+            <field name="code">line_1204</field>
+            <field name="parent_id" ref="balance_line_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12040%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="10"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 12060 -->
+        <record id="balance_line_1206" model="account.financial.html.report.line">
+            <field name="name">ACTIVOS INTANGIBLES</field>
+            <field name="code">line_1206</field>
+            <field name="parent_id" ref="balance_line_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12060%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="11"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 12090 -->
+        <record id="balance_line_1209" model="account.financial.html.report.line">
+            <field name="name">CUENTAS POR COBRAR PARTES RELACIONADAS LARGO PLAZO</field>
+            <field name="code">line_1209</field>
+            <field name="parent_id" ref="balance_line_1200"/>
+            <field name="domain" eval="[('account_id.code','=like','12090%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="12"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="balance_line_1112" model="account.financial.html.report.line">
+            <field name="name">TOTAL ACTIVO</field>
+            <field name="code">line_1112</field>
+            <field name="financial_report_id" ref="report_balance_sheet"/>
+            <field name="formulas">line_11 + line_12</field>
+            <field name="sequence" eval="13"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <!-- Se define el grupo de Pasivo -->
+        <record id="balance_line_2000" model="account.financial.html.report.line">
+            <field name="name">PASIVO</field>
+            <field name="code">line_2</field>
+            <field name="financial_report_id" ref="report_balance_sheet"/>
+            <field name="formulas">line_21 + line_22</field>
+            <field name="sequence" eval="14"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se define el grupo de los pasivos corrientes y la suma de sus cuentas-->
+        <record id="balance_line_2100" model="account.financial.html.report.line">
+            <field name="name">CORRIENTE</field>
+            <field name="code">line_21</field>
+            <field name="parent_id" ref="balance_line_2000"/>
+            <field name="formulas">line_2102 + line_2103 + line_2105 + line_2106 + line_2107 + line_2109</field>
+            <field name="sequence" eval="15"/>
+            <field name="level" eval="1"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 21020 -->
+        <!-- Se define como formula -sum para que el resultado se positivo -->
+        <record id="balance_line_2102" model="account.financial.html.report.line">
+            <field name="name">DEUDAS COMERCIALES Y OTRAS CUENTAS POR PAGAR A CORTO PLAZO</field>
+            <field name="code">line_2102</field>
+            <field name="parent_id" ref="balance_line_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21020%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="16"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 21030 -->
+        <record id="balance_line_2103" model="account.financial.html.report.line">
+            <field name="name">CUENTAS Y DOCUMENTOS POR PAGAR A CORTO PLAZO</field>
+            <field name="code">line_2103</field>
+            <field name="parent_id" ref="balance_line_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21030%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="17"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 21050 -->
+        <record id="balance_line_2105" model="account.financial.html.report.line">
+            <field name="name">OBLIGACIONES A CORTO PLAZO POR BENEFICIOS A EMPLEADOS</field>
+            <field name="code">line_2105</field>
+            <field name="parent_id" ref="balance_line_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21050%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="18"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 21060 -->
+        <record id="balance_line_2106" model="account.financial.html.report.line">
+            <field name="name">IMPUESTOS POR PAGAR</field>
+            <field name="code">line_2106</field>
+            <field name="parent_id" ref="balance_line_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21060%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="19"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+
+        <record id="balance_line_2107" model="account.financial.html.report.line">
+            <field name="name">PROVISIONES</field>
+            <field name="code">line_2107</field>
+            <field name="parent_id" ref="balance_line_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21070%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="20"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 21090 -->
+        <record id="balance_line_2109" model="account.financial.html.report.line">
+            <field name="name">CUENTAS POR PAGAR PARTES RELACIONADAS</field>
+            <field name="code">line_2109</field>
+            <field name="parent_id" ref="balance_line_2100"/>
+            <field name="domain" eval="[('account_id.code','=like','21090%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="21"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Define el grupo del Pasivo no corriente -->
+        <record id="balance_line_2200" model="account.financial.html.report.line">
+            <field name="name">NO CORRIENTE</field>
+            <field name="code">line_22</field>
+            <field name="parent_id" ref="balance_line_2000"/>
+            <field name="formulas">line_2201</field>
+            <field name="sequence" eval="22"/>
+            <field name="level" eval="1"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 22010 -->
+        <record id="balance_line_2201" model="account.financial.html.report.line">
+            <field name="name">PRESTAMOS BANCARIOS A LARGO PLAZO</field>
+            <field name="code">line_2201</field>
+            <field name="parent_id" ref="balance_line_2200"/>
+            <field name="domain" eval="[('account_id.code','=like','22010%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="23"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se define el grupo de Capital, Reserva y Superavit y su suma-->
+        <record id="balance_line_3100" model="account.financial.html.report.line">
+            <field name="name">CAPITAL, RESERVAS Y SUPERAVIT</field>
+            <field name="code">line_31</field>
+            <field name="financial_report_id" ref="report_balance_sheet"/>
+            <field name="formulas">line_3101 + line_3102 + line_3103 + line_3104 + line_3105</field>
+            <field name="sequence" eval="24"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 31010 -->
+        <record id="balance_line_3101" model="account.financial.html.report.line">
+            <field name="name">CAPITAL SOCIAL</field>
+            <field name="code">line_3101</field>
+            <field name="parent_id" ref="balance_line_3100"/>
+            <field name="domain" eval="[('account_id.code','=like','31010%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="25"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 31020 -->
+        <record id="balance_line_3102" model="account.financial.html.report.line">
+            <field name="name">SUPERAVIT POR REVALUACION DE ACTIVO</field>
+            <field name="code">line_3102</field>
+            <field name="parent_id" ref="balance_line_3100"/>
+            <field name="domain" eval="[('account_id.code','=like','31020%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="26"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 31030 -->
+        <record id="balance_line_3103" model="account.financial.html.report.line">
+            <field name="name">UTILIDADES RESTRINGIDAS</field>
+            <field name="code">line_3103</field>
+            <field name="parent_id" ref="balance_line_3100"/>
+            <field name="domain" eval="[('account_id.code','=like','31030%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="27"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 31040 -->
+        <record id="balance_line_3104" model="account.financial.html.report.line">
+            <field name="name">UTILIDADES NO DISTRIBUIDAS</field>
+            <field name="code">line_3104</field>
+            <field name="parent_id" ref="balance_line_3100"/>
+            <field name="domain" eval="[('account_id.code','=like','31040%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="28"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se SUMAN todas las cuentas que en su código comiencen con 31050 -->
+        <record id="balance_line_3105" model="account.financial.html.report.line">
+            <field name="name">DEFICIT ACUMULADO</field>
+            <field name="code">line_3105</field>
+            <field name="parent_id" ref="balance_line_3100"/>
+            <field name="domain" eval="[('account_id.code','=like','31050%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="29"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="2"/>
+        </record>
+        <!-- Se define el grupo donde se suman los Pasivos y el capital -->
+        <record id="balance_line_4000" model="account.financial.html.report.line">
+            <field name="name">TOTAL PASIVO + CAPITAL</field>
+            <field name="code">line_40</field>
+            <field name="financial_report_id" ref="report_balance_sheet"/>
+            <field name="formulas">line_2 + line_31</field>
+            <field name="sequence" eval="30"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="2"/>
+        </record>
+    </data>
+</odoo>
