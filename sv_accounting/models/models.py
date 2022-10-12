@@ -912,8 +912,8 @@ class odoosv_move(models.Model):
                 if not r.nofiscal:
                     if r.invoice_date:
                         dias=(datetime.today().date()-r.invoice_date).days
-                        if dias>180:
-                            raise ValidationError('El Documento debe tener menos de 180 dias si se aplicara fiscalmente')
+                        if dias>365:
+                            raise ValidationError('El Documento debe tener menos de 365 dias si se aplicara fiscalmente')
     
     @api.depends('posted_before', 'state', 'journal_id', 'date')
     def _compute_name(self):
