@@ -894,7 +894,7 @@ class odoosv_move(models.Model):
             r.monto_letras=numero_to_letras(r.amount_total)
 
 
-    @api.constrains('tipo_documento_id','partner_id','amount_total','state')
+    """@api.constrains('tipo_documento_id','partner_id','amount_total','state')
     def _check_restriciones(self):
         for r in self:
             if r.move_type in ('in_invoice','in_refund','out_invoice','out_refund'):
@@ -913,7 +913,7 @@ class odoosv_move(models.Model):
                     if r.invoice_date:
                         dias=(datetime.today().date()-r.invoice_date).days
                         if dias>180:
-                            raise ValidationError('El Documento debe tener menos de 90 dias si se aplicara fiscalmente')
+                            raise ValidationError('El Documento debe tener menos de 90 dias si se aplicara fiscalmente')"""
     
     @api.depends('posted_before', 'state', 'journal_id', 'date')
     def _compute_name(self):
