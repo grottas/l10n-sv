@@ -87,7 +87,7 @@ odoo.define('point_of_sale.ProductSelectionPopup', function(require) {
                         total_items += product.qty;
                     });
                     if(item_products.length > 0 && total_items >= topping_data.no_of_items){
-                        alert("You can only select "+ topping_data.no_of_items + " item from "+ topping_data.category);
+                        alert("You can only select "+ topping_data.no_of_items + " item from "+ topping_data.description);
                         return
                     }
                 }
@@ -190,15 +190,6 @@ odoo.define('point_of_sale.ProductSelectionPopup', function(require) {
             }
 
             for(var i=0; i < this.env.order_menu.length; i++){
-                const topping_data = this.env.pos.topping_item_by_id[this.SelectionSelectedToppingId];
-                var total_items = 0;
-                _.each(this.env.order_menu[i]['products'], function(product){
-                    total_items += product.qty;
-                });
-                if(total_items < topping_data.no_of_min_items && multi_selection != false){
-                    alert("You Must Have to Select " + topping_data.no_of_min_items + " item from " + topping_data.category);
-                    return
-                }
                 for(var j=0; j < this.env.order_menu[i].products.length; j++) {
                     var product_id = this.env.order_menu[i].products[j].product_id;
                     own_data.push({

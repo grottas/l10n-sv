@@ -1,6 +1,6 @@
 {
     'name': 'Manage combos at the point of sale',
-    'version': '15.0.0.0.1',
+    'version': '15.0.0.0.4',
     'author': 'Ganemo',
     'website': 'https://www.ganemo.co',
     'live_test_url': 'https://www.ganemo.co/demo',
