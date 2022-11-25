@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="TipButton" owl="1">
+        <span class="control-button js_tip">
+            <i class="fa fa-money"></i>
+            <span> </span>
+            <span>Propina</span>
+        </span>
+    </t>
+
+</templates>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="OrderReceiptTip" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt-order-data')]" position="inside">
+            <t t-if="props.isBill">
+                <div>PRO FORMA</div>
+            </t>
+        </xpath>
+        <xpath expr="//div[hasclass('before-footer')]" position="after">
+            <t t-if="props.isBill">
+                <div class="tip-form">
+                    <div class="title">PROPINA SUGERIDA:</div>
+                    <div class="percentage-options">
+                        <div class="option">
+                            <div>10%</div>
+                            <div class="amount">
+                                <t t-esc="env.pos.format_currency(receipt.total_without_tax * 0.10)"></t>
+                            </div>
+                        </div>
+                         <div class="option">
+                            <div>12%</div>
+                            <div class="amount">
+                                <t t-esc="env.pos.format_currency(receipt.total_without_tax * 0.12)"></t>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <div>15%</div>
+                            <div class="amount">
+                                <t t-esc="env.pos.format_currency(receipt.total_without_tax * 0.15)"></t>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <div>18%</div>
+                            <div class="amount">
+                                <t t-esc="env.pos.format_currency(receipt.total_without_tax * 0.18)"></t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>

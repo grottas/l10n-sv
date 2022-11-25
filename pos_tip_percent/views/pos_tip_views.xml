@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="pos_config_view_form_inherit_pos_tip" model="ir.ui.view">
+            <field name="name">pos.config.form.inherit.pos.tip</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+            <field name="arch" type="xml">
+                <div id="default_pricelist_setting" position="inside">
+                        <div class="o_setting_left_pane">
+                            <field name="module_pos_tip_percent" attrs="{'readonly': [('has_active_session','=', True)]}"/>
+                        </div>
+                     <div class="o_setting_right_pane">
+                        <span class="o_form_label">Propina por defecto</span>
+                        <div class="row mt16">
+                            <label string="Producto" for="tip_product_id" class="col-lg-3 o_light_label"/>
+                            <field name="tip_product_id" attrs="{'required':[('module_pos_tip_percent','=',True)]}" />
+                        </div>
+                        <div class="row">
+                            <label string="Propina %" for="tip_pc" class="col-lg-3 o_light_label"/>
+                            <field name="tip_pc"/>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+
+        <data noupdate="1">
+            <function model="pos.config" name="_default_tip_value_on_module_install"/>
+        </data>
+</odoo>
