@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="posorder_form_inherit_reports_xzm" model="ir.ui.view">
+            <field name="name">l10n_sv_pos_reports_xzm.ModelName.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="cortex_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="l10n_sv_pos_reportszxm_account_move_form_inherit" model="ir.ui.view">
+            <field name="name">l10n_sv_pos_reportszxm.l10n_sv_pos_reportszxm_account_move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_reference']" position="after">
+                    <field name="cortex_id" attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund'))]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--added by focuss-->
+    <data>
+        <record id="action_report_x" model="ir.actions.report">
+            <field name="name">Corte X</field>
+            <field name="model">corte.x</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">l10n_sv_pos_reports_xzm.report_x</field>
+            <field name="report_file">l10n_sv_pos_reports_xzm.report_x</field>
+            <field name="print_report_name">('CorteX - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="l10n_sv_pos_reports_xzm.model_corte_x"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_z" model="ir.actions.report">
+            <field name="name">Corte Z</field>
+            <field name="model">corte.z</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">l10n_sv_pos_reports_xzm.report_z</field>
+            <field name="report_file">l10n_sv_pos_reports_xzm.report_z</field>
+            <field name="print_report_name">('CorteZ - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="l10n_sv_pos_reports_xzm.model_corte_z"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_zm" model="ir.actions.report">
+            <field name="name">Corte ZM</field>
+            <field name="model">corte.zm</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">l10n_sv_pos_reports_xzm.report_zm</field>
+            <field name="report_file">l10n_sv_pos_reports_xzm.report_zm</field>
+            <field name="print_report_name">('CorteZM - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="l10n_sv_pos_reports_xzm.model_corte_zm"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="paperformat_lowmargin_cortex" model="report.paperformat">
+            <field name="name">Corte X</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">180</field>
+            <field name="page_width">80</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">2</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">2</field>
+            <field name="header_spacing">3</field>
+            <field name="margin_right">2</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="paperformat_lowmargin_cortez" model="report.paperformat">
+            <field name="name">Corte X</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">180</field>
+            <field name="page_width">80</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">2</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">2</field>
+            <field name="header_spacing">3</field>
+            <field name="margin_right">2</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="paperformat_lowmargin_cortezm" model="report.paperformat">
+            <field name="name">Corte X</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">180</field>
+            <field name="page_width">80</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">2</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">2</field>
+            <field name="header_spacing">3</field>
+            <field name="margin_right">2</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="l10n_sv_pos_reports_xzm.action_report_x" model="ir.actions.report">
+            <field name="paperformat_id" ref="l10n_sv_pos_reports_xzm.paperformat_lowmargin_cortex" />
+        </record>
+        <record id="l10n_sv_pos_reports_xzm.action_report_z" model="ir.actions.report">
+            <field name="paperformat_id" ref="l10n_sv_pos_reports_xzm.paperformat_lowmargin_cortez" />
+        </record>
+        <record id="l10n_sv_pos_reports_xzm.action_report_zm" model="ir.actions.report">
+            <field name="paperformat_id" ref="l10n_sv_pos_reports_xzm.paperformat_lowmargin_cortezm" />
+        </record>
+    </data>
+</odoo>

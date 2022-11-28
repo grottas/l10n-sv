@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_server_cortex" model="ir.actions.server">
+            <field name="name">Continuar numeracion</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="point_of_sale.model_pos_session" />
+            <field name="binding_model_id" ref="point_of_sale.model_pos_session" />
+            <field name="state">code</field>
+            <field name="code">
+                last=env['pos.session'].search([('config_id','=',record.config_id.id),('id','!=',record.id)],limit=1,order='id desc')
+if last:
+  x=0
+  for p in last.order_ids:
+    x=x+1
+  record.write({'sequence_number':last.sequence_number+x})</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_zm">
+        <t t-call="web.html_container" >
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container" >
+                    <div style="margin-top:0px; font-size: 13px;">
+                        <center>
+                              <img t-if="doc.company_id.logo" t-attf-class="img img-responsive" style="max-height: 75px;"
+                             t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)"/>
+                            <br/>
+                            <span>
+                                <t t-esc="doc.company_id.name"/><br/>
+                                <t t-esc="doc.company_id.street"/> <t t-esc="doc.company_id.street2"/> <t t-esc="doc.company_id.city"/> <t t-esc="doc.company_id.state_id.name"/><br/>
+                            </span>
+                            <span>TEL: </span><t t-esc="doc.company_id.phone"/><br/>
+                            <span>NRC: </span><t t-esc="doc.company_id.company_registry"/><br/>
+                            <span>NIT: </span><t t-esc="doc.company_id.vat"/><br/>
+                            <span>GIRO: </span><t t-esc="doc.company_id.giro"/><br/>
+                        </center>
+                        ================================================<br/>
+                        <span><t t-esc="doc.name"/></span><br/>
+                        ================================================<br/>
+                        <span>Fecha: </span><span><t t-esc="doc.fecha"/></span><br/>
+                        <span>Impresión: </span><span><t t-esc="doc.fecha_impresion"/></span><br/>
+                        ================================================<br/>
+                        <span>FACTURAS: </span> <t t-esc="doc.fact_total_num_desde"/> - <t t-esc="doc.fact_total_num_hasta"/><br/>
+                        <table style="width: 100%; font-size: 11px;">
+                            <tr>
+                                <td colspan="10"><span>TOTAL VENTAS GRAVADAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.fact_vent_grav" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL VENTAS EXENTAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.fact_vent_exen" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL NO SUJETAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.fact_vent_nosj" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.fact_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <span>CCF: </span> <t t-esc="doc.ccf_total_num_desde"/> - <t t-esc="doc.ccf_total_num_hasta"/><br/>
+                        <table style="width: 100%; font-size: 11px;">
+                            <tr>
+                                <td colspan="10"><span>TOTAL VENTAS GRAVADAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.ccf_vent_grav" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL VENTAS EXENTAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.ccf_vent_exen" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL NO SUJETAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.ccf_vent_nosj" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.ccf_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <span>TICKET: </span> <t t-esc="doc.tk_total_num_desde"/> - <t t-esc="doc.tk_total_num_hasta"/><br/>
+                        <table style="width: 100%; font-size: 11px;">
+                            <tr>
+                                <td colspan="10"><span>TOTAL VENTAS GRAVADAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.tk_vent_grav" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL VENTAS EXENTAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.tk_vent_exen" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL NO SUJETAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.tk_vent_nosj" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.tk_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <span>NOTA DE CREDITO: </span> <t t-esc="doc.ndc_total_num_desde"/> - <t t-esc="doc.ndc_total_num_hasta"/><br/>
+                        <table style="width: 100%; font-size: 11px;">
+                            <tr>
+                                <td colspan="10"><span>TOTAL VENTAS GRAVADAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.ndc_vent_grav" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL VENTAS EXENTAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.ndc_vent_exen" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL NO SUJETAS: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.ndc_vent_nosj" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.ndc_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table style="width: 100%; font-size: 11px;">
+                            <tr>
+                                <td colspan="10"> <span>TOTAL: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.fact_total + doc.ccf_total + doc.tk_total - doc.ndc_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                        </table>
+                        ================================================<br/>
+                        <span>DETALLE DE PAGOS</span><br/>
+                        ================================================<br/>
+                        <table style="width: 100%; font-size: 11px;">
+                            <tr>
+                                <td colspan="10"><span>TOTAL CREDITO: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.total_credito" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="10"><span>TOTAL CONTADO: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.total_contado" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

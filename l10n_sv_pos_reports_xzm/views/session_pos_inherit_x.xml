@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="pos_session_form_inherit_legalizacion" model="ir.ui.view">
+            <field name="name">l10n_sv_pos_reports_xzm.possession.form_inherit</field>
+            <field name="model">pos.session</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='config_id']" position="after">
+                    <field name="cortex_id"/>
+                    <field name="cortez_id"/>
+                </xpath>
+                <button name="open_frontend_cb" position="after">
+                        <button name="generar_cortex"
+                                      string="Generar corte X"
+                                      type="object" class="oe_highlight"  attrs="{'invisible':[('cortex_id', '!=', False)]}"/>
+                </button>
+                <button name="open_frontend_cb" position="after">
+                        <button name="generar_cortez"
+                                      string="Generar corte Z"
+                                      type="object" class="oe_highlight" attrs="{'invisible':['|',('cortez_id', '!=', False),('cortex_id', '=', False)]}"/>
+                </button>
+                <button name="open_frontend_cb" position="after">
+                        <button name="generar_cortezm"
+                                      string="Generar corte ZM"
+                                      type="object" class="oe_highlight" attrs="{'invisible':[('cortez_id', '=', False)]}"/>
+                </button>
+            </field>
+        </record>
+
+        <record id="pos_session_tree_inherit_legalizacion" model="ir.ui.view">
+            <field name="name">l10n_sv_pos_reports_xzm.possession.tree_inherit</field>
+            <field name="model">pos.session</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_session_tree"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='stop_at']" position="after">
+                    <field name="cortex_id"/>
+                    <field name="cortez_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+

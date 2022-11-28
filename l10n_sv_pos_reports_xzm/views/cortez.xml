@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="cortez_form_view" model="ir.ui.view">
+        <field name="name">cortez.form</field>
+        <field name="model">corte.z</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+                </header>
+                <sheet>
+                    <group id="corte_z">
+                        <group string="Generales" name="sesionpos">
+                            <field name="company_id"/>
+                        </group>
+                        <group string="Corte ZM" name="cortezm">
+                            <field name="cortezm_id"/>
+                        </group>
+                        <group string="Facturas" name="facturas">
+                            <field name="fact_total_num_desde"/>
+                            <field name="fact_total_num_hasta"/>
+                            <field name="fact_vent_grav"/>
+                            <field name="fact_vent_exen"/>
+                            <field name="fact_vent_nosj"/>
+                            <field name="fact_total"/>
+                        </group>
+                        <group string="Creditos Fiscales" name="ccf_invoice">
+                            <field name="ccf_total_num_desde"/>
+                            <field name="ccf_total_num_hasta"/>
+                            <field name="ccf_vent_grav"/>
+                            <field name="ccf_vent_exen"/>
+                            <field name="ccf_vent_nosj"/>
+                            <field name="ccf_total"/>
+                        </group>
+                        <group string="Tickets Fiscales" name="tk_invoice">
+                            <field name="tk_total_num_desde"/>
+                            <field name="tk_total_num_hasta"/>
+                            <field name="tk_vent_grav"/>
+                            <field name="tk_vent_exen"/>
+                            <field name="tk_vent_nosj"/>
+                            <field name="tk_total"/>
+                        </group>
+                        <group string="Nota de credito" name="ndc_invoice">
+                            <field name="ndc_total_num_desde"/>
+                            <field name="ndc_total_num_hasta"/>
+                            <field name="ndc_vent_grav"/>
+                            <field name="ndc_vent_exen"/>
+                            <field name="ndc_vent_nosj"/>
+                            <field name="ndc_total"/>
+                        </group>
+                        <group string="Totales" name="totales_invoice">
+                            <field name="total_credito"/>
+                            <field name="total_contado"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="cortez_tree_view" model="ir.ui.view">
+        <field name="name">cortez.tree</field>
+        <field name="model">corte.z</field>
+		<field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tree_string">
+                <field name="fecha"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_cortez">
+		<field name="name">Corte Z</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">corte.z</field>
+		<field name="view_mode">tree,form</field>
+		<field name="context">{}</field>
+	</record>
+    <record id="action_cortez_view_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="l10n_sv_pos_reports_xzm.cortez_form_view"/>
+            <field name="act_window_id" ref="l10n_sv_pos_reports_xzm.action_cortez"/>
+    </record>
+    <record id="action_cortez_view_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="l10n_sv_pos_reports_xzm.cortez_tree_view"/>
+            <field name="act_window_id" ref="l10n_sv_pos_reports_xzm.action_cortez"/>
+    </record>
+
+<!--    <menuitem id="menu_cortez" parent="point_of_sale.menu_point_rep" name="Corte Z"-->
+<!--              action="action_cortez" sequence="10"-->
+<!--              groups="point_of_sale.group_pos_manager,point_of_sale.group_pos_user"/>-->
+
+
+</odoo>
