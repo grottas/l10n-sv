@@ -82,9 +82,13 @@ class PosSession(models.Model):
                             for lines in pos_orders.lines:
                                 if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor.':
                                     pos_grav_total += lines.price_subtotal_incl
+                                if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor Test':
+                                    pos_grav_total += lines.price_subtotal_incl
                                 if lines.tax_ids_after_fiscal_position.name == 'IVA Incluido':
                                     pos_grav_total += lines.price_subtotal_incl
                                 if lines.tax_ids_after_fiscal_position.name == 'Exento venta':
+                                    pos_exen_total += lines.price_subtotal_incl
+                                if lines.tax_ids_after_fiscal_position.name == 'Exento venta Test':
                                     pos_exen_total += lines.price_subtotal_incl
                                 if lines.tax_ids_after_fiscal_position.name == 'No Sujeto Venta':
                                     pos_total_nosuj += lines.price_subtotal_incl
@@ -94,9 +98,13 @@ class PosSession(models.Model):
                         for lines in invoice_orders_fac.invoice_line_ids:
                             if lines.tax_ids.name == 'IVA Consumidor.':
                                 fac_grav_total += lines.price_total
+                            if lines.tax_ids.name == 'IVA Consumidor Test':
+                                fac_grav_total += lines.price_total
                             if lines.tax_ids.name == 'IVA Incluido':
                                 fac_grav_total += lines.price_total
                             if lines.tax_ids.name == 'Exento venta':
+                                fac_exen_total += lines.price_total
+                            if lines.tax_ids.name == 'Exento venta Test':
                                 fac_exen_total += lines.price_total
                             if lines.tax_ids.name == 'No Sujeto Venta':
                                 fac_total_nosuj += lines.price_total
@@ -106,7 +114,11 @@ class PosSession(models.Model):
                         for lines in invoice_orders_ccf.invoice_line_ids:
                             if lines.tax_ids.name == 'IVA Contribuyente.':
                                 ccf_grav_total += lines.price_total
+                            if lines.tax_ids.name == 'IVA Contribuyente Test':
+                                ccf_grav_total += lines.price_total
                             if lines.tax_ids.name == 'Exento venta':
+                                ccf_exen_total += lines.price_total
+                            if lines.tax_ids.name == 'Exento venta Test':
                                 ccf_exen_total += lines.price_total
                             if lines.tax_ids.name == 'No Sujeto Venta':
                                 ccf_total_nosuj += lines.price_total
