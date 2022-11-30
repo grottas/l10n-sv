@@ -84,6 +84,8 @@ class PosSession(models.Model):
                                     pos_grav_total += lines.price_subtotal_incl
                                 if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor Test':
                                     pos_grav_total += lines.price_subtotal_incl
+                                if lines.tax_ids_after_fiscal_position.name == 'Base Tangible Venta':
+                                    pos_grav_total += lines.price_subtotal_incl
                                 if lines.tax_ids_after_fiscal_position.name == 'IVA Incluido':
                                     pos_grav_total += lines.price_subtotal_incl
                                 if lines.tax_ids_after_fiscal_position.name == 'Exento venta':
@@ -99,6 +101,8 @@ class PosSession(models.Model):
                             if lines.tax_ids.name == 'IVA Consumidor.':
                                 fac_grav_total += lines.price_total
                             if lines.tax_ids.name == 'IVA Consumidor Test':
+                                fac_grav_total += lines.price_total
+                            if lines.tax_ids.name == 'Base Tangible Venta':
                                 fac_grav_total += lines.price_total
                             if lines.tax_ids.name == 'IVA Incluido':
                                 fac_grav_total += lines.price_total
