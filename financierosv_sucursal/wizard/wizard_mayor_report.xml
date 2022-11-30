@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <record id="wizard_report_download_xls" model="ir.ui.view">
+            <field name="name">wizard.report.download.xls.form</field>
+            <field name="model">wizard.report.download.xls</field>
+            <field name="arch" type="xml">
+                <form string="Report XLS" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <label for="file" string="Guarde el archivo con la extensión '.xls'."/>
+                            <field name="file_name" invisible="1"/>
+                            <field name="file" readonly="1" widget="binary" filename="file_name" nolabel="1"/>
+                        </group>
+                        <footer>
+                            <button string="Close" class="oe_highlight" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="report_mayor_wizard_view" model="ir.ui.view">
+            <field name="name">wizard.sv.mayor.report.form.view</field>
+            <field name="model">wizard.sv.mayor.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="company_id"/>
+                        <!--<field name="stock_location_id"/>-->
+                    </group>
+                    <group col="4">
+                        <field name="fechai"/>
+                        <field name="fechaf"/>
+                    </group>
+                    <group col="4">
+                        <field name="acum"/>
+                    </group>
+                    <footer>
+                        <button name="print_mayor_report" string="Imprimir" type="object" default_focus="1" class="btn btn-primary"/>
+
+                        <button name="generate_xls" string="Generate XLS" type="object" class="btn btn-secondary"/>
+
+                        <button string="Cancelar" special="cancel" class="btn btn-secondary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_mayor_report_wizard" model="ir.actions.act_window">
+            <field name="name">Libro Diario Mayor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.sv.mayor.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="mayor_report" name="Libro Diario Mayor" action="action_mayor_report_wizard" parent="b_custom_account_reports.menu_custom_reports" sequence="10" />
+         
+        <!--<menuitem id="mayor_report" name="Libro Diario Mayor" action="action_mayor_report_wizard"
+                  parent="account_reports.account_reports_audit_reports_menu" sequence="9"/>-->
+
+    </data>
+</odoo>

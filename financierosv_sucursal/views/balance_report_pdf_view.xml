@@ -1,0 +1,147 @@
+<odoo>
+    <data>
+        <template id='odoosv_balance_report_pdf'>
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-size: 8pt">
+                        <style type="text/css">
+                            .encabezado{text-align: center;}
+                            .tr-color{
+                            background-color:lightgray;
+                            }
+                            table{
+                            border-collapse: collapse;
+                            empty-cells:hide;
+                            }
+                            table td:last-child{
+                            padding: 0.5px;
+                            }
+                            .tabla-resumen {
+                            table-layout:fixed;
+                            position:absolute;
+                            left:200px;
+                            }
+                            .th1{width:80px; text-size:15; text-align:center;}
+                            .th2{width:500px;text-size:15; text-align:center;}
+                            .th3{width:80px; text-size:15; text-align:center;}
+                            .th4{width:80px; text-size:15; text-align:center;}
+                            .th5{width:80px; text-size:15; text-align:center;}
+                            .th6{width:80px; text-size:15; text-align:center;}
+                            .transformacion3 { text-transform: uppercase;}
+                        </style>
+
+                        <!--Declaracion de variables-->
+                        <t t-set="tt" t-value="int(0)"/>
+                        <t t-set="tt2" t-value="int(0)"/>
+                        <t t-set="month" t-value="int(0)"/>
+                        <t t-set="year" t-value="int(0)"/>
+                        <t t-set="company_id" t-value="int(0)"/>
+                        <t t-set="contador" t-value="null"/>
+                        <t t-set="company" t-value="null"/>
+                        <t t-set="mes" t-value="null"/>
+                        <t t-set="acum" t-value="null"/>
+                        <t t-set="saldo" t-value="float(0.00)"/>
+                        <t t-set="fechai" t-value="2022-12-1"/>
+                        <t t-set="fechaf" t-value="2022-12-1"/>
+                        <t t-set="fecha1" t-value="2022-12-1"/>
+                        <t t-set="fecha2" t-value="2022-12-1"/>
+                        <!--Fin de declaraciones-->
+
+                        <!--Encabezado-->
+                        <t t-foreach="docs" t-as="o">
+                            <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
+                            <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
+                            <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
+                            <t t-set="acum" t-value="int(data.get('form').get('acum'))"/>
+                            <t t-set="fechai" t-value="(data.get('form').get('fechai'))"/>
+                            <t t-set="fechaf" t-value="(data.get('form').get('fechaf'))"/>
+                            <t t-set="fecha1" t-value="datetime.datetime.strptime(fechai, '%Y-%m-%d')"/>
+                            <t t-set="fecha2" t-value="datetime.datetime.strptime(fechaf, '%Y-%m-%d')"/>
+                            <t t-set="fecha11" t-value="fecha1.strftime('%d %b, %Y')"/>
+                            <t t-set="fecha22" t-value="fecha2.strftime('%d %b, %Y')"/>
+                            <t t-set="company" t-value="o"/>
+
+                            <div class="encabezado">
+                                <h3>
+                                    <center>LOS RANCHOS DE EL SALVADOR, S.A. de C.V.</center>
+                                </h3>
+                                <h6>
+                                    <center>BALANCE DE SUMAS Y SALDOS DEL
+                                        <span class="transformacion3" t-esc="fecha11"/>
+                                        AL
+                                        <span class="transformacion3" t-esc="fecha22"/>
+                                    </center>
+                                </h6>
+                                <h6>
+                                    <center>(Valores expresados en dólares de los Estados Unidos de America)</center>
+                                </h6>
+                            </div>
+                        </t>
+                        <!--Fin encabezado-->
+
+                        <table class="table-bordered">
+                            <tr class="tr-color">
+                                <th class="th1">Código</th>
+                                <th class="th2">Cuenta</th>
+                                <th class="th3">Saldo Anterior</th>
+                                <th class="th4">Debe</th>
+                                <th class="th5">Haber</th>
+                                <th class="th6">Saldo</th>
+                            </tr>
+                            <tr t-foreach="company.get_balance_details(company_id, year, month, acum, fechai,fechaf)"
+                                t-as="c">
+                                <td class="td1" style="border:none;">
+                                    <span t-esc="c.get('code')"/>
+                                </td>
+                                <td class="td2" style="border:none;">
+                                    <span t-esc="c.get('name')"/>
+                                </td>
+                                <td class="td3" style="border:none;">
+                                    <span t-esc="'{0:,.2f}'.format(c.get('previo'))"/>
+                                </td>
+                                <td class="td4" style="border:none;">
+                                    <span t-esc="'{0:,.2f}'.format(c.get('debe'))"/>
+                                </td>
+                                <td class="td5" style="border:none;">
+                                    <span t-esc="'{0:,.2f}'.format(c.get('haber'))"/>
+                                </td>
+                                <t t-set="total" t-value="c.get('previo') + c.get('debe') - c.get('haber')"/>
+                                <td class="td6" style="border:none;">
+                                    <span t-esc="'{0:,.2f}'.format(total)"/>
+                                </td>
+                                <!--CUENTAS DE SALDO = SALDO_ANTERIOR + c.get('debe') -  c.get('haber')
+                                <t t-if="company.get_type_account(c.get('code')) in ('asset', 'expense')">
+                                    <t t-set="saldo" t-value="c.get('previo') + c.get('debe') - c.get('haber')"/>
+                                </t>-->
+
+                                <!--CUENTAS DE SALDO = SALDO_ANTERIOR + c.get('haber') - c.get('debe')
+                                <t t-if="company.get_type_account(c.get('code')) in ('equity', 'income', 'liability')">
+                                    <t t-set="saldo" t-value="c.get('previo') + c.get('haber') - c.get('debe')"/>
+                                </t>-->
+                            </tr>
+                        </table>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <div>__________________________________</div>
+                                <div>Representante Legal</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div>__________________________________</div>
+                                <div>Contador</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div>__________________________________</div>
+                                <div>Auditor</div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,721 @@
+<odoo>
+    <data>
+        <template id='odoosv_general_report_pdf'>
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-size: 9pt">
+                        <style type="text/css">
+                            .encabezado{text-align: center;position:top;}
+                            .tr-color{
+                            background-color:black;
+
+                            }
+                            table{
+                            border-collapse: collapse;
+                            empty-cells:hide;
+                            width: 100%;
+                            height: 90%;
+                            }
+                            table td:last-child{
+                            padding: 0.1px;
+
+                            }
+                            table td:last-child{
+                            height: 0.1px;
+                            }
+                            .tabla-resumen {
+                            table-layout:fixed;
+                            position:absolute;
+                            left:200px;
+                            }
+                            xxx{
+                            border-style: double; border-width:4px;
+                            border-right:none;border-left:none;border-top:none;
+                            }
+                            .footer {
+                            text-align: center;
+                            color: whitesmoke;
+                            width: 100%;
+                            bottom: 20;
+                            position:fixed;
+                            }
+                            .transformacion3 { text-transform: uppercase;}
+
+                            .th1{width:350px; text-size:15; text-align:center;}
+                            .th2{width:75px;text-size:15; text-align:center;}
+                            .th3{width:75px; text-size:15; text-align:center;}
+                            .th4{width:50px; text-size:15; text-align:center;}
+                            .th5{width:100px; text-size:15; text-align:center;}
+                            .th6{width:100px; text-size:15; text-align:center;}
+                            .th7{width:250px; text-size:15; text-align:center;}
+
+                            .td1{text-size:18px; height:0px;}
+                            .td2{text-size:18px; height:0px;}
+                            .td3{text-size:18px; height:0px;}
+                            .td4{text-size:18px; height:0px;}
+                            .td5{text-size:18px; height:0px;}
+                            .td6{text-size:18px; height:0px;text-align:center;}
+
+                        </style>
+                        <!--Declaracion de variables-->
+                        <t t-set="month" t-value="int(0)"/>
+                        <t t-set="year" t-value="int(0)"/>
+                        <t t-set="company_id" t-value="int(0)"/>
+                        <t t-set="contador" t-value="null"/>
+                        <t t-set="company" t-value="null"/>
+                        <t t-set="mes" t-value="null"/>
+                        <t t-set="acum" t-value="null"/>
+                        <t t-set="totalc" t-value="float(0.00)"/>
+                        <t t-set="totalogno" t-value="float(0.00)"/>
+                        <t t-set="totalc" t-value="float(0.00)"/>
+                        <t t-set="totalnc" t-value="float(0.00)"/>
+                        <t t-set="totalcgo" t-value="float(0.00)"/>
+                        <t t-set="totalgo" t-value="float(0.00)"/>
+                        <t t-set="totalgno" t-value="float(0.00)"/>
+                        <t t-set="total1" t-value="float(0.00)"/>
+                        <t t-set="total" t-value="float(0.00)"/>
+                        <t t-set="total2" t-value="float(0.00)"/>
+                        <t t-set="totaln1" t-value="float(0.00)"/>
+                        <t t-set="totaln2" t-value="float(0.00)"/>
+                        <t t-set="totaln3" t-value="float(0.00)"/>
+                        <t t-set="totala" t-value="float(0.00)"/>
+                        <t t-set="totals" t-value="float(0.00)"/>
+                        <t t-set="totald" t-value="float(0.00)"/>
+                        <t t-set="totalf" t-value="float(0.00)"/>
+                        <t t-set="totalg" t-value="float(0.00)"/>
+                        <t t-set="totalh" t-value="float(0.00)"/>
+                        <t t-set="fechai" t-value="2022-12-1"/>
+                        <t t-set="fechaf" t-value="2022-12-1"/>
+                        <t t-set="fecha1" t-value="2022-12-1"/>
+                        <t t-set="fecha2" t-value="2022-12-1"/>
+
+                        <!--Fin de declaraciones-->
+
+                        <!--Encabezado-->
+                        <t t-foreach="docs" t-as="o">
+                            <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
+                            <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
+                            <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
+                            <t t-set="acum" t-value="int(data.get('form').get('acum'))"/>
+                            <t t-set="fechai" t-value="(data.get('form').get('fechai'))"/>
+                            <t t-set="fechaf" t-value="(data.get('form').get('fechaf'))"/>
+                            <t t-set="company" t-value="o"/>
+                            <t t-set="fecha1" t-value="datetime.datetime.strptime(fechai, '%Y-%m-%d')"/>
+                            <t t-set="fecha2" t-value="datetime.datetime.strptime(fechaf, '%Y-%m-%d')"/>
+                            <t t-set="fecha11" t-value="fecha1.strftime('%d %b, %Y')"/>
+                            <t t-set="fecha22" t-value="fecha2.strftime('%d %b, %Y')"/>
+
+                            <div class="encabezado">
+                                <h3>
+                                    <center>LOS RANCHOS DE EL SALVADOR, S.A. DE C.V.</center>
+                                </h3>
+                                <t t-if="year != 0000">
+                                    <h6>
+                                        <center>BALANCE GENERAL DEL
+                                            <span class="transformacion3" t-esc="fecha11"/>
+                                            AL
+                                            <span class="transformacion3" t-esc="fecha22"/>
+                                        </center>
+                                    </h6>
+                                </t>
+                                <t t-if="year == 0000">
+                                    <h6>
+                                        <center>BALANCE COMPROBACION DEL
+                                            <span class="transformacion3" t-esc="fecha11"/>
+                                            AL
+                                            <span class="transformacion3" t-esc="fecha22"/>
+                                        </center>
+                                    </h6>
+                                </t>
+
+                                <h6>
+                                    <center>(Cifras expresadas en dólares de los Estados Unidos de América)</center>
+                                </h6>
+                            </div>
+                        </t>
+                        <!--Fin encabezado-->
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table-bordered" style="border-color:#000000;border:5px;">
+                                    <tr class="tr">
+                                        <th class="th4" style="border:none;color:#FFFFFF;">.</th>
+                                        <th class="th1" style="border:none;"></th>
+                                        <th class="th2" style="border:none;"></th>
+                                        <th class="th3" style="border:none;"></th>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2" style="border:none;">
+                                            <u>
+                                                <strong>ACTIVO</strong>
+                                            </u>
+                                        </td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td2" style="border:none;">
+                                            <u>
+                                                <strong></strong>
+                                            </u>
+                                        </td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <!-- ACTIVOS CORRIENTES-->
+                                    <tr t-foreach="company.get_general_details(company_id, year, month, acum,fechai,fechaf)"
+                                        t-as="c">
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td1" style="border:none;">
+                                            <strong t-esc="c.get('name')"/>
+                                        </td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <t t-set="totalc" t-value=" c.get('previo') + c.get('debe') - c.get('haber')"/>
+                                        <td class="td6" style="border:none;">
+                                            <span t-esc="'{0:,.2f}'.format(totalc)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="company.get_general_details5(company_id, year, month, acum, fechai, fechaf)"
+                                        t-as="c">
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td1" style="border:none;">
+                                            <span t-esc="c.get('name')"/>
+                                        </td>
+                                        <t t-set="totala"
+                                           t-value="c.get('previo5') + c.get('debe5') - c.get('haber5')"/>
+                                        <td class="td6" style="border:none;">
+                                            <span t-esc="'{0:,.2f}'.format(totala)"/>
+                                        </td>
+                                        <td class="td1" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2"
+                                            style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <!-- ACTIVOS NO CORRIENTES-->
+                                    <tr t-foreach="company.get_general_details1(company_id, year, month, acum, fechai, fechaf)"
+                                        t-as="c">
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td1" style="border:none;">
+                                            <strong t-esc="c.get('name')"/>
+                                        </td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <t t-set="totalnc"
+                                           t-value=" c.get('previo1') + c.get('debe1') - c.get('haber1')"/>
+                                        <td class="td6" style="border:none;">
+                                            <span t-esc="'{0:,.2f}'.format(totalnc)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="company.get_general_details6(company_id, year, month, acum, fechai, fechaf)"
+                                        t-as="c">
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td1" style="border:none;">
+                                            <span t-esc="c.get('name')"/>
+                                        </td>
+                                        <t t-set="totals"
+                                           t-value="c.get('previo6') + c.get('debe6') - c.get('haber6')"/>
+                                        <td class="td6" style="border:none;">
+                                            <span t-esc="'{0:,.2f}'.format(totals)"/>
+                                        </td>
+                                        <td class="td1" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2"
+                                            style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <t t-if="year == 0000">
+                                        <!-- COSTOS Y GASTOS DE LA OPERACIÓN -->
+                                        <tr t-foreach="company.get_general_details10(company_id,year,month,acum,fechai,fechaf)"
+                                            t-as="c">
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <strong>COSTOS Y GASTOS DE LA OPERACIÓN</strong>
+                                            </td>
+                                            <td class="td2" style="border:none;"></td>
+                                            <t t-set="totalcgo"
+                                               t-value=" c.get('previo10') + c.get('debe10') - c.get('haber10')"/>
+                                            <td class="td6" style="border:none;">
+                                                <span t-esc="'{0:,.2f}'.format(totalcgo)"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="company.get_general_details11(company_id, year, month, acum, fechai, fechaf)"
+                                            t-as="c">
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <span t-esc="c.get('name')"/>
+                                            </td>
+                                            <t t-set="totala"
+                                               t-value="c.get('previo11') + c.get('debe11') - c.get('haber11')"/>
+                                            <td class="td6" style="border:none;">
+                                                <span t-esc="'{0:,.2f}'.format(totala)"/>
+                                            </td>
+                                            <td class="td1" style="border:none;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td2"
+                                                style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
+                                            <td class="td6" style="border:none;"></td>
+                                        </tr>
+                                        <!-- GASTOS OPERACIONALES -->
+                                        <tr t-foreach="company.get_general_details12(company_id,year,month,acum,fechai,fechaf)"
+                                            t-as="c">
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <strong>GASTOS OPERACIONALES</strong>
+                                            </td>
+                                            <td class="td2" style="border:none;"></td>
+                                            <t t-set="totalgo"
+                                               t-value=" c.get('previo12') + c.get('debe12') - c.get('haber12')"/>
+                                            <td class="td6" style="border:none;">
+                                                <span t-esc="'{0:,.2f}'.format(totalgo)"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="company.get_general_details13(company_id, year, month, acum, fechai, fechaf)"
+                                            t-as="c">
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <span t-esc="c.get('name')"/>
+                                            </td>
+                                            <t t-set="totala"
+                                               t-value="c.get('previo13') + c.get('debe13') - c.get('haber13')"/>
+                                            <td class="td6" style="border:none;">
+                                                <span t-esc="'{0:,.2f}'.format(totala)"/>
+                                            </td>
+                                            <td class="td1" style="border:none;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td2"
+                                                style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
+                                            <td class="td6" style="border:none;"></td>
+                                        </tr>
+                                        <!-- GASTOS NO OPERACIONALES -->
+                                        <tr t-foreach="company.get_general_details14(company_id,year,month,acum,fechai,fechaf)"
+                                            t-as="c">
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <strong>GASTOS NO OPERACIONALES</strong>
+                                            </td>
+                                            <td class="td2" style="border:none;"></td>
+                                            <t t-set="totalgno"
+                                               t-value=" c.get('previo14') + c.get('debe14') - c.get('haber14')"/>
+                                            <td class="td6" style="border:none;">
+                                                <span t-esc="'{0:,.2f}'.format(totalgno)"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="company.get_general_details15(company_id, year, month, acum, fechai, fechaf)"
+                                            t-as="c">
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <span t-esc="c.get('name')"/>
+                                            </td>
+                                            <t t-set="totala"
+                                               t-value="c.get('previo15') + c.get('debe15') - c.get('haber15')"/>
+                                            <td class="td6" style="border:none;">
+                                                <span t-esc="'{0:,.2f}'.format(totala)"/>
+                                            </td>
+                                            <td class="td1" style="border:none;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td2"
+                                                style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
+                                            <td class="td6" style="border:none;"></td>
+                                        </tr>
+                                        <!-- OTROS GASTOS NO OPERACIONALES -->
+                                        <tr t-foreach="company.get_general_details18(company_id,year,month,acum,fechai,fechaf)"
+                                            t-as="c">
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <strong>OTROS GASTOS</strong>
+                                            </td>
+                                            <td class="td2" style="border:none;"></td>
+                                            <t t-set="totalogno"
+                                               t-value=" c.get('previo18') + c.get('debe18') - c.get('haber18')"/>
+                                            <td class="td6" style="border:none;">
+                                                <span t-esc="'{0:,.2f}'.format(totalogno)"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="company.get_general_details19(company_id, year, month, acum, fechai, fechaf)"
+                                            t-as="c">
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                OTROS GASTOS NO OPERACIONALES
+                                                <!--<span t-esc="c.get('name')"/>-->
+                                            </td>
+                                            <t t-set="totala"
+                                               t-value="c.get('previo19') + c.get('debe19') - c.get('haber19')"/>
+                                            <td class="td6" style="border:none;">
+                                                <span t-esc="'{0:,.2f}'.format(totala)"/>
+                                            </td>
+                                            <td class="td1" style="border:none;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td2"
+                                                style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
+                                            <td class="td6" style="border:none;"></td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table-bordered" style="border-color:#000000;border:5px;">
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2" style="border:none;">
+                                            <u>
+                                                <strong>PASIVO</strong>
+                                            </u>
+                                        </td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <!-- PASIVO CORRIENTE -->
+                                    <tr t-foreach="company.get_general_details2(company_id, year, month, acum, fechai, fechaf)"
+                                        t-as="c">
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td1" style="border:none;">
+                                            <strong t-esc="c.get('name')"/>
+                                        </td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <t t-set="totaln1"
+                                           t-value=" (c.get('previo2') + c.get('debe2') - c.get('haber2')) * -1"/><!--dato-->
+                                        <td class="td6" style="border:none;">
+                                            <span t-esc="'{0:,.2f}'.format(totaln1)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="company.get_general_details7(company_id, year, month, acum, fechai, fechaf)"
+                                        t-as="c">
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td1" style="border:none;">
+                                            <span t-esc="c.get('name')"/>
+                                        </td>
+                                        <t t-set="totalf"
+                                           t-value=" (c.get('previo7') + c.get('debe7') - c.get('haber7')) * -1"/><!--cambio de signo-->
+                                        <td class="td6" style="border:none;">
+                                            <span t-esc="'{0:,.2f}'.format(totalf)"/>
+                                        </td>
+                                        <td class="td1" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2"
+                                            style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2"
+                                            style="border: none; color:#FFFFFF;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <!-- PASIVO NO CORRIENTE -->
+                                    <tr t-foreach="company.get_general_details3(company_id, year, month, acum, fechai, fechaf)"
+                                        t-as="c">
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td1" style="border:none;">
+                                            <strong t-esc="c.get('name')"/>
+                                        </td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <t t-set="totaln2"
+                                           t-value="(c.get('previo3') + c.get('debe3') -c.get('haber3')) * -1"/>
+                                        <td class="td6" style="border:none;">
+                                            <span t-esc="'{0:,.2f}'.format(totaln2)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="company.get_general_details8(company_id, year, month, acum, fechai, fechaf)"
+                                        t-as="c">
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td1" style="border:none;">
+                                            <span t-esc="c.get('name')"/>
+                                        </td>
+                                        <t t-set="totalg"
+                                           t-value="(c.get('previo8') + c.get('debe8') - c.get('haber8')) * -1"/>
+                                        <!--<t t-set="totalg" t-value="(c.get('previo8') + c.get('haber8') - c.get('debe8'))"/>-->
+                                        <td class="td6" style="border:none;">
+                                            <span t-esc="'{0:,.2f}'.format(totalg)"/>
+                                        </td>
+                                        <td class="td1" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2"
+                                            style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <!--CAPITAL, RESERVA Y SUPERAVIT-->
+                                    <tr t-foreach="company.get_general_details4(company_id, year, month, acum, fechai, fechaf)"
+                                        t-as="c">
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td1" style="border:none;">
+                                            <strong t-esc="c.get('name')"/>
+                                        </td>
+                                        <td class="td2" style="border:none;"></td>
+
+                                        <!-- Para el caso que previo sea negativo -->
+                                        <t t-if="c.get('previo4') != 0">
+                                            <t t-set="previo4" t-value="(c.get('previo4') * -1)"/>
+                                        </t>
+
+                                        <t t-if="c.get('previo4') == 0">
+                                            <t t-set="previo4" t-value="c.get('previo4')"/>
+                                        </t>
+
+                                        <t t-set="totaln3" t-value="(previo4 + c.get('haber4') - c.get('debe4'))"/>
+
+                                        <td class="td6" style="border:none;">
+                                            <span t-esc="'{0:,.2f}'.format(totaln3)"/>
+                                        </td>
+                                    </tr>
+                                    <!--CAMPOS DEL CAPITAL-->
+                                    <tr t-foreach="company.get_general_details9(company_id, year, month, acum, fechai, fechaf)"
+                                        t-as="c">
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td1" style="border:none;">
+                                            <span t-esc="c.get('name')"/>
+                                        </td>
+                                        <!-- Para el caso que saldo previo sea negativo -->
+                                        <t t-if="c.get('previo9') != 0">
+                                            <t t-set="previo" t-value="(c.get('previo9') * -1)"/>
+                                        </t>
+                                        <!-- Para el caso que saldo previo sea cero -->
+                                        <t t-if="c.get('previo9') == 0">
+                                            <t t-set="previo" t-value="c.get('previo9')"/>
+                                        </t>
+
+                                        <t t-set="totalh" t-value="(previo + c.get('haber9') - c.get('debe9'))"/>
+
+                                        <td class="td6" style="border:none;">
+                                            <span t-esc="'{0:,.2f}'.format(totalh)"/>
+                                        </td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2"
+                                            style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                        <td class="td1" style="border:none;"></td>
+                                        <td class="td2" style="border:none;"></td>
+                                        <td class="td6" style="border:none;"></td>
+                                    </tr>
+                                    <t t-if="year == 0000">
+                                        <!-- INGRESOS -->
+                                        <tr t-foreach="company.get_general_details16(company_id, year, month, acum, fechai, fechaf)"
+                                            t-as="c">
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <strong t-esc="c.get('name')"/>
+                                            </td>
+                                            <td class="td2" style="border:none;"></td>
+                                            <!--<t t-set="totali" t-value="(c.get('previo16') + c.get('haber16') - c.get('debe16'))"/>-->
+                                            <t t-set="totali" t-value="(c.get('previo16'))"/>
+                                            <td class="td6" style="border:none;">
+                                                <span t-esc="'{0:,.2f}'.format(totali)"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-foreach="company.get_general_details17(company_id, year, month, acum, fechai, fechaf)"
+                                            t-as="c">
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <span t-esc="c.get('name')"/>
+                                            </td>
+                                            <t t-set="totali1"
+                                               t-value="(c.get('previo17') + c.get('haber17') - c.get('debe17'))"/>
+                                            <td class="td6" style="border:none;">
+                                                <span t-esc="'{0:,.2f}'.format(totali1)"/>
+                                            </td>
+                                            <td class="td6" style="border:none;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td2"
+                                                style="border: black 2px solid;border-right:none;border-left:none;border-bottom:none;"></td>
+                                            <td class="td6" style="border:none;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1" style="border:none;color:#FFFFFF;">.</td>
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td2" style="border:none;"></td>
+                                            <td class="td6" style="border:none;"></td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <table class="table" style="border-color:#000000;border:5px;">
+                                    <t t-if="year == 0000">
+                                        <tr>
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <u>
+                                                    <strong>TOTAL ACTIVO MAS COSTOS Y GASTOS</strong>
+                                                </u>
+                                            </td>
+                                            <t t-set="totald"
+                                               t-value="totalc + totalnc + totalcgo + totalgo  + totalgno + totalogno"/>
+                                            <td class="td6" style="border:none;"></td>
+                                            <td class="td6" style="border:none;">
+                                                <xxx>
+                                                    <strong t-esc="'{0:,.2f}'.format(totald)"/>
+                                                </xxx>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-if="year != 0000">
+                                        <tr>
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <u>
+                                                    <strong>TOTAL ACTIVO</strong>
+                                                </u>
+                                            </td>
+                                            <t t-set="totald" t-value="totalc + totalnc"/>
+                                            <td class="td6" style="border:none;"></td>
+                                            <td class="td6" style="border:none;">
+                                                <xxx>
+                                                    <strong t-esc="'{0:,.2f}'.format(totald)"/>
+                                                </xxx>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table" style="border-color:#000000;border:5px;">
+                                    <t t-if="year != 0000">
+                                        <tr>
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <u>
+                                                    <strong>TOTAL PASIVO + CAPITAL</strong>
+                                                </u>
+                                            </td>
+                                            <t t-set="total1" t-value="totaln1 + totaln2"/>
+                                            <t t-set="total2" t-value="total1 + totaln3"/>
+                                            <td class="td6" style="border:none;"></td>
+                                            <td class="td6" style="border:none;">
+                                                <xxx>
+                                                    <strong t-esc="'{0:,.2f}'.format(total2)"/>
+                                                </xxx>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-if="year == 0000">
+                                        <tr>
+                                            <td class="td1" style="border:none;"></td>
+                                            <td class="td1" style="border:none;">
+                                                <u>
+                                                    <strong>TOTAL PASIVO MAS CAPITAL E INGRESO</strong>
+                                                </u>
+                                            </td>
+                                            <t t-set="total1" t-value="totaln1 + totaln2"/>
+                                            <t t-set="total2" t-value="total1 + totaln3 + totali"/>
+                                            <td class="td6" style="border:none;"></td>
+                                            <td class="td6" style="border:none;">
+                                                <xxx>
+                                                    <strong t-esc="'{0:,.2f}'.format(total2)"/>
+                                                </xxx>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="row">
+                            <t t-set="repre" t-value="nombre"/>
+                            <t t-set="audi" t-value="audi"/>
+                            <t t-set="cont" t-value=" Nombre"/>
+                            <div class="col-12">
+                                <t t-foreach="docs" t-as="x">
+                                    <t t-set="repre" t-value="data.get('form').get('repre')"/>
+                                    <t t-set="cont" t-value="data.get('form').get('cont')"/>
+                                    <t t-set="audi" t-value="data.get('form').get('audi')"/>
+                                    <t t-set="company" t-value="x"/>
+                                    <table class="table-bordered" style="border:none;border-color:#FFFFFF">
+                                        <tr>
+                                            <td style="text-align:center; border:none;">F
+                                                .______________________________
+                                            </td>
+                                            <td style="text-align:center;border:none;">
+                                                F.______________________________
+                                            </td>
+                                            <td style="text-align:center;border:none;">
+                                                F.______________________________
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:center;border:none;">
+                                                <span t-esc="repre"/>
+                                            </td>
+                                            <td style="text-align:center;border:none;">
+                                                <span t-esc="audi"/>
+                                            </td>
+                                            <td style="text-align:center;border:none;">
+                                                <span t-esc="cont"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:center;border:none;">Rep. Legal</td>
+                                            <td style="text-align:center;border:none;">Auditor</td>
+                                            <td style="text-align:center;border:none;">Contador</td>
+                                        </tr>
+                                    </table>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
