@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="result_state_report" model="account.financial.html.report" forcecreate="True">
+            <field name="name">Custom Result State</field>
+            <field name="date_range" eval="True"/>
+            <field name="analytic" eval="False"/>
+            <field name="unfold_all_filter" eval="True"/>
+            <field name="generated_menu_id" ref="b_custom_account_reports.menu_custom_reports"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <!-- ACTION Custom Result State -->
+        <record id="action_custom_result_state" model="ir.actions.client">
+            <field name="name">Custom Result State</field>
+            <field name="tag">account_report</field>
+            <field name="context" eval="{'model': 'account.financial.html.report', 'id': ref('result_state_report')}"/>
+        </record>
+
+        <record id="result_state_5" model="account.financial.html.report.line">
+            <field name="name">CUENTAS DE RESULTADOS ACREEDORAS</field>
+            <field name="code">state_5</field>
+            <field name="financial_report_id" ref="result_state_report"/>
+            <field name="formulas">state_5153</field>
+            <field name="sequence" eval="0"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_5153" model="account.financial.html.report.line">
+            <field name="name">VENTAS</field>
+            <field name="code">state_5153</field>
+            <field name="parent_id" ref="result_state_5"/>
+            <field name="formulas">state_5101 - state_5301</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="1"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_51" model="account.financial.html.report.line">
+            <field name="name">SERVICIOS DE RESTAURANTE</field>
+            <field name="code">state_5101</field>
+            <field name="parent_id" ref="result_state_5153"/>
+            <field name="domain" eval="[('account_id.code','=like','5101%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_53" model="account.financial.html.report.line">
+            <field name="name">DESCUENTOS SOBRE LAS VENTAS</field>
+            <field name="code">state_5301</field>
+            <field name="parent_id" ref="result_state_5153"/>
+            <field name="domain" eval="[('account_id.code','=like','5301%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_4" model="account.financial.html.report.line">
+            <field name="name">CUENTAS DE RESULTADO DEUDORA</field>
+            <field name="code">state_4</field>
+            <field name="financial_report_id" ref="result_state_report"/>
+            <field name="formulas">state_41 + state_42 + state_43</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_41" model="account.financial.html.report.line">
+            <field name="name">COSTOS DE VENTA</field>
+            <field name="code">state_41</field>
+            <field name="parent_id" ref="result_state_4"/>
+            <field name="formulas">state_4101 + state_4102</field>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="1"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_4101" model="account.financial.html.report.line">
+            <field name="name">COSTOS DE VENTA DE MERCADERIA</field>
+            <field name="code">state_4101</field>
+            <field name="parent_id" ref="result_state_41"/>
+            <field name="domain" eval="[('account_id.code','=like','4101%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_4102" model="account.financial.html.report.line">
+            <field name="name">COSTOS POR SERVICIOS POR RESTAURANTE</field>
+            <field name="code">state_4102</field>
+            <field name="parent_id" ref="result_state_41"/>
+            <field name="domain" eval="[('account_id.code','=like','4102%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_42" model="account.financial.html.report.line">
+            <field name="name">GASTOS OPERATIVOS</field>
+            <field name="code">state_42</field>
+            <field name="parent_id" ref="result_state_4"/>
+            <field name="formulas">state_4201 + state_4202</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="1"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_4201" model="account.financial.html.report.line">
+            <field name="name">GASTOS DE ADMINISTRACION</field>
+            <field name="code">state_4201</field>
+            <field name="parent_id" ref="result_state_42"/>
+            <field name="domain" eval="[('account_id.code','=like','4201%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_4202" model="account.financial.html.report.line">
+            <field name="name">GASTOS DE VENTA</field>
+            <field name="code">state_4202</field>
+            <field name="parent_id" ref="result_state_42"/>
+            <field name="domain" eval="[('account_id.code','=like','4202%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_43" model="account.financial.html.report.line">
+            <field name="name">GASTOS NO OPERACIONALES</field>
+            <field name="code">state_43</field>
+            <field name="parent_id" ref="result_state_4"/>
+            <field name="formulas">state_4301</field>
+            <field name="sequence" eval="3"/>
+            <field name="level" eval="1"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_4301" model="account.financial.html.report.line">
+            <field name="name">GASTOS FINANCIEROS</field>
+            <field name="code">state_4301</field>
+            <field name="parent_id" ref="result_state_43"/>
+            <field name="domain" eval="[('account_id.code','=like','4301%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_45" model="account.financial.html.report.line">
+            <field name="name">OTROS GASTOS</field>
+            <field name="code">state_45</field>
+            <field name="parent_id" ref="result_state_4"/>
+            <field name="formulas">state_4501</field>
+            <field name="sequence" eval="3"/>
+            <field name="level" eval="1"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_4501" model="account.financial.html.report.line">
+            <field name="name">OTROS GASTOS NO OPERACIONALES</field>
+            <field name="code">state_4501</field>
+            <field name="parent_id" ref="result_state_45"/>
+            <field name="domain" eval="[('account_id.code','=like','4501%')]"/>
+            <field name="formulas">sum</field>
+            <field name="groupby">account_id</field>
+            <field name="show_domain">never</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="2"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_01" model="account.financial.html.report.line">
+            <field name="name">UTILIDAD DE OPERACIÓN</field>
+            <field name="code">state_01</field>
+            <field name="financial_report_id" ref="result_state_report"/>
+            <field name="formulas">state_5 - state_4 - state_45</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- SE obtiene RESERVA LEGAL 7% dado la cuenta y el nombre del movimiento que se defina -->
+        <record id="result_state_02" model="account.financial.html.report.line">
+            <field name="name">RESERVA LEGAL 7%</field>
+            <field name="code">state_02</field>
+            <field name="financial_report_id" ref="result_state_report"/>
+            <field name="domain" eval="[ ('account_id.code','=like','310301'), ('move_name','=like','CIERRE%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_33" model="account.financial.html.report.line">
+            <field name="name">UTILIDAD ANTES IMPUESTOS</field>
+            <field name="code">state_33</field>
+            <field name="financial_report_id" ref="result_state_report"/>
+            <field name="formulas">state_01 - state_02</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="1"/>
+        </record>
+        <!-- SE obtiene los impuestos sobre la renta dado la cuenta y el nombre del movimiento que se defina -->
+        <record id="result_state_04" model="account.financial.html.report.line">
+            <field name="name">IMPUESTOS SOBRE LA RENTA</field>
+            <field name="code">state_04</field>
+            <field name="financial_report_id" ref="result_state_report"/>
+            <field name="domain" eval="[ ('account_id.code','=like','21060401'), ('move_name','=like','CIERRE%')]"/>
+            <field name="formulas">-sum</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="1"/>
+        </record>
+
+        <record id="result_state_05" model="account.financial.html.report.line">
+            <field name="name">UTILIDADES DEL EJERCICIO</field>
+            <field name="code">state_05</field>
+            <field name="financial_report_id" ref="result_state_report"/>
+            <field name="formulas">state_33 - state_04</field>
+            <field name="sequence" eval="2"/>
+            <field name="level" eval="0"/>
+            <field name="position" eval="1"/>
+        </record>
+
+    </data>
+</odoo>
