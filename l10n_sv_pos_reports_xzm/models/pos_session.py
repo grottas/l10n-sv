@@ -82,6 +82,8 @@ class PosSession(models.Model):
                             for lines in pos_orders.lines:
                                 if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor.':
                                     pos_grav_total += lines.price_subtotal_incl
+                                if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor':
+                                    pos_grav_total += lines.price_subtotal_incl
                                 if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor Test':
                                     pos_grav_total += lines.price_subtotal_incl
                                 if lines.tax_ids_after_fiscal_position.name == 'Base Tangible Venta':
@@ -99,6 +101,8 @@ class PosSession(models.Model):
                     for invoice_orders_fac in invoice_fac:
                         for lines in invoice_orders_fac.invoice_line_ids:
                             if lines.tax_ids.name == 'IVA Consumidor.':
+                                fac_grav_total += lines.price_total
+                            if lines.tax_ids.name == 'IVA Consumidor':
                                 fac_grav_total += lines.price_total
                             if lines.tax_ids.name == 'IVA Consumidor Test':
                                 fac_grav_total += lines.price_total
@@ -132,6 +136,8 @@ class PosSession(models.Model):
                     for invoice_orders_ndc in invoice_ndc:
                         for lines in invoice_orders_ndc.invoice_line_ids:
                             if lines.tax_ids.name == 'IVA Consumidor.':
+                                ndc_grav_total += lines.price_total
+                            if lines.tax_ids.name == 'IVA Consumidor':
                                 ndc_grav_total += lines.price_total
                             if lines.tax_ids.name == 'IVA Contribuyente.':
                                 ndc_grav_total += lines.price_total

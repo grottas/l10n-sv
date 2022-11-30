@@ -15,25 +15,25 @@
                         <div class="option">
                             <div>10%</div>
                             <div class="amount">
-                                <t t-esc="env.pos.format_currency(receipt.total_without_tax * 0.10)"></t>
+                                <t t-esc="env.pos.format_currency(receipt.total_with_tax * 0.10)"></t>
                             </div>
                         </div>
                          <div class="option">
                             <div>12%</div>
                             <div class="amount">
-                                <t t-esc="env.pos.format_currency(receipt.total_without_tax * 0.12)"></t>
+                                <t t-esc="env.pos.format_currency(receipt.total_with_tax * 0.12)"></t>
                             </div>
                         </div>
                         <div class="option">
                             <div>15%</div>
                             <div class="amount">
-                                <t t-esc="env.pos.format_currency(receipt.total_without_tax * 0.15)"></t>
+                                <t t-esc="env.pos.format_currency(receipt.total_with_tax * 0.15)"></t>
                             </div>
                         </div>
                         <div class="option">
                             <div>18%</div>
                             <div class="amount">
-                                <t t-esc="env.pos.format_currency(receipt.total_without_tax * 0.18)"></t>
+                                <t t-esc="env.pos.format_currency(receipt.total_with_tax * 0.18)"></t>
                             </div>
                         </div>
                     </div>

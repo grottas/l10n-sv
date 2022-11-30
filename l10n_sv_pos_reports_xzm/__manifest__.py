@@ -11,7 +11,7 @@
     'license': 'GPL-3',
     'category': 'Localization',
     'version': '1.1',
-    'depends': ['base', 'point_of_sale', 'account', 'sv_accounting', 'portal', 'utm'],
+    'depends': ['base', 'point_of_sale', 'account', 'sv_accounting', 'portal', 'utm', 'res_company_giro'],
     'data': [
         # 'data/action_server_x.xml',
         # 'data/action_server_z.xml',
