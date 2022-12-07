@@ -6,7 +6,7 @@
     'version': '15.0.1.0',
     'license': 'GPL-3',
     'author': "Expertha(Nestor Ulloa)",
-    'depends': ['base'],
+    'depends': ['base', 'account'],
     'data': [
 
     ],
