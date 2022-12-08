@@ -1,6 +1,6 @@
 from odoo import fields, models, api
-from datetime import datetime
-# import datetime
+from datetime import datetime, timezone
+import pytz
 import calendar
 
 from odoo.exceptions import AccessError, UserError, ValidationError
@@ -12,7 +12,13 @@ class PosSession(models.Model):
     cortez_id = fields.Many2one('corte.z', related='cortex_id.cortez_id', readonly=True, string='Corte Z')
 
     def generar_cortex(self):
+
         fecha = datetime.strftime(self.start_at, '%Y-%m-%d')
+
+        user_tz = self.env.user.tz or pytz.utc
+        local = pytz.timezone(user_tz)
+        # display_date_result = datetime.strftime(pytz.utc.localize(datetime.strftime(self.start_at)).astimezone(local),"%d/%m/%Y %H:%M%S")
+
         cortez = self.env['corte.z'].search([('fecha', '=', fecha)])
         if len(cortez) == 0:
             if self.state == 'closed':
@@ -77,25 +83,28 @@ class PosSession(models.Model):
                     invoice_contado_pos_set = 0.00
                     invoice_credito_set = 0.00
 
-                    for pos_orders in orders:
-                        if not pos_orders.account_move:
-                            for lines in pos_orders.lines:
-                                if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor.':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor Test':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'Base Tangible Venta':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'IVA Incluido':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'Exento venta':
-                                    pos_exen_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'Exento venta Test':
-                                    pos_exen_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'No Sujeto Venta':
-                                    pos_total_nosuj += lines.price_subtotal_incl
+                    for pos_orders in self.order_ids:
+                        if pos_orders.fiscal_position_id:
+                            if not pos_orders.to_invoice:
+                                for lines in pos_orders.lines:
+                                    if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor.':
+                                        pos_grav_total += lines.price_subtotal_incl
+                                    if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor':
+                                        pos_grav_total += lines.price_subtotal_incl
+                                    if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor Test':
+                                        pos_grav_total += lines.price_subtotal_incl
+                                    if lines.tax_ids_after_fiscal_position.name == 'Base Tangible Venta':
+                                        pos_grav_total += lines.price_subtotal_incl
+                                    if lines.tax_ids_after_fiscal_position.name == 'IVA Incluido':
+                                        pos_grav_total += lines.price_subtotal_incl
+                                    if lines.tax_ids_after_fiscal_position.name == 'Exento venta':
+                                        pos_exen_total += lines.price_subtotal_incl
+                                    if lines.tax_ids_after_fiscal_position.name == 'Exento venta Test':
+                                        pos_exen_total += lines.price_subtotal_incl
+                                    if lines.tax_ids_after_fiscal_position.name == 'No Sujeto Venta':
+                                        pos_total_nosuj += lines.price_subtotal_incl
+                                    else:
+                                        continue
 
                     # SUMATORIA DE CONSUMIDOR FINAL
                     for invoice_orders_fac in invoice_fac:
@@ -103,6 +112,8 @@ class PosSession(models.Model):
                             if lines.tax_ids.name == 'IVA Consumidor.':
                                 fac_grav_total += lines.price_total
                             if lines.tax_ids.name == 'IVA Consumidor':
+                                fac_grav_total += lines.price_total
+                            if lines.tax_ids.name == 'IVA Incluído':
                                 fac_grav_total += lines.price_total
                             if lines.tax_ids.name == 'IVA Consumidor Test':
                                 fac_grav_total += lines.price_total
@@ -116,6 +127,8 @@ class PosSession(models.Model):
                                 fac_exen_total += lines.price_total
                             if lines.tax_ids.name == 'No Sujeto Venta':
                                 fac_total_nosuj += lines.price_total
+                            else:
+                                continue
 
                     #SUMATORIA DE CREDITOS FISCALES
                     for invoice_orders_ccf in invoice_ccf:
@@ -124,12 +137,16 @@ class PosSession(models.Model):
                                 ccf_grav_total += lines.price_total
                             if lines.tax_ids.name == 'IVA Contribuyente Test':
                                 ccf_grav_total += lines.price_total
+                            if lines.tax_ids.name == 'IVA Incluido':
+                                ccf_grav_total += lines.price_total
                             if lines.tax_ids.name == 'Exento venta':
                                 ccf_exen_total += lines.price_total
                             if lines.tax_ids.name == 'Exento venta Test':
                                 ccf_exen_total += lines.price_total
                             if lines.tax_ids.name == 'No Sujeto Venta':
                                 ccf_total_nosuj += lines.price_total
+                            else:
+                                continue
 
 
                     #SUMATORIA DE NOTA DE CREDITO
