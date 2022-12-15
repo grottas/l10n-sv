@@ -1,4 +1,4 @@
-odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
+     odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
     "use strict";
 
     var core = require('web.core');
@@ -9,54 +9,95 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
     var orders_on_grid = 3;
     var src = window.location.pathname;
     var config_id = src.split('kitchen/') && src.split('kitchen/')[1][0];
-
+    var showordeta=false
     $(document).ready(function () {
-      console.log('hiii')
-
-
         function renderGridScreen() {
             ajax.jsonRpc("/pos/kitchen/" + config_id + "/data", 'call', {})
-                .then(function (vals) {
-                    if (vals && vals.order_data && vals.order_data)
-                        ajax.loadXML('/pos_kitchen_screen/static/src/xml/pos_kitchen_templates.xml', QWeb).then(function () {
-                            var data_html = QWeb.render('KitchenDataTemplate', {
-                                order_data: vals.order_data,
-                                pending_state: false
-                            });
-                            var order_html = QWeb.render('NewOrderTemplate', {
-                                order_data: vals.order_data,
-                                type_of_order: 'process'
-                            })
-                            $(".process-order .dropdown-menu").append(order_html);
-                            $('.blank-process-order').remove();
+            .then(function (vals) {
+                var validate=false
+                var i =0
+             
+                while (i<vals.order_data.length)
+                    {
+                        var validate=false
+                        for (var j=0;j<vals.order_data[i].lines.length;j++){
 
-                            if (vals.order_data && vals.order_data[0] && vals.order_data[0].orders_on_grid)
-                                orders_on_grid = vals.order_data[0].orders_on_grid;
-                            $("#kitchen-order-data").append(data_html);
-                            if (orders_on_grid == 4 || orders_on_grid == 6)
-                                $('#kitchen-order-data').css('height', 'auto');
-                            $('.order-content').each(function (index, el) {
-
-                                var last_element = $(el);
-                                if (orders_on_grid == 4 || orders_on_grid == 6) {
-
-                                    last_element.addClass('main');
-                                    last_element.find('.grid-template-auto').addClass('categ-body');
-                                    last_element.find('.inner-element').addClass('categs');
-                                    last_element.find('.order-footer').addClass('foot');
-                                    last_element.find('.order-progress').addClass('temp-progress');
-                                    last_element.find('.order-header').addClass('head');
-                                }
-                            })
-                            time_calculator_grid();
-                            for (var i = 0; i < orders_on_grid; i++) {
-                                var element = $('.order-content').eq(i).parent();
-                                element.css('display', 'flex');
+                            if (vals.order_data[i].lines[j].state =='in_process')
+                            {
+                                validate=true
                             }
-                        });
-                });
-        }
+                        }
 
+                        var dropdownItem = $('.new-order .dropdown-item[id=' + vals.order_data[i].id + ']');
+                        if(dropdownItem.length){
+                            dropdownItem.remove();
+
+                            var dropdown_new = $('.new-order .dropdown-item').length;
+                            if (!dropdown_new){
+                                    $('.new-order .dropdown-menu').append(`
+                                    <div class="blank-new-order" style="height:auto;padding:5px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;color: #7F4167;">
+                                        No new orders found...
+                                    </div>`)
+                            }
+                            $('#newOrders').modal('hide');
+                        }
+                        if (!validate){
+                        vals.order_data.splice(i,1)
+                        }
+                        else{
+                        i++}
+                    } 
+
+                ajax.loadXML('/pos_kitchen_screen/static/src/xml/pos_kitchen_templates.xml', QWeb).then(function () {
+                    if(vals.queue_order =="new2old"){
+                        vals.order_data.reverse()
+                    }
+
+                    var data_html = QWeb.render('KitchenDataTemplate', {
+                        order_data: vals.order_data,
+                        pending_state: false,
+                        screen_config : config_id
+                    });
+                    
+                    var order_html = QWeb.render('NewOrderTemplate', {
+                        order_data: vals.order_data,
+                        type_of_order: 'process'
+                    })
+                    
+                    $(".process-order .dropdown-menu").empty()
+                    $(".process-order .dropdown-menu").append(order_html);
+                    $('.blank-process-order').remove();
+                    
+                    if (vals.order_data && vals.order_data[0] && vals.order_data[0].orders_on_grid)
+                        orders_on_grid = vals.order_data[0].orders_on_grid;
+                        $("#kitchen-order-data").empty()
+                    $("#kitchen-order-data").append(data_html);
+                    if (orders_on_grid == 4 || orders_on_grid == 6)
+                        $('#kitchen-order-data').css('height', 'auto');
+                    $('.order-content').each(function (index, el) {
+
+                        var last_element = $(el);
+                        if (orders_on_grid == 4 || orders_on_grid == 6) {
+                            last_element.addClass('main');
+                            last_element.find('.grid-template-auto').addClass('categ-body');
+                            last_element.find('.inner-element').addClass('categs');
+                            last_element.find('.order-footer').addClass('foot');
+                            last_element.find('.order-progress').addClass('temp-progress');
+                            last_element.find('.order-header').addClass('head');
+                        }
+                    })
+                    time_calculator_grid();
+                    for (var i = 0; i < orders_on_grid; i++) {
+                        var element = $('.order-content').eq(i).parent();
+                        element.css('display', 'flex');
+                    }
+                });
+                $("#list-right").attr('offset',1);
+                $("#list-left").attr('offset', -1);  
+            });
+            $("#list-right").attr('offset',1);
+            $("#list-left").attr('offset', -1);
+        }
 
         $(".data-body").on('click', '.wk-next,.wk-remove-next-list,.wk-remove-list', function (event) {
             var order = $(event.currentTarget).closest('.list-order');
@@ -93,11 +134,15 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
                 order.removeClass('list-update');
                 $('.process-order .dropdown-item[id='+order_id+']').remove();
             }
+
             if (next_order_id && next_order_type)
+                clearInterval(showordeta);
                 showOrderDetails(next_order_id,next_order_type);
+                showordeta =  setInterval(showOrderDetails,15000,next_order_id,next_order_type);
         });
 
-        renderGridScreen();
+        // setInterval(renderGridScreen,6000)
+        setInterval(renderGridScreen,6000)
 
         $("#newOrders").on('click', '.wk-cancel-order', function (event) {
             $('.modal-confirm').css('display', 'none');
@@ -114,11 +159,13 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
             var dropdownItem = $('.new-order .dropdown-item[id=' + order_id + ']');
             dropdownItem.remove();
             var dropdown_new = $('.new-order .dropdown-item').length;
-            if (!dropdown_new)
-                $('.new-order .dropdown-menu').append(`
-                <div class="blank-new-order" style="height:auto;padding:5px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;color: #7F4167;">
-                    No new orders found...
-                </div>`)
+            if (!dropdown_new){
+                    $('.new-order .dropdown-menu').append(`
+                    <div class="blank-new-order" style="height:auto;padding:5px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;color: #7F4167;">
+                        No new orders found...
+                    </div>`)
+
+            }
             $('#newOrders').modal('hide');
 
             if ($element.hasClass('wk-confirm')) {
@@ -133,13 +180,18 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
                                     order_data: vals.order_data,
                                     type_of_order: 'process',
                                 })
+
+                            
                                 var data_html = QWeb.render('KitchenDataTemplate', {
                                     order_data: vals.order_data,
                                     pending_state: true,
                                 });
-                                $(".process-order .dropdown-menu").append(order_html);
-                                $('.blank-process-order').remove();
-                                $('#kitchen-order-data').append(data_html);
+                                if(order_html){
+                                    $(".process-order .dropdown-menu").append(order_html);
+                                    $('.blank-process-order').remove();
+                                    $('#kitchen-order-data').append(data_html);
+                                   
+                                }
                                 var last_element = $('.order-content:last');
                                 if (orders_on_grid == 4 || orders_on_grid == 6) {
                                     last_element.addClass('main');
@@ -163,6 +215,7 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
             var offset = $('#list-left').attr('offset');
             var rightOffset = $('#list-right').attr('offset');
             var newOffset = parseInt(offset) * orders_on_grid;
+
             if (newOffset >= 0) {
                 for (var i = 0; i < orders_on_grid; i++) {
                     var element = $('.order-content').eq(newOffset + i).parent();
@@ -179,14 +232,17 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
             var leftOffset = $('#list-left').attr('offset');
             var newOffset = parseInt(offset) * orders_on_grid;
             var e_length = $('.order-content').length;
+           
             if (e_length > newOffset) {
                 for (var i = 0; i < orders_on_grid; i++) {
                     var element = $('.order-content').eq(newOffset + i).parent();
                     $('.order-content').eq(newOffset - i - 1).parent().css('display', 'none')
                     element.css('display', 'flex');
                 }
+
                 $("#list-right").attr('offset', parseInt(offset) + 1);
                 $("#list-left").attr('offset', parseInt(leftOffset) + 1);
+
             }
         });
 
@@ -201,22 +257,67 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
                     if (vals && vals.order_data && vals.order_data[0])
                         ajax.loadXML('/pos_kitchen_screen/static/src/xml/pos_kitchen_templates.xml', QWeb).then(function () {
                             var order_html = QWeb.render('ModalBodyData', {
-                                order: vals.order_data[0]
+                                order: vals.order_data[0],
+                                config:config_id
                             });
+                           
                             $(".modal-replace").html(order_html);
                             $(".modal-title").html(vals.order_data[0].kitchen_order_name);;
                             $("#newOrders").modal('show');
                         });
                 });
         });
-        $('body').on('click', '.grid-view', function (event) {
+
+                $('body').on('click', '.grid-view', function (event) {
+          clearInterval(showordeta);
             ajax.jsonRpc("/pos/kitchen/" + config_id + "/data", 'call', {})
                 .then(function (vals) {
                     if (vals && vals.order_data && vals.order_data)
+                    {
+
+                      var i =0
+                      //for(var i=0;i<vals.order_data.length;i++)
+                      while (i<vals.order_data.length)
+                       {
+                        
+                         var validate=false
+                         for (var j=0;j<vals.order_data[i].lines.length;j++)
+                         {
+                           if (vals.order_data[i].lines[j].state =='in_process')
+                           {
+                             validate=true
+                           }
+                         }
+
+                         var dropdownItem = $('.new-order .dropdown-item[id=' + vals.order_data[i].id + ']');
+                         if(dropdownItem.length){
+                         dropdownItem.remove();
+
+                         var dropdown_new = $('.new-order .dropdown-item').length;
+                         if (!dropdown_new){
+
+                                 $('.new-order .dropdown-menu').append(`
+                                 <div class="blank-new-order" style="height:auto;padding:5px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;color: #7F4167;">
+                                     No new orders found...
+                                 </div>`)
+
+                        }
+                         $('#newOrders').modal('hide');
+                       }
+                       if (!validate)
+                       {
+                       vals.order_data.splice(i,1)
+                       }
+                       else {
+                         i++
+                       }
+                       }
+                       
                         ajax.loadXML('/pos_kitchen_screen/static/src/xml/pos_kitchen_templates.xml', QWeb).then(function () {
                             var grid_html = QWeb.render('GridViewTemplate', {
                                 order: vals.order_data
                             });
+                       
                             var data_html = QWeb.render('KitchenDataTemplate', {
                                 order_data: vals.order_data
                             });
@@ -240,6 +341,7 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
                             })
                             $("#list-right").attr('offset', 1);
                             $("#list-left").attr('offset', -1);
+
                             $('.direction_keys').css('display', 'inline-block');
                             var html = ` <div class="row" style="font-family: Montserrat;
                             font-style: normal;
@@ -265,60 +367,67 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
                                 element.css('display', 'flex');
                             }
                         });
+                      }
                 });
 
         });
-
         $('.filter-view').on('click', function (event) {
             var product_elements = $('.process-order .product_id');
             var product_data = {};
             var product_name_by_id = {};
-            product_elements.each(function (index, el) {
-                var element = $(el);
-                var product_name = element.find('.product_name').text().trim();
-                var quantity = element.find('.product_qty').text().trim();
-                var token_no = element.closest('.dropdown-item').find('.token_no').text().trim();
-                var order_id = element.closest('.dropdown-item').attr('id');
-                var order_type = element.closest('.dropdown-item').find('.order-type').text();
-                var product_id = element.attr('product_id');
-                if (product_id in product_data) {
-                    product_data[product_id]['lines'].push({
-                        'token_no': token_no,
-                        'quantity': quantity,
-                        'order_id':order_id,
-                        'order_type':order_type
-                    })
-                    product_data[product_id]['total'] += parseInt(quantity)
-                } else {
-                    product_data[product_id] = {
-                        'total': parseInt(quantity),
-                        'lines': [{
+            if(product_elements.length==0){
+                $('.blank-filter-order').toggle();
+            }else{
+
+                product_elements.each(function (index, el) {
+                    var element = $(el);
+                    var product_name = element.find('.product_name').text().trim();
+                    var quantity = element.find('.product_qty').text().trim();
+                    var token_no = element.closest('.dropdown-item').find('.token_no').text().trim();
+                    var order_id = element.closest('.dropdown-item').attr('id');
+                    var order_type = element.closest('.dropdown-item').find('.order-type').text();
+                    var product_id = element.attr('product_id');
+                    if (product_id in product_data) {
+                        product_data[product_id]['lines'].push({
                             'token_no': token_no,
                             'quantity': quantity,
                             'order_id':order_id,
                             'order_type':order_type
-                    }]
-                    };
-                }
-                if (!(product_id in product_name_by_id))
-                    product_name_by_id[product_id] = product_name;
-            });
-            if (product_data && product_name_by_id)
-                ajax.loadXML('/pos_kitchen_screen/static/src/xml/pos_kitchen_templates.xml', QWeb).then(function () {
-                    var filter_html = QWeb.render('FilterViewTemplate', {
-                        product_data: product_data,
-                        product_name_by_id: product_name_by_id
-                    });
-                    $('.data-body').html(filter_html);
-                    $('.direction_keys').css('display', 'none');
-                    var html = `
-                    <div class="row" style="margin-top:7px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 20px;line-height: 24px;color: #FFFFFF;">
-                    Order Filter
-                    </div>`
-                    $('.token-detail').html(html);
-                })
+                        })
+                        product_data[product_id]['total'] += parseInt(quantity)
+                    } else {
+                        product_data[product_id] = {
+                            'total': parseInt(quantity),
+                            'lines': [{
+                                'token_no': token_no,
+                                'quantity': quantity,
+                                'order_id':order_id,
+                                'order_type':order_type
+                        }]
+                        };
+                    }
+                    if (!(product_id in product_name_by_id))
+                        product_name_by_id[product_id] = product_name;
+                });
+                if (product_data && product_name_by_id)
+                    ajax.loadXML('/pos_kitchen_screen/static/src/xml/pos_kitchen_templates.xml', QWeb).then(function () {
+                        var filter_html = QWeb.render('FilterViewTemplate', {
+                            product_data: product_data,
+                            product_name_by_id: product_name_by_id
+                        });
+                        $('.data-body').html(filter_html);
+                        $('.direction_keys').css('display', 'none');
+                        var html = `
+                        <div class="row" style="margin-top:7px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 20px;line-height: 24px;color: #FFFFFF;">
+                        Order Filter
+                        </div>`
+                        $('.token-detail').html(html);
+                    })
+            }
+
         });
 
+      
         $('.data-body').on('click','.filter-order',function(event){
             var element = $(event.currentTarget).closest('.filter-order-queue');
             var order_id = element.attr('order-id');
@@ -341,8 +450,26 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
         $('.process-order .dropdown-menu').on('click', ' .dropdown-item', function (event) {
             var order_id = $(event.currentTarget).attr('id');
             var order_type = $(event.currentTarget).find('.order-type').text()
+
             showOrderDetails(order_id,order_type);
         });
+       
+
+        $('.list-hover').click(function (event) {
+            // var order_list = $('.process-order ')
+            // var  $('.data-body')order_list = $('#kitchen-order-data')
+
+            var order_list =  $('.dropdown-menu .dropdown-item')
+            var blank_list = $('.process-order .dropdown-menu .blank-process-order')
+
+            if(order_list.length ==0 && blank_list.length==0 ){
+                $('.process-order .dropdown-menu').append(` <div class="blank-process-order" style="height:auto;padding:5px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;color: #7F4167;">
+                No order found...
+            </div>`)
+
+            }
+        });
+
 
         $('.bell-notification').on('click', function (event) {
             $('.bell').css('display', 'block');
@@ -353,7 +480,8 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
             var order = $(event.currentTarget).closest('.order-content');
             var order_id = order.attr('id');
             var order_type = order.attr('order-type');
-            showOrderDetails(order_id,order_type);
+            showOrderDetails(order_id,order_type)
+           showordeta =   setInterval(showOrderDetails,15000,order_id,order_type);
         })
 
         $('.data-body').on('click', '#kitchen-order-data .wk-remove-grid', function (event) {
@@ -367,13 +495,14 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
             $('.wk-next').click();
             $('.process-order .dropdown-item[id=' + order_id + ']').remove();
             var dropdown_new = $('.process-order .dropdown-item').length;
-            if (!dropdown_new)
-                $('.process-order .dropdown-menu').append(`
-                <div class="blank-process-order" style="height:auto;padding:5px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;color: #7F4167;">
-                    No orders found...
-                </div>`)
+            if (!dropdown_new){
+            
+                    $('.process-order .dropdown-menu').append(`
+                    <div class="blank-process-order" style="height:auto;padding:5px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;color: #7F4167;">
+                        No orders found...
+                    </div>`)
+            }
         });
-
 
         $(".data-body").on('click', '.wk-cook', function (event) {
             $('.action_cook').parent().css('display', 'none');
@@ -385,7 +514,6 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
             $('.process-order .dropdown-item[id=' + order_id + ']').find('.process-order-process').css('display', 'block');
             $('.process-order .dropdown-item[id=' + order_id + ']').find('.process-order-queue').css('display', 'none');
         });
-
 
 
         $(".data-body").on('click', '.wk-done-orderline', function (event) {
@@ -444,11 +572,16 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
             $('.process-order .dropdown-item[id=' + order_id + ']').remove();
             element.remove();
             var dropdown_new = $('.process-order .dropdown-item').length;
-            if (!dropdown_new)
+
+            if (!dropdown_new){
+          
                 $('.process-order .dropdown-menu').append(`
                 <div class="blank-process-order" style="height:auto;padding:5px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 14px;line-height: 17px;color: #7F4167;">
                     No orders found...
                 </div>`)
+
+
+            }
             var next_element = $('.order-new').eq(rightOffset * orders_on_grid - 1)
             next_element.css('display', 'flex');
             if (!next_element.length) {
@@ -460,6 +593,88 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
             setTimeout(order_done, 500, event);
         });
 
+        $(".data-body").on('click', '.wk-done-grid', function (event) {
+          
+            event.preventDefault();
+            var element = $(event.currentTarget).closest('.action_done');
+	        var atr = element.attr('action')
+            var order = $(event.currentTarget).closest('.order-content');
+            var order_id = order.attr('id');
+            var order_type = order.attr('order-type');
+            var $inputs = $('.action_done :input');
+
+            // not sure if you wanted this, but I thought I'd add it.
+            // get an associative array of just the values.
+
+            var values = {};
+            $inputs.each(function() {
+                values[this.name] = $(this).val();
+            });
+            values['order_type'] = order_type
+            ajax.jsonRpc(atr, 'call', {
+                    'screen_config': values['screen_config'],
+                    'order_type':order_type
+                })
+
+                .then(function (vals) {
+                  console.log('done',vals)
+
+                setTimeout(function(){
+                    $('#confirmDoneOrder').show();
+                    $('.show_tick').show();
+                }, 100);
+
+                setTimeout(function(){
+                    $('#confirmDoneOrder').hide();
+                    $('.show_tick').hide();
+                }, 2000);
+
+            });
+
+        });
+
+        $(".data-body").on('click', '.wk-done-orderline', function (event) {
+     
+            event.preventDefault();
+           var element = $(event.currentTarget).closest('.action_done_orderline');
+	    var atr = element.attr('action')
+            var $inputs = $('.action_done_orderline :input');
+
+            // not sure if you wanted this, but I thought I'd add it.
+            // get an associative array of just the values.
+            var values = {};
+            $inputs.each(function() {
+                values[this.name] = $(this).val();
+            });
+            ajax.jsonRpc(atr, 'call', {
+                    'screen_config': values['screen_config'],
+                    'order_type':values['order_type']
+                })
+                .then(function (vals) {
+                  console.log('doneorderrrrline',vals)
+
+                });
+        });
+
+        $("#newOrders").on('click', '.wk-confirm', function (event) {
+            event.preventDefault();
+            var atr = $('.action_confirm').attr('action')
+            var $inputs = $('.action_confirm :input');
+            // not sure if you wanted this, but I thought I'd add it.
+            // get an associative array of just the values.
+            var values = {};
+            $inputs.each(function() {
+                values[this.name] = $(this).val();
+            });
+            ajax.jsonRpc(atr, 'call', {
+                    'config_id': values['config_id'],
+                    'order_type':values['order_type']
+                })
+                .then(function (vals) {
+                  console.log('confirm',vals)
+
+                });
+        });
 
         function showOrderDetails(order_id,order_type) {
             ajax.jsonRpc("/pos/" + config_id + "/order/list/", 'call', {
@@ -473,7 +688,9 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
                             var order_html = QWeb.render('ListViewTemplate', {
                                 order: order
                             });
+
                             $(".data-body").html(order_html);
+                              
                             if($('.list-progress').text().trim() == 'Cancel')
                                 $('.list-order').addClass('list-cancel');
                             time_calculator_list();
@@ -484,7 +701,22 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
                             $('.token-detail').html(html);
                             $('.direction_keys').css('display', 'none');
 
+
+                            if($('.list-progress').text().trim() == 'Done'){
+                                    $('#confirmDoneOrder').show();
+                                    $('.show_tick').show();
+                             
+                                setTimeout(function(){
+                                    $('#confirmDoneOrder').hide();
+                                    $('.show_tick').hide();
+                                    $('.grid-view').click();
+                                }, 1500);
+
+                            }
+
                         });
+
+                        
                 });
         }
 
@@ -492,7 +724,7 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
             if ($('.datetime').length)
                 $('.datetime').each(function (index, el) {
                     let date = $(el).find('.order_time').text();
-                    let currentDate = new Date().toLocaleTimeString();
+                    let currentDate = new Date().toLocaleTimeString(undefined,{ hour12: false });
                     var date_list = date.split(":");
                     var currentDate_list = currentDate.split(":");
                     var hours = parseInt(currentDate_list[0]) - parseInt(date_list[0]);
@@ -689,6 +921,7 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
                             function newAddedOrders() {
                                 var updateTime = $('#newOrders').attr('updateTime');
                                 var $orderContent = $('.order-content');
+
                                 var new_order_ids = Array.prototype.map.call($orderContent, function (item) {
                                     return parseInt(item.id);
                                 })
@@ -701,17 +934,23 @@ odoo.define('pos_kitchen_screen.kitchen_screen', function (require) {
                                         'existing_orders': order_ids,
                                     })
                                     .then(function (vals) {
-                                        console.log("valssssssssssss",vals)
+
                                         if (vals && vals.order_data && vals.order_data.length){
+
                                             ajax.loadXML('/pos_kitchen_screen/static/src/xml/pos_kitchen_templates.xml', QWeb).then(function (res) {
                                                 var order_html = QWeb.render('NewOrderTemplate', {
                                                     order_data: vals.order_data,
                                                     type_of_order: 'new'
                                                 });
+                                              
                                                 $(".new-order .dropdown-menu").append(order_html);
+                                                //$('.blank-new-order').click()
                                                 $('.blank-new-order').remove();
+                                                //confirm('hello world')
+
                                                 $('.bell').css('display', 'none');
                                                 $('.notification').css('display', 'block');
+
                                             });
                                         }
                                         if (vals && vals.change_order_data && vals.change_order_data.length){

@@ -4,7 +4,7 @@
 #   Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>)
 #   See LICENSE file for full copyright and licensing details.
 #   License URL : <https://store.webkul.com/license.html/>
-# 
+#
 #################################################################################
 from odoo import api, fields, models,_
 import datetime
@@ -53,8 +53,9 @@ class PosKitchenOrderLines(models.Model):
 	qty_removed = fields.Integer(string="Quantities Removed")
 	total_qtys = fields.Integer(string="Total Quantities")
 	price_unit = fields.Float(string="Price")
+	full_product_name = fields.Char(string="Full Product Name")
 
-	
+
 class PosKitchenConfig(models.Model):
 	_inherit = 'pos.kitchen.screen.config'
 

@@ -72,7 +72,7 @@
         </span>
     </t>
 
-
+<!--
     <t t-name="OrderDetails">
         <section class='order-details' style="border-bottom: solid 5px rgb(110,200,155);">
             <div class='client-details-box clearfix' style="padding:2%;background-color: rgb(252, 252, 252);">
@@ -205,8 +205,8 @@
         </section>
     </t>
 
-    
-	<t t-name="KitchenScreenWidget" owl="1">        
+  -->
+	<t t-name="KitchenScreenWidget" owl="1">
     	<div class="clientlist-screen screen">
             <div class="orders-screen-content">
                 <section class="top-content">
@@ -322,7 +322,8 @@
     <t t-name="PushNotificationWidget">
     <!-- <div style="position:absolute;top:0;width:300px;height:500px;background:red;z-index:50;">Hiiii</div> -->
         <div class="push_notification" style="position:absolute;top:10%;width:100%;">
-            <div style="float:right;background: #222222;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.16);border-radius: 6px;width:231px;min-height:90px;">
+            <div style="float:right;background: #222222;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.16);border-radius: 6px;width:231px;min-height:90px;height: 163px;
+    overflow-y: scroll;">
                 <div style="padding:3px 12px;height:34px;background: rgba(255, 255, 255, 0.03);">
                     <div style="display:inline-block;width:100%;margin-top:4px;">
                         <div style="display:block;float:left;font-style: normal;font-weight: 600;font-size: 12px;line-height: 63.8%;text-transform: uppercase;color: #FFFFFF;">
@@ -370,7 +371,14 @@
 
 
     <t t-name="RecentNotificationsTemplate">
-        <div class="push_notification" style="position:absolute;top:10%;width:100%;">
+        <div class="push_notification" style="
+       position: absolute;
+    top: 10%;
+    right: 0;
+    width: 22%;
+    height: 190px;
+    overflow-y: scroll;
+">
             <div style="float:right;background: #222222;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.16);border-radius: 6px;width:231px;">
                 <div style="padding:3px 12px;height:34px;background: rgba(255, 255, 255, 0.03);">
                     <div style="display:inline-block;width:100%;margin-top:4px;">
@@ -424,13 +432,24 @@
     </t>
 
 
-    <t t-extend="ProductCategoriesWidget" >
+    <!-- <t t-extend="ProductCategoriesWidget" >
         <t t-jquery="div.searchbox" t-operation="after">
             <div class=" recent_notification" style="float:right;cursor:pointer">
                 <img style="margin-top:4px;margin-right:9px;width:43px;position: relative;left: 4px;" src="/pos_kitchen_screen/static/src/img/push_notification.png"/>
             </div>
         </t>
-    </t>
+    </t> -->
+      <t t-name="ProductsWidgetControlPanel" t-inherit="point_of_sale.ProductsWidgetControlPanel" t-inherit-mode="extension" owl="1">
+          <!-- <xpath expr="//div[hasclass('search-box')]" position="after"> -->
+              <xpath expr="//Portal" position="after">
+                 <Portal target="'.pos .search-bar-portal'">
+                  <div class=" recent_notification" style="float:right;cursor:pointer" t-on-click="click_recent_notification">
+                      <img style="margin-top:7px;margin-right:9px;width:34px;position: relative;left: 4px;" src="/pos_kitchen_screen/static/src/img/push_notification.png"/>
+                  </div>
+
+                </Portal>
+          </xpath>
+      </t>
 
     <t t-extend="OrderSelectorWidget">
         <t t-jquery=".orders.touch-scrollable" t-operation="replace">

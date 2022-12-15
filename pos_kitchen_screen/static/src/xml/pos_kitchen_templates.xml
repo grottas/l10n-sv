@@ -17,13 +17,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="order-progress">
+                            <div class="order-progress" style="width:90px;">
                                 <t t-if="pending_state || order.order_progress == 'pending'">
-                                    <span class="grid-progress-background-queue">
+                                    <span class="grid-progress-background-queue" >
                                         <span>
                                             <span class="grid-progress-font-queue">
                                                     Pending
-                                                </span>
+                                            </span>
                                         </span>
                                     </span>
                                 </t>
@@ -60,6 +60,9 @@
                             <div class="grid-default-time-font">
                                 <span class="grid-default-time-adjust time-elapsed">0 Mins</span>
                             </div>
+
+
+
                         </div>
                     </div>
                     <div style="height:1px;opacity: 0.15;border: 1px solid #000000;"></div>
@@ -104,6 +107,9 @@
                                                         </t>
                                                     </t>
                                                 </span>
+                                                <span class="col-md-4" style="color:grey;display:block;float:left;width:25%">
+                                                    <t t-esc="categ_product[line].note"/>
+                                                </span>
                                                 <span class="col-md-2 grid-product-qty">
                                                     <t t-esc="categ_product[line].qty"/>
                                                 </span>
@@ -125,9 +131,10 @@
                             </div>
                             <div style="display:block;float:right">
                                 <form class="action_done" t-att-action="order.done_order" method="post">
-                                    <input type="hidden"  name="order_type" t-att-value="order.order_type"/>
-                                    <!-- <input type="hidden" names='order_type' t-att-value="order.order_type"/> -->
-                                    <button class="btn wk-done-grid btn-success" type="submit">Done</button>
+                                    <input type="hidden"  name="order_type" t-att-value="order.order_ty"/>
+                                     <input type="hidden" name='screen_config' t-att-value="order.lines[0].screen_config"/>
+                                    <button class="btn wk-done-grid btn-success" type="button">Done</button>
+                                    
                                 </form>
                             </div>
                         </div>
@@ -176,6 +183,9 @@
                                         </span>
                                     </t>
                                 </t>
+                            </span>
+                            <span class="col-md-4" style="color:grey;display:block;float:left;width:25%">
+                                <t t-esc="categ_product[line].note"/>
                             </span>
                             <span class="col-md-2 grid-product-qty">
                                 <t t-esc="categ_product[line].qty"/>
@@ -282,7 +292,8 @@
                             <div style="display:block;float:right">
                                 <form class="action_done" t-att-action="order.done_order" method="post">
                                     <input type="hidden" names='order_type' t-att-value="order.order_type"/>
-                                    <button class="btn wk-done-grid btn-success" type="submit">Done</button>
+                                    <input type="hidden" name='screen_config' t-att-value="order.lines[0].screen_config"/>
+                                    <button class="btn wk-done-grid btn-success" type="button">Done</button>
                                 </form>
                             </div>
                         </div>
@@ -354,7 +365,9 @@
                         <div style="display:block;float:left">
                             <form class="action_confirm" t-att-action="order.confirm_order" method="post" >
                                 <input name="order_type" type="hidden" t-att-value="order.order_type"/>
-                                <button class="btn btn-success wk-confirm" type="submit">Accept</button>
+                                <input name="config_id" type="hidden" t-att-value="config"/>
+
+                                <button class="btn btn-success wk-confirm" type="button">Accept</button>
                             </form>
                         </div>
                     </div>
@@ -547,7 +560,8 @@
                                 </div>
                             </t>
                         </div>
-                    </div>
+                        
+                  </div>
                 </div>
                 <div style="width:100%;opacity: 0.2;border: 1px solid #000000;height:1px"></div>
                 <div class="row list-auto" style="height:70%;overflow-y:auto;padding:2% 5%;">
@@ -559,6 +573,9 @@
                                     <div class="col-md-4" style="display:block;float:left;">
                                         <t t-esc="product.split('-')[0]"/>
                                     </div>
+                                    <!--<div class="col-md-4" style="margin-left:15%;display:block;float:left;">
+                                        Note
+                                    </div>-->
                                     <div class="col-md-2 " style="display:block;float:right;text-align:right;">
                                     Qty
                                 </div>
@@ -579,6 +596,7 @@
                                         <span class="col-md-4" style="display:block;float:left;">
                                             <t t-esc="categ_product[line].product_id[1]"/>
                                         </span>
+
                                         <span class="col-md-5">
                                             <t t-if="categ_product[line].qty_added">
                                                 <span class="qty-added" style="color:green;">
@@ -598,8 +616,12 @@
                                                 </t>
                                             </t>
                                         </span>
+
                                         <span class="col-md-1" style="display:block;float:right ;text-align:right;">
                                             <t t-esc="categ_product[line].qty"/>
+                                        </span>
+                                        <span class="col-md-4" style="color:grey;display:block;float:left;width:25%">
+                                            <t t-esc="categ_product[line].note"/>
                                         </span>
                                         <span class="col-md-2" style="display:block;float:right ;text-align:right;">
                                             <t t-if="categ_product[line].state == 'done'">
@@ -609,7 +631,7 @@
                                                 <form class="action_done_orderline" t-att-action="categ_product[line].done_line" method="post">
                                                     <input type="hidden" name="order_type" t-att-value="order.order_type"/>
                                                     <input type="hidden" name="screen_config" t-att-value="categ_product[line].screen_config"/>
-                                                    <button class="btn wk-done-orderline btn-success"   type="submit">Done</button>
+                                                    <button class="btn wk-done-orderline btn-success"   type="button">Done</button>
                                                 </form>
                                             </t>
                                         </span>
@@ -621,6 +643,7 @@
                 </div>
             </div>
         </div>
+
     </t>
     <t t-name="UpdateListData">
         <t t-set="categories" t-value="order.product_category_wise"/>
@@ -661,6 +684,9 @@
                                         </span>
                                     </t>
                                 </t>
+                            </span>
+                            <span class="col-md-4" style="color:grey;display:block;float:left;width:25%">
+                                <t t-esc="categ_product[line].note"/>
                             </span>
                             <span class="col-md-2" style="display:block;float:right ;text-align:right;">
                                 <t t-esc="categ_product[line].qty"/>

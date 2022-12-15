@@ -28,12 +28,20 @@ odoo.define('pos_kitchen_screen.main', function (require) {
 
 	models.Order = models.Order.extend({
 
-
+		electronic_payment_in_progress: function() {
+			return this.get_paymentlines()
+				.some(function(pl) {
+					if (pl.payment_status) {
+						return !['done', 'reversed'].includes(pl.payment_status);
+					} else {
+						return false;
+					}
+				});
+		},
 		get_queue_no: function () {
 			var self = this;
 			return self.pos.get_order().token_number;
 		},
-
 		export_as_JSON: function () {
 			var self = this;
 			var loaded = SuperOrder.export_as_JSON.call(this);
@@ -42,11 +50,12 @@ odoo.define('pos_kitchen_screen.main', function (require) {
 			return loaded;
 		},
 		add_paymentline: function(cashregister) {
-			SuperOrder.add_paymentline.call(this,cashregister);
 			var self = this;
-			console.log("chekcs to add",self.pos.get_order().token_no ,self.pos.get_order().validate_order_for_kitchen())
-			if(!self.pos.get_order().token_no && self.pos.get_order().validate_order_for_kitchen())
-				self.add_token_number();
+			if (!self.pos.config.order_action || (self.pos.config.order_action && self.pos.config.order_action == 'validation')){
+					if(!self.pos.get_order().token_no && self.pos.get_order().validate_order_for_kitchen())
+						self.add_token_number();
+				}	
+			return SuperOrder.add_paymentline.call(self,cashregister);
 		},
 		add_token_number:function(){
 			var self = this;
@@ -54,7 +63,6 @@ odoo.define('pos_kitchen_screen.main', function (require) {
 				method:'get_token_number',
 				model:'pos.order',
 			}).then(function(res){
-				console.log("tokneennnnn*****",res)
 				self.pos.get_order().token_no = res;
 			}).catch(function(e){
 				console.log("e",e)
@@ -69,7 +77,7 @@ odoo.define('pos_kitchen_screen.main', function (require) {
 			_.each(self.pos.db.pos_screen_data, function (data) {
 				pos_categ_ids = pos_categ_ids.concat(data.pos_category_ids);
 			});
-			if (screen_data) {
+			if (screen_data && !self.is_return_order) {
 				if (screen_data && !pos_categ_ids)
 					is_kitchen_order = true;
 				if (!is_kitchen_order)

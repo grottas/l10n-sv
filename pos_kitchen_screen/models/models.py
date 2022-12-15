@@ -59,6 +59,7 @@ class PosConfig(models.Model):
 	_inherit = 'pos.config'
 
 	pos_kitchen_screen = fields.Many2many('pos.kitchen.screen.config', string="Pos Kitchen Screen")
+	auto_accept = fields.Boolean('Auto Accept kitchen order',default=False)
 
 
 	def open_screen_configuration(self):
@@ -103,7 +104,7 @@ class PosOrder(models.Model):
 	@api.model
 	def get_token_number(self):
 		token = ''
-		sequence_date_wise = self.env['token.perday'].search([('date_token','>=',fields.Date.to_string((datetime.date.today())))])
+		sequence_date_wise = self.env['token.perday'].search([],limit=1)
 		if len(sequence_date_wise) == 0:
 			self.env['token.perday'].search([]).unlink()
 			sequence_date_wise = self.env['token.perday'].create({
@@ -138,14 +139,13 @@ class PosOrder(models.Model):
 	@api.model
 	def _order_fields(self,ui_order):
 		fields_return = super(PosOrder,self)._order_fields(ui_order)
-		_logger.info("kithen-order---%r",ui_order)
 		session = self.env['pos.session'].sudo().browse(ui_order.get('pos_session_id'))
 		#_logger.info('-------------------77777--%r',(hasattr(session.config_id,'order_acti,on')),session.config_id.order_action!='order_button',not hasattr(session.config_id,'order_action'))
 		if(hasattr(session.config_id,'order_action') and session.config_id.order_action!='order_button') or not hasattr(session.config_id,'order_action'):
 			fields_return.update({
 				#'is_kitchen_order':ui_order.get('is_kitchen_order'),
 				'kitchen_order_name':ui_order.get('token_no'),
-				'order_progress':'new'
+				'order_progress':'pending' if session.config_id.auto_accept else 'new'
 			})
 			if(hasattr(session.config_id,'order_action')):
 				fields_return.update({
@@ -195,6 +195,7 @@ class PosOrder(models.Model):
 	@api.model
 	def create_from_ui(self, orders, draft=False):
 		order_ids = super(PosOrder, self).create_from_ui(orders,draft)
+		#_logger.info('--order_ids---%r',order_ids)
 		for order_id in order_ids:
 			order_list = []
 			order_line_list = []
@@ -205,6 +206,9 @@ class PosOrder(models.Model):
 				config_id = order.config_id
 				temp_screen_progress = {}
 				# if not config_id.module_pos_restaurant:
+				if not (hasattr(config_id,'order_action') and config_id.order_action == 'order_button'):
+					if config_id.auto_accept:
+						order.lines.write({'state':'in_process'})
 				if not (hasattr(config_id,'order_action') and config_id.order_action == 'validation') or not config_id.module_pos_restaurant:
 					pos_screen_data = self.env['pos.kitchen.screen.config'].search([("pos_config_ids",'=ilike',config_id.id)])
 					is_allowed_order = True

@@ -33,6 +33,29 @@
 			</field>
 		</record> -->
 
+		<record id="kitchen_pos_config_form_inherited_1" model="ir.ui.view">
+			<field name="name">pos.config.restaurant.form.inherit</field>
+			<field name="model">pos.config</field>
+			<field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+			<field name="arch" type="xml">
+                <xpath expr="//div[@id='barcode_scanner']" position="after">
+					<div id="auto_accept" class="col-12 col-lg-6 o_setting_box">
+						<div class="o_setting_left_pane">
+							<div class="content-group">
+								<field name="auto_accept"  required="1"/>
+							</div>
+						</div>
+						<div class="o_setting_right_pane">
+							<span class="o_form_label">Auto Accept</span>
+							<div class="text-muted">
+								Auto Accept Kitchen Orders
+							</div>
+
+						</div>
+					</div>
+				</xpath>
+			</field>
+		</record>
 
 		<record id="pos_screen_conf_tree" model="ir.ui.view">
 			<field name="name">pos.kitchen.screen.config.tree</field>
@@ -213,7 +236,7 @@
 			</field>
 		</record>
 
-		
+
 		<record id="pos_kitchen_screen_config_action_id" model="ir.actions.act_window">
 			<field name="name">POS  Kitchen Screen Config</field>
             <field name="type">ir.actions.act_window</field>
@@ -222,7 +245,7 @@
 			<field name="view_id" ref="pos_kitchen_screen.pos_screen_conf_tree" />
 		</record>
 
-		
+
 		<record id="pos_kitchen_screen_order_action_id" model="ir.actions.act_window">
 			<field name="name">POS Kitchen Order</field>
             <field name="type">ir.actions.act_window</field>
@@ -233,25 +256,25 @@
 			<field name="view_id" ref="view_pos_kitchen_order_tree" />
 		</record>
 
-		<menuitem 
-			id="pos_kitchen_screen_main_menu" 
-			parent="point_of_sale.menu_point_root" 
+		<menuitem
+			id="pos_kitchen_screen_main_menu"
+			parent="point_of_sale.menu_point_root"
 			name='Pos Kitchen Screen'
 			groups="point_of_sale.group_pos_manager"
 			sequence="37"
 			/>
-		<menuitem 
-			id="pos_kitchen_screen_config_main_menu" 
-			parent="pos_kitchen_screen_main_menu" 
+		<menuitem
+			id="pos_kitchen_screen_config_main_menu"
+			parent="pos_kitchen_screen_main_menu"
 			name='Pos Kitchen Screen Configuration'
 			groups="point_of_sale.group_pos_manager"
 			action="pos_kitchen_screen.pos_kitchen_screen_config_action_id"
 			sequence="38"
 			/>
 
-		<!-- <menuitem 
-			id="pos_kitchen_screen_orders" 
-			parent="pos_kitchen_screen_main_menu" 
+		<!-- <menuitem
+			id="pos_kitchen_screen_orders"
+			parent="pos_kitchen_screen_main_menu"
 			name='Pos Kitchen Orders'
 			groups="point_of_sale.group_pos_manager"
 			action="pos_kitchen_screen.pos_kitchen_screen_order_action_id"

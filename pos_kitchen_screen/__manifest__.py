@@ -15,9 +15,9 @@
 #################################################################################
 {
   "name"                 :  "Pos Kitchen Screen",
-  "summary"              :  "This is the base module for other modules related to the Pos Kitchen Screen Base. User can visualize all the kitchen related requirements on a screen inside kitchen.",
+  "summary"              :  "This is the base module for other modules related to the Pos Kitchen Screen Base. User can visualize all the kitchen related requirements on a screen inside kitchen. Kitchen Order Screen|Kitchen Items Screen|Products Screen|Kitchen Products",
   "category"             :  "Point Of Sale",
-  "version"              :  "1.1",
+  "version"              :  "1.2.1",
   "author"               :  "Webkul Software Pvt. Ltd.",
   "license"              :  "Other proprietary",
   "website"              :  "https://store.webkul.com",
@@ -34,6 +34,7 @@
                              'views/pos_kitchen_screen_views.xml',
                             # 'views/template.xml',
                             ],
+  "demo"                :['demo/demo.xml'],
  "assets"               : {
 
                 			'point_of_sale.assets':

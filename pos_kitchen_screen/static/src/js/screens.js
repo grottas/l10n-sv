@@ -11,12 +11,12 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
     var PaymentScreen = require('point_of_sale.PaymentScreen');
     var SuperPosModel = models.PosModel.prototype;
     var SuperOrder = models.Order.prototype;
-    const Registries = require('point_of_sale.Registries');
+      const ProductsWidgetControlPanel = require('point_of_sale.ProductsWidgetControlPanel')
+  const Registries = require('point_of_sale.Registries');
     const PosComponent = require('point_of_sale.PosComponent');
     const {
         useListener
     } = require('web.custom_hooks');
-
 
     models.load_models([{
         model: 'pos.order.line',
@@ -43,7 +43,6 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
                 ];
         },
         loaded: function (self, wk_order_lines) {
-            console.log("wk_order_lines",wk_order_lines)
             // if (!self.config.module_pos_restaurant) {
             if (!self.config.order_action || (self.config.order_action && self.config.order_action == 'validation')) {
                 self.db.pos_all_kitchen_order_lines = wk_order_lines;
@@ -61,7 +60,6 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
             _.each(self.db.pos_all_kitchen_order_lines, function (line) {
                 orders.add(line.order_id[0]);
             });
-            console.log("ordersssssssssss",orders)
             var domain_list = [
                 ['id', 'in', Array.from(orders)],
                 ['kitchen_order_name', '!=', false]
@@ -69,9 +67,7 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
             return domain_list;
         },
         loaded: function (self, wk_order) {
-            console.log("self.config.order_acti11111111on", self.config.order_action)
             if (!self.config.order_action || (self.config.order_action && self.config.order_action == 'validation')) {
-                console.log("wrlgn 11111111")
                 self.db.pos_all_kitchen_orders = [];
                 self.db.kitchen_order_by_id = {};
                 self.db.next_order_token = false;
@@ -88,8 +84,14 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
                     if (self.db.pos_all_kitchen_orders.length)
                         self.db.pos_all_kitchen_orders.reverse();
                     var order_array = self.db.pos_all_kitchen_orders
-                    if (self.db.pos_screen_data && self.db.pos_screen_data.queue_order == 'new2old')
+
+                    if (self.db.pos_screen_data && self.db.pos_screen_data.queue_order == 'new2old'){
+
                         order_array = self.db.pos_all_kitchen_orders.reverse();
+                    }else{
+                        order_array = self.db.pos_all_kitchen_orders;
+                    }   
+                        
                 }
             }
         },
@@ -114,8 +116,6 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
 
     })
 
-
-
     models.PosModel = models.PosModel.extend({
 
         update_token_number: function () {
@@ -124,6 +124,7 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
                 'method': "get_token_number",
                 'model': 'pos.order',
             }).then(function (data) {
+              console.log('data',data)
                 if (data)
                     self.db.next_order_token = data;
                 else
@@ -160,10 +161,14 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
                                 var order_date = new Date(order['date_order'])
                                 var utc = order_date.getTime() - (order_date.getTimezoneOffset() * 60000);
                                 order['date_order'] = new Date(utc).toLocaleString();
-                                if (self.db.pos_screen_data && self.db.pos_screen_data.queue_order == 'new2old')
+
+                          
+                                if (self.db.pos_screen_data[2] && self.db.pos_screen_data[2].queue_order == 'new2old'){
                                     self.db.pos_all_kitchen_orders.unshift(order.id);
-                                else
+                                }
+                                else{
                                     self.db.pos_all_kitchen_orders.push(order.id);
+                                }
                                 self.db.kitchen_order_by_id[order.id] = order;
                                 if (self.db.kitchen_order_by_id)
                                     self.update_kitchen_orders();
@@ -185,6 +190,7 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
             var self = this;
             var new_order_data = [];
             orders = orders.reverse();
+
             new_order_data = new_order_data.concat(self.env.pos.db.kitchen_order_by_id[orders[i]]);
             if (input_txt != undefined && input_txt != '') {
                 var new_order_data = [];
@@ -281,15 +287,11 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
     });
     Registries.Component.add(KitchenOrdersButton);
 
-
-
-
     const PosResPaymentScreen = (PaymentScreen) =>
         class extends PaymentScreen {
             async validateOrder(isForceValidate) {
                 var self = this;
                 if (self.env.pos.get_order().validate_order_for_kitchen() && (self.env.pos.config.order_action == 'validation' && !self.env.pos.config.order_action) && (!self.pos.get_order().token_no || self.pos.get_order().token_no == '')) {
-                    console.log("thissssssssssss11111")
                     const {
                         confirmed
                     } = await this.showPopup('ConfirmPopup', {
@@ -300,17 +302,17 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
                         var res = self.env.pos.get_order().add_token_number();
                         res.then(function () {
                             // self._super(force_validation);
-                            console.log("wrokinggggggg techniu")
-                            SuperPaymentScreenWidget.validate_order.call(self, force_validation);
+                            // SuperPaymentScreenWidget.validate_order.call(self, force_validation);
+                            SuperPaymentScreenWidget.validateOrder.call(self, isForceValidate);
                         })
                     }
                     if (!confirmed) {
                         super.validateOrder(isForceValidate);
                     }
                 } else {
-                    console.log("thissssssssssss222222222")
-                    super.validateOrder(isForceValidate);
-                }
+                //  var res = self.env.pos.get_order().add_token_number();
+                  super.validateOrder(isForceValidate);
+                                  }
 
             }
         }
@@ -341,9 +343,10 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
                             'orders': res.orders
                         });
                         $('.pos').append(html);
-                        $('.push_notification > div').animate({
-                            'height': '110px'
-                        });
+                        // $('.push_notification > div').animate({
+                        //     'height': '110px'
+                        // });
+
                         setTimeout(function () {
                             $('.push_notification').remove();
                             $('.pos').off();
@@ -371,6 +374,29 @@ odoo.define('pos_kitchen_screen.screens', function (require) {
         }
     Registries.Component.extend(ProductScreen, PosResProductScreen);
 
+        const PosProductsWidgetControlPanel= (ProductsWidgetControlPanel) =>
+      class extends ProductsWidgetControlPanel {
+        click_recent_notification(ev) {
+          var self = this
+              ev.stopPropagation();
+             var html = QWeb.render('RecentNotificationsTemplate',{'data':self.env.pos.db.recent_notifications});
+             $('.pos').append(html);
+            //  $('.push_notification > div').animate({'height': '100px'});
+              $('.pos').on('click',function(e){
+              e.stopPropagation();
+              $('.push_notification').remove();
+                  $('.pos').off();
+              })
+
+              setTimeout(function () {
+                $('.push_notification').remove();
+                $('.pos').off();
+            }, 5000)
+
+
+          }
+      }
+  Registries.Component.extend(ProductsWidgetControlPanel, PosProductsWidgetControlPanel);
 
 
     return KitchenOrdersButton;
