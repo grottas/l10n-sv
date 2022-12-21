@@ -17,9 +17,9 @@
             <field name="context" eval="{'model': 'account.financial.html.report', 'id': ref('result_state_report')}"/>
         </record>
 
-        <record id="result_state_4" model="account.financial.html.report.line">
+        <record id="result_state_5" model="account.financial.html.report.line">
             <field name="name">CUENTAS DE RESULTADOS ACREEDORAS</field>
-            <field name="code">state_4</field>
+            <field name="code">state_5</field>
             <field name="financial_report_id" ref="result_state_report"/>
             <field name="formulas">state_5153</field>
             <field name="sequence" eval="0"/>
@@ -30,7 +30,7 @@
         <record id="result_state_5153" model="account.financial.html.report.line">
             <field name="name">VENTAS</field>
             <field name="code">state_5153</field>
-            <field name="parent_id" ref="result_state_4"/>
+            <field name="parent_id" ref="result_state_5"/>
             <field name="formulas">state_5101 - state_5301</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">never</field>
