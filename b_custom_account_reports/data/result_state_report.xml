@@ -17,21 +17,21 @@
             <field name="context" eval="{'model': 'account.financial.html.report', 'id': ref('result_state_report')}"/>
         </record>
 
-        <record id="result_state_5" model="account.financial.html.report.line">
+        <record id="result_state_4" model="account.financial.html.report.line">
             <field name="name">CUENTAS DE RESULTADOS ACREEDORAS</field>
-            <field name="code">state_5</field>
+            <field name="code">state_4</field>
             <field name="financial_report_id" ref="result_state_report"/>
-            <field name="formulas">state_5153</field>
+            <field name="formulas">state_41101</field>
             <field name="sequence" eval="0"/>
             <field name="level" eval="0"/>
             <field name="position" eval="1"/>
         </record>
 
-        <record id="result_state_5153" model="account.financial.html.report.line">
+        <record id="result_state_41101" model="account.financial.html.report.line">
             <field name="name">VENTAS</field>
-            <field name="code">state_5153</field>
-            <field name="parent_id" ref="result_state_5"/>
-            <field name="formulas">state_5101 - state_5301</field>
+            <field name="code">state_41101</field>
+            <field name="parent_id" ref="result_state_4"/>
+            <field name="formulas">state_41101 - state_41301</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">never</field>
             <field name="sequence" eval="1"/>
@@ -41,9 +41,9 @@
 
         <record id="result_state_51" model="account.financial.html.report.line">
             <field name="name">SERVICIOS DE RESTAURANTE</field>
-            <field name="code">state_5101</field>
-            <field name="parent_id" ref="result_state_5153"/>
-            <field name="domain" eval="[('account_id.code','=like','5101%')]"/>
+            <field name="code">state_41101</field>
+            <field name="parent_id" ref="result_state_41101"/>
+            <field name="domain" eval="[('account_id.code','=like','41101%')]"/>
             <field name="formulas">-sum</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">never</field>
@@ -54,9 +54,9 @@
 
         <record id="result_state_53" model="account.financial.html.report.line">
             <field name="name">DESCUENTOS SOBRE LAS VENTAS</field>
-            <field name="code">state_5301</field>
-            <field name="parent_id" ref="result_state_5153"/>
-            <field name="domain" eval="[('account_id.code','=like','5301%')]"/>
+            <field name="code">state_41301</field>
+            <field name="parent_id" ref="result_state_41101"/>
+            <field name="domain" eval="[('account_id.code','=like','41301%')]"/>
             <field name="formulas">sum</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">never</field>
@@ -69,7 +69,7 @@
             <field name="name">CUENTAS DE RESULTADO DEUDORA</field>
             <field name="code">state_4</field>
             <field name="financial_report_id" ref="result_state_report"/>
-            <field name="formulas">state_41 + state_42 + state_43</field>
+            <field name="formulas">state_41 + state_52106 + state_53205</field>
             <field name="sequence" eval="1"/>
             <field name="level" eval="0"/>
             <field name="position" eval="1"/>
@@ -79,17 +79,17 @@
             <field name="name">COSTOS DE VENTA</field>
             <field name="code">state_41</field>
             <field name="parent_id" ref="result_state_4"/>
-            <field name="formulas">state_4101 + state_4102</field>
+            <field name="formulas">state_5110 + state_51103</field>
             <field name="sequence" eval="1"/>
             <field name="level" eval="1"/>
             <field name="position" eval="1"/>
         </record>
 
-        <record id="result_state_4101" model="account.financial.html.report.line">
+        <record id="result_state_5110" model="account.financial.html.report.line">
             <field name="name">COSTOS DE VENTA DE MERCADERIA</field>
-            <field name="code">state_4101</field>
+            <field name="code">state_5110</field>
             <field name="parent_id" ref="result_state_41"/>
-            <field name="domain" eval="[('account_id.code','=like','4101%')]"/>
+            <field name="domain" eval="[('account_id.code','=like','5110%')]"/>
             <field name="formulas">sum</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">never</field>
@@ -98,11 +98,11 @@
             <field name="position" eval="1"/>
         </record>
 
-        <record id="result_state_4102" model="account.financial.html.report.line">
+        <record id="result_state_51103" model="account.financial.html.report.line">
             <field name="name">COSTOS POR SERVICIOS POR RESTAURANTE</field>
-            <field name="code">state_4102</field>
+            <field name="code">state_51103</field>
             <field name="parent_id" ref="result_state_41"/>
-            <field name="domain" eval="[('account_id.code','=like','4102%')]"/>
+            <field name="domain" eval="[('account_id.code','=like','51103%')]"/>
             <field name="formulas">sum</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">never</field>
@@ -111,21 +111,21 @@
             <field name="position" eval="1"/>
         </record>
 
-        <record id="result_state_42" model="account.financial.html.report.line">
+        <record id="result_state_52106" model="account.financial.html.report.line">
             <field name="name">GASTOS OPERATIVOS</field>
-            <field name="code">state_42</field>
+            <field name="code">state_52106</field>
             <field name="parent_id" ref="result_state_4"/>
-            <field name="formulas">state_4201 + state_4202</field>
+            <field name="formulas">state_521 + state_522</field>
             <field name="sequence" eval="2"/>
             <field name="level" eval="1"/>
             <field name="position" eval="1"/>
         </record>
 
-        <record id="result_state_4201" model="account.financial.html.report.line">
+        <record id="result_state_521" model="account.financial.html.report.line">
             <field name="name">GASTOS DE ADMINISTRACION</field>
-            <field name="code">state_4201</field>
-            <field name="parent_id" ref="result_state_42"/>
-            <field name="domain" eval="[('account_id.code','=like','4201%')]"/>
+            <field name="code">state_521</field>
+            <field name="parent_id" ref="result_state_52106"/>
+            <field name="domain" eval="[('account_id.code','=like','521%')]"/>
             <field name="formulas">sum</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">never</field>
@@ -134,11 +134,11 @@
             <field name="position" eval="1"/>
         </record>
 
-        <record id="result_state_4202" model="account.financial.html.report.line">
+        <record id="result_state_522" model="account.financial.html.report.line">
             <field name="name">GASTOS DE VENTA</field>
-            <field name="code">state_4202</field>
-            <field name="parent_id" ref="result_state_42"/>
-            <field name="domain" eval="[('account_id.code','=like','4202%')]"/>
+            <field name="code">state_522</field>
+            <field name="parent_id" ref="result_state_52106"/>
+            <field name="domain" eval="[('account_id.code','=like','522%')]"/>
             <field name="formulas">sum</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">never</field>
@@ -147,21 +147,21 @@
             <field name="position" eval="1"/>
         </record>
 
-        <record id="result_state_43" model="account.financial.html.report.line">
+        <record id="result_state_53205" model="account.financial.html.report.line">
             <field name="name">GASTOS NO OPERACIONALES</field>
-            <field name="code">state_43</field>
+            <field name="code">state_53205</field>
             <field name="parent_id" ref="result_state_4"/>
-            <field name="formulas">state_4301</field>
+            <field name="formulas">state_531</field>
             <field name="sequence" eval="3"/>
             <field name="level" eval="1"/>
             <field name="position" eval="1"/>
         </record>
 
-        <record id="result_state_4301" model="account.financial.html.report.line">
+        <record id="result_state_531" model="account.financial.html.report.line">
             <field name="name">GASTOS FINANCIEROS</field>
-            <field name="code">state_4301</field>
-            <field name="parent_id" ref="result_state_43"/>
-            <field name="domain" eval="[('account_id.code','=like','4301%')]"/>
+            <field name="code">state_531</field>
+            <field name="parent_id" ref="result_state_53205"/>
+            <field name="domain" eval="[('account_id.code','=like','531%')]"/>
             <field name="formulas">sum</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">never</field>
@@ -170,21 +170,21 @@
             <field name="position" eval="1"/>
         </record>
 
-        <record id="result_state_45" model="account.financial.html.report.line">
+        <record id="result_state_5210699" model="account.financial.html.report.line">
             <field name="name">OTROS GASTOS</field>
-            <field name="code">state_45</field>
+            <field name="code">state_5210699</field>
             <field name="parent_id" ref="result_state_4"/>
-            <field name="formulas">state_4501</field>
+            <field name="formulas">state_532</field>
             <field name="sequence" eval="3"/>
             <field name="level" eval="1"/>
             <field name="position" eval="1"/>
         </record>
 
-        <record id="result_state_4501" model="account.financial.html.report.line">
+        <record id="result_state_532" model="account.financial.html.report.line">
             <field name="name">OTROS GASTOS NO OPERACIONALES</field>
-            <field name="code">state_4501</field>
-            <field name="parent_id" ref="result_state_45"/>
-            <field name="domain" eval="[('account_id.code','=like','4501%')]"/>
+            <field name="code">state_532</field>
+            <field name="parent_id" ref="result_state_5210699"/>
+            <field name="domain" eval="[('account_id.code','=like','532%')]"/>
             <field name="formulas">sum</field>
             <field name="groupby">account_id</field>
             <field name="show_domain">never</field>
@@ -197,7 +197,7 @@
             <field name="name">UTILIDAD DE OPERACIÓN</field>
             <field name="code">state_01</field>
             <field name="financial_report_id" ref="result_state_report"/>
-            <field name="formulas">state_5 - state_4 - state_45</field>
+            <field name="formulas">state_4 - state_4 - state_5210699</field>
             <field name="sequence" eval="2"/>
             <field name="level" eval="0"/>
             <field name="position" eval="1"/>
@@ -228,7 +228,7 @@
             <field name="name">IMPUESTOS SOBRE LA RENTA</field>
             <field name="code">state_04</field>
             <field name="financial_report_id" ref="result_state_report"/>
-            <field name="domain" eval="[ ('account_id.code','=like','21060401'), ('move_name','=like','CIERRE%')]"/>
+            <field name="domain" eval="[ ('account_id.code','=like','52301'), ('move_name','=like','CIERRE%')]"/>
             <field name="formulas">-sum</field>
             <field name="sequence" eval="2"/>
             <field name="level" eval="0"/>
