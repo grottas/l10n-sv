@@ -28,12 +28,20 @@ odoo.define('pos_tip_percent.TipButton', function(require) {
             var order    = this.env.pos.get_order();
             var lines    = order.get_orderlines();
             var product  = this.env.pos.db.get_product_by_id(this.env.pos.config.tip_product_id[0]);
+            var discount  = this.env.pos.db.get_product_by_id(this.env.pos.config.discount_product_id[0]);
             if (product === undefined) {
                 await this.showPopup('ErrorPopup', {
                     title : this.env._t("No se encontró ningún producto con propina"),
                     body  : this.env._t("El producto de propina parece mal configurado. Asegúrese de que esté marcado como 'Se puede vender' y 'Disponible en el punto de venta'."),
                 });
                 return;
+            }
+
+            var discount_value = 0;
+            for (const line of lines) {
+                if (line.get_product() === discount) {
+                   discount_value = line.get_price_with_tax();
+                }
             }
 
             // Remove existing tips
@@ -52,7 +60,7 @@ odoo.define('pos_tip_percent.TipButton', function(require) {
                     base_to_tip = order.get_total_with_tax();
                 }
             }
-            var tip = tpc / 100.0 * (base_to_tip + (base_to_tip * 0.13)) ;
+            var tip = tpc / 100.0 * (base_to_tip + (base_to_tip * 0.13) - discount_value)) ;
 
             if( tip > 0 ){
                 await order.add_product(product, {
