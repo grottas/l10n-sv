@@ -51,6 +51,16 @@ odoo.define('pos_tip_percent.TipButton', function(require) {
                 }
             }
 
+
+////            obtener los nombres de las lineas del pedido con sus precios
+//            var lineas = order.get_orderlines();
+//            for (const linea of lineas) {
+//                console.log(linea.get_product().display_name);
+//                console.log(linea.get_price_with_tax());
+//            }
+
+
+
             // Add tip
             // We add the price as manually set to avoid recomputation when changing customer.
             var base_to_tip = order.get_total_without_tax();
@@ -60,7 +70,7 @@ odoo.define('pos_tip_percent.TipButton', function(require) {
                     base_to_tip = order.get_total_with_tax();
                 }
             }
-            var tip = tpc / 100.0 * (base_to_tip + (base_to_tip * 0.13) - discount_value)) ;
+            var tip = tpc / 100.0 * (base_to_tip + (base_to_tip * 0.13) - discount_value) ;
 
             if( tip > 0 ){
                 await order.add_product(product, {

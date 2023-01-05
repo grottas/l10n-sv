@@ -35,6 +35,8 @@ odoo.define('pos_discount_mod.DiscountButton', function(require) {
                 }
             }
 
+
+
             // Add discount
             // We add the price as manually set to avoid recomputation when changing customer.
             var base_to_discount = order.get_total_without_tax();
