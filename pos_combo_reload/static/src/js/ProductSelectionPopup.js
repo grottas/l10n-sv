@@ -19,6 +19,11 @@ odoo.define('point_of_sale.ProductSelectionPopup', function(require) {
             this.pricelist = this.currentOrder.pricelist;
             this.popup = useState({ isRemoved: false});
             useSubEnv({ order_menu: this.props.order_menu || [] });
+            this.is_editable = this.props.is_editable || false;
+            this.selected_orderline = this.props.selected_orderline || false;
+            if(this.is_editable) {
+                this.selected_order_menu = JSON.parse(JSON.stringify(this.selected_orderline.order_menu));
+            }
         }
         mounted() {
             this.env.pos.on('change:SelectionSelectedToppingId', this.render, this);
@@ -147,8 +152,13 @@ odoo.define('point_of_sale.ProductSelectionPopup', function(require) {
             return this.env.pos.get_order();
         }
         update_order_line(product, total_price) {
-            this.currentOrder.add_product(product, {'price': product.get_price(this.pricelist, 1) + total_price});
-            this.currentOrder.selected_orderline.price_manually_set = true;
+            if(this.is_editable) {
+                this.selected_orderline.set_unit_price(product.get_price(this.pricelist,1) + total_price);
+                this.currentOrder.select_orderline(this.selected_orderline);
+            } else {
+                this.currentOrder.add_product(product, {'price': product.get_price(this.pricelist, 1) + total_price});
+                this.currentOrder.selected_orderline.price_manually_set = true;
+            }
         }
         async confirm() {
             const topping_data = this.env.pos.topping_item_by_id[this.SelectionSelectedToppingId];
@@ -213,6 +223,12 @@ odoo.define('point_of_sale.ProductSelectionPopup', function(require) {
         }
         _switchCategory(event) {
             this.env.pos.set('SelectionSelectedToppingId', event.detail);
+        }
+        cancel() {
+            if(this.is_editable) {
+                this.selected_orderline.order_menu = this.selected_order_menu;
+            }
+            super.cancel();
         }
     }
 

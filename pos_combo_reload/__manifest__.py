@@ -1,6 +1,6 @@
 {
     'name': 'Manage combos at the point of sale',
-    'version': '15.0.0.0.4',
+    'version': '15.0.0.0.8',
     'author': 'Ganemo',
     'website': 'https://www.ganemo.co',
     'live_test_url': 'https://www.ganemo.co/demo',
@@ -26,11 +26,10 @@
             '/pos_combo_reload/static/src/js/ProductSelectionPopup.js',
             '/pos_combo_reload/static/src/js/PosSelectionCombo.js',
             '/pos_combo_reload/static/src/js/OrderWidget.js',
-            '/pos_combo_reload/static/src/js/PosSelectionComboEdit.js',
             '/pos_combo_reload/static/src/css/PosSelectionCombo.css'
         ],
         'web.assets_qweb': [
-            'pos_combo_reload/static/src/xml/**/*',
+            'pos_combo_reload/static/src/xml/**',
         ],
     },
     "auto_install": False,

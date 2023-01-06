@@ -127,8 +127,8 @@ odoo.define('pos_combo_reload.PosSelectionCombo', function (require) {
             json.price_unit = this.price;
             json.is_selection_combo = this.product.is_selection_combo;
             json.own_line = this.product.is_selection_combo ? own_line : [];
-            json.own_data = this.own_data;
-            json.order_menu = this.order_menu;
+            json.own_data = this.own_data ? this.own_data : [];
+            json.order_menu = this.order_menu ? this.order_menu : [];
             return json;
         },
         export_for_printing: function(){

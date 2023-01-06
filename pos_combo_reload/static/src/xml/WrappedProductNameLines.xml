@@ -4,9 +4,8 @@
     <t t-name="WrappedProductNameLines" t-inherit="point_of_sale.WrappedProductNameLines" t-inherit-mode="extension" owl="1">
         <xpath expr="//span/t" position="after">
             <t t-if="props.line.is_selection_combo_product and props.line.order_menu">
-<!--                [FIXME] Se comento para que no aparezca el detalle de los combos en los tickets.-->
                 <div class="pos_receipt_order_menu">
-                    <t t-foreach="props.line.order_menu" t-as="order_menu" t-key="order_menu.id">
+                    <t t-foreach="props.line.order_menu" t-as="order_menu" t-key="order_menu.id"> 
                         <div><t t-esc="order_menu.categoryName"/></div>
                         <t t-foreach="order_menu.products" t-as="product" t-key="product.id">
                             <div class="pos_receipt_order_menu_row">
