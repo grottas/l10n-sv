@@ -52,13 +52,24 @@ odoo.define('pos_tip_percent.TipButton', function(require) {
             }
 
 
-////            obtener los nombres de las lineas del pedido con sus precios
-//            var lineas = order.get_orderlines();
-//            for (const linea of lineas) {
-//                console.log(linea.get_product().display_name);
-//                console.log(linea.get_price_with_tax());
-//            }
+//            obtener los nombres de las lineas del pedido con sus precios
+            var lineas = order.get_orderlines();
+            var descuento = 0;
+            for (const linea of lineas) {
+                if (linea.get_product().display_name === "15.0% de descuento en productos") {
+                    var descuento = linea.get_price_with_tax();
+                }
+                if (linea.get_product().display_name === "10.0% de descuento en productos") {
+                    var descuento = linea.get_price_with_tax();
+                }
+                if (linea.get_product().display_name === "20.0% de descuento en productos") {
+                    var descuento = linea.get_price_with_tax();
+                }
+                if (linea.get_product().display_name === "30.0% de descuento en productos") {
+                    var descuento = linea.get_price_with_tax();
+                }
 
+            }
 
 
             // Add tip
@@ -70,7 +81,7 @@ odoo.define('pos_tip_percent.TipButton', function(require) {
                     base_to_tip = order.get_total_with_tax();
                 }
             }
-            var tip = tpc / 100.0 * (base_to_tip + (base_to_tip * 0.13) - discount_value) ;
+            var tip = tpc / 100.0 * (base_to_tip + (base_to_tip * 0.13) - discount_value - descuento) ;
 
             if( tip > 0 ){
                 await order.add_product(product, {
