@@ -53,6 +53,7 @@
                         <group string="Totales" name="totales_invoice">
                             <field name="total_credito"/>
                             <field name="total_contado"/>
+                            <field name="doc_propina"/>
                         </group>
                     </group>
                 </sheet>
@@ -95,9 +96,9 @@
             <field name="act_window_id" ref="l10n_sv_pos_reports_xzm.action_cortex"/>
     </record>
 
-<!--    <menuitem id="menu_cortex" parent="point_of_sale.menu_point_rep" name="Corte X"-->
-<!--              action="action_cortex" sequence="9"-->
-<!--              groups="point_of_sale.group_pos_manager,point_of_sale.group_pos_user"/>-->
+    <menuitem id="menu_cortex" parent="point_of_sale.menu_point_rep" name="Corte X"
+              action="action_cortex" sequence="9"
+              groups="point_of_sale.group_pos_manager,point_of_sale.group_pos_user"/>
 
 
 </odoo>

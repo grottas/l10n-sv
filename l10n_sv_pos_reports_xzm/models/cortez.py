@@ -52,6 +52,7 @@ class CorteZ(models.Model):
 
     total_credito = fields.Float('Total credito', readonly=True)
     total_contado = fields.Float('Total contado', readonly=True)
+    doc_propina = fields.Float('Total propina', readonly=True)
 
     def _name_cortez(self):
         for record in self:

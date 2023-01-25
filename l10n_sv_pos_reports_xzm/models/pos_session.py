@@ -29,6 +29,9 @@ class PosSession(models.Model):
                     invoice_contado_pos = self.env['account.move'].search([('invoice_date', '=', fecha), ('invoice_payment_term_id', '=', fecha), ('cortex_id', '=', False)])
                     invoice_credito = self.env['account.move'].search([('invoice_date', '=', fecha), ('invoice_payment_term_id', '!=', 'Pago inmediato'), ('cortex_id', '=', False)])
 
+                    #PROPINAS GLOBAL
+                    doc_propina = 0.00
+
                     #FACTURA
                     fac_grav_total = 0.00
                     fac_exen_total = 0.00
@@ -81,50 +84,29 @@ class PosSession(models.Model):
 
                     for pos_orders in self.order_ids:
                         if not pos_orders.to_invoice:
-                            for lines in pos_orders.lines:
-                                if lines.full_product_name == 'Propinas':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor.':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'IVA Consumidor Test':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'Base Tangible Venta':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'IVA Incluido':
-                                    pos_grav_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'Exento venta':
-                                    pos_exen_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'Exento venta Test':
-                                    pos_exen_total += lines.price_subtotal_incl
-                                if lines.tax_ids_after_fiscal_position.name == 'No Sujeto Venta':
-                                    pos_total_nosuj += lines.price_subtotal_incl
-                                else:
-                                    continue
+                            if pos_orders.fiscal_position_id:
+                                for lines in pos_orders.lines:
+                                    if lines.full_product_name == 'Propinas':
+                                        doc_propina += lines.price_subtotal_incl
+                                    if lines.tax_ids_after_fiscal_position.es_tax_consumidor:
+                                        pos_grav_total += lines.price_subtotal_incl
+                                    if lines.tax_ids_after_fiscal_position.es_tax_exento:
+                                        pos_exen_total += lines.price_subtotal_incl
+                                    if lines.tax_ids_after_fiscal_position.es_tax_nosujeto:
+                                        pos_total_nosuj += lines.price_subtotal_incl
+                                    else:
+                                        continue
 
                     # SUMATORIA DE CONSUMIDOR FINAL
                     for invoice_orders_fac in invoice_fac:
                         for lines in invoice_orders_fac.invoice_line_ids:
                             if lines.name == 'Propinas':
+                                doc_propina += lines.price_total
+                            if lines.tax_ids.es_tax_consumidor:
                                 fac_grav_total += lines.price_total
-                            if lines.tax_ids.name == 'IVA Consumidor.':
-                                fac_grav_total += lines.price_total
-                            if lines.tax_ids.name == 'IVA Consumidor':
-                                fac_grav_total += lines.price_total
-                            if lines.tax_ids.name == 'IVA Incluído':
-                                fac_grav_total += lines.price_total
-                            if lines.tax_ids.name == 'IVA Consumidor Test':
-                                fac_grav_total += lines.price_total
-                            if lines.tax_ids.name == 'Base Tangible Venta':
-                                fac_grav_total += lines.price_total
-                            if lines.tax_ids.name == 'IVA Incluido':
-                                fac_grav_total += lines.price_total
-                            if lines.tax_ids.name == 'Exento venta':
+                            if lines.tax_ids.es_tax_exento:
                                 fac_exen_total += lines.price_total
-                            if lines.tax_ids.name == 'Exento venta Test':
-                                fac_exen_total += lines.price_total
-                            if lines.tax_ids.name == 'No Sujeto Venta':
+                            if lines.tax_ids.es_tax_nosujeto:
                                 fac_total_nosuj += lines.price_total
                             else:
                                 continue
@@ -133,17 +115,11 @@ class PosSession(models.Model):
                     for invoice_orders_ccf in invoice_ccf:
                         for lines in invoice_orders_ccf.invoice_line_ids:
                             for taxes in lines.tax_ids:
-                                if taxes.name == 'IVA Contribuyente.':
+                                if taxes.es_tax_contribuyente:
                                     ccf_grav_total += lines.price_total
-                                if taxes.name == 'IVA Contribuyente Test':
-                                    ccf_grav_total += lines.price_total
-                                if taxes.name == 'IVA Incluido':
-                                    ccf_grav_total += lines.price_total
-                                if taxes.name == 'Exento venta':
+                                if taxes.es_tax_exento:
                                     ccf_exen_total += lines.price_total
-                                if taxes.name == 'Exento venta Test':
-                                    ccf_exen_total += lines.price_total
-                                if taxes.name == 'No Sujeto Venta':
+                                if taxes.es_tax_nosujeto:
                                     ccf_total_nosuj += lines.price_total
                                 else:
                                     continue
@@ -152,15 +128,13 @@ class PosSession(models.Model):
                     #SUMATORIA DE NOTA DE CREDITO
                     for invoice_orders_ndc in invoice_ndc:
                         for lines in invoice_orders_ndc.invoice_line_ids:
-                            if lines.tax_ids.name == 'IVA Consumidor.':
+                            if lines.tax_ids.es_tax_consumidor:
                                 ndc_grav_total += lines.price_total
-                            if lines.tax_ids.name == 'IVA Consumidor':
+                            if lines.tax_ids.es_tax_contribuyente:
                                 ndc_grav_total += lines.price_total
-                            if lines.tax_ids.name == 'IVA Contribuyente.':
-                                ndc_grav_total += lines.price_total
-                            if lines.tax_ids.name == 'Exento venta':
+                            if lines.tax_ids.es_tax_exento:
                                 ndc_exen_total += lines.price_total
-                            if lines.tax_ids.name == 'No Sujeto Venta':
+                            if lines.tax_ids.es_tax_nosujeto:
                                 ndc_total_nosuj += lines.price_total
 
 
@@ -203,6 +177,7 @@ class PosSession(models.Model):
                         'ndc_vent_exen': ndc_exen_total,
                         'ndc_vent_nosj': ndc_total_nosuj,
                         'ndc_total': (ndc_grav_total + ndc_exen_total + ndc_total_nosuj),
+                        'doc_propina': doc_propina,
 
 
                         'total_contado': (invoice_contado_set + invoice_contado_pos_set + pos_grav_total + pos_exen_total + pos_total_nosuj),
@@ -279,10 +254,12 @@ class PosSession(models.Model):
 
             z_total_credito = 0.00
             z_total_contado = 0.00
+            z_doc_propina = 0.00
 
 
             if len(cortex) > 0:
                 for lines in cortex:
+                    z_doc_propina += lines.doc_propina
                     # FAC
                     z_fact_vent_grav += lines.fact_vent_grav
                     z_fact_vent_exen += lines.fact_vent_exen
@@ -371,7 +348,8 @@ class PosSession(models.Model):
                 'tk_total': z_tk_total,
                 'total_contado': z_total_contado,
                 'total_credito': z_total_credito,
-                'company_id': self.company_id.id
+                'company_id': self.company_id.id,
+                'doc_propina': z_doc_propina,
             })
 
             if len(cortex) > 0:

@@ -55,6 +55,8 @@ class CorteX(models.Model):
     total_credito = fields.Float('Total credito', readonly=True)
     total_contado = fields.Float('Total contado', readonly=True)
 
+    doc_propina = fields.Float('Total de propinas', readonly=True)
+
 
     def _name_cortex(self):
         for record in self:

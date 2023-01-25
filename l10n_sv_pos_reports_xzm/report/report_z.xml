@@ -124,6 +124,15 @@
                                 <td style="text-align: right">$<t t-esc="doc.total_contado" t-options='{"widget": "float", "precision": 2}'/></td>
                             </tr>
                         </table>
+                        ================================================<br/>
+                        <span>PROPINAS</span><br/>
+                        ================================================<br/>
+                        <table style="width: 100%; font-size: 11px;">
+                            <tr>
+                                <td colspan="10"><span>TOTAL PROPINA: </span></td>
+                                <td style="text-align: right">$<t t-esc="doc.doc_propina" t-options='{"widget": "float", "precision": 2}'/></td>
+                            </tr>
+                        </table>
 
                     </div>
                 </t>

@@ -93,7 +93,7 @@
             <field name="act_window_id" ref="l10n_sv_pos_reports_xzm.action_cortezm"/>
     </record>
 
-<!--    <menuitem id="menu_cortezm" parent="point_of_sale.menu_point_rep" name="Corte ZM"-->
-<!--              action="action_cortezm" sequence="11"-->
-<!--              groups="point_of_sale.group_pos_manager,point_of_sale.group_pos_user"/>-->
+    <menuitem id="menu_cortezm" parent="point_of_sale.menu_point_rep" name="Corte ZM"
+              action="action_cortezm" sequence="11"
+              groups="point_of_sale.group_pos_manager,point_of_sale.group_pos_user"/>
 </odoo>

@@ -22,6 +22,7 @@
         'views/account_move_inherit_x.xml',
         'views/session_pos_inherit_x.xml',
         'views/pos_order_inherit_x.xml',
+        'views/account_tax.xml',
         'views/cortex.xml',
         'views/cortez.xml',
         'views/cortezm.xml',
