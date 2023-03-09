@@ -240,7 +240,7 @@
                   <td>
                   </td>
                   <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalExentas)"/></td>
-                  <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:..2f}'.format(totalGravadasLocal)"/></td>
+                  <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalGravadasLocal)"/></td>
                   
                   <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalGravadasExp)"/></td>
                   <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalRetenido)"/></td>
@@ -260,21 +260,21 @@
                       </tr>
                       <tr>
                         <td class="center-middle" style="text-align:left">Ventas Internas Gravadas</td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasLocal)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalNuevo)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totaln)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalGravadasLocal)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalNuevo)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totaln)"/></td>
                       </tr>
                       <tr>
                         <td class="center-middle" style="text-align:left">Ventas Internas Exentas</td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExentas)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalDebito)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalNeto)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalExentas)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalDebito)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalNeto)"/></td>
                       </tr>
                       <tr>
                         <td class="center-middle" style="text-align:left;border-spacing: 0.3px">Ventas Gravada a Sujeto Tasa Cero (0%)</td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasExp)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIvaExp)"/></td>
-                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalVN)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalGravadasExp)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalIvaExp)"/></td>
+                        <td class="center-middle" style="text-align:right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalVN)"/></td>
                       </tr>
                       <tr>
                         <!--Calculo de totales-->
@@ -283,9 +283,9 @@
                         <t t-set="total3" t-value="total3 + totaln + totalNeto + totalVN"/>
                         <!---->
                         <td class="center-middle" style="text-align: left;">Totales</td>
-                        <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total1)"/></td>
-                        <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total2)"/></td>
-                        <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total3)"/></td>
+                        <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(total1)"/></td>
+                        <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(total2)"/></td>
+                        <td class="center-middle" style="text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(total3)"/></td>
                       </tr>
                     </table>
                   </td>
