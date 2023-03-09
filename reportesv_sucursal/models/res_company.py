@@ -106,7 +106,7 @@ select ai.id as id,ai.invoice_date as fecha
 from account_move ai
 	inner join res_partner rp on ai.partner_id=rp.id
 	inner join odoosv_fiscal_document doc on ai.tipo_documento_id =doc.id
-where ai.company_id= {0} 
+where ai.company_id= {1} 
 	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
 	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
 	and ai.move_type='in_invoice' 
@@ -200,7 +200,7 @@ where ai.company_id= {0}
 from account_move ai
 	inner join res_partner rp on ai.partner_id=rp.id
 	inner join odoosv_fiscal_document doc on ai.tipo_documento_id =doc.id
-where ai.company_id= {0} 
+where ai.company_id= {1} 
 	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
 	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
 	and ai.move_type='in_refund' 
@@ -234,7 +234,7 @@ select  ai.id as id,ai.invoice_date as fecha
 from account_move ai
 	inner join res_partner rp on ai.partner_id=rp.id
 	inner join odoosv_fiscal_document doc on ai.tipo_documento_id =doc.id
-where ai.company_id= {0} 
+where ai.company_id= {1} 
 	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
 	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
 	and ai.move_type='in_invoice' 
