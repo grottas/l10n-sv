@@ -108,7 +108,7 @@
             <t t-set="company" t-value="null"/>
 
             <t t-set="compra" t-value="float(0.00)"/>
-            <!--t t-set="zero" t-value="'{0:.2f}'.format(float(0.00))"/-->
+            <!--t t-set="zero" t-value="'{0:,.2f}'.format(float(0.00))"/-->
             <t t-set="zero" t-value="float(0.00)"/>
             <t t-set="totalExentas" t-value="float(0.00)"/>
             <t t-set="totalGravadas" t-value="float(0.00)"/>
@@ -181,42 +181,42 @@
                 <td class="standar" style="padding:8px;"><span t-esc="c.get('nrc')"/></td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <t t-if="c.get('importacion') != true"  t-set="intEx" t-value="intEx+c.get('exento')"/>
-                  <span  t-if="c.get('importacion') != true" t-esc="'{0:.2f}'.format(c.get('exento'))"/>
+                  <span  t-if="c.get('importacion') != true" t-esc="'{0:,.2f}'.format(c.get('exento'))"/>
                   <span  t-else="" t-esc="zero"/>
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <t t-if="c.get('importacion') == true" t-set="impEx" t-value="impEx+c.get('exento')"/>
-                  <span t-if="c.get('importacion') == true" t-esc="'{0:.2f}'.format(c.get('exento'))"/>
+                  <span t-if="c.get('importacion') == true" t-esc="'{0:,.2f}'.format(c.get('exento'))"/>
                   <span t-else="" t-esc="zero"/>
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <t t-if="c.get('importacion') != true" t-set="intGra" t-value="intGra+c.get('gravado')"/>
-                  <span t-if="c.get('importacion') != true" t-esc="'{0:.2f}'.format(c.get('gravado'))"/>
+                  <span t-if="c.get('importacion') != true" t-esc="'{0:,.2f}'.format(c.get('gravado'))"/>
                   <span t-else="" t-esc="zero"/>
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
                   <t t-if="c.get('importacion') == true" t-set="intGra" t-value="intGra+c.get('gravado')"/>
-                  <span t-if="c.get('importacion') == true" t-esc="'{0:.2f}'.format(c.get('gravado'))"/>
+                  <span t-if="c.get('importacion') == true" t-esc="'{0:,.2f}'.format(c.get('gravado'))"/>
                   <span t-else="" t-esc="zero"/>
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
-                  <span t-esc="'{0:.2f}'.format(c.get('iva'))"/>
+                  <span t-esc="'{0:,.2f}'.format(c.get('iva'))"/>
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
-                  <span t-esc="'{0:.2f}'.format(c.get('retenido'))"/>
+                  <span t-esc="'{0:,.2f}'.format(c.get('retenido'))"/>
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
-                  <span t-esc="'{0:.2f}'.format(c.get('percibido'))"/>
+                  <span t-esc="'{0:,.2f}'.format(c.get('percibido'))"/>
                 </td>
                 <t t-set="compra" t-value="c.get('exento') + c.get('gravado') + c.get('iva') + c.get('retenido') + c.get('percibido')"/>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
-                  <span t-esc="'{0:.2f}'.format(compra)"/>
+                  <span t-esc="'{0:,.2f}'.format(compra)"/>
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
-                  <span t-esc="'{0:.2f}'.format(c.get('excluido'))"/>
+                  <span t-esc="'{0:,.2f}'.format(c.get('excluido'))"/>
                 </td>
                 <td class="standar-r"><span t-esc="company.currency_id.symbol"/>
-                  <span t-esc="'{0:.2f}'.format(c.get('otros'))"/>
+                  <span t-esc="'{0:,.2f}'.format(c.get('otros'))"/>
                 </td>
                 <!--Calculo de totales-->
                 <t t-set="totalIva" t-value="totalIva + c.get('iva')"/>
@@ -239,34 +239,34 @@
                 <td>
                 </td>
                 <td class="result"><span t-esc="company.currency_id.symbol"/>
-                    <span t-esc="'{0:.2f}'.format(intEx)"/>
+                    <span t-esc="'{0:,.2f}'.format(intEx)"/>
                 </td>
                 <td class="result"><span t-esc="company.currency_id.symbol"/>
-                    <span t-esc="'{0:.2f}'.format(impEx)"/>
+                    <span t-esc="'{0:,.2f}'.format(impEx)"/>
                 </td>
                 <td class="result"><span t-esc="company.currency_id.symbol"/>
-                    <span t-esc="'{0:.2f}'.format(intGra)"/>
+                    <span t-esc="'{0:,.2f}'.format(intGra)"/>
                 </td>
                 <td class="result"><span t-esc="company.currency_id.symbol"/>
-                    <span t-esc="'{0:.2f}'.format(impGra)"/>
+                    <span t-esc="'{0:,.2f}'.format(impGra)"/>
                 </td>
                 <td class="result">
-                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/>
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalIva)"/>
                 </td>
                 <td class="result">
-                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/>
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalRetenido)"/>
                 </td>
                 <td class="result">
-                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/>
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalPercibido)"/>
                 </td>
                 <td class="result">
-                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/>
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalCompras)"/>
                 </td>
                 <td class="result">
-                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExcluidos)"/>
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalExcluidos)"/>
                 </td>
                 <td class="result">
-                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido3)"/>
+                  <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalRetenido3)"/>
                 </td>
               </tr>
             </table>
@@ -282,42 +282,42 @@
                   <tr>
                     <td class="center-middle-r">Compras Exentas:</td>
                     <td class="center-middle"><span t-esc="company.currency_id.symbol"/>
-                                      <span t-esc="'{0:.2f}'.format(intEx)"/>
+                                      <span t-esc="'{0:,.2f}'.format(intEx)"/>
                     </td>
                   </tr>
                   <tr>
                     <td class="center-middle-r">Importaciones Exentas:</td>
                     <td class="center-middle"><span t-esc="company.currency_id.symbol"/>
-                                      <span t-esc="'{0:.2f}'.format(impEx)"/>
+                                      <span t-esc="'{0:,.2f}'.format(impEx)"/>
                     </td>
                   </tr>
                   <tr>
                     <td class="center-middle-r">Compras Gravadas:</td>
                     <td class="center-middle"><span t-esc="company.currency_id.symbol"/>
-                                      <span t-esc="'{0:.2f}'.format(intGra)"/>
+                                      <span t-esc="'{0:,.2f}'.format(intGra)"/>
                     </td>
                   </tr>
                   <tr>
                     <td class="center-middle-r">Importaciones Gravadas:</td>
                     <td class="center-middle"><span t-esc="company.currency_id.symbol"/>
-                                      <span t-esc="'{0:.2f}'.format(impGra)"/>
+                                      <span t-esc="'{0:,.2f}'.format(impGra)"/>
                     </td>
                   </tr>
                   <tr>
                     <td class="center-middle-r">Crédito Fiscal:</td>
-                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/></td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalIva)"/></td>
                   </tr>
                   <tr>
                     <td class="center-middle-r">IVA Percibido:</td>
-                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/></td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalPercibido)"/></td>
                   </tr>
                   <tr>
                     <td class="center-middle-r">IVA Retenido:</td>
-                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/></td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalRetenido)"/></td>
                   </tr>
                   <tr>
                     <td class="center-middle-r">TOTAL:</td>
-                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/></td>
+                    <td class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalCompras)"/></td>
                   </tr>
                 </table>
               </td>
