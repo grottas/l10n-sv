@@ -269,7 +269,7 @@ from account_move ai
 	inner join account_move_line aml on aml.move_id=ai.id
 	inner join res_partner rp on aml.partner_id=rp.id
 	
-where ai.company_id= {0} 
+where ai.company_id= {1} 
 	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
 	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
 	and ai.move_type='entry' 
