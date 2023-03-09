@@ -273,7 +273,7 @@ where ai.company_id= {0}
 	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
 	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
 	and ai.move_type='entry' 
-    and aml.account_id=3489
+    and aml.account_id=920
 	and ai.state in ('posted') 
 
 ) S
