@@ -256,7 +256,7 @@ where ai.company_id= {0}
 	,ai.x_serie as serie
 	,(aml.debit/2*100) as monto
 	,rp.dui as dui
-	,True as Importacion
+	,False as Importacion
                ,0.0 as  Gravado
                ,0.0  Exento
                ,0.0 as  Iva
@@ -273,7 +273,7 @@ where ai.company_id= {0}
 	and date_part('year',COALESCE(ai.date,ai.invoice_date))=  {1} 
 	and date_part('month',COALESCE(ai.date,ai.invoice_date))=  {2}
 	and ai.move_type='entry' 
-	and aml.account_id=920
+    and (aml.account_id=920 or aml.account_id=3489)
 	and ai.state in ('posted') 
 
 ) S
