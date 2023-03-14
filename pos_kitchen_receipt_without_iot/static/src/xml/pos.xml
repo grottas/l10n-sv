@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="WVPosKitchenReceiptButton" owl="1">
+        <div class='control-button' t-att-class="addedClasses">
+            <i class="fa fa-cutlery"/>
+            Kitchen Order
+        </div>
+    </t>
+
+    <t t-name="KitchenOrderChangeReceipt">
+        <div class="pos-sale-ticket">
+            <div class="pos-center-align">
+            <div size='normal'><t t-esc="changes.name" /></div>
+                <t t-if="changes.floor || changes.table">
+                <br/>
+                    <div><span><t t-esc="changes.floor" /></span>
+                        /
+                        <span bold='on' size='double'><t t-esc="changes.table"/></span></div>
+            </t>
+        </div>
+            <br/>
+            <t t-if="changes.cancelled.length > 0">
+                <div color='red'>
+                    <div><b>CANCELLED<t t-esc='changes.time.hours'/>:
+                        <t t-esc='changes.time.minutes'/></b> </div>
+                    <table class='receipt-orderlines-cancelled' align="center;" width="100%">
+                        <colgroup>
+                            <col width='70%'/>
+                            <col width='30%'/>
+                        </colgroup>
+                        <tr style="border-bottom: solid 1px rgb(209, 209, 209);">
+                            <th style="text-align : left;font-size: 12px;">Product</th>
+                            <th style="float: right;font-size: 12px;">Units</th>
+                        </tr>
+                        <t t-foreach="changes.cancelled" t-as="change">
+                            <tr>
+                                <td class="pos-right-align" style="text-align : left;font-size: 15px;">
+                                    <t t-esc="change.name"/>
+                                </td>
+                                <td class="pos-right-align" style="font-size: 15px;">
+                                    <t t-esc="change.qty"/>
+                                </td>
+                            </tr>
+                            <t t-if="change.note">
+                                <tr>
+                                    <td class="pos-right-align" style="text-align : left;font-size: 12px;font-style: italic;">
+                                        <b>Note:</b>
+                                        <t t-esc="change.note"/>
+                                    </td>
+                                    <td class="pos-right-align">
+
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </table>
+                </div>
+            </t>
+            <t t-if="changes.new.length > 0">
+                <div><b>NEW <t t-esc='changes.time.hours'/>:
+                    <t t-esc='changes.time.minutes'/></b></div>
+                <table class='receipt-orderlines-add' align="center;" width="100%">
+                    <colgroup>
+                        <col width='70%'/>
+                        <col width='30%'/>
+                    </colgroup>
+                    <tr style="border-bottom: solid 1px rgb(209, 209, 209);">
+                        <th style="text-align : left;font-size: 12px;">Product</th>
+                        <th style="float: right;font-size: 12px;">Units</th>
+                    </tr>
+                    <t t-foreach="changes.new" t-as="change">
+                        <tr>
+                            <td class="pos-right-align" style="text-align : left;font-size: 15px;">
+                                <t t-esc="change.name"/>
+                            </td>
+                            <td class="pos-right-align" style="font-size: 15px;">
+                                <t t-esc="change.qty"/>
+                            </td>
+                        </tr>
+                        <t t-if="change.note">
+                            <tr>
+                                <td class="pos-right-align" style="text-align : left;font-size: 12px;font-style: italic;">
+                                    <b>Note:</b>
+                                    <t t-esc="change.note"/>
+                                </td>
+                                <td class="pos-right-align">
+
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                </table>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="KitchenReceiptScreenWidget" owl="1">
+        <div class='receipt-screen screen'>
+            <div class='screen-content'>
+                <div class='top-content'>
+                    <span class="button back" t-on-click="confirm">
+                        <i class="fa fa-angle-double-left"/>
+                        <span> </span>
+                        <span>Back</span>
+                    </span>
+                    <div class="top-content-center">
+                        <h1>Kitchen Receipt Printing</h1>
+                    </div>
+                    <span class="button next highlight" t-on-click="confirm">
+                        <span>Ok</span>
+                        <span> </span>
+                        <i class="fa fa-angle-double-right"/>
+                    </span>
+                </div>
+                <div class="centered-content">
+                    <t t-if="config.use_multi_printer">
+                        <t t-set="index" t-value="0"/>
+                        <t t-foreach="reportList" t-as="rep">
+                            <div class="button print" t-on-click="printReceipt(index)">
+                                <i class='fa fa-print'/>
+                                Print
+                            </div>
+                            <div t-att-id="'ticket_container_'+ index" class="pos-receipt-container">
+                                <t t-raw="rep"/>
+                            </div>
+                            <t t-set="index" t-value="index+1"/>
+                        </t>
+                    </t>
+                    <t t-else="">
+                        <div class="button print" t-on-click="printReceipt">
+                            <i class='fa fa-print'/>
+                            Print
+                        </div>
+                        <div class="pos-receipt-container">
+                            <t t-raw="report"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

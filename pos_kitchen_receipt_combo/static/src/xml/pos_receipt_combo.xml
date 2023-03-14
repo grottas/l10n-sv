@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    
+    <t t-inherit="pos_kitchen_receipt_without_iot.KitchenOrderChangeReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[@class='pos-sale-ticket']//table[@class='receipt-orderlines-cancelled']" position="replace">
+            <table class='receipt-orderlines-cancelled' align="center;" width="100%">
+                <colgroup>
+                    <col width='70%'/>
+                    <col width='30%'/>
+                </colgroup>
+                <tr style="border-bottom: solid 1px rgb(209, 209, 209);">
+                        <th style = "text-align : left;font-size: 14px;">Product</th>
+                        <th style = "float: right;font-size: 14px;">Units</th>
+                </tr>
+                <t t-foreach="changes.cancelled" t-as="change">
+                    <tr>
+                        <td class="pos-right-align" style="text-align : left;font-size: 15px;">
+                            <t t-esc="change.name"/>
+                        </td>
+                        <td class="pos-right-align" style="font-size: 15px;">
+                            <t t-esc="change.qty"/>
+                        </td>
+                    </tr>
+
+                    <t t-if="change.order_menu">
+                        <t t-foreach="change.order_menu" t-as="product">
+                            <tr>
+                                <td style="color: red; font-size: 15px;">
+                                    &#8226;<t t-esc="product.categoryName"/>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <t t-foreach="product.products" t-as="line">
+                                <tr>
+                                    <td style="color: green; font-size: 14px;">
+                                        &#187;<t t-esc="line.product_name"/>
+                                    </td>
+                                    <td class="pos-right-align" style="font-size: 14px;">
+                                        <t t-esc="line.qty"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </t>
+
+                    <t t-if="change.note">
+                        <tr>
+                            <td class="pos-right-align" style="text-align : left;font-size: 12px;font-style: italic;">
+                                <b>Note:</b>
+                                <t t-esc="change.note"/>
+                            </td>
+                            <td class="pos-right-align">
+
+                            </td>
+                        </tr>
+                    </t>
+                </t>
+            </table>
+        </xpath>
+
+        <xpath expr="//div[@class='pos-sale-ticket']//table[@class='receipt-orderlines-add']" position="replace">
+            <table class='receipt-orderlines-add' align="center;" width="100%">
+                <colgroup>
+                    <col width='70%'/>
+                    <col width='30%'/>
+                </colgroup>
+                <tr style="border-bottom: solid 1px rgb(209, 209, 209);">
+                        <th style = "text-align : left;font-size: 14px;">Product</th>
+                        <th style = "float: right;font-size: 14px;">Units</th>
+                </tr>
+                <t t-foreach="changes.new" t-as="change">
+                    <tr>
+                        <td class="pos-right-align" style="text-align : left;font-size: 15px;">
+                            <t t-esc="change.name"/>
+                        </td>
+                        <td class="pos-right-align" style="font-size: 15px;">
+                            <t t-esc="change.qty"/>
+                        </td>
+                    </tr>
+
+                    <t t-if="change.order_menu">
+                        <t t-foreach="change.order_menu" t-as="product">
+                            <tr>
+                                <td style="color: red; font-size: 15px;">
+                                    &#8226;<t t-esc="product.categoryName"/>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <t t-foreach="product.products" t-as="line">
+                                <tr>
+                                    <td style="color: green; font-size: 14px;">
+                                        &#187;<t t-esc="line.product_name"/>
+                                    </td>
+                                    <td class="pos-right-align" style="font-size: 14px;">
+                                        <t t-esc="line.qty"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </t>
+
+                    <t t-if="change.note">
+                        <tr>
+                            <td class="pos-right-align" style="text-align : left;font-size: 12px;font-style: italic;">
+                                <b>Note:</b>
+                                <t t-esc="change.note"/>
+                            </td>
+                            <td class="pos-right-align">
+
+                            </td>
+                        </tr>
+                    </t>
+                </t>
+            </table>
+        </xpath>
+    </t>
+
+</templates>
+
+
+
