@@ -262,7 +262,7 @@
                         <td  class="center-middle">Consumidor Final</td>
                         <td  class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(debit)" /></td>
                         <td  class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalExentas1)"/></td>
-                         <td  class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalNeto)"/></td>
+                         <td  class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalGravadasExp1)"/></td>
                         <td  class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalIvaLocal1)"/></td>
                         <td  class="center-middle"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:,.2f}'.format(totalR)"/></td>
                       </tr>
