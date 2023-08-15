@@ -81,7 +81,7 @@ odoo.define('pos_tip_percent.TipButton', function(require) {
                     base_to_tip = order.get_total_with_tax();
                 }
             }
-            var tip = tpc / 100.0 * (base_to_tip + (base_to_tip * 0.13) - discount_value - descuento) ;
+            var tip = tpc / 100.0 * (base_to_tip + (base_to_tip) - discount_value - descuento) ;
 
             if( tip > 0 ){
                 await order.add_product(product, {
