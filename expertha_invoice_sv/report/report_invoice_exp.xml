@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="report_invoice_exp">
+      <t t-call="web.html_container">      
+        <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+        <div class="header">
+          
+        </div>
+        <div class="page article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+          <style>
+            table{
+            width: 100%;
+            font-size: 14px;
+            font-family: arial;
+            width: 100%;
+            position: absolute;
+            top: 18px;
+            left: 100px;
+            }
+            table td, table th{
+             padding: 1px 2px;
+            vertical-align: middle;
+            border-style : hidden!important;
+            }
+            #encabezado{
+            font-size: 8px
+            font-family: arial;
+            border-style : hidden!important;
+            }
+            #encabezado td{
+            border-style : hidden!important;
+            }
+            #encabezado tr{
+            border-style : hidden!important;
+            }
+            #giro, #dirrecion{
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+            }
+            #detalle th{
+            font-size: x-small;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            }
+            #detalle td{
+            border: 1px solid black;
+            }
+            #detalle span{
+            font-size: 11px;
+            }
+            span{
+            font-weight:normal;
+            }
+            .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,
+            .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4,
+            .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6,
+            .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8,
+            .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10,
+            .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+            }
+            .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8,
+            .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+            float: left;
+            }
+            .col-xs-12 {
+            width: 100%;
+            }
+            .col-xs-11 {
+            width: 91.66666667%;
+            }
+            .col-xs-10 {
+            width: 83.33333333%;
+            }
+            .col-xs-9 {
+            width: 75%;
+            }
+            .col-xs-8 {
+            width: 66.66666667%;
+            }
+            .col-xs-7 {
+            width: 58.33333333%;
+            }
+            .col-xs-6 {
+            width: 50%;
+            }
+            .col-xs-5 {
+            width: 41.66666667%;
+            }
+            .col-xs-4 {
+            width: 33.33333333%;
+            }
+            .col-xs-3 {
+            width: 25%;
+            }
+            .col-xs-2 {
+            width: 16.66666667%;
+            }
+            .col-xs-1 {
+            width: 8.33333333%;
+            }
+        </style>
+          <div class="row">
+    <!--MARVIN URIBE Cambios para editar el borde de las tablas contorno de las tablas #1-->
+            <table id="encabezado">
+              <tr>
+                <td class="col-xs-4" style="height:26px;">
+                  <span t-field="o.invoice_date"/>
+                </td>
+                <td class="col-xs-4" style="height:26px;">
+                  <span t-field="o.partner_id.giro"/>
+                </td>
+                <td class="col-xs-2" style="height:26px;">
+                  <span t-field="o.invoice_payment_term_id"/>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-xs-6" style="height:26px;">
+                  <span t-field="o.partner_id"/>
+                </td>
+                <td class="col-xs-3" style="height:26px;">
+                  <span t-field="o.partner_id.vat"/>
+                </td>
+                <td class="col-xs-3" style="height:26px;">
+                  <span t-field="o.partner_id.nrc"/>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-xs-9" style="height:26px;">
+                  <span t-if="o.partner_id.street">
+                    <span t-field="o.partner_id.street"/>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-xs-5" style="height:26px;">
+                  <!--Exportacion a nombre de: --><span t-field="o.partner_id"/>
+                </td>
+              </tr>
+              <!-- <tr>
+                <td colspan="2" style="border:0px solid transparent;">
+                  Fecha de Vencimiento: <span t-field="o.invoice_date_due"/>
+                </td>
+              </tr>-->
+            </table>
+         
+            <table id="detalle" style="font-size: 14px; font-family: arial; width: 90%; position: absolute; top: 200px; left:-5%;">
+              <thead>
+                <tr>
+                  <th class="text-center" style="width: 6%; border:0px solid transparent;"><!--Cant--></th>
+                  <th class="text-center" style="width: 8%; border:0px solid transparent;"><!--Codigo--></th>
+                  <th class="text-center" style="width: 22%; border:0px solid transparent;"><!--Descripcion--></th>
+                  <th class="text-center" style="width: 8%; border:0px solid transparent;"><!--Precio Unitario--></th>
+                  <th class="text-center" style="width: 8%; border:0px solid transparent;"><!--Ventas Afectas--></th>
+                </tr>
+              </thead>
+              <tbody class="invoice_tbody">
+                <tr t-foreach="o.invoice_line_ids" t-as="l">
+                  <t t-if="not l.display_type == 'line_section' ">
+                    <td class="text-right">
+                      <span t-field="l.quantity"/>
+                      <!--<span t-field="l.product_uom_id"  groups="uom.group_uom"/>-->
+                  </td>
+                  <td>
+
+                  </td>
+                    <td style="border:0px solid transparent;"><span t-field="l.name"/>
+                    </td>
+                    
+                    <td class="text-right">
+                        <span t-esc="l.price_unit * 1.13" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="l.price_subtotal * 1.13"
+                            t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                    </td>
+                  </t>
+                </tr>
+              </tbody>
+            </table>
+          
+            <table id="total" style="font-size: 14px; font-family: arial; width: 100%; position: absolute; top: 940px; left:20px;">
+              <tr>
+                <td class="col-xs-10" style="height:26px;">
+                  <!--Cantidad en Letras:-->
+                    <span t-field="o.amount_text"/>
+                </td>
+                <td class="col-xs-2" style="height:26px;">
+                  <!--Total:-->
+                  <span t-field="o.amount_total"/>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-xs-10" style="height:26px;">
+                  
+                </td>
+                <td class="col-xs-2" style="height:26px;">
+                  
+                </td>
+              </tr>
+              <tr>
+                  <td class="col-xs-10" style="height:26px;">
+                    
+                  </td>
+                  <td class="col-xs-2" style="height:26px;">
+                    
+                  </td>
+              </tr>
+              <tr>
+                    <td class="col-xs-10" style="height:26px;">
+                      
+                    </td>
+                    <td class="col-xs-2" style="height:26px;">
+                     
+                    </td>
+              </tr>
+              <tr>
+                <td class="col-xs-10" style="height:26px;">
+                  
+                </td>
+                <td class="col-xs-2" style="height:26px;">
+                  <span t-field="o.amount_total"/>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-xs-10" style="height:26px;">
+                  
+                </td>
+                <td class="col-xs-2" style="height:26px;">
+                  
+                </td>
+              </tr>
+              <tr>
+                <td class="col-xs-10" style="height:26px;">
+                  
+                </td>
+                <td class="col-xs-2" style="height:26px;">
+                 
+                </td>
+              </tr>
+              <tr>
+                <td class="col-xs-10" style="height:26px;">
+                  
+                </td>
+                <td class="col-xs-2" style="height:26px;">
+                  <span t-field="o.amount_total"/>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </t>
+    </template>
+  </data>
+</odoo>

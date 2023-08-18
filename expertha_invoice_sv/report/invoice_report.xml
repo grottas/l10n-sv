@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<!-- PaperFormat -->
+		<record id="paperformat_invoice_fcf" model="report.paperformat">
+			<field name="name">Factura Consumidor Final</field>
+			<field name="default" eval="True"/>
+			<field name="format">Letter</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">35</field>
+			<field name="margin_bottom">11</field>
+			<field name="margin_left">15</field>
+			<field name="margin_right">10</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">35</field>
+			<field name="dpi">90</field>
+		</record>
+		<record id="paperformat_invoice_ccf" model="report.paperformat">
+			<field name="name">Comprobante de Credito Fiscal</field>
+			<field name="default" eval="True"/>
+			<field name="format">Letter</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">35</field>
+			<field name="margin_bottom">10</field>
+			<field name="margin_left">15</field>
+			<field name="margin_right">10</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">35</field>
+			<field name="dpi">90</field>
+		</record>
+		<record id="paperformat_invoice_exportacion" model="report.paperformat">
+			<field name="name">Factura de Exportacion</field>
+			<field name="default" eval="True"/>
+			<field name="format">Letter</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">35</field>
+			<field name="margin_bottom">10</field>
+			<field name="margin_left">3</field>
+			<field name="margin_right">10</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">35</field>
+			<field name="dpi">90</field>
+		</record>
+		<record id="paperformat_invoice_digital" model="report.paperformat">
+			<field name="name">Factura Digital</field>
+			<field name="default" eval="True"/>
+			<field name="format">Letter</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">30</field>
+			<field name="margin_bottom">60</field>
+			<field name="margin_left">3</field>
+			<field name="margin_right">3</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">30</field>
+			<field name="dpi">90</field>
+		</record>
+		<record id="paperformat_invoice_ndc" model="report.paperformat">
+			<field name="name">Nota de Credito</field>
+			<field name="default" eval="True"/>
+			<field name="format">Letter</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">35</field>
+			<field name="margin_bottom">60</field>
+			<field name="margin_left">3</field>
+			<field name="margin_right">3</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">35</field>
+			<field name="dpi">90</field>
+		</record>
+		<record id="paperformat_invoice_anu" model="report.paperformat">
+			<field name="name">Anulaciones</field>
+			<field name="default" eval="True"/>
+			<field name="format">Letter</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">35</field>
+			<field name="margin_bottom">60</field>
+			<field name="margin_left">3</field>
+			<field name="margin_right">3</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">35</field>
+			<field name="dpi">90</field>
+		</record>
+		<record id="paperformat_anul_export" model="report.paperformat">
+			<field name="name">Anulaciones de exportacion</field>
+			<field name="default" eval="True"/>
+			<field name="format">Letter</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">35</field>
+			<field name="margin_bottom">60</field>
+			<field name="margin_left">3</field>
+			<field name="margin_right">3</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">35</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<record id="paperformat_invoice_sujeto" model="report.paperformat">
+			<field name="name">Sujeto Excluido</field>
+			<field name="default" eval="True"/>
+			<field name="format">Letter</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">30</field>
+			<field name="margin_bottom">170</field>
+			<field name="margin_left">3</field>
+			<field name="margin_right">10</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">30</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<record id="report_consumidor_final" model="ir.actions.report">
+			<field name="name">Consumidor Final</field>
+			<field name="model">account.move</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">expertha_invoice_sv.report_invoice_main_fcf</field>
+			<field name="report_file">expertha_invoice_sv.report_invoice_main_fcf</field>
+			<field name="print_report_name">(object.partner_id.display_name + ' - ' + object.name + ' - ' + object.journal_id.name)</field>
+			<field name="binding_model_id" ref="account.model_account_move"/>
+			<field name="binding_type">report</field>
+			<field name="attachment_use" eval="False"/>
+			<field name="paperformat_id" ref="paperformat_invoice_fcf"/>
+		</record>
+		<record id="report_credito_fiscal" model="ir.actions.report">
+			<field name="name">Credito Fiscal</field>
+			<field name="model">account.move</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">expertha_invoice_sv.report_invoice_main_ccf</field>
+			<field name="report_file">expertha_invoice_sv.report_invoice_main_ccf</field>
+			<field name="print_report_name">(object.partner_id.display_name + ' - ' + object.name + ' - ' + object.journal_id.name)</field>
+			<field name="binding_model_id" ref="account.model_account_move"/>
+			<field name="binding_type">report</field>
+			<field name="attachment_use" eval="False"/>
+			<field name="paperformat_id" ref="paperformat_invoice_ccf"/>
+		</record>
+		<record id="report_exportacion" model="ir.actions.report">
+			<field name="name">Factura Exportacion</field>
+			<field name="model">account.move</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">expertha_invoice_sv.report_invoice_main_exp</field>
+			<field name="report_file">expertha_invoice_sv.report_invoice_main_exp</field>
+			<field name="print_report_name">(object.partner_id.display_name + ' - ' + object.name + ' - ' + object.journal_id.name)</field>
+			<field name="binding_model_id" ref="account.model_account_move"/>
+			<field name="binding_type">report</field>
+			<field name="attachment_use" eval="False"/>
+			<field name="paperformat_id" ref="paperformat_invoice_exportacion"/>
+		</record>
+		<record id="report_axp" model="ir.actions.report">
+			<field name="name">Factura Anulacion Exportacion</field>
+			<field name="model">account.move</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">expertha_invoice_sv.report_invoice_main_axp</field>
+			<field name="report_file">expertha_invoice_sv.report_invoice_main_axp</field>
+			<field name="print_report_name">(object.partner_id.display_name + ' - ' + object.name + ' - ' + object.journal_id.name)</field>
+			<field name="binding_model_id" ref="account.model_account_move"/>
+			<field name="binding_type">report</field>
+			<field name="attachment_use" eval="False"/>
+			<field name="paperformat_id" ref="paperformat_invoice_exportacion"/>
+		</record>
+		<record id="report_ndc" model="ir.actions.report">
+			<field name="name">Nota de Credito</field>
+			<field name="model">account.move</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">expertha_invoice_sv.report_invoice_main_ndc</field>
+			<field name="report_file">expertha_invoice_sv.report_invoice_main_ndc</field>
+			<field name="print_report_name">(object.partner_id.display_name + ' - ' + object.name + ' - ' + object.journal_id.name)</field>
+			<field name="binding_model_id" ref="account.model_account_move"/>
+			<field name="binding_type">report</field>
+			<field name="attachment_use" eval="False"/>
+			<field name="paperformat_id" ref="paperformat_invoice_ndc"/>
+		</record>
+		<record id="report_anu" model="ir.actions.report">
+			<field name="name">Anulaciones</field>
+			<field name="model">account.move</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">expertha_invoice_sv.report_invoice_main_anu</field>
+			<field name="report_file">expertha_invoice_sv.report_invoice_main_anu</field>
+			<field name="print_report_name">(object.partner_id.display_name + ' - ' + object.name + ' - ' + object.journal_id.name)</field>
+			<field name="binding_model_id" ref="account.model_account_move"/>
+			<field name="binding_type">report</field>
+			<field name="attachment_use" eval="False"/>
+			<field name="paperformat_id" ref="paperformat_invoice_ccf"/>
+		</record>
+		<record id="report_invoice_digital" model="ir.actions.report">
+			<field name="name">Factura Digital</field>
+			<field name="model">account.move</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">expertha_invoice_sv.report_invoice_main_digital</field>
+			<field name="report_file">expertha_invoice_sv.report_invoice_main_digital</field>
+			<field name="print_report_name">(object.partner_id.display_name + ' - ' + object.name + ' - ' + object.journal_id.name)</field>
+			<field name="binding_model_id" ref="account.model_account_move"/>
+			<field name="binding_type">report</field>
+			<field name="attachment_use" eval="False"/>
+			<field name="paperformat_id" ref="paperformat_invoice_fcf"/>
+		</record>
+
+		<record id="report_sujeto_excluido" model="ir.actions.report">
+			<field name="name">Sujeto Excluido</field>
+			<field name="model">account.move</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">expertha_invoice_sv.report_invoice_main_sujeto</field>
+			<field name="report_file">expertha_invoice_sv.report_invoice_main_sujeto</field>
+			<field name="print_report_name">(object.partner_id.display_name + ' - ' + object.name + ' - ' + object.journal_id.name)</field>
+			<field name="binding_model_id" ref="account.model_account_move"/>
+			<field name="binding_type">report</field>
+			<field name="attachment_use" eval="False"/>
+			<field name="paperformat_id" ref="paperformat_invoice_sujeto"/>
+		</record>
+	</data>
+</odoo>

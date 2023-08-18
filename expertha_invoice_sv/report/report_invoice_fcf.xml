@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_fcf">
+            <t t-call="web.html_container">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                <div class="header">
+
+                </div>
+                <div class="page article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+                    <style>
+              table, td {
+              border: 1px solid transparent;
+              border-collapse: collapse;
+              text-aling: center;
+              }
+              
+              table, th {
+              text-aling: center;
+              }
+            </style>
+            
+            <div style="width:100%; position: absolute; top:60px; border-spacing: 10px 5px; border-collapse: separate;">
+              <div style="position: absolute; top:10px; left:100px;"><span t-field="o.partner_id.name"/></div>
+              <div style="position: absolute; top:10px; left:680px;"><span t-field="o.invoice_date"/></div>
+              
+              <div style="position: absolute; top:40px; left:100px;"> <span t-field="o.partner_shipping_id"/></div>
+              
+              <div style="position: absolute; top:75px; left:600px; font-size:11px;"> <span t-field="o.partner_id.city"/></div>
+              <div style="position: absolute; top:75px; left:100px; font-size:11px;"> <span t-field="o.partner_id.city"/></div>
+              
+              <div style="position: absolute; top:105px; left:65px;"> <span t-field="o.partner_id.nrc"/></div>
+              <div style="position: absolute; top:105px; left:220px;"> <span t-field="o.partner_id.nit"/></div>
+              <div style="position: absolute; top:105px; left:460px;"> <span t-field="o.partner_id.giro"/></div>
+
+            </div>
+			  
+                        <div class="row" style="position: relative; top: 280px;">
+                        <table id="detalle">
+                            <thead>
+                                <tr>
+                                    <th class="text-right" style="width: 10%; font-size: 8px;"></th>
+                                    <th class="text-center" style="width: 50%; font-size: 8px;"></th>
+                                    <th class="text-left" style="width: 10%; font-size: 8px;"></th>
+                                    <th class="text-left" style="width: 10%; font-size: 8px;"></th>
+                                    <th class="text-left" style="width: 10%; font-size: 8px;"></th>
+                                    <th class="text-left" style="width: 10%; font-size: 8px;"></th>
+                                </tr>
+                            </thead>
+                            <t t-set="gravado" t-value="0"/>
+                            <t t-set="iva" t-value="0"/>
+                            <t t-set="exento" t-value="0"/>
+                            <t t-set="no_sujeto" t-value="0"/>
+                            <t t-set="iva_retenido" t-value="0"/>
+
+                            <tbody class="invoice_tbody">
+                                <tr t-foreach="o.invoice_line_ids" t-as="l">
+                                    <t t-if="not l.display_type == 'line_section' ">
+                                        <t t-foreach="l.tax_ids" t-as="tax">
+                                            <t t-if="tax.tax_group_id.name == 'IVA'">
+                                                <t t-set="gravado" t-value="gravado+l.price_subtotal"/>
+                                                <t t-set="iva" t-value="iva+l.price_subtotal * (tax.amount / 100) "/>
+                                            </t>
+                                            <t t-if="tax.tax_group_id.name == 'Retencion'">
+                                                <t t-set="iva_retenido" t-value="iva_retenido+l.price_subtotal * (tax.amount / 100) "/>
+                                            </t>
+                                            <t t-if="tax.tax_group_id.name == 'RETENCION'">
+                                                <t t-set="iva_retenido" t-value="iva_retenido+l.price_subtotal * (tax.amount / 100) "/>
+                                            </t>
+                                            <t t-if="tax.tax_group_id.name == 'EXENTO'">
+                                                <t t-set="exento" t-value="exento+l.price_subtotal"/>
+                                            </t>
+                                            <t t-if="tax.tax_group_id.name == 'Exento'">
+                                                <t t-set="exento" t-value="exento+l.price_subtotal"/>
+                                            </t>
+                                            <t t-if="tax.tax_group_id.name == 'Exento venta'">
+                                                <t t-set="exento" t-value="exento+l.price_subtotal "/>
+                                            </t>
+                                            <t t-if="tax.tax_group_id.name == 'No Sujeto'">
+                                                <t t-set="no_sujeto" t-value="no_sujeto+l.price_subtotal "/>
+                                            </t>
+                                        </t>
+
+                                        <td class="text-left" style="font-size: 12px;">
+                                            <span t-field="l.quantity"/>
+                                            
+                                        </td>
+                                        
+                                        <td style="font-size: 12px;">
+                                            <span t-field="l.product_id"/>
+                                            <span t-field="l.name"/>
+                                            
+                                        </td>
+                                        <td class="text-right" style="font-size: 12px;">
+                                            <span t-field="l.price_unit" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                        </td>
+                                        <td class="text-left" style="font-size: 12px;">
+                                            <t t-foreach="l.tax_ids" t-as="tax">
+                                                <t t-if="tax.tax_group_id.name == 'No Sujeto'">
+                                                    <span t-field="l.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                                </t>
+                                            </t>
+                                            <span/>
+                                        </td>
+                                        <td class="text-left" style="font-size: 12px;">
+                                            <t t-foreach="l.tax_ids" t-as="tax">
+
+                                                <t t-if="tax.tax_group_id.name == 'EXENTO'">
+                                                    <span t-field="l.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                                </t>
+                                                <t t-if="tax.tax_group_id.name == 'Exento venta'">
+                                                    <span t-field="l.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                                </t>
+                                                <t t-if="tax.tax_group_id.name == 'Exento'">
+                                                    <span t-field="l.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                                </t>
+                                            </t>
+                                            <span/>
+                                        </td>
+                                        <td class="text-center" style="font-size: 12px;">
+                                            <t t-foreach="l.tax_ids" t-as="tax">
+                                                <t t-if="tax.tax_group_id.name == 'IVA'">
+                                                    <span t-field="l.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                                </t>
+                                            </t>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                     <style>
+                        #total{
+                        border-collapse: collapse;
+                        width: 100%;
+                        }
+                        #total td{
+                        border: 1px solid transparent;
+                        padding: 1px 2px;
+                        vertical-align: middle;
+                        font-size: 12px;
+                        }
+                        span{
+                        font-weight:bold;
+                        }
+                    </style>
+                    <div class="row" style="width:100%; position: absolute; top: 890px;">
+                        <table id="total">
+                            <tr>
+                                <td style="width: 70%; text-align: center;">
+                                    <!--Cantidad en Letras:-->
+                                    <span t-field="o.amount_text"/>
+                                </td>
+                                <td style="width: 10%;">
+                                    <!--Sumas:-->
+                                </td>
+<!--                                [FIXME] TOTALES GENERALES NO DETALLADOS -->
+                                <td style="width: 5%; opacity: 0;" class="text-right">
+                                    $ <span t-esc="'%.2f' % no_sujeto"/>
+                                </td>
+                                <td style="width: 5%; opacity: 0;" class="text-right">
+                                    $ <span t-esc="'%.2f' % exento"/>
+                                </td>
+                                <td style="width: 10%;" class="text-left">
+                                    $ <span t-esc="'%.2f' % gravado"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span style="font-size: 8px;font-weight:normal;"><!--Ventas No Sujetas--></span>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-left">
+                                    $ <span t-esc="'%.2f' % no_sujeto"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <!--SubTotal-->
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-left">
+                                    <span t-field="o.amount_total"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" rowspan="5" class="text-left" style="font-size: 8px; text-align:justify;">
+                                    
+                                </td>
+                                <td colspan="2">
+                                    <!--(-) Retenciones-->
+                                </td>
+                                <td class="text-left">
+                                    $ <span t-esc="'%.2f' % iva_retenido"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <!--Ventas Exentas-->
+                                </td>
+                                <td class="text-left">
+                                    $ <span t-esc="'%.2f' % exento"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <!--Total-->
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="o.amount_total"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+                <div class="footer">
+                    
+                </div>
+        </t>
+        </template>
+    </data>
+</odoo>

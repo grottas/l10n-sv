@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_sujeto">
+            <t t-call="web.html_container">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                <div class="header">
+
+                </div>
+                <div class="page article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+                    <style>
+                        table{
+                        width: 100%;
+                        font-size: 16px;
+                        font-family: arial;
+                        width: 100%;
+                        position: absolute;
+                        top: 18px;
+                        left: 100px;
+                        }
+                        table td, table th{
+                        padding: 1px 2px;
+                        vertical-align: middle;
+                        border-style : hidden!important;
+                        }
+                        #encabezado{
+                        font-size: 8px
+                        font-family: arial;
+                        border-style : hidden!important;
+                        }
+                        #encabezado td{
+                        border-style : hidden!important;
+                        }
+                        #encabezado tr{
+                        border-style : hidden!important;
+                        }
+                        #giro, #dirrecion{
+                        overflow:hidden;
+                        white-space:nowrap;
+                        text-overflow: ellipsis;
+                        }
+                        #detalle th{
+                        font-size: x-small;
+                        border-top: 1px solid black;
+                        border-bottom: 1px solid black;
+                        }
+                        #detalle td{
+                        border: 1px solid black;
+                        }
+                        #detalle span{
+                        font-size: 11px;
+                        }
+                        span{
+                        font-weight:normal;
+                        }
+                        .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,
+                        .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4,
+                        .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6,
+                        .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8,
+                        .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10,
+                        .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+                        position: relative;
+                        min-height: 1px;
+                        padding-right: 15px;
+                        padding-left: 15px;
+                        }
+                        .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8,
+                        .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+                        float: left;
+                        }
+                        .col-xs-12 {
+                        width: 100%;
+                        }
+                        .col-xs-11 {
+                        width: 91.66666667%;
+                        }
+                        .col-xs-10 {
+                        width: 83.33333333%;
+                        }
+                        .col-xs-9 {
+                        width: 75%;
+                        }
+                        .col-xs-8 {
+                        width: 66.66666667%;
+                        }
+                        .col-xs-7 {
+                        width: 58.33333333%;
+                        }
+                        .col-xs-6 {
+                        width: 50%;
+                        }
+                        .col-xs-5 {
+                        width: 41.66666667%;
+                        }
+                        .col-xs-4 {
+                        width: 33.33333333%;
+                        }
+                        .col-xs-3 {
+                        width: 25%;
+                        }
+                        .col-xs-2 {
+                        width: 16.66666667%;
+                        }
+                        .col-xs-1 {
+                        width: 8.33333333%;
+                        }
+                    </style>
+                    <div class="row">
+                        <table id="encabezado">
+                            <tr>
+                                <td class="col-xs-12" style="height:26px;">
+                                    <span t-field="o.invoice_date"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-12" style="height:26px;">
+                                    <span t-field="o.partner_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-12" style="height:26px;">
+                                    <span t-if="o.partner_id.street"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-6" style="height:26px;">
+                                    <span t-if="o.partner_id.dui"/>
+                                </td>
+                                <td class="col-xs-6" style="height:26px;">
+                                    <span t-if="o.partner_id.phone"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="row">
+                            <table id="detalle"
+                                   style="font-size: 14px; font-family: arial; width: 100%; position: absolute; top: 200px; left: -5px; border:1px solid black;">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center"
+                                            style="width: 6%; border:0px solid transparent;"><!--Cant.--></th><!-- cambio-->
+                                        <th class="text-center"
+                                            style="width: 10%; border:0px solid transparent;"><!--Codigo--></th><!-- cambio-->
+                                        <th class="text-center"
+                                            style="width: 28%; border:0px solid transparent;"><!--Descripcion--></th><!-- cambio-->
+                                        <th class="text-center"
+                                            style="width: 10%; border:0px solid transparent;"><!--Precio Unitario--></th><!-- cambio-->
+                                        <th class="text-center"
+                                            style="width: 5%; font-size: 8px; border:0px solid transparent;"><!--Ventas No Sujetas--></th><!-- cambio-->
+                                        <th class="text-center"
+                                            style="width: 5%; border:0px solid transparent;"><!--Ventas Exentas--></th><!-- cambio-->
+                                        <th class="text-center"
+                                            style="width: 10%; border:0px solid transparent;"><!--Ventas Afectas--></th><!-- cambio-->
+                                    </tr>
+                                </thead>
+                                <t t-set="gravado" t-value="0"/>
+                                <t t-set="iva" t-value="0"/>
+                                <t t-set="exento" t-value="0"/>
+                                <t t-set="no_sujeto" t-value="0"/>
+                                <t t-set="iva_retenido" t-value="0"/>
+                                <tbody class="invoice_tbody">
+                                    <tr t-foreach="o.invoice_line_ids" t-as="l">
+                                        <t t-if="not l.display_type == 'line_section' ">
+
+                                            <td class="text-right" style="border:0px solid transparent; width: 10%;">
+                                                <span t-field="l.quantity"/>
+                                            </td>
+                                            <td style="border:0px solid transparent; width: 70%;">
+                                                <span t-field="l.product_id.name"/>
+                                            </td>
+                                            <td class="text-right" style="border:0px solid transparent; width: 10%;">
+                                                <span t-esc="l.price_unit"
+                                                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </td>
+                                            <td class="text-right" style="border:0px solid transparent; width: 10%;">
+                                                <span t-field="l.price_subtotal"/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="footer">
+                            <style>
+                                #total{
+                                border-style : hidden!important;
+                                width: 100%;
+                                }
+                                #total td{
+                                padding: 1px 2px;
+                                vertical-align: middle;
+                                font-size: 10px;
+                                }
+                                span{
+                                font-weight:bold;
+                                }
+                            </style>
+                            <div class="row">
+                                <table id="total">
+                                    <tr>
+                                        <td style="width: 70%;">
+
+                                            <span t-field="o.amount_text"/>
+                                        </td>
+                                        <td style="width: 10%;">
+
+                                        </td>
+                                        <td style="width: 5%;" class="text-right">
+
+                                        </td>
+                                        <td style="width: 5%;" class="text-right">
+
+                                        </td>
+                                        <td style="width: 10%;" class="text-right">
+                                            <span t-field="o.amount_untaxed"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" rowspan="5" class="text-center">
+
+                                        </td>
+                                        <td colspan="2">
+
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_tax"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_total"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

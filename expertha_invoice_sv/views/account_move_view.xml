@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_invoice_form_sv" model="ir.ui.view">
+            <field name="name">Expertha Invoice Sv</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//button[hasclass('oe_highlight') and @name='action_invoice_sent']" position="replace">
+                        <field name="print_invoice" invisible="1"/>
+                        <button name="action_invoice_sent" invisible="1" type="object"
+                                string="Send &amp; Print"
+                                attrs="{
+                                    'invisible':[
+                                        '|',
+                                        '|',
+                                        '|',
+                                        ('state', '!=', 'posted'),
+                                        ('is_move_sent', '=', True),
+                                        ('move_type', 'not in', ('out_invoice', 'out_refund')),
+                                        ('print_invoice', '=', True)
+                                        ]}"
+                                class="oe_highlight"/>
+                        <button name="action_invoice_print"
+                                type="object" string="Imprimir"
+                                 class="oe_highlight"/>
+                        <button name="action_invoice_digital_print"
+                                type="object"
+                                string="Factura Electronica"
+                                attrs="{'invisible':[
+                                    '|',
+                                    '|',
+                                    '|',
+                                    ('state', '!=', 'posted'),
+                                    ('is_move_sent', '=', True),
+                                    ('move_type', 'not in', ('out_invoice', 'out_refund')),
+                                    ('print_invoice', '=', True)
+                                    ]}" class="oe_highlight"/>
+                    </xpath>
+                    <xpath expr="//field[@name='narration']" position="before">
+                        <field class="oe_left" name="amount_text" placeholder="amount to text"/>
+                    </xpath>
+
+                    <xpath expr="//button[@name='button_draft']" position="attributes">
+                        <attribute name="attrs">{'invisible' : [
+                            '|',
+                            ('show_reset_to_draft_button', '=', False),
+                            ('print_invoice', '=', True)
+                        ]}</attribute>
+                    </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
